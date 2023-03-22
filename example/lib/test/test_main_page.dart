@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:example/test/widget/convenient_container/test_convenient_container_page.dart';
 import 'package:example/test/widget/loading_body/test_loading_body_page.dart';
 import 'package:example/test/widget/visibility_builder/test_visibility_builder_page.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +30,12 @@ class _TestMainPageState extends State<TestMainPage> {
               title: "VisibilityBuilder",
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TestVisibilityBuilderPage()));
+              },
+            ),
+            TestTapItem(
+              title: "ConvenientContainer",
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TestConvenientContainerPage()));
               },
             ),
           ],
