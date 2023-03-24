@@ -10,4 +10,5 @@ export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/conveni
 export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/convenient_rich_text.dart';
 export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/ink_well_container.dart';
 export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/loading_body.dart';
+export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/rounded_image.dart';
 export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/visibility_builder.dart';
