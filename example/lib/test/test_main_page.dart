@@ -4,6 +4,7 @@ import 'package:example/test/widget/convenient_container/test_convenient_contain
 import 'package:example/test/widget/convenient_rich_text/test_convenient_rich_text_page.dart';
 import 'package:example/test/widget/ink_well_container/test_ink_well_container_page.dart';
 import 'package:example/test/widget/loading_body/test_loading_body_page.dart';
+import 'package:example/test/widget/test_circle_image_page.dart';
 import 'package:example/test/widget/visibility_builder/test_visibility_builder_page.dart';
 import 'package:flutter/material.dart';
 
@@ -50,6 +51,12 @@ class _TestMainPageState extends State<TestMainPage> {
               title: "ConvenientRichText",
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TestConvenientRichTextPage()));
+              },
+            ),
+            TestTapItem(
+              title: "CircleImage",
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TestCircleImagePage()));
               },
             ),
           ],
