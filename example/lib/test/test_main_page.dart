@@ -1,12 +1,13 @@
 import 'dart:math';
 
-import 'package:example/test/widget/convenient_container/test_convenient_container_page.dart';
-import 'package:example/test/widget/convenient_rich_text/test_convenient_rich_text_page.dart';
-import 'package:example/test/widget/ink_well_container/test_ink_well_container_page.dart';
+import 'package:example/test/widget/test_convenient_container_page.dart';
+import 'package:example/test/widget/test_convenient_rich_text_page.dart';
+import 'package:example/test/widget/test_image_banner_page.dart';
+import 'package:example/test/widget/test_ink_well_container_page.dart';
 import 'package:example/test/widget/loading_body/test_loading_body_page.dart';
 import 'package:example/test/widget/test_circle_image_page.dart';
 import 'package:example/test/widget/test_rounded_image_page.dart';
-import 'package:example/test/widget/visibility_builder/test_visibility_builder_page.dart';
+import 'package:example/test/widget/test_visibility_builder_page.dart';
 import 'package:flutter/material.dart';
 
 class TestMainPage extends StatefulWidget {
@@ -64,6 +65,12 @@ class _TestMainPageState extends State<TestMainPage> {
               title: "RoundedImage",
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TestRoundedImagePage()));
+              },
+            ),
+            TestTapItem(
+              title: "ImageBanner",
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TestImageBannerPage()));
               },
             ),
           ],
