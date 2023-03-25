@@ -9,6 +9,7 @@ import 'package:example/test/widget/test_circle_image_page.dart';
 import 'package:example/test/widget/test_rounded_image_page.dart';
 import 'package:example/test/widget/test_visibility_builder_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
 
 class TestMainPage extends StatefulWidget {
   const TestMainPage({Key? key}) : super(key: key);
@@ -72,6 +73,12 @@ class _TestMainPageState extends State<TestMainPage> {
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TestImageBannerPage()));
               },
+            ),
+            const ConvenientText(
+              '便利性字体',
+              color: Colors.red,
+              fontSize: 33,
+              fontWeight: FontWeight.bold,
             ),
           ],
         ),
