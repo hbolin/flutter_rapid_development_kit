@@ -118,7 +118,27 @@ class _TestMainPageState extends State<TestMainPage> {
                 });
               },
               child: const Text('点击切换状态'),
-            )
+            ),
+            TestTapItem(
+              title: "ActionUtil.dealAction",
+              onTap: () async {
+                var isDealSuccess = await ActionUtil.dealAction(
+                  context: context,
+                  action: () async {
+                    await Future.delayed(const Duration(seconds: 3));
+                    throw "处理失败";
+                    return "处理成功的数据";
+                  },
+                  onSuccess: (data) {
+                    print('处理成功后数据:${data}');
+                  },
+                  onFailed: (error) {
+                    print('处理成功失败的错误:${error}');
+                  },
+                );
+                print("是否处理成功:$isDealSuccess");
+              },
+            ),
           ],
         ),
       ),
