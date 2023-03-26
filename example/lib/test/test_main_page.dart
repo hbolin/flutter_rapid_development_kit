@@ -20,6 +20,8 @@ class TestMainPage extends StatefulWidget {
 }
 
 class _TestMainPageState extends State<TestMainPage> {
+  bool _conditional = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,6 +97,28 @@ class _TestMainPageState extends State<TestMainPage> {
                 LoadingDialogUtil.dismiss(context);
               },
             ),
+            ConditionalBuilder(
+              isSuccess: _conditional,
+              successBuilder: (context) {
+                return const Text('成功');
+              },
+              failureBuilder: (context) {
+                return const Text('失败');
+              },
+            ),
+            ConditionalWidget(
+              isSuccess: _conditional,
+              successWidget: const Text('成功'),
+              failureWidget: const Text('失败'),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  _conditional = !_conditional;
+                });
+              },
+              child: const Text('点击切换状态'),
+            )
           ],
         ),
       ),
