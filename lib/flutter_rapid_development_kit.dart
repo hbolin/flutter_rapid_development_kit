@@ -13,4 +13,7 @@ export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/image_b
 export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/ink_well_container.dart';
 export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/loading_body.dart';
 export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/rounded_image.dart';
+export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/separated_column.dart';
+export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/separated_row.dart';
+export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/separated_wrap.dart';
 export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/visibility_builder.dart';
