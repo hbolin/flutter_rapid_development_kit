@@ -87,6 +87,14 @@ class _TestMainPageState extends State<TestMainPage> {
                 Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TestSeparatedRowColumnWrapPage()));
               },
             ),
+            TestTapItem(
+              title: "loading...",
+              onTap: () async {
+                LoadingDialogUtil.show(context);
+                await Future.delayed(const Duration(seconds: 3));
+                LoadingDialogUtil.dismiss(context);
+              },
+            ),
           ],
         ),
       ),

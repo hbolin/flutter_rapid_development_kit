@@ -105,7 +105,9 @@ class _LoadingBodyState extends State<LoadingBody> {
   /// 默认"加载中"样式
   Widget _buildDefaultLoadingWidget(context) {
     return const Center(
-      child: CupertinoActivityIndicator(),
+      child: CupertinoActivityIndicator(
+        radius: 12,
+      ),
     );
   }
 

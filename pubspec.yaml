@@ -26,6 +26,12 @@ dependencies:
   # https://pub.flutter-io.cn/packages/carousel_slider
   carousel_slider: 4.2.1
 
+  # OneContext provides a simple way to deal with Dialogs, Overlays, Navigations, Theme* and MediaQuery* with no need of BuildContext.
+  # OneContext 提供了一种简单的方式来处理对话框、覆盖层、导航、主题和 MediaQuery，而无需使用 BuildContext。
+  # https://pub.flutter-io.cn/packages/one_context
+  # https://segmentfault.com/a/1190000023213991
+#  one_context: 2.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
