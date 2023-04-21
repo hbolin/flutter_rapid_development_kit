@@ -118,6 +118,15 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_android_log_printer:
+    dependency: transitive
+    description:
+      path: "."
+      ref: "0.0.1"
+      resolved-ref: "60d62c1b73509c1c4d3cbdba5b27c65a49490024"
+      url: "https://github.com/hbolin/flutter_android_log_printer.git"
+    source: git
+    version: "0.0.1"
   flutter_blurhash:
     dependency: transitive
     description:
@@ -145,11 +154,9 @@ packages:
   flutter_rapid_development_kit:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "0.0.1"
-      resolved-ref: e63ff79733d4c4752524ab98850ab60a19cbab6f
-      url: "https://github.com/hbolin/flutter_rapid_development_kit"
-    source: git
+      path: ".."
+      relative: true
+    source: path
     version: "0.0.1"
   flutter_test:
     dependency: "direct dev"
@@ -442,5 +449,5 @@ packages:
     source: hosted
     version: "1.0.0"
 sdks:
-  dart: ">=2.19.2 <3.0.0"
+  dart: ">=2.19.6 <3.0.0"
   flutter: ">=3.3.0"

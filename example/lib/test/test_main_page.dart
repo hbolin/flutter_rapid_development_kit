@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:example/test/util/test_log_util_page.dart';
 import 'package:example/test/widget/test_convenient_container_page.dart';
 import 'package:example/test/widget/test_convenient_rich_text_page.dart';
 import 'package:example/test/widget/test_image_banner_page.dart';
@@ -137,6 +138,12 @@ class _TestMainPageState extends State<TestMainPage> {
                   },
                 );
                 print("是否处理成功:$isDealSuccess");
+              },
+            ),
+            TestTapItem(
+              title: "日志打印",
+              onTap: () async {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TestTestLogUtilPage()));
               },
             ),
           ],
