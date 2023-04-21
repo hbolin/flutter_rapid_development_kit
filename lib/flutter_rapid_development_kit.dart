@@ -13,6 +13,7 @@ export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/circle_
 export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/conditional_widget.dart';
 export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/convenient_container.dart';
 export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/convenient_rich_text.dart';
+export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/convenient_spacer.dart';
 export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/convenient_text.dart';
 export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/image_banner.dart';
 export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/ink_well_container.dart';

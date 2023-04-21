@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_android_log_printer/flutter_android_log_printer.dart';
 
 class LogUtil {
+  static const tag = "rapid";
+
   static final _flutterAndroidLogPrinterPlugin = FlutterAndroidLogPrinter();
 
   /// 全局配置是否在android打印日志

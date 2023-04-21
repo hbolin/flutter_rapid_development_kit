@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 /// [color]
 /// [fontSize]
 /// [fontWeight]
+@Deprecated("如果有主题的话，最好配合着TextTheme使用")
 class ConvenientText extends StatelessWidget {
   final String data;
   final Color? color;
