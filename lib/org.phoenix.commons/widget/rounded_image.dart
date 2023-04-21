@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 /// 圆角图片
 class RoundedImage extends StatelessWidget {
   final String imageUrl;
-  final double size;
+  final double width;
+  final double height;
   final double radius;
   final BoxFit boxFit;
   final Color? borderColor;
@@ -15,7 +16,8 @@ class RoundedImage extends StatelessWidget {
   const RoundedImage({
     Key? key,
     required this.imageUrl,
-    required this.size,
+    required this.width,
+    required this.height,
     required this.radius,
     this.boxFit = BoxFit.cover,
     this.borderColor,
@@ -36,8 +38,8 @@ class RoundedImage extends StatelessWidget {
 
     if (borderColor != null) {
       current = Container(
-        width: size,
-        height: size,
+        width: width,
+        height: height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(radius + borderWidth),
           border: Border.all(width: borderWidth, color: borderColor!),
@@ -49,8 +51,8 @@ class RoundedImage extends StatelessWidget {
       );
     } else {
       current = SizedBox(
-        width: size,
-        height: size,
+        width: width,
+        height: height,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(radius),
           child: current,

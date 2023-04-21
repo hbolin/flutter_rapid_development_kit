@@ -23,7 +23,8 @@ class _TestRoundedImagePageState extends State<TestRoundedImagePage> {
             Padding(
               padding: EdgeInsets.all(8.0),
               child: RoundedImage(
-                size: 100,
+                width: 100,
+                height: 150,
                 imageUrl: _headUrl,
                 radius: 8,
               ),
@@ -31,7 +32,8 @@ class _TestRoundedImagePageState extends State<TestRoundedImagePage> {
             Padding(
               padding: EdgeInsets.all(8.0),
               child: RoundedImage(
-                size: 100,
+                width: 100,
+                height: 100,
                 imageUrl: _headUrl,
                 borderColor: Colors.red,
                 radius: 16,
@@ -40,7 +42,8 @@ class _TestRoundedImagePageState extends State<TestRoundedImagePage> {
             Padding(
               padding: EdgeInsets.all(8.0),
               child: RoundedImage(
-                size: 100,
+                width: 100,
+                height: 100,
                 imageUrl: _headUrl,
                 borderColor: Colors.red,
                 borderWidth: 5.0,
@@ -50,7 +53,8 @@ class _TestRoundedImagePageState extends State<TestRoundedImagePage> {
             Padding(
               padding: EdgeInsets.all(8.0),
               child: RoundedImage(
-                size: 100,
+                width: 100,
+                height: 100,
                 imageUrl: _headUrl,
                 borderColor: Colors.red,
                 borderWidth: 9.0,
@@ -60,7 +64,8 @@ class _TestRoundedImagePageState extends State<TestRoundedImagePage> {
             Padding(
               padding: EdgeInsets.all(8.0),
               child: RoundedImage(
-                size: 100,
+                width: 100,
+                height: 150,
                 imageUrl: _headUrl,
                 borderColor: Colors.red,
                 borderWidth: 5.0,
@@ -71,7 +76,8 @@ class _TestRoundedImagePageState extends State<TestRoundedImagePage> {
             Padding(
               padding: EdgeInsets.all(8.0),
               child: RoundedImage(
-                size: 100,
+                width: 100,
+                height: 100,
                 imageUrl: _headUrl,
                 borderColor: Colors.red,
                 borderWidth: 5.0,
@@ -84,7 +90,8 @@ class _TestRoundedImagePageState extends State<TestRoundedImagePage> {
             Padding(
               padding: EdgeInsets.all(8.0),
               child: RoundedImage(
-                size: 100,
+                width: 100,
+                height: 100,
                 imageUrl: "xxxx" + _headUrl,
                 borderColor: Colors.red,
                 borderWidth: 5.0,
