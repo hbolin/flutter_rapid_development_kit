@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:example/test/util/test_log_util_page.dart';
+import 'package:example/test/widget/test_cached_loding_body_page.dart';
 import 'package:example/test/widget/test_convenient_container_page.dart';
 import 'package:example/test/widget/test_convenient_rich_text_page.dart';
 import 'package:example/test/widget/test_image_banner_page.dart';
@@ -151,6 +152,12 @@ class _TestMainPageState extends State<TestMainPage> {
               title: "测试Spacer",
               onTap: () async {
                 Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TestSpacerPage()));
+              },
+            ),
+            TestTapItem(
+              title: "测试CachedLoadingBody",
+              onTap: () async {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TestCachedLoadingBodyPage()));
               },
             ),
           ],

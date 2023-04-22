@@ -30,10 +30,10 @@ class LoadingBody extends StatefulWidget {
   /// 监听widget创建完成
   final void Function(LoadingBodyController controller)? ondLoadingBodyCreated;
 
-  /// 是否需要淡入的动画，默认false
+  /// 是否需要淡入的动画，默认false，推荐在页面级别开启
   final bool isAnimated;
 
-  /// 是否需要等待页面跳转的动画显示完成，默认false
+  /// 是否需要等待页面跳转的动画显示完成，默认false，推荐在页面级别开启，如果觉得页面跳转的时候卡顿，也可以开启
   final bool isDelayedDisplay;
 
   const LoadingBody({
@@ -263,6 +263,7 @@ class _LoadingContentState extends State<_LoadingContent> with SingleTickerProvi
     try {
       _loadingData();
       if (isFirstLoadData && _isDelayedDisplay) {
+        isFirstLoadData = false;
         var startDateTime = DateTime.now();
         await widget.loadDataGenerator!();
         var loadingDataMilliseconds = DateTime.now().difference(startDateTime).inMilliseconds;
@@ -272,7 +273,6 @@ class _LoadingContentState extends State<_LoadingContent> with SingleTickerProvi
         if (diffMilliseconds > 0) {
           await Future.delayed(Duration(milliseconds: diffMilliseconds));
         }
-        isFirstLoadData = false;
       } else {
         await widget.loadDataGenerator!();
       }

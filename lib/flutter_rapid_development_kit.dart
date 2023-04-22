@@ -9,6 +9,7 @@ export 'package:flutter_rapid_development_kit/org.phoenix.commons/util/action_ut
 export 'package:flutter_rapid_development_kit/org.phoenix.commons/util/loading_dialog_util.dart';
 export 'package:flutter_rapid_development_kit/org.phoenix.commons/util/log_util.dart';
 
+export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/cached_loading_body.dart';
 export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/circle_image.dart';
 export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/conditional_widget.dart';
 export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/convenient_container.dart';
