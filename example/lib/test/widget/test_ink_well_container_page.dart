@@ -19,11 +19,13 @@ class _TestInkWellContainerPageState extends State<TestInkWellContainerPage> {
           children: [
             // 设置圆角
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(0.0),
               child: InkWellContainer(
-                color: Colors.grey,
-                width: 100,
-                height: 100,
+                padding: EdgeInsets.all(16),
+                margin: EdgeInsets.all(16),
+                color: Colors.teal,
+                // width: 100,
+                // height: 100,
                 alignment: Alignment.center,
                 radius: 20,
                 borderWidth: 20,

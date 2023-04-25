@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 /// 波纹的容器
 class InkWellContainer extends Container {
   final Color? customColor;
+  final EdgeInsetsGeometry? customMargin;
   final double? radius;
   final Color? borderColor;
   final double borderWidth;
@@ -20,13 +21,14 @@ class InkWellContainer extends Container {
     super.width,
     super.height,
     super.constraints,
-    super.margin,
+    EdgeInsetsGeometry? margin,
     super.transform,
     super.transformAlignment,
     super.child,
     super.clipBehavior = Clip.none,
     this.onTap,
-  }) : this.customColor = color;
+  })  : this.customColor = color,
+        this.customMargin = margin;
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +65,13 @@ class InkWellContainer extends Container {
         child: current,
       ),
     );
+
+    if (customMargin != null) {
+      current = Padding(
+        padding: customMargin!,
+        child: current,
+      );
+    }
 
     return current;
   }
