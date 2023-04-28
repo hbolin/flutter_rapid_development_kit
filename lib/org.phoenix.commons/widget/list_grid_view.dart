@@ -7,6 +7,8 @@ class ListGridView extends StatelessWidget {
   final IndexedWidgetBuilder itemBuilder;
   final IndexedWidgetBuilder horizontalSeparatorBuilder;
   final IndexedWidgetBuilder verticalSeparatorBuilder;
+  final MainAxisAlignment mainAxisAlignment;
+  final CrossAxisAlignment crossAxisAlignment;
 
   const ListGridView({
     Key? key,
@@ -15,6 +17,8 @@ class ListGridView extends StatelessWidget {
     required this.itemBuilder,
     required this.horizontalSeparatorBuilder,
     required this.verticalSeparatorBuilder,
+    this.mainAxisAlignment = MainAxisAlignment.start,
+    this.crossAxisAlignment = CrossAxisAlignment.center,
   }) : super(key: key);
 
   @override
@@ -53,7 +57,11 @@ class ListGridView extends StatelessWidget {
             }
           }
         }
-        return Row(children: children);
+        return Row(
+          mainAxisAlignment: mainAxisAlignment,
+          crossAxisAlignment: crossAxisAlignment,
+          children: children,
+        );
       },
       separatorBuilder: verticalSeparatorBuilder,
       itemCount: lines + (leftCount == 0 ? 0 : 1),
