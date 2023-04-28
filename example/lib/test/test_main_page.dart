@@ -8,6 +8,7 @@ import 'package:example/test/widget/test_image_banner_page.dart';
 import 'package:example/test/widget/test_ink_well_container_page.dart';
 import 'package:example/test/widget/loading_body/test_loading_body_page.dart';
 import 'package:example/test/widget/test_circle_image_page.dart';
+import 'package:example/test/widget/test_list_grid_view_page.dart';
 import 'package:example/test/widget/test_rounded_image_page.dart';
 import 'package:example/test/widget/test_separated_row_column_wrap_page.dart';
 import 'package:example/test/widget/test_spacer_page.dart';
@@ -158,6 +159,12 @@ class _TestMainPageState extends State<TestMainPage> {
               title: "测试CachedLoadingBody",
               onTap: () async {
                 Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TestCachedLoadingBodyPage()));
+              },
+            ),
+            TestTapItem(
+              title: "测试ListGridView",
+              onTap: () async {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TestListGirdViewPage()));
               },
             ),
           ],
