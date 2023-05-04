@@ -3,14 +3,7 @@
 
 class AppImageAsset {
   const AppImageAsset();
-  static const images = _Images();
-  static const fonts = _Fonts();
-  static const search = 'assets/search.png';
-}
-
-class _Images {
-  const _Images();
-  final png = const _Png();
+  static const png = _Png();
 }
 
 class _Png {
@@ -19,12 +12,5 @@ class _Png {
   final String search = 'assets/images/png/search.png';
   final String coin = 'assets/images/png/coin.png';
   final String recharge_hot = 'assets/images/png/recharge_hot.png';
-}
-
-class _Fonts {
-  const _Fonts();
-  final String pingfang_sc = 'assets/fonts/PingFang SC.ttf';
-  final String vivaldi = 'assets/fonts/Vivaldi.ttf';
-  final String din_bolditalic = 'assets/fonts/DIN-BOLDITALIC.OTF';
 }
 

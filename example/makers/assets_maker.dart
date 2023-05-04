@@ -2,7 +2,7 @@ import 'package:flutter_rapid_development_kit/org.phoenix.commons/maker/asset/im
 
 main() {
   ImageAssetMaker.makeImageAssetToAssetClass(
-    directoryPath: "assets",
+    directoryPath: "assets/images",
     targetFile: 'lib/config/app_image_asset.dart',
     className: 'AppImageAsset',
   );
