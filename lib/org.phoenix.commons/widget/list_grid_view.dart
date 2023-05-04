@@ -9,6 +9,8 @@ class ListGridView extends StatelessWidget {
   final IndexedWidgetBuilder verticalSeparatorBuilder;
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
+  final bool shrinkWrap;
+  final ScrollPhysics? physics;
 
   const ListGridView({
     Key? key,
@@ -19,6 +21,8 @@ class ListGridView extends StatelessWidget {
     required this.verticalSeparatorBuilder,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
+    this.shrinkWrap = false,
+    this.physics,
   }) : super(key: key);
 
   @override
@@ -27,6 +31,8 @@ class ListGridView extends StatelessWidget {
     var leftCount = itemCount % crossAxisCount;
 
     return ListView.separated(
+      shrinkWrap: shrinkWrap,
+      physics: physics,
       itemBuilder: (build, index) {
         List<Widget> children = [];
         if (index < lines) {
