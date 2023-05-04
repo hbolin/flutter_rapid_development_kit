@@ -25,3 +25,8 @@ export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/separat
 export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/separated_row.dart';
 export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/separated_wrap.dart';
 export 'package:flutter_rapid_development_kit/org.phoenix.commons/widget/visibility_builder.dart';
+
+
+// --------------------------------------- 开发阶段的生成器 ---------------------------------------
+export 'package:flutter_rapid_development_kit/org.phoenix.commons/maker/base/read_directory_files.dart';
+export 'package:flutter_rapid_development_kit/org.phoenix.commons/maker/asset/image_asset_maker.dart';
