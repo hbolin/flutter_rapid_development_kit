@@ -43,4 +43,9 @@ extension ListExtensionOperation<E> on List<E>? {
     if (this == null) return null;
     return <E>[...this!];
   }
+
+  /// 获取index的数据，如果list本身为null，则返回null；超出list的长度，也返回null
+  E? getIndexOrNull(int index) {
+    return this?.elementAtOrNull(index);
+  }
 }
