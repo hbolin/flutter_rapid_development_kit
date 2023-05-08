@@ -48,4 +48,14 @@ extension ListExtensionOperation<E> on List<E>? {
   E? getIndexOrNull(int index) {
     return this?.elementAtOrNull(index);
   }
+
+  /// 获取满足要求的第一个元素
+  E? getFirstWhereOrNull(bool Function(E element) test) {
+    return this?.firstWhereOrNull(test);
+  }
+
+  /// 获取满足要求的第一个元素
+  E? getFirstWhereIndexedOrNull(bool Function(int index, E element) test) {
+    return this?.firstWhereIndexedOrNull(test);
+  }
 }
