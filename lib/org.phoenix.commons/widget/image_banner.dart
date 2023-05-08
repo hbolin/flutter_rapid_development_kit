@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 export 'package:carousel_slider/carousel_slider.dart';
+import 'package:collection/collection.dart';
 
 /// 图片轮播
 class ImageBanner extends StatefulWidget {
@@ -16,6 +17,7 @@ class ImageBanner extends StatefulWidget {
   final Widget errorWidget;
   final CarouselController? controller;
   final Widget Function(CarouselController controller, int index, bool isSelected)? paginationBuilder;
+  final void Function(int index)? onTap;
 
   const ImageBanner({
     Key? key,
@@ -30,6 +32,7 @@ class ImageBanner extends StatefulWidget {
     this.errorWidget = const SizedBox.shrink(),
     this.controller,
     this.paginationBuilder,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -72,7 +75,7 @@ class _ImageBannerState extends State<ImageBanner> {
               });
             },
           ),
-          items: widget.imgUrlList.map((item) {
+          items: widget.imgUrlList.mapIndexed((index, item) {
             Widget current = Container(
               color: Colors.grey[200],
               child: CachedNetworkImage(
@@ -94,7 +97,14 @@ class _ImageBannerState extends State<ImageBanner> {
               );
             }
 
-            return current;
+            return GestureDetector(
+              onTap: () {
+                if (widget.onTap != null) {
+                  widget.onTap!(index);
+                }
+              },
+              child: current,
+            );
           }).toList(),
         ),
         Positioned(
