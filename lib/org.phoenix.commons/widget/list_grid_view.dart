@@ -77,3 +77,64 @@ class ListGridView extends StatelessWidget {
     );
   }
 }
+
+ListView buildListGridView({
+  required BuildContext context,
+  required int itemCount,
+  required int crossAxisCount,
+  required IndexedWidgetBuilder itemBuilder,
+  required IndexedWidgetBuilder horizontalSeparatorBuilder,
+  required IndexedWidgetBuilder verticalSeparatorBuilder,
+  MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+  CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
+  bool shrinkWrap = false,
+  ScrollPhysics? physics,
+  EdgeInsetsGeometry? padding,
+}) {
+  var lines = itemCount ~/ crossAxisCount;
+  var leftCount = itemCount % crossAxisCount;
+
+  return ListView.separated(
+    shrinkWrap: shrinkWrap,
+    physics: physics,
+    padding: padding,
+    itemBuilder: (build, index) {
+      List<Widget> children = [];
+      if (index < lines) {
+        int min = crossAxisCount * index;
+        int max = crossAxisCount * (index + 1);
+        for (int i = min; i < max; i++) {
+          if (i != (max - 1)) {
+            children.add(Expanded(child: itemBuilder(context, i)));
+            children.add(horizontalSeparatorBuilder(context, i));
+          } else {
+            children.add(Expanded(child: itemBuilder(context, i)));
+          }
+        }
+      } else {
+        int min = crossAxisCount * index;
+        int max = crossAxisCount * (index + 1);
+        int readMax = crossAxisCount * index + leftCount;
+        for (int i = min; i < max; i++) {
+          if (i != (max - 1)) {
+            if (i >= readMax) {
+              children.add(const Expanded(child: SizedBox.shrink()));
+            } else {
+              children.add(Expanded(child: itemBuilder(context, i)));
+            }
+            children.add(horizontalSeparatorBuilder(context, i));
+          } else {
+            children.add(const Expanded(child: SizedBox.shrink()));
+          }
+        }
+      }
+      return Row(
+        mainAxisAlignment: mainAxisAlignment,
+        crossAxisAlignment: crossAxisAlignment,
+        children: children,
+      );
+    },
+    separatorBuilder: verticalSeparatorBuilder,
+    itemCount: lines + (leftCount == 0 ? 0 : 1),
+  );
+}
