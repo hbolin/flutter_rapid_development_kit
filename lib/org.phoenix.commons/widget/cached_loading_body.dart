@@ -231,6 +231,7 @@ class _CachedLoadingContent extends StatefulWidget {
 
 class _CachedLoadingContentState extends State<_CachedLoadingContent> with SingleTickerProviderStateMixin {
   static const int addCachedDataLabel = 1;
+  static const int addDataLabel = 2;
 
   Stream<int>? _bids;
   bool isFirstLoadData = true;
@@ -274,19 +275,25 @@ class _CachedLoadingContentState extends State<_CachedLoadingContent> with Singl
           if (success) {
             controller.add(addCachedDataLabel);
           }
-          await _loadRealData(controller);
+          success = await _loadRealData(controller);
           loadingDataMilliseconds = DateTime.now().difference(startDateTime).inMilliseconds;
           diffMilliseconds = delayDuration.inMilliseconds - loadingDataMilliseconds;
           // LogUtil.d(LogUtil.tag, "需要延迟:$diffMilliseconds毫秒..");
           if (diffMilliseconds > 0) {
             await Future.delayed(Duration(milliseconds: diffMilliseconds));
           }
+          if (success) {
+            controller.add(addDataLabel);
+          }
         } else {
           bool success = await _loadCachedData(controller);
           if (success) {
             controller.add(addCachedDataLabel);
           }
-          await _loadRealData(controller);
+          success = await _loadRealData(controller);
+          if (success) {
+            controller.add(addDataLabel);
+          }
         }
         await controller.close();
       },
@@ -389,6 +396,7 @@ class _CachedLoadingContentState extends State<_CachedLoadingContent> with Singl
       builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
         // LogUtil.d(LogUtil.tag, "StreamBuilder:$snapshot hasError:${snapshot.hasError}");
         switch (snapshot.connectionState) {
+          toSuccess:
           toError:
           case ConnectionState.done:
             Widget child;
@@ -422,6 +430,8 @@ class _CachedLoadingContentState extends State<_CachedLoadingContent> with Singl
                 },
                 child: child,
               );
+            } else if (snapshot.data == addDataLabel) {
+              continue toSuccess;
             } else if (snapshot.hasError) {
               continue toError;
             } else {
