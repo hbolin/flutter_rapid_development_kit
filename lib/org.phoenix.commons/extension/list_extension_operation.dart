@@ -58,4 +58,14 @@ extension ListExtensionOperation<E> on List<E>? {
   E? getFirstWhereIndexedOrNull(bool Function(int index, E element) test) {
     return this?.firstWhereIndexedOrNull(test);
   }
+
+  /// 获取第一个元素
+  E? getFirstOrNull() {
+    return this?.firstOrNull;
+  }
+
+  /// 获取最后一个元素
+  E? getLastOrNull() {
+    return this?.lastOrNull;
+  }
 }
