@@ -26,7 +26,7 @@ class $className {
 
     var temps = directory.listSync();
     for (var element in temps) {
-      if (FileSystemEntity.isFileSync(element.path)) {
+      if (FileSystemEntity.isFileSync(element.path) && !element.path.endsWith(".DS_Store")) {
         outData =
             "$outData  static const ${File(element.path).fileNameWithoutExtension.toLowerCase().replaceAll("-", "_").replaceAll(" ", "_")} = '${File(element.path).fileNameWithoutExtension}';\n";
       }

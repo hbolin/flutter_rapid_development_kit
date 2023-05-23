@@ -45,6 +45,7 @@ $outData
     var temps = directory.listSync();
     var childDirectories = temps.where((element) => FileSystemEntity.isDirectorySync(element.path));
     var childFiles = temps.where((element) => !FileSystemEntity.isDirectorySync(element.path));
+    childFiles = childFiles.where((element) => !element.path.endsWith(".DS_Store"));
     var className = '_${directory.directoryName.capitalize()}';
     if (isRoot) {
       className = rootClassName;
