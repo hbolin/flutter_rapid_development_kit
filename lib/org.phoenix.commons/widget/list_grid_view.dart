@@ -139,7 +139,7 @@ ListView buildListGridView({
   );
 }
 
-SliverList buildSliverListGridView({
+Widget buildSliverListGridView({
   required BuildContext context,
   required int itemCount,
   required int crossAxisCount,
@@ -148,14 +148,12 @@ SliverList buildSliverListGridView({
   required IndexedWidgetBuilder verticalSeparatorBuilder,
   MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
   CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
-  bool shrinkWrap = false,
-  ScrollPhysics? physics,
   EdgeInsetsGeometry? padding,
 }) {
   var lines = itemCount ~/ crossAxisCount;
   var leftCount = itemCount % crossAxisCount;
 
-  return SliverList.separated(
+  Widget child = SliverList.separated(
     itemBuilder: (build, index) {
       List<Widget> children = [];
       if (index < lines) {
@@ -195,4 +193,13 @@ SliverList buildSliverListGridView({
     separatorBuilder: verticalSeparatorBuilder,
     itemCount: lines + (leftCount == 0 ? 0 : 1),
   );
+
+  if (padding != null) {
+    child = SliverPadding(
+      padding: padding,
+      sliver: child,
+    );
+  }
+
+  return child;
 }
