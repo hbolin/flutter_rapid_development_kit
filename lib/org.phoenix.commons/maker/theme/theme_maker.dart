@@ -525,6 +525,9 @@ extension StringExtension on String {
   }
 }
 
-void main() {
-  ThemeMaker.makerThemeFiles(directoryPath: 'theme', targetFile: 'lib/comon/theme');
-}
+// void main() {
+//   ThemeMaker.makerThemeFiles(
+//     directoryPath: 'theme',
+//     targetFile: 'lib/comon/theme',
+//   );
+// }
