@@ -506,14 +506,14 @@ class _Text {
   _Text({required this.color, required this.size});
 }
 
-extension FileExtension on File {
+extension _FileExtension on File {
   /// 文件名，不包括后缀
   String get fileNameWithoutExtension {
     return path.basenameWithoutExtension(this.path);
   }
 }
 
-extension StringExtension on String {
+extension _StringExtension on String {
   /// 首字母大写
   String capitalize() {
     return "${this[0].toUpperCase()}${substring(1)}";

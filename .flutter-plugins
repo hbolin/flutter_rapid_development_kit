@@ -1,8 +1,8 @@
 # This is a generated file; do not edit or check into version control.
-flutter_android_log_printer=/Users/zhangwu/.pub-cache/git/flutter_android_log_printer-60d62c1b73509c1c4d3cbdba5b27c65a49490024/
-path_provider=/Users/zhangwu/.pub-cache/hosted/pub.flutter-io.cn/path_provider-2.0.14/
-path_provider_android=/Users/zhangwu/.pub-cache/hosted/pub.flutter-io.cn/path_provider_android-2.0.25/
-path_provider_foundation=/Users/zhangwu/.pub-cache/hosted/pub.flutter-io.cn/path_provider_foundation-2.2.2/
-path_provider_linux=/Users/zhangwu/.pub-cache/hosted/pub.flutter-io.cn/path_provider_linux-2.1.10/
-path_provider_windows=/Users/zhangwu/.pub-cache/hosted/pub.flutter-io.cn/path_provider_windows-2.1.5/
-sqflite=/Users/zhangwu/.pub-cache/hosted/pub.flutter-io.cn/sqflite-2.2.7/
+flutter_android_log_printer=C:\\Users\\hbl\\AppData\\Local\\Pub\\Cache\\git\\flutter_android_log_printer-60d62c1b73509c1c4d3cbdba5b27c65a49490024\\
+path_provider=C:\\Users\\hbl\\AppData\\Local\\Pub\\Cache\\hosted\\pub.flutter-io.cn\\path_provider-2.0.14\\
+path_provider_android=C:\\Users\\hbl\\AppData\\Local\\Pub\\Cache\\hosted\\pub.flutter-io.cn\\path_provider_android-2.0.24\\
+path_provider_foundation=C:\\Users\\hbl\\AppData\\Local\\Pub\\Cache\\hosted\\pub.flutter-io.cn\\path_provider_foundation-2.2.0\\
+path_provider_linux=C:\\Users\\hbl\\AppData\\Local\\Pub\\Cache\\hosted\\pub.flutter-io.cn\\path_provider_linux-2.1.10\\
+path_provider_windows=C:\\Users\\hbl\\AppData\\Local\\Pub\\Cache\\hosted\\pub.flutter-io.cn\\path_provider_windows-2.1.5\\
+sqflite=C:\\Users\\hbl\\AppData\\Local\\Pub\\Cache\\hosted\\pub.flutter-io.cn\\sqflite-2.2.6\\
