@@ -39,6 +39,8 @@ dependencies:
       url: "https://github.com/hbolin/flutter_android_log_printer.git"
       ref: "0.0.1"
 
+  xml: 6.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
