@@ -161,7 +161,7 @@ ${colorMaps.keys.map((key) => '''
 
   /// 生成AppTextStyle文件
   static void makeAppTextStyle(List<FileSystemEntity> children, String targetFile) {
-    String appTextStylePath = "$targetFile/src/style.dart";
+    String appTextStylePath = "$targetFile/src/text_style.dart";
 
     List<String> enumThemes = _enumTheme(children);
 
@@ -240,7 +240,7 @@ ${colorMaps.keys.map((key) => '''
 
   /// 生成AppTheme文件
   static void makeAppTheme(String targetFile) {
-    String appThemePath = "$targetFile/src/text_style.dart";
+    String appThemePath = "$targetFile/src/style.dart";
 
     File file = File(appThemePath);
     if (file.existsSync()) {
