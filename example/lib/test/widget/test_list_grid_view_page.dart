@@ -18,6 +18,7 @@ class _TestListGirdViewPageState extends State<TestListGirdViewPage> {
       body: ListGridView(
         itemCount: 101,
         crossAxisCount: 5,
+        scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, int index) {
           return Center(child: Text('${index + 1}'));
         },
@@ -25,7 +26,7 @@ class _TestListGirdViewPageState extends State<TestListGirdViewPage> {
           return SizedBox(width: 10, height: 10, child: Container(color: Colors.black));
         },
         verticalSeparatorBuilder: (BuildContext context, int index) {
-          return SizedBox(height: 20, child: Container(color: Colors.green));
+          return SizedBox(height: 20, width: 20, child: Container(color: Colors.green));
         },
       ),
     );

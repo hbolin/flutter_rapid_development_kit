@@ -12,6 +12,7 @@ class ListGridView extends StatelessWidget {
   final bool shrinkWrap;
   final ScrollPhysics? physics;
   final EdgeInsetsGeometry? padding;
+  final Axis scrollDirection;
 
   const ListGridView({
     Key? key,
@@ -25,6 +26,7 @@ class ListGridView extends StatelessWidget {
     this.shrinkWrap = false,
     this.physics,
     this.padding,
+    this.scrollDirection = Axis.vertical,
   }) : super(key: key);
 
   @override
@@ -36,6 +38,7 @@ class ListGridView extends StatelessWidget {
       shrinkWrap: shrinkWrap,
       physics: physics,
       padding: padding,
+      scrollDirection: scrollDirection,
       itemBuilder: (build, index) {
         List<Widget> children = [];
         if (index < lines) {
@@ -44,7 +47,7 @@ class ListGridView extends StatelessWidget {
           for (int i = min; i < max; i++) {
             if (i != (max - 1)) {
               children.add(Expanded(child: itemBuilder(context, i)));
-              children.add(horizontalSeparatorBuilder(context, i));
+              children.add(scrollDirection == Axis.horizontal ? verticalSeparatorBuilder(context, i) : horizontalSeparatorBuilder(context, i));
             } else {
               children.add(Expanded(child: itemBuilder(context, i)));
             }
@@ -60,19 +63,25 @@ class ListGridView extends StatelessWidget {
               } else {
                 children.add(Expanded(child: itemBuilder(context, i)));
               }
-              children.add(horizontalSeparatorBuilder(context, i));
+              children.add(scrollDirection == Axis.horizontal ? verticalSeparatorBuilder(context, i) : horizontalSeparatorBuilder(context, i));
             } else {
               children.add(const Expanded(child: SizedBox.shrink()));
             }
           }
         }
-        return Row(
-          mainAxisAlignment: mainAxisAlignment,
-          crossAxisAlignment: crossAxisAlignment,
-          children: children,
-        );
+        return scrollDirection == Axis.horizontal
+            ? Column(
+                mainAxisAlignment: mainAxisAlignment,
+                crossAxisAlignment: crossAxisAlignment,
+                children: children,
+              )
+            : Row(
+                mainAxisAlignment: mainAxisAlignment,
+                crossAxisAlignment: crossAxisAlignment,
+                children: children,
+              );
       },
-      separatorBuilder: verticalSeparatorBuilder,
+      separatorBuilder: scrollDirection == Axis.horizontal ? horizontalSeparatorBuilder : verticalSeparatorBuilder,
       itemCount: lines + (leftCount == 0 ? 0 : 1),
     );
   }
