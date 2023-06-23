@@ -12,6 +12,7 @@ class RoundedImage extends StatelessWidget {
   final double borderWidth;
   final Widget? placeholder;
   final Widget errorWidget;
+  final BorderRadiusGeometry? borderRadius;
 
   const RoundedImage({
     Key? key,
@@ -24,6 +25,7 @@ class RoundedImage extends StatelessWidget {
     this.borderWidth = 1.0,
     this.placeholder,
     this.errorWidget = const SizedBox.shrink(),
+    this.borderRadius,
   }) : super(key: key);
 
   @override
@@ -41,7 +43,7 @@ class RoundedImage extends StatelessWidget {
         width: width,
         height: height,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(radius + borderWidth),
+          borderRadius: borderRadius ?? BorderRadius.circular(radius + borderWidth),
           border: Border.all(width: borderWidth, color: borderColor!),
         ),
         child: ClipRRect(
@@ -54,7 +56,7 @@ class RoundedImage extends StatelessWidget {
         width: width,
         height: height,
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(radius),
+          borderRadius: borderRadius ?? BorderRadius.circular(radius),
           child: current,
         ),
       );
