@@ -222,7 +222,21 @@ ${colorMaps.keys.map((key) => '''
     return TextStyle(
       fontSize: AppSizeStyle(appThemeType).${colorMaps[key]!.size},
       color: color ?? AppColorStyle(appThemeType).${colorMaps[key]!.color},
-      fontWeight: fontWeightType?.fontWeight ?? const FontWeightType.regular().fontWeight,
+      fontWeight: fontWeightType?.fontWeight ?? ${() {
+                  if (colorMaps[key]!.weight == "light") {
+                    return "const FontWeightType.light().fontWeight";
+                  }
+                  if (colorMaps[key]!.weight == "regular") {
+                    return "const FontWeightType.regular().fontWeight";
+                  }
+                  if (colorMaps[key]!.weight == "medium") {
+                    return "const FontWeightType.medium().fontWeight";
+                  }
+                  if (colorMaps[key]!.weight == "semibold") {
+                    return "const FontWeightType.semibold().fontWeight";
+                  }
+                  return "const FontWeightType.regular().fontWeight";
+                }()},
     );
   }''').toList().join("\n\n")} 
 }
@@ -479,8 +493,10 @@ extension BuildContextExtension on BuildContext {
       }).value;
       String color = element.findElements("color").first.innerText;
       String size = element.findElements("size").first.innerText;
+      String? weight = element.findElements("weight").firstOrNull?.innerText;
+      print("weight:$weight");
 
-      textMaps[textName] = _Text(color: color, size: size);
+      textMaps[textName] = _Text(color: color, size: size, weight: weight);
     }
     return textMaps;
   }
@@ -502,8 +518,9 @@ extension BuildContextExtension on BuildContext {
 class _Text {
   String color;
   String size;
+  String? weight;
 
-  _Text({required this.color, required this.size});
+  _Text({required this.color, required this.size, required this.weight});
 }
 
 extension _FileExtension on File {
