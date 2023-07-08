@@ -99,6 +99,7 @@ ListView buildListGridView({
   bool shrinkWrap = false,
   ScrollPhysics? physics,
   EdgeInsetsGeometry? padding,
+  ScrollController? controller,
 }) {
   var lines = itemCount ~/ crossAxisCount;
   var leftCount = itemCount % crossAxisCount;
@@ -107,6 +108,7 @@ ListView buildListGridView({
     shrinkWrap: shrinkWrap,
     physics: physics,
     padding: padding,
+    controller: controller,
     itemBuilder: (build, index) {
       List<Widget> children = [];
       if (index < lines) {
