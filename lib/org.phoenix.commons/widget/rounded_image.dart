@@ -13,6 +13,7 @@ class RoundedImage extends StatelessWidget {
   final Widget? placeholder;
   final Widget errorWidget;
   final BorderRadiusGeometry? borderRadius;
+  final Color? color;
 
   const RoundedImage({
     Key? key,
@@ -26,6 +27,7 @@ class RoundedImage extends StatelessWidget {
     this.placeholder,
     this.errorWidget = const SizedBox.shrink(),
     this.borderRadius,
+    this.color,
   }) : super(key: key);
 
   @override
@@ -35,6 +37,7 @@ class RoundedImage extends StatelessWidget {
       fit: boxFit,
       placeholder: placeholder == null ? null : ((context, url) => placeholder!),
       errorWidget: (context, url, error) => errorWidget,
+      color: color,
       // 这里有imageBuilder属性可以配置圆形，但是不符合设计要求
     );
 
