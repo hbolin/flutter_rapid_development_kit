@@ -34,12 +34,14 @@ dependencies:
 
   # 将flutter的日志打印到android段，比较好查看
   # https://github.com/hbolin/flutter_android_log_printer
-#  flutter_android_log_printer:
-#    git:
-#      url: "https://github.com/hbolin/flutter_android_log_printer.git"
-#      ref: "0.0.1"
+  flutter_android_log_printer:
+    git:
+      url: "https://github.com/hbolin/flutter_android_log_printer.git"
+      ref: "0.0.1"
 
   xml: 6.3.0
+
+  universal_platform: ^1.0.0+1
 
 dev_dependencies:
   flutter_test:
