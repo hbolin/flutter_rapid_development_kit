@@ -41,6 +41,12 @@ class _TestMainPageState extends State<TestMainPage> {
               },
             ),
             TestTapItem(
+              title: "CachedLoadingBody",
+              onTap: () async {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TestCachedLoadingBodyPage()));
+              },
+            ),
+            TestTapItem(
               title: "VisibilityBuilder",
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TestVisibilityBuilderPage()));
@@ -161,12 +167,6 @@ class _TestMainPageState extends State<TestMainPage> {
               title: "测试Spacer",
               onTap: () async {
                 Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TestSpacerPage()));
-              },
-            ),
-            TestTapItem(
-              title: "测试CachedLoadingBody",
-              onTap: () async {
-                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TestCachedLoadingBodyPage()));
               },
             ),
             TestTapItem(

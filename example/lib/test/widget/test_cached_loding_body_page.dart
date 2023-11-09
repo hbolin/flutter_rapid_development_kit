@@ -18,8 +18,8 @@ class _TestCachedLoadingBodyPageState extends State<TestCachedLoadingBodyPage> {
         title: const Text("CachedLoadingBody - 测试"),
       ),
       body: CachedLoadingBody(
-        // isDelayedDisplay: true,
-        // isAnimated: true,
+        // initialDelayedDisplay: true,
+        // initialAnimated: true,
         // loadData: null,
         loadData: () async {
           await Future.delayed(const Duration(seconds: 2));
