@@ -4,6 +4,11 @@ import 'dart:io';
 
 import '../base/read_directory_files.dart';
 
+// ImageAssetMaker.makeImageAssetToAssetClass(
+//   directoryPath: "assets/images",
+//   targetFile: 'lib/config/app_image_asset.dart',
+//   className: 'AppImageAsset',
+// );
 /// 生成图片类型的资源
 /// [directoryPath] 图片资源路径
 /// [targetFile] 存放的文件路径

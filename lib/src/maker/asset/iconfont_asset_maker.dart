@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'dart:io';
 
-// IconFontMaker.makeIconFontClass(
+// IconFontAssetMaker.makeIconFontClass(
 //   directoryPath: '文档/font_4147926_gu987zbb50t',
 //   targetFile: 'lib/config/icon_font.dart',
 // );
-class IconFontMaker {
+class IconFontAssetMaker {
   static Future<void> makeIconFontClass({
     required String directoryPath,
     required String targetFile,
-    String className = "IconFont",
+    String className = "IconFontAsset",
   }) async {
     // 读取目录
     var directory = Directory(directoryPath);

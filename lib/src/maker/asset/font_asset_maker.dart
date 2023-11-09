@@ -4,6 +4,11 @@ import 'dart:io';
 
 import '../base/read_directory_files.dart';
 
+// FontAssetMaker.makeFontAssetToFontClass(
+//   directoryPath: "assets/fonts",
+//   targetFile: 'lib/config/font_family_asset.dart',
+//   className: 'FontFamilyAsset',
+// );
 class FontAssetMaker {
   /// 打印assets中的images的文件名称
   static Future<void> makeFontAssetToFontClass({
