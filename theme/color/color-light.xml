@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<resources>
-    <color name="primaryColor">#6D3580</color>
-    <color name="scaffoldBackgroundColor">#FFFFFF</color>
-
-    <color name="textBodyColor">#1D1E20</color>
-    <color name="textWeakColor">#8F959E</color>
-
-</resources>

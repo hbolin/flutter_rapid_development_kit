@@ -1,6 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.example">
-   <application
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application
         android:label="Flutter快速开发框架"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

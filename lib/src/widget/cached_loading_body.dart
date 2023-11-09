@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rapid_development_kit/org.phoenix.commons/util/log_util.dart';
+import 'package:flutter_rapid_development_kit/src/util/log_util.dart';
 
 /// 加载流程：加载中 -> 缓存数据（加载失败，忽略错误） -> 实际数据
 /// 注意：如果缓存数据需要很长时间，则不适用。

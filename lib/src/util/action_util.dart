@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rapid_development_kit/org.phoenix.commons/util/loading_dialog_util.dart';
+import 'package:flutter_rapid_development_kit/src/util/loading_dialog_util.dart';
 
 class ActionUtil {
   /// 处理Action，显示loading -> 成功

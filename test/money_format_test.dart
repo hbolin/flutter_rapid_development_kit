@@ -1,4 +1,4 @@
-import 'package:flutter_rapid_development_kit/org.phoenix.commons/extension/money_format.dart';
+import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

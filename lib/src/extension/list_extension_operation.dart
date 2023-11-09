@@ -4,6 +4,7 @@ extension ListExtensionOperation<E> on List<E>? {
   /// 并集，[removeSameElement]：表示的是移除的条件，例如element1.id == element2.id，id相同则保留一个即可
   /// 示例： [1, 2, 3, 3] 并集 [2, 3, 3, 4] = [1, 2, 3, 3, 4]
   /// 注意：只会添加[other]在本集合没有的元素，如果元素在本集合已重复，则还是会重复。
+  /// 注意：不会影响[本集合]和[other]集合
   List<E>? union(List<E> other, bool Function(E element1, E element2) removeSameElement) {
     if (this == null) return null;
     var targetList = this.shallowCopy()!;
@@ -18,6 +19,7 @@ extension ListExtensionOperation<E> on List<E>? {
 
   /// 差集，[removeSameElement]：表示的是移除的条件，例如element1.id == element2.id，id相同则移除
   /// 示例： [1, 2, 3, 3] 差集 [2, 3, 3, 4] = [1]
+  /// 注意：不会影响[本集合]和[other]集合
   List<E>? subtract(List<E> other, bool Function(E element1, E element2) removeSameElement) {
     if (this == null) return null;
     var targetList = this.shallowCopy()!;
@@ -30,6 +32,7 @@ extension ListExtensionOperation<E> on List<E>? {
 
   /// 交集，[pickSameElement]：表示的是取出的条件，例如element1.id == element2.id，id相同则取出
   /// 示例： [1, 2, 3, 3] 交集 [2, 3, 3, 4] = [2, 3, 3]
+  /// 注意：不会影响[本集合]和[other]集合
   List<E>? intersect(List<E> other, bool Function(E element1, E element2) pickSameElement) {
     if (this == null) return null;
     return this!.where((element2) {

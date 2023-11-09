@@ -1,4 +1,4 @@
-import 'package:flutter_rapid_development_kit/org.phoenix.commons/extension/list_extension_operation.dart';
+import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -12,6 +12,8 @@ void main() {
     List<int>? list = [1, 2, 3, 3];
     List<int> list2 = [2, 3, 3, 4];
     var result = list.union(list2, (element1, element2) => element1 == element2);
+    print(list);
+    print(list2);
     print(result);
     expect(result.hashCode, isNot(list.hashCode));
     expect(result.hashCode, isNot(list2.hashCode));

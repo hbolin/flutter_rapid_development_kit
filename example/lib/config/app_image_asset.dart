@@ -13,4 +13,3 @@ class _Png {
   final String coin = 'assets/images/png/coin.png';
   final String recharge_hot = 'assets/images/png/recharge_hot.png';
 }
-

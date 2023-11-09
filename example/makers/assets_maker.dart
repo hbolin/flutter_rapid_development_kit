@@ -1,4 +1,4 @@
-import 'package:flutter_rapid_development_kit/org.phoenix.commons/maker/asset/image_asset_maker.dart';
+import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
 
 main() {
   ImageAssetMaker.makeImageAssetToAssetClass(
