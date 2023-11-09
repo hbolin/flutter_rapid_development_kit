@@ -50,10 +50,12 @@ class _LoadingDialogContent extends StatelessWidget {
       height: 80,
       decoration: BoxDecoration(
         color: () {
-          return switch (Theme.of(context).brightness) {
-            Brightness.dark => Colors.white12,
-            Brightness.light => Colors.black54,
-          };
+          switch (Theme.of(context).brightness) {
+            case Brightness.dark:
+              return Colors.white12;
+            case Brightness.light:
+              return Colors.black54;
+          }
         }(),
         borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
