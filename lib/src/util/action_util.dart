@@ -6,6 +6,7 @@ class ActionUtil {
   static Future<bool> dealAction({
     required BuildContext context,
     required Future<dynamic> Function() action,
+    @Deprecated("最好不使用onSuccess来处理成功，使用返回值来判断是否成功")
     void Function(dynamic data)? onSuccess,
     void Function(dynamic error)? onFailed,
   }) async {
@@ -14,18 +15,18 @@ class ActionUtil {
     try {
       LoadingDialogUtil.show(context);
       var data = await action();
-      isSuccess = true;
       if (onSuccess != null) {
         onSuccess(data);
       }
-      LoadingDialogUtil.dismiss(context);
+      isSuccess = true;
     } catch (e) {
       isSuccess = false;
       if (onFailed != null) {
         onFailed(e);
       }
+    } finally {
       LoadingDialogUtil.dismiss(context);
-    } finally {}
+    }
 
     return isSuccess;
   }

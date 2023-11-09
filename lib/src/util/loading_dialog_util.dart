@@ -20,6 +20,7 @@ class LoadingDialogUtil {
               return false;
             },
             child: const Align(
+              alignment: Alignment.center,
               child: _LoadingDialogContent(),
             ),
           );
