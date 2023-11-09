@@ -47,9 +47,14 @@ class _LoadingDialogContent extends StatelessWidget {
     return Container(
       width: 80,
       height: 80,
-      decoration: const BoxDecoration(
-        color: Colors.black54,
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+      decoration: BoxDecoration(
+        color: () {
+          return switch (Theme.of(context).brightness) {
+            Brightness.dark => Colors.white12,
+            Brightness.light => Colors.black54,
+          };
+        }(),
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: Theme(
         data: ThemeData(

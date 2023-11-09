@@ -9,6 +9,7 @@ import 'package:example/test/widget/test_ink_well_container_page.dart';
 import 'package:example/test/widget/loading_body/test_loading_body_page.dart';
 import 'package:example/test/widget/test_circle_image_page.dart';
 import 'package:example/test/widget/test_list_grid_view_page.dart';
+import 'package:example/test/widget/test_loading_page.dart';
 import 'package:example/test/widget/test_rounded_image_page.dart';
 import 'package:example/test/widget/test_separated_row_column_wrap_page.dart';
 import 'package:example/test/widget/test_spacer_page.dart';
@@ -99,6 +100,12 @@ class _TestMainPageState extends State<TestMainPage> {
                 LoadingDialogUtil.show(context);
                 await Future.delayed(const Duration(seconds: 3));
                 LoadingDialogUtil.dismiss(context);
+              },
+            ),
+            TestTapItem(
+              title: "loading... on dark theme",
+              onTap: () async {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TestLoadingPage()));
               },
             ),
             ConditionalBuilder(
