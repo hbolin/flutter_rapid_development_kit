@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 
@@ -22,6 +23,11 @@ class ConvenientRichText extends StatelessWidget {
               fontWeight: e.fontWeight,
               fontStyle: e.fontStyle,
             ),
+            recognizer: e.onTap != null
+                ? () {
+                    return TapGestureRecognizer()..onTap = e.onTap;
+                  }()
+                : null,
           ),
         )
         .toList();
@@ -36,6 +42,11 @@ class ConvenientRichText extends StatelessWidget {
           fontStyle: dataList.firstOrNull?.fontStyle,
         ),
         children: children,
+        recognizer: dataList.firstOrNull?.onTap != null
+            ? () {
+                return TapGestureRecognizer()..onTap = dataList.firstOrNull?.onTap;
+              }()
+            : null,
       ),
     );
   }
@@ -47,6 +58,7 @@ class ConvenientRichTextData {
   final Color color;
   final FontWeight? fontWeight;
   final FontStyle? fontStyle;
+  final GestureTapCallback? onTap;
 
   ConvenientRichTextData({
     required this.text,
@@ -54,5 +66,6 @@ class ConvenientRichTextData {
     required this.color,
     this.fontWeight,
     this.fontStyle,
+    this.onTap,
   });
 }

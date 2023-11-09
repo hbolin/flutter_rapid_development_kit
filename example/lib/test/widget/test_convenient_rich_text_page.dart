@@ -19,8 +19,23 @@ class _TestConvenientRichTextPageState extends State<TestConvenientRichTextPage>
       body: Center(
         child: ConvenientRichText(
           dataList: [
-            ConvenientRichTextData(text: 'Hello ', color: Colors.black, fontSize: 20.0),
-            ConvenientRichTextData(text: 'Flutter ', color: Colors.blue, fontSize: 20.0, fontWeight: FontWeight.bold),
+            ConvenientRichTextData(
+              text: 'Hello ',
+              color: Colors.black,
+              fontSize: 20.0,
+              onTap: () {
+                print("点击 Hello");
+              },
+            ),
+            ConvenientRichTextData(
+              text: 'Flutter ',
+              color: Colors.blue,
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              onTap: () {
+                print("点击 Flutter");
+              },
+            ),
             ConvenientRichTextData(text: ' RichText', color: Colors.red, fontSize: 20.0, fontStyle: FontStyle.italic),
           ],
         ),

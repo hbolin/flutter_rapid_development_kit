@@ -47,6 +47,34 @@ class _TestMainPageState extends State<TestMainPage> {
               },
             ),
             TestTapItem(
+              title: "CircleImage",
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TestCircleImagePage()));
+              },
+            ),
+            ConditionalBuilder(
+              isSuccess: _conditional,
+              successBuilder: (context) {
+                return const Text('成功');
+              },
+              failureBuilder: (context) {
+                return const Text('失败');
+              },
+            ),
+            ConditionalWidget(
+              isSuccess: _conditional,
+              successWidget: const Text('成功'),
+              failureWidget: const Text('失败'),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  _conditional = !_conditional;
+                });
+              },
+              child: const Text('点击切换状态'),
+            ),
+            TestTapItem(
               title: "VisibilityBuilder",
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TestVisibilityBuilderPage()));
@@ -68,12 +96,6 @@ class _TestMainPageState extends State<TestMainPage> {
               title: "ConvenientRichText",
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TestConvenientRichTextPage()));
-              },
-            ),
-            TestTapItem(
-              title: "CircleImage",
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TestCircleImagePage()));
               },
             ),
             TestTapItem(
@@ -113,28 +135,6 @@ class _TestMainPageState extends State<TestMainPage> {
               onTap: () async {
                 Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TestLoadingPage()));
               },
-            ),
-            ConditionalBuilder(
-              isSuccess: _conditional,
-              successBuilder: (context) {
-                return const Text('成功');
-              },
-              failureBuilder: (context) {
-                return const Text('失败');
-              },
-            ),
-            ConditionalWidget(
-              isSuccess: _conditional,
-              successWidget: const Text('成功'),
-              failureWidget: const Text('失败'),
-            ),
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  _conditional = !_conditional;
-                });
-              },
-              child: const Text('点击切换状态'),
             ),
             TestTapItem(
               title: "ActionUtil.dealAction",

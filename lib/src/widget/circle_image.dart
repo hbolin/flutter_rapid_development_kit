@@ -38,7 +38,10 @@ class CircleImage extends StatelessWidget {
         height: size,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          border: Border.all(width: borderWidth, color: borderColor!),
+          border: Border.all(
+            width: borderWidth,
+            color: borderColor!,
+          ),
         ),
         child: ClipOval(
           child: current,

@@ -17,9 +17,9 @@ class _TestCircleImagePageState extends State<TestCircleImagePage> {
       appBar: AppBar(
         title: const Text("CircleImage - 测试"),
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Column(
-          children: const [
+          children: [
             Padding(
               padding: EdgeInsets.all(8.0),
               child: CircleImage(
