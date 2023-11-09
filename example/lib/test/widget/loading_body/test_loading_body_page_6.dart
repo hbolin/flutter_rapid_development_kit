@@ -18,7 +18,7 @@ class _TestLoadingBodyPage_6State extends State<TestLoadingBodyPage_6> {
           await Future.delayed(const Duration(seconds: 1));
           throw "加载失败";
         },
-        isDelayedDisplay: false,
+        initialDelayedDisplay: false,
         buildBody: (BuildContext context) {
           return const Center(
             child: Text('加载数据成功'),

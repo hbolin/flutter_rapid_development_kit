@@ -31,10 +31,11 @@ class LoadingBody extends StatefulWidget {
   final void Function(LoadingBodyController controller)? ondLoadingBodyCreated;
 
   /// 是否需要淡入的动画，默认false，推荐在页面级别开启
-  final bool isAnimated;
+  final bool initialAnimated;
 
   /// 是否需要等待页面跳转的动画显示完成，默认false，推荐在页面级别开启，如果觉得页面跳转的时候卡顿，也可以开启
-  final bool isDelayedDisplay;
+  /// flutter目前有优化，默认不开启
+  final bool initialDelayedDisplay;
 
   const LoadingBody({
     Key? key,
@@ -47,8 +48,8 @@ class LoadingBody extends StatefulWidget {
     this.dataLoadedFailedListener,
     this.dataReloadListener,
     this.ondLoadingBodyCreated,
-    this.isAnimated = false,
-    this.isDelayedDisplay = false,
+    this.initialAnimated = false,
+    this.initialDelayedDisplay = false,
   }) : super(key: key);
 
   @override
@@ -67,8 +68,8 @@ class _LoadingBodyState extends State<LoadingBody> {
   @override
   Widget build(BuildContext context) {
     return _LoadingContent(
-      isAnimated: widget.isAnimated,
-      isDelayedDisplay: widget.isDelayedDisplay,
+      initialAnimated: widget.initialAnimated,
+      initialDelayedDisplay: widget.initialDelayedDisplay,
       onStateInitListener: (_LoadingContentState state) {
         _loadingBodyController._setState(state);
         if (widget.ondLoadingBodyCreated != null) {
@@ -120,7 +121,7 @@ class _LoadingBodyState extends State<LoadingBody> {
       },
       child: Center(
         child: Text(
-          '加载数据失败，点击重试',
+          '$error', // 这里会涉及到多语言，所以不写死错误信息，直接由error显示出来
           style: Theme.of(context).textTheme.bodySmall,
         ),
       ),
@@ -137,6 +138,7 @@ class LoadingBodyController {
 
   /// 重新加载数据
   void reloadData() {
+    assert(_loadingContentState != null, "调用方式有误，当前页面已经被销毁了，无法重新加载数据");
     _loadingContentState?.reloadData();
   }
 
@@ -146,6 +148,7 @@ class LoadingBodyController {
 }
 
 /// 加载流程：加载中 -> 加载成功/失败
+/// 基于FutureBuilder实现加载流程
 class _LoadingContent extends StatefulWidget {
   final Future<void> Function()? loadDataGenerator;
   final Widget Function(BuildContext context) loadingWidgetBuilder;
@@ -156,8 +159,8 @@ class _LoadingContent extends StatefulWidget {
   final void Function(dynamic error)? dataLoadedFailedListener;
   final void Function()? dataReloadListener;
   final void Function(_LoadingContentState state)? onStateInitListener;
-  final bool isAnimated;
-  final bool isDelayedDisplay;
+  final bool initialAnimated;
+  final bool initialDelayedDisplay;
 
   const _LoadingContent({
     Key? key,
@@ -170,8 +173,8 @@ class _LoadingContent extends StatefulWidget {
     this.dataLoadedFailedListener,
     this.dataReloadListener,
     this.onStateInitListener,
-    this.isAnimated = false,
-    this.isDelayedDisplay = false,
+    this.initialAnimated = false,
+    this.initialDelayedDisplay = false,
   }) : super(key: key);
 
   @override
@@ -192,8 +195,8 @@ class _LoadingContentState extends State<_LoadingContent> with SingleTickerProvi
     if (widget.onStateInitListener != null) {
       widget.onStateInitListener!(this);
     }
-    _isAnimated = widget.isAnimated;
-    _isDelayedDisplay = widget.isDelayedDisplay;
+    _isAnimated = widget.initialAnimated;
+    _isDelayedDisplay = widget.initialDelayedDisplay;
     if (_isAnimated) {
       _opacityController = AnimationController(duration: const Duration(milliseconds: 300), vsync: this);
       _opacityAnimation = Tween<double>(begin: 0, end: 1).animate(_opacityController);
@@ -284,7 +287,9 @@ class _LoadingContentState extends State<_LoadingContent> with SingleTickerProvi
   }
 
   void _loadingData() {
-    if (widget.dataLoadingListener != null) widget.dataLoadingListener!();
+    if (widget.dataLoadingListener != null) {
+      widget.dataLoadingListener!();
+    }
   }
 
   void _loadDataSuccess() {
@@ -292,7 +297,9 @@ class _LoadingContentState extends State<_LoadingContent> with SingleTickerProvi
     if (_isAnimated) {
       _opacityController.forward();
     }
-    if (widget.dataLoadedSuccessListener != null) widget.dataLoadedSuccessListener!();
+    if (widget.dataLoadedSuccessListener != null) {
+      widget.dataLoadedSuccessListener!();
+    }
   }
 
   void _loadDataFailed(e, s) {
@@ -300,7 +307,9 @@ class _LoadingContentState extends State<_LoadingContent> with SingleTickerProvi
     if (_isAnimated) {
       _opacityController.forward();
     }
-    if (widget.dataLoadedFailedListener != null) widget.dataLoadedFailedListener!(e);
+    if (widget.dataLoadedFailedListener != null) {
+      widget.dataLoadedFailedListener!(e);
+    }
   }
 
   void reloadData() {
@@ -308,7 +317,9 @@ class _LoadingContentState extends State<_LoadingContent> with SingleTickerProvi
     if (_isAnimated) {
       _opacityController.reset();
     }
-    if (widget.dataReloadListener != null) widget.dataReloadListener!();
+    if (widget.dataReloadListener != null) {
+      widget.dataReloadListener!();
+    }
     setState(() {
       _futureBuilderFuture = _loadData();
     });

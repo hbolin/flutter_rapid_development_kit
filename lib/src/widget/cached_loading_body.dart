@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rapid_development_kit/src/util/log_util.dart';
 
 /// 加载流程：加载中 -> 缓存数据（加载失败，忽略错误） -> 实际数据
-/// 注意：如果缓存数据需要很长时间，则不适用。
+/// 注意：如果缓存数据需要很长时间，则不适用，一般从本地数据库或者shared_preferences中读取数据。
 /// 注意2：一般用于页面级别，如果加载失败，使用toast提示，所以需要支持下拉刷新。
 class CachedLoadingBody extends StatefulWidget {
   /// 请求加载数据，例如网络请求，如果设置为null，则说明不需要请求，直接渲染视图

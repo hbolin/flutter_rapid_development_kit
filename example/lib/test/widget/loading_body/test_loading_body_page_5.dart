@@ -17,7 +17,7 @@ class _TestLoadingBodyPage_5State extends State<TestLoadingBodyPage_5> {
         loadData: () async {
           // await Future.delayed(const Duration(seconds: 1));
         },
-        isDelayedDisplay: false,
+        initialDelayedDisplay: false,
         buildBody: (BuildContext context) {
           return const Center(
             child: Text('加载数据成功'),

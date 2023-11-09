@@ -18,7 +18,7 @@ class _TestLoadingBodyPage_7State extends State<TestLoadingBodyPage_7> {
           await Future.delayed(const Duration(seconds: 1));
           throw "没有网络连接，请检查网络连接";
         },
-        isDelayedDisplay: false,
+        initialDelayedDisplay: false,
         buildBody: (BuildContext context) {
           return const Center(
             child: Text('加载数据成功'),
