@@ -2,6 +2,7 @@ library flutter_rapid_development_kit;
 
 export 'package:flutter_rapid_development_kit/src/extension/date_time_conversions.dart';
 export 'package:flutter_rapid_development_kit/src/extension/list_extension_operation.dart';
+export 'package:flutter_rapid_development_kit/src/extension/map_extension_operation.dart';
 export 'package:flutter_rapid_development_kit/src/extension/money_format.dart';
 export 'package:flutter_rapid_development_kit/src/extension/string_number_conversions.dart';
 
@@ -25,9 +26,3 @@ export 'package:flutter_rapid_development_kit/src/widget/separated_column.dart';
 export 'package:flutter_rapid_development_kit/src/widget/separated_row.dart';
 export 'package:flutter_rapid_development_kit/src/widget/separated_wrap.dart';
 export 'package:flutter_rapid_development_kit/src/widget/visibility_builder.dart';
-
-// --------------------------------------- 开发阶段的生成器 ---------------------------------------
-export 'package:flutter_rapid_development_kit/src/maker/base/read_directory_files.dart';
-export 'package:flutter_rapid_development_kit/src/maker/asset/font_asset_maker.dart';
-export 'package:flutter_rapid_development_kit/src/maker/asset/iconfont_maker.dart';
-export 'package:flutter_rapid_development_kit/src/maker/asset/image_asset_maker.dart';

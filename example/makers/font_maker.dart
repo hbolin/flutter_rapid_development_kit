@@ -1,4 +1,4 @@
-import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
+import 'package:flutter_rapid_development_kit/flutter_rapid_development_maker.dart';
 
 main() {
   FontAssetMaker.makeFontAssetToFontClass(
