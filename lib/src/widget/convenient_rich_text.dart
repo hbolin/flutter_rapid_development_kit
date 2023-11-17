@@ -69,3 +69,55 @@ class ConvenientRichTextData {
     this.onTap,
   });
 }
+
+class ConvenientRichText2 extends StatelessWidget {
+  final List<ConvenientRichTextData2> dataList;
+
+  const ConvenientRichText2({
+    Key? key,
+    required this.dataList,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    List<TextSpan> children = dataList
+        .skip(1)
+        .map(
+          (e) => TextSpan(
+            text: e.text,
+            style: e.textStyle,
+            recognizer: e.onTap != null
+                ? () {
+                    return TapGestureRecognizer()..onTap = e.onTap;
+                  }()
+                : null,
+          ),
+        )
+        .toList();
+
+    return RichText(
+      text: TextSpan(
+        text: dataList.firstOrNull?.text ?? "",
+        style: dataList.firstOrNull?.textStyle,
+        children: children,
+        recognizer: dataList.firstOrNull?.onTap != null
+            ? () {
+                return TapGestureRecognizer()..onTap = dataList.firstOrNull?.onTap;
+              }()
+            : null,
+      ),
+    );
+  }
+}
+
+class ConvenientRichTextData2 {
+  final String text;
+  final TextStyle textStyle;
+  final GestureTapCallback? onTap;
+
+  ConvenientRichTextData2({
+    required this.text,
+    required this.textStyle,
+    this.onTap,
+  });
+}
