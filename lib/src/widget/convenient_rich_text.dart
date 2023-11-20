@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 
+@Deprecated("请使用ConvenientRichText2")
 class ConvenientRichText extends StatelessWidget {
   final List<ConvenientRichTextData> dataList;
 

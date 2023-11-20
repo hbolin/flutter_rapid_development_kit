@@ -13,6 +13,7 @@ class ListGridView extends StatelessWidget {
   final ScrollPhysics? physics;
   final EdgeInsetsGeometry? padding;
   final Axis scrollDirection;
+  final ScrollController? controller;
 
   const ListGridView({
     Key? key,
@@ -27,6 +28,7 @@ class ListGridView extends StatelessWidget {
     this.physics,
     this.padding,
     this.scrollDirection = Axis.vertical,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -39,6 +41,7 @@ class ListGridView extends StatelessWidget {
       physics: physics,
       padding: padding,
       scrollDirection: scrollDirection,
+      controller: controller,
       itemBuilder: (build, index) {
         List<Widget> children = [];
         if (index < lines) {
