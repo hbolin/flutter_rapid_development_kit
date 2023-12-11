@@ -1,47 +1,33 @@
 name: flutter_rapid_development_kit
-description: Flutter Rapid Development Kit
+description: "flutter rapid development kit"
 version: 0.0.1
 homepage:
 
 environment:
-  sdk: '>=2.19.2 <4.0.0'
+  sdk: '>=3.2.3 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  # Provides internationalization and localization facilities, including message translation, plurals and genders, date/number formatting and parsing, and bidirectional text.
-  # 提供国际化和本地化功能，包括消息翻译、复数和性别、日期/数字格式化和解析，以及双向文本。
-  # https://pub.flutter-io.cn/packages/intl
-  intl: 0.18.1
+  # https://pub-web.flutter-io.cn/packages/get
+  get: 4.6.6
 
-  # A flutter library to show images from the internet and keep them in the cache directory.
-  # Flutter库，用于显示从互联网上获取的图像，并将它们保留在缓存目录中。
-  # https://pub.flutter-io.cn/packages/cached_network_image
-  cached_network_image: 3.2.3
-
-  # A carousel slider widget.
-  # 一个可滑动的组件，常用于图片轮播。
-  # https://pub.flutter-io.cn/packages/carousel_slider
-  carousel_slider: 4.2.1
-
-  # OneContext provides a simple way to deal with Dialogs, Overlays, Navigations, Theme* and MediaQuery* with no need of BuildContext.
-  # OneContext 提供了一种简单的方式来处理对话框、覆盖层、导航、主题和 MediaQuery，而无需使用 BuildContext。
-  # https://pub.flutter-io.cn/packages/one_context
-  # https://segmentfault.com/a/1190000023213991
-  #  one_context: 2.1.0
-
-  # 将flutter的日志打印到android段，比较好查看
-  # https://github.com/hbolin/flutter_android_log_printer
-  flutter_android_log_printer:
-    git:
-      url: "https://github.com/hbolin/flutter_android_log_printer.git"
-      ref: "0.0.1"
-
-  # 使用dart.io.Platform 来进行平台判断的话，在web平台上会导致异常
   # https://pub-web.flutter-io.cn/packages/universal_platform
   universal_platform: 1.0.0+1
+
+  # https://pub-web.flutter-io.cn/packages/fluttertoast
+  fluttertoast: 8.2.4
+
+  # https://pub.flutter-io.cn/packages/intl
+  intl: 0.19.0
+
+  # https://pub.flutter-io.cn/packages/cached_network_image
+  cached_network_image: 3.3.0
+
+  # https://pub.flutter-io.cn/packages/carousel_slider
+  carousel_slider: 4.2.1
 
 dev_dependencies:
   flutter_test:

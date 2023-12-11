@@ -1,39 +1,53 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+## Flutter 版本
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+基于flutter_macos_arm64_3.16.3-stable版本创建项目
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
+## 使用BasePage
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+### 第一步
 
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+导入flutter_rapid_development_kit
 
 ```dart
-const like = 'sample';
+flutter_rapid_development_kit:
+  git:
+    url: "https://github.com/hbolin/flutter_rapid_development_kit"
+    ref: "2.0.1"
 ```
 
-## Additional information
+### 第二步
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+将routeObserver配置到MaterialApp的navigatorObservers属性中，如下所示：
+
+```dart
+MaterialApp(
+  navigatorObservers: <RouteObserver<ModalRoute<void>>>[
+    routeObserver,
+  ],
+);
+```
+
+### 第三步
+
+安装[my_getx_template](./资源/my_getx_template-2.0.1.jar)插件
+
+### 第四步
+
+配置路由
+
+```dart
+class RouteUtil {
+  static String initialRoute = const TestAppBase3Page().getRouteName();
+
+  static final List<GetPage> initPages = [
+    GetPage(
+      name: initialRoute,
+      page: () => const TestAppBase3Page(),
+    ),
+    GetPage(
+      name: const TestAppBase4Page().getRouteName(),
+      page: () => TestAppBase4Page.fromRouteParas(Get.parameters),
+    ),
+  ];
+}
+```
