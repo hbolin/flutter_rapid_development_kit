@@ -39,7 +39,7 @@ MaterialApp(
 class RouteUtil {
   static String initialRoute = const TestAppBase3Page().getRouteName();
 
-  static final List<GetPage> initPages = [
+  static final List<GetPage> initialPages = [
     GetPage(
       name: initialRoute,
       page: () => const TestAppBase3Page(),
