@@ -150,12 +150,12 @@ abstract class AppBasePageGetxController extends GetxController {
   bool get needLoadData => true;
 
   // 加载实际数据
-  Future<void> _loadData(bool isLoadingCachedData) async {
-    await loadData(isLoadingCachedData);
+  Future<void> _loadData(bool isLoadCachedData) async {
+    await loadData(isLoadCachedData);
   }
 
   /// 加载实际数据，加载缓存数据和加载实际数据应该是要一样的。
-  Future<void> loadData(bool isLoadingCachedData);
+  Future<void> loadData(bool isLoadCachedData);
 
   /// 用来重新加载数据的时候使用
   late CachedLoadingBodyController cachedLoadingBodyController;
