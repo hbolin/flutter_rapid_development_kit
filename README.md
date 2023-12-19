@@ -29,7 +29,7 @@ MaterialApp(
 
 ### 第三步
 
-安装[my_getx_template](./资源/my_getx_template-2.0.4.jar)插件
+安装[my_getx_template](./资源/my_getx_template-2.0.5.jar)插件
 
 ### 第四步
 
