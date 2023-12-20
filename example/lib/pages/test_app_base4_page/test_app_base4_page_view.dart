@@ -66,6 +66,7 @@ class _TestAppBase4PageState extends AppBasePageState<TestAppBase4Page> {
       builder: (logic) {
         return buildCachedLoadingBody(context, logic, (context, isCachedData) {
           return Scaffold(
+            appBar: AppBar(),
             body: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
