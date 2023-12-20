@@ -74,7 +74,7 @@ abstract class AppBasePageState<T extends StatefulWidget> extends State<T> with 
           : null,
       bodyBuilder: scaffoldBuilder,
       onCachedLoadingBodyCreated: (CachedLoadingBodyController cachedLoadingBodyController) {
-        controller.cachedLoadingBodyController = cachedLoadingBodyController;
+        controller._cachedLoadingBodyController = cachedLoadingBodyController;
       },
       loadingWidgetBuilder: buildDefaultLoadingWidget,
       loadFailedWidgetBuilder: buildDefaultErrorWidget,
@@ -158,7 +158,12 @@ abstract class AppBasePageGetxController extends GetxController {
   Future<void> loadData(bool isLoadCachedData);
 
   /// 用来重新加载数据的时候使用
-  late CachedLoadingBodyController cachedLoadingBodyController;
+  late CachedLoadingBodyController _cachedLoadingBodyController;
+
+  /// 重新加载数据
+  void reloadData() {
+    _cachedLoadingBodyController.reloadData();
+  }
 
   /// 监听 - 缓存数据加载中...
   void cachedDataLoadingListener() {}

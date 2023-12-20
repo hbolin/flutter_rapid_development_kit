@@ -56,7 +56,7 @@ class _TestAppBasePageState extends AppBasePageState<TestAppBasePage> {
             body: Center(
               child: GestureDetector(
                 onTap: () {
-                  logic.cachedLoadingBodyController.reloadData();
+                  logic.reloadData();
                 },
                 child: Text("加载数据成功，是否是缓存数据：$isCachedData"),
               ),
