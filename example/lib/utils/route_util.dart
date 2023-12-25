@@ -1,4 +1,5 @@
 import 'package:example/pages/happy_pay_page/happy_pay_page_view.dart';
+import 'package:example/pages/hello_page/hello_page_view.dart';
 import 'package:example/pages/test_app_base3_page/test_app_base3_page_view.dart';
 import 'package:example/pages/test_app_base4_page/test_app_base4_page_view.dart';
 import 'package:get/get.dart';
@@ -26,6 +27,10 @@ class RouteUtil {
     GetPage(
       name: const HappyPayPage().getRouteName(),
       page: () => HappyPayPage.fromRouteParas(Get.parameters),
+    ),
+    GetPage(
+      name: const HelloPage().getRouteName(),
+      page: () => HelloPage.fromRouteParas(Get.parameters),
     ),
   ];
 }
