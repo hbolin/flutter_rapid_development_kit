@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
 import 'package:flutter_rapid_development_kit/src/utils/toast_util.dart';
 import 'package:flutter_rapid_development_kit/src/widgets/cached_loading_body.dart';
 import 'package:get/get.dart';
@@ -47,6 +48,12 @@ abstract class AppBasePageStatefulWidget extends StatefulWidget {
 
 abstract class AppBasePageState<T extends StatefulWidget> extends State<T> with RouteAware {
   @override
+  void initState() {
+    super.initState();
+    LogUtil.debug("【创建页面】:$runtimeType");
+  }
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     routeObserver.subscribe(this, ModalRoute.of(context)!);
@@ -56,6 +63,7 @@ abstract class AppBasePageState<T extends StatefulWidget> extends State<T> with 
   void dispose() {
     routeObserver.unsubscribe(this);
     super.dispose();
+    LogUtil.debug("【销毁页面】:$runtimeType");
   }
 
   /// Scaffold Body集成CachedLoadingBody用来管理页面加载状态的处理：加载中 -> 加载成功/加载失败
