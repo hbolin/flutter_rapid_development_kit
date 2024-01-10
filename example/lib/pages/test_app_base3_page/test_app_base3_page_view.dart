@@ -1,4 +1,5 @@
 import 'package:example/pages/happy_pay_page/happy_pay_page_view.dart';
+import 'package:example/pages/hello_page/hello_page_view.dart';
 import 'package:example/pages/test_app_base4_page/test_app_base4_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
@@ -56,9 +57,10 @@ class _TestAppBase3PageState extends AppBasePageState<TestAppBase3Page> {
             children: [
               TextButton(
                 onPressed: () {
-                  var pageView4 = const HappyPayPage(pageId: 666);
-                  print("点击跳转页面：${pageView4.runtimeType} hashCode：${pageView4.hashCode} 参数:${pageView4.getRouteParas()}");
-                  Get.toNamed(pageView4.getRoute());
+                  // var pageView4 = const HappyPayPage(pageId: 666);
+                  // print("点击跳转页面：${pageView4.runtimeType} hashCode：${pageView4.hashCode} 参数:${pageView4.getRouteParas()}");
+                  // Get.toNamed(pageView4.getRoute());
+                  Get.toNamed(HelloPage().getRoute());
                 },
                 child: const Text("跳转至PageView4"),
               ),
