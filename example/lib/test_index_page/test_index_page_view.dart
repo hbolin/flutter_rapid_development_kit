@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:example/extension/test_date_time_converter_page/test_date_time_converter_page_view.dart';
 import 'package:example/extension/test_list_extensions_page/test_list_extensions_page_view.dart';
+import 'package:example/extension/test_money_format_page/test_money_format_page_view.dart';
 import 'package:example/extension/text_map_page/text_map_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,6 +40,12 @@ class TestIndexPage extends StatelessWidget {
               title: "TextMapPage",
               onTap: () {
                 Get.to(() => TextMapPage());
+              },
+            ),
+            TestTapItem(
+              title: "TestMoneyFormatPage",
+              onTap: () {
+                Get.to(() => TestMoneyFormatPage());
               },
             ),
           ],
