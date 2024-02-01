@@ -1,7 +1,3 @@
 library flutter_rapid_development_kit;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'package:flutter_rapid_development_kit/src/extension/date_time_converter.dart';

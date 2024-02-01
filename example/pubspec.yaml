@@ -39,6 +39,9 @@ dependencies:
   flutter_rapid_development_kit:
     path: ../
 
+  # https://pub-web.flutter-io.cn/packages/get
+  get: 4.6.6
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
