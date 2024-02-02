@@ -5,6 +5,7 @@ import 'package:example/extension/test_list_extensions_page/test_list_extensions
 import 'package:example/extension/test_money_format_page/test_money_format_page_view.dart';
 import 'package:example/extension/test_string_number_converter_page/test_string_number_converter_page_view.dart';
 import 'package:example/extension/text_map_page/text_map_page_view.dart';
+import 'package:example/widget/test_cached_loading_body_page/test_cached_loading_body_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -53,6 +54,12 @@ class TestIndexPage extends StatelessWidget {
               title: "TestStringNumberConverterPage",
               onTap: () {
                 Get.to(() => TestStringNumberConverterPage());
+              },
+            ),
+            TestTapItem(
+              title: "TestCachedLoadingBodyPage",
+              onTap: () {
+                Get.to(() => TestCachedLoadingBodyPage());
               },
             ),
           ],
