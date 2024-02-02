@@ -20,6 +20,9 @@ dependencies:
   # https://pub-web.flutter-io.cn/packages/collection
   collection: 1.18.0
 
+  # https://pub-web.flutter-io.cn/packages/fluttertoast
+  fluttertoast: 8.2.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
