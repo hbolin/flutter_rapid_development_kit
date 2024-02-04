@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       navigatorObservers: <RouteObserver<ModalRoute<void>>>[
         routeObserver,
       ],
-      initialRoute: const IndexPage().getRouteName(),
+      initialRoute: RouteUtil.initialRoute,
       getPages: RouteUtil.initialPages,
     );
   }

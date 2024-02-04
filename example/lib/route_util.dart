@@ -3,9 +3,11 @@ import 'package:example/util/test_toast_util2_page/test_toast_util2_page_view.da
 import 'package:get/get.dart';
 
 class RouteUtil {
+  static String initialRoute = const IndexPage().getRouteName();
+
   static final List<GetPage> initialPages = [
     GetPage(
-      name: const IndexPage().getRouteName(),
+      name: initialRoute,
       page: () => IndexPage.fromRouteParas(Get.parameters),
     ),
     GetPage(

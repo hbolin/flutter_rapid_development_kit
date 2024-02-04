@@ -38,6 +38,10 @@ dependencies:
 
   flutter_rapid_development_kit:
     path: ../
+#  flutter_rapid_development_kit:
+#    git:
+#      url: "https://github.com/hbolin/flutter_rapid_development_kit"
+#      ref: "v3.0.0"
 
   # https://pub-web.flutter-io.cn/packages/get
   get: 4.6.6
