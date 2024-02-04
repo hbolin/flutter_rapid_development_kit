@@ -14,9 +14,24 @@ and the Flutter guide for
 TODO: Put a short description of the package here that helps potential users
 know whether this package might be useful for them.
 
-## Features
+## 使用
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+### Step 1
+
+监听页面跳转的回调，例如`didPopNext`；`didPushNext`；`didPush`；`didPop`等。  
+需要把`routeObserver`配置到`MaterialApp`上，否则监听路由跳转的方法无法生效。
+
+```dart
+MaterialApp(
+  navigatorObservers: <RouteObserver<ModalRoute<void>>>[
+    routeObserver,
+  ],
+);
+```
+
+### Step 2
+
+安装my_get_template插件
 
 ## Getting started
 

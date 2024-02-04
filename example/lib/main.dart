@@ -1,5 +1,7 @@
-import 'package:example/test_index_page/test_index_page_view.dart';
+import 'package:example/index_page/index_page_view.dart';
+import 'package:example/route_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -34,7 +36,11 @@ class MyApp extends StatelessWidget {
         // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple, brightness: Brightness.dark),
         useMaterial3: true,
       ),
-      home: TestIndexPage(),
+      navigatorObservers: <RouteObserver<ModalRoute<void>>>[
+        routeObserver,
+      ],
+      initialRoute: const IndexPage().getRouteName(),
+      getPages: RouteUtil.initialPages,
     );
   }
 }

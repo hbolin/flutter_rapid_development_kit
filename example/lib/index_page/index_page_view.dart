@@ -5,25 +5,47 @@ import 'package:example/extension/test_list_extensions_page/test_list_extensions
 import 'package:example/extension/test_money_format_page/test_money_format_page_view.dart';
 import 'package:example/extension/test_string_number_converter_page/test_string_number_converter_page_view.dart';
 import 'package:example/extension/text_map_page/text_map_page_view.dart';
+import 'package:example/util/test_toast_util2_page/test_toast_util2_page_view.dart';
 import 'package:example/util/test_toast_util_page/test_toast_util_page_view.dart';
 import 'package:example/widget/test_cached_loading_body_page/test_cached_loading_body_page_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
 import 'package:get/get.dart';
 
-import 'test_index_page_logic.dart';
+import 'index_page_logic.dart';
+import 'index_page_state.dart';
 
-class TestIndexPage extends StatelessWidget {
-  TestIndexPage({Key? key}) : super(key: key);
+class IndexPage extends BasePageStatefulWidget {
+  const IndexPage({
+    super.key,
+    super.getTag,
+  });
 
-  final logic = Get.put(TestIndexPageLogic());
-  final state = Get.find<TestIndexPageLogic>().state;
+  factory IndexPage.fromRouteParas(Map<String, dynamic> json) => IndexPage(
+        getTag: convertT<String?>(json[BasePageStatefulWidget.getTagKey]),
+        // TODO:配置路由参数
+      );
 
   @override
-  Widget build(BuildContext context) {
+  Map<String, dynamic>? getRouteParas() => {
+        // TODO:配置路由参数
+      };
+
+  @override
+  String getRouteName() => "/";
+
+  @override
+  State<IndexPage> createState() => _IndexPageState();
+}
+
+class _IndexPageState extends BasePageState<IndexPageLogic, IndexPageState, IndexPage> {
+  @override
+  IndexPageLogic initGetxController() => IndexPageLogic();
+
+  @override
+  Widget buildScaffold(BuildContext context, IndexPageLogic logic, bool isCachedData) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("flutter rapid development kit"),
-      ),
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -67,6 +89,12 @@ class TestIndexPage extends StatelessWidget {
               title: "TestToastUtilPage",
               onTap: () {
                 Get.to(() => TestToastUtilPage());
+              },
+            ),
+            TestTapItem(
+              title: "TestToastUtil2Page",
+              onTap: () {
+                Get.toNamed(const TestToastUtil2Page().getRoute());
               },
             ),
           ],
