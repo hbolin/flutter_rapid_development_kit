@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter_rapid_development_kit/maker/base/pubspec_parser.dart';
 import 'package:flutter_rapid_development_kit/maker/base/read_directory_files.dart';
 
 /// 生成图片类型的资源
@@ -44,6 +45,10 @@ $outData''';
     await file.create(recursive: true);
     file.writeAsString(outData);
     print('生成成功，生成路径：${file.path}');
+
+    PubspecParser.addFlutterAssetsNode(directoryPath);
+
+    print('处理完成！！！');
   }
 
   static String _make(Directory directory, bool isRoot, String rootClassName) {
