@@ -1,6 +1,6 @@
-# 使用
+## 使用
 
-## Step 1 导入flutter_rapid_development_kit
+### Step 1 导入flutter_rapid_development_kit
 
 ```dart
   flutter_rapid_development_kit:
@@ -8,11 +8,11 @@
       url: "https://github.com/hbolin/flutter_rapid_development_kit"
       ref: "v3.0.0"
 ```
-## Step 2 安装GetX插件
+### Step 2 安装GetX插件
 
 安装[my_getx_template](./docs/my_getx_template-3.0.3.jar)插件
 
-## Step 3 配置页面跳转监听
+### Step 3 配置页面跳转监听
 
 监听页面跳转的回调，例如`didPopNext`；`didPushNext`；`didPush`；`didPop`等。  
 需要把`routeObserver`配置到`MaterialApp`上，否则监听路由跳转的方法无法生效。
@@ -25,9 +25,9 @@ MaterialApp(
 );
 ```
 
-## Step 4 配置路由
+### Step 4 配置路由
 
-### Step 4.1 编写路由类`route_util`
+#### Step 4.1 编写路由类`route_util`
 
 ```dart
 class RouteUtil {
@@ -46,7 +46,7 @@ class RouteUtil {
 }
 ```
 
-### Step 4.2 路由配置到MaterialApp
+#### Step 4.2 路由配置到MaterialApp
 
 ```dart
 MaterialApp(
@@ -54,9 +54,9 @@ MaterialApp(
   getPages: RouteUtil.initialPages,
 );
 ```
-## Step 5 使用生成器
+### Step 5 使用生成器
 
-### Step 5.1 [字体资源生成器](example/makers/font_assets_runner.dart)
+#### Step 5.1 [字体资源生成器](example/makers/font_assets_runner.dart)
 
 ```dart
 import 'package:flutter_rapid_development_kit/flutter_rapid_development_maker.dart';
@@ -70,7 +70,7 @@ void main() {
 }
 ```
 
-### Step 5.2 [图片资源生成器](example/makers/image_assets_runner.dart)
+#### Step 5.2 [图片资源生成器](example/makers/image_assets_runner.dart)
 
 ```dart
 import 'package:flutter_rapid_development_kit/flutter_rapid_development_maker.dart';
@@ -82,5 +82,20 @@ void main() {
     className: 'AppImageAsset',
   );
 }
+```
 
+#### Step 5.3 [iconfont资源生成静态类](example/makers/iconfont_assets_runner.dart)
+
+从[iconfont网站](https://www.iconfont.cn/)下载的资源。
+
+```dart
+import 'package:flutter_rapid_development_kit/flutter_rapid_development_maker.dart';
+
+void main() {
+  IconFontAssetMaker.makeIconFontClass(
+    directoryPath: "makers/src/font_2084616_ucedulxxvik",
+    targetFile: 'lib/config/icon_font_asset.dart',
+    className: 'IconFontAsset',
+  );
+}
 ```
