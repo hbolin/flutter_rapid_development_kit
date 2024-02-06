@@ -1,5 +1,6 @@
 import 'package:example/config/app_font_family_asset.dart';
 import 'package:example/config/app_image_asset.dart';
+import 'package:example/config/icon_font_asset.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
 import 'package:get/get.dart';
@@ -41,6 +42,7 @@ class _TestMakersPageState extends BasePageState<TestMakersPageLogic, TestMakers
       body: SingleChildScrollView(
         child: Column(
           children: [
+            const Icon(IconFontAsset.baotuifuwu),
             Image.asset(AppImageAsset.icon_demo),
             Image.asset(AppImageAsset.jpgs.icon_demo),
             Image.asset(AppImageAsset.pngs.icon_demo),
