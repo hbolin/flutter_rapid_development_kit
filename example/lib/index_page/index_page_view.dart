@@ -5,6 +5,7 @@ import 'package:example/extension/test_list_extensions_page/test_list_extensions
 import 'package:example/extension/test_money_format_page/test_money_format_page_view.dart';
 import 'package:example/extension/test_string_number_converter_page/test_string_number_converter_page_view.dart';
 import 'package:example/extension/text_map_page/text_map_page_view.dart';
+import 'package:example/util/test_loading_util_page/test_loading_util_page_view.dart';
 import 'package:example/util/test_makers_page/test_makers_page_view.dart';
 import 'package:example/util/test_toast_util2_page/test_toast_util2_page_view.dart';
 import 'package:example/util/test_toast_util_page/test_toast_util_page_view.dart';
@@ -102,6 +103,12 @@ class _IndexPageState extends BasePageState<IndexPageLogic, IndexPageState, Inde
               title: "TestMakersPage",
               onTap: () {
                 Get.toNamed(const TestMakersPage().getRoute());
+              },
+            ),
+            TestTapItem(
+              title: "TestLoadingUtilPage",
+              onTap: () {
+                Get.toNamed(const TestLoadingUtilPage().getRoute());
               },
             ),
           ],

@@ -7,6 +7,7 @@ export 'package:flutter_rapid_development_kit/src/extension/string_number_conver
 
 export 'package:flutter_rapid_development_kit/src/page/base_page.dart';
 
+export 'package:flutter_rapid_development_kit/src/util/loading_util.dart';
 export 'package:flutter_rapid_development_kit/src/util/log_util.dart';
 export 'package:flutter_rapid_development_kit/src/util/model_util.dart';
 export 'package:flutter_rapid_development_kit/src/util/toast_util.dart';
