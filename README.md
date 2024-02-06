@@ -27,9 +27,7 @@ MaterialApp(
 
 ## Step 4 配置路由
 
-### Step 4.1
-
-编写路由类`route_util`
+### Step 4.1 编写路由类`route_util`
 
 ```dart
 class RouteUtil {
@@ -48,13 +46,41 @@ class RouteUtil {
 }
 ```
 
-### Step 4.2
-
-路由配置到MaterialApp
+### Step 4.2 路由配置到MaterialApp
 
 ```dart
 MaterialApp(
   initialRoute: RouteUtil.initialRoute,
   getPages: RouteUtil.initialPages,
 );
+```
+## Step 5 使用生成器
+
+### Step 5.1 [字体资源生成器](example/makers/font_assets_runner.dart)
+
+```dart
+import 'package:flutter_rapid_development_kit/flutter_rapid_development_maker.dart';
+
+void main() {
+  FontAssetMaker.makeFontAssetToFontClass(
+    directoryPath: "assets/fonts",
+    targetFile: 'lib/config/app_font_family_asset.dart',
+    className: 'AppFontFamilyAsset',
+  );
+}
+```
+
+### Step 5.2 [图片资源生成器](example/makers/image_assets_runner.dart)
+
+```dart
+import 'package:flutter_rapid_development_kit/flutter_rapid_development_maker.dart';
+
+void main() {
+  ImageAssetMaker.makeImageAssetToAssetClass(
+    directoryPath: "assets/images",
+    targetFile: 'lib/config/app_image_asset.dart',
+    className: 'AppImageAsset',
+  );
+}
+
 ```
