@@ -17,3 +17,4 @@ export 'package:flutter_rapid_development_kit/src/widget/cached_loading_body.dar
 export 'package:flutter_rapid_development_kit/src/widget/circle_image.dart';
 export 'package:flutter_rapid_development_kit/src/widget/separated_column.dart';
 export 'package:flutter_rapid_development_kit/src/widget/separated_row.dart';
+export 'package:flutter_rapid_development_kit/src/widget/separated_wrap.dart';
