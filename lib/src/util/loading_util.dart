@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 /// 加载中的工具类，一般用来用户动作类型的处理
 class LoadingUtil {
+  const LoadingUtil._();
+
   static bool _isShow = false;
 
   /// 模态展示，不允许用户关闭，只能有程序控制关闭

@@ -4,6 +4,8 @@ import 'package:example/util/test_makers_page/test_makers_page_view.dart';
 import 'package:example/util/test_toast_util2_page/test_toast_util2_page_view.dart';
 import 'package:get/get.dart';
 
+import 'util/test_action_util_page/test_action_util_page_view.dart';
+
 class RouteUtil {
   static String initialRoute = const IndexPage().getRouteName();
 
@@ -23,6 +25,10 @@ class RouteUtil {
     GetPage(
       name: const TestLoadingUtilPage().getRouteName(),
       page: () => TestLoadingUtilPage.fromRouteParas(Get.parameters),
+    ),
+    GetPage(
+      name: const TestActionUtilPage().getRouteName(),
+      page: () => TestActionUtilPage.fromRouteParas(Get.parameters),
     ),
   ];
 }

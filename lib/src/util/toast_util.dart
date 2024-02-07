@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 
 /// 显示toast工具
 class ToastUtil {
+  const ToastUtil._();
+
   static void show(String msg, {bool? isDark}) {
     if (Get.context != null && isDark == null) {
       isDark = Theme.of(Get.context!).brightness == Brightness.dark;

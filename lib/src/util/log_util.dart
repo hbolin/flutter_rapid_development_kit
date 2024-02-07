@@ -5,6 +5,8 @@ import 'package:flutter_android_log_printer/flutter_android_log_printer.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 class LogUtil {
+  const LogUtil._();
+
   static final _flutterAndroidLogPrinterPlugin = FlutterAndroidLogPrinter();
 
   static const _tag = "rapid";
