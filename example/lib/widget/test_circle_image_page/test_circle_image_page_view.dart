@@ -32,11 +32,11 @@ class _TestCircleImagePageState extends BasePageState<TestCircleImagePageLogic, 
   @override
   TestCircleImagePageLogic initGetxController() => TestCircleImagePageLogic();
 
+  static const String imageUrl =
+      "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fsafe-img.xhscdn.com%2Fbw1%2F9648279e-d224-472e-af3d-babd2cb420ab%3FimageView2%2F2%2Fw%2F1080%2Fformat%2Fjpg&refer=http%3A%2F%2Fsafe-img.xhscdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1709884439&t=3ff61039152557e1697b7f89d9cafb80";
+
   @override
   Widget buildScaffold(BuildContext context, TestCircleImagePageLogic logic, bool isCachedData) {
-    const String imageUrl =
-        "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fsafe-img.xhscdn.com%2Fbw1%2F9648279e-d224-472e-af3d-babd2cb420ab%3FimageView2%2F2%2Fw%2F1080%2Fformat%2Fjpg&refer=http%3A%2F%2Fsafe-img.xhscdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1709884439&t=3ff61039152557e1697b7f89d9cafb80";
-
     return Scaffold(
       appBar: AppBar(),
       body: const Column(
