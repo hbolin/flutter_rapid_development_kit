@@ -15,3 +15,4 @@ export 'package:flutter_rapid_development_kit/src/util/toast_util.dart';
 
 export 'package:flutter_rapid_development_kit/src/widget/cached_loading_body.dart';
 export 'package:flutter_rapid_development_kit/src/widget/circle_image.dart';
+export 'package:flutter_rapid_development_kit/src/widget/separated_column.dart';
