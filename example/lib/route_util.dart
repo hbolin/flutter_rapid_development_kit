@@ -12,6 +12,7 @@ import 'package:example/widget/text_visibility_builder_page/text_visibility_buil
 import 'package:get/get.dart';
 
 import 'util/test_action_util_page/test_action_util_page_view.dart';
+import 'widget/test_conditional_widget_page/test_conditional_widget_page_view.dart';
 
 class RouteUtil {
   static String initialRoute = const IndexPage().getRouteName();
@@ -64,6 +65,10 @@ class RouteUtil {
     GetPage(
       name: const TestColumnRowGridViewPage().getRouteName(),
       page: () => TestColumnRowGridViewPage.fromRouteParas(Get.parameters),
+    ),
+    GetPage(
+      name: const TestConditionalWidgetPage().getRouteName(),
+      page: () => TestConditionalWidgetPage.fromRouteParas(Get.parameters),
     ),
   ];
 }

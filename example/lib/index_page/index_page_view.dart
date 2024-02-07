@@ -13,6 +13,7 @@ import 'package:example/util/test_toast_util_page/test_toast_util_page_view.dart
 import 'package:example/widget/test_cached_loading_body_page/test_cached_loading_body_page_view.dart';
 import 'package:example/widget/test_circle_image_page/test_circle_image_page_view.dart';
 import 'package:example/widget/test_column_row_grid_view_page/test_column_row_grid_view_page_view.dart';
+import 'package:example/widget/test_conditional_widget_page/test_conditional_widget_page_view.dart';
 import 'package:example/widget/test_rounded_image_page/test_rounded_image_page_view.dart';
 import 'package:example/widget/test_separated_column_page/test_separated_column_page_view.dart';
 import 'package:example/widget/test_separated_row_page/test_separated_row_page_view.dart';
@@ -165,6 +166,12 @@ class _IndexPageState extends BasePageState<IndexPageLogic, IndexPageState, Inde
               title: "TestColumnRowGridViewPage",
               onTap: () {
                 Get.toNamed(const TestColumnRowGridViewPage().getRoute());
+              },
+            ),
+            TestTapItem(
+              title: "TestConditionalWidgetPage",
+              onTap: () {
+                Get.toNamed(const TestConditionalWidgetPage().getRoute());
               },
             ),
           ],
