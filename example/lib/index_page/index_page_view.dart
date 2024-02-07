@@ -15,6 +15,7 @@ import 'package:example/widget/test_circle_image_page/test_circle_image_page_vie
 import 'package:example/widget/test_separated_column_page/test_separated_column_page_view.dart';
 import 'package:example/widget/test_separated_row_page/test_separated_row_page_view.dart';
 import 'package:example/widget/test_separated_wrap_page/test_separated_wrap_page_view.dart';
+import 'package:example/widget/text_visibility_builder_page/text_visibility_builder_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
 import 'package:get/get.dart';
@@ -144,6 +145,12 @@ class _IndexPageState extends BasePageState<IndexPageLogic, IndexPageState, Inde
               title: "TestSeparatedWrapPage",
               onTap: () {
                 Get.toNamed(const TestSeparatedWrapPage().getRoute());
+              },
+            ),
+            TestTapItem(
+              title: "TextVisibilityBuilderPage",
+              onTap: () {
+                Get.toNamed(const TextVisibilityBuilderPage().getRoute());
               },
             ),
           ],

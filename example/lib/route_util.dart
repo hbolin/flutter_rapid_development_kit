@@ -6,6 +6,7 @@ import 'package:example/widget/test_circle_image_page/test_circle_image_page_vie
 import 'package:example/widget/test_separated_column_page/test_separated_column_page_view.dart';
 import 'package:example/widget/test_separated_row_page/test_separated_row_page_view.dart';
 import 'package:example/widget/test_separated_wrap_page/test_separated_wrap_page_view.dart';
+import 'package:example/widget/text_visibility_builder_page/text_visibility_builder_page_view.dart';
 import 'package:get/get.dart';
 
 import 'util/test_action_util_page/test_action_util_page_view.dart';
@@ -49,6 +50,10 @@ class RouteUtil {
     GetPage(
       name: const TestSeparatedWrapPage().getRouteName(),
       page: () => TestSeparatedWrapPage.fromRouteParas(Get.parameters),
+    ),
+    GetPage(
+      name: const TextVisibilityBuilderPage().getRouteName(),
+      page: () => TextVisibilityBuilderPage.fromRouteParas(Get.parameters),
     ),
   ];
 }
