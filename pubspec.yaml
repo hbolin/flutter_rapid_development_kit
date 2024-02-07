@@ -33,6 +33,9 @@ dependencies:
   # https://pub-web.flutter-io.cn/packages/universal_platform
   universal_platform: 1.0.0+1
 
+  # https://pub-web.flutter-io.cn/packages/cached_network_image
+  cached_network_image: 3.3.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
