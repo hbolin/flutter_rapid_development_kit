@@ -3,6 +3,7 @@ import 'package:example/util/test_loading_util_page/test_loading_util_page_view.
 import 'package:example/util/test_makers_page/test_makers_page_view.dart';
 import 'package:example/util/test_toast_util2_page/test_toast_util2_page_view.dart';
 import 'package:example/widget/test_circle_image_page/test_circle_image_page_view.dart';
+import 'package:example/widget/test_column_row_grid_view_page/test_column_row_grid_view_page_view.dart';
 import 'package:example/widget/test_rounded_image_page/test_rounded_image_page_view.dart';
 import 'package:example/widget/test_separated_column_page/test_separated_column_page_view.dart';
 import 'package:example/widget/test_separated_row_page/test_separated_row_page_view.dart';
@@ -59,6 +60,10 @@ class RouteUtil {
     GetPage(
       name: const TestRoundedImagePage().getRouteName(),
       page: () => TestRoundedImagePage.fromRouteParas(Get.parameters),
+    ),
+    GetPage(
+      name: const TestColumnRowGridViewPage().getRouteName(),
+      page: () => TestColumnRowGridViewPage.fromRouteParas(Get.parameters),
     ),
   ];
 }
