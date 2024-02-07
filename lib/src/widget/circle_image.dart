@@ -10,6 +10,7 @@ class CircleImage extends StatelessWidget {
   final double borderWidth;
   final Widget? placeholder;
   final Widget errorWidget;
+  final Color? backgroundColor;
 
   const CircleImage({
     Key? key,
@@ -20,6 +21,7 @@ class CircleImage extends StatelessWidget {
     this.borderWidth = 1.0,
     this.placeholder,
     this.errorWidget = const SizedBox.shrink(),
+    this.backgroundColor,
   }) : super(key: key);
 
   @override
@@ -32,30 +34,22 @@ class CircleImage extends StatelessWidget {
       // 这里有imageBuilder属性可以配置圆形，但是不符合设计要求
     );
 
-    if (borderColor != null) {
-      child = Container(
-        width: size,
-        height: size,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(
-            width: borderWidth,
-            color: borderColor!,
-          ),
-        ),
-        child: ClipOval(
-          child: child,
-        ),
-      );
-    } else {
-      child = SizedBox(
-        width: size,
-        height: size,
-        child: ClipOval(
-          child: child,
-        ),
-      );
-    }
-    return child;
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        shape: BoxShape.circle,
+        border: borderColor == null
+            ? null
+            : Border.all(
+                width: borderWidth,
+                color: borderColor!,
+              ),
+      ),
+      child: ClipOval(
+        child: child,
+      ),
+    );
   }
 }
