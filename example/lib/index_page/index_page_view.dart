@@ -17,6 +17,7 @@ import 'package:example/widget/test_conditional_widget_page/test_conditional_wid
 import 'package:example/widget/test_convenient_container_page/test_convenient_container_page_view.dart';
 import 'package:example/widget/test_convenient_rich_text_page/test_convenient_rich_text_page_view.dart';
 import 'package:example/widget/test_image_banner_page/test_image_banner_page_view.dart';
+import 'package:example/widget/test_ink_well_container_page/test_ink_well_container_page_view.dart';
 import 'package:example/widget/test_list_grid_view_page/test_list_grid_view_page_view.dart';
 import 'package:example/widget/test_rounded_image_page/test_rounded_image_page_view.dart';
 import 'package:example/widget/test_separated_column_page/test_separated_column_page_view.dart';
@@ -200,6 +201,12 @@ class _IndexPageState extends BasePageState<IndexPageLogic, IndexPageState, Inde
               title: "TestListGridViewPage",
               onTap: () {
                 Get.toNamed(const TestListGridViewPage().getRoute());
+              },
+            ),
+            TestTapItem(
+              title: "TestInkWellContainerPage",
+              onTap: () {
+                Get.toNamed(const TestInkWellContainerPage().getRoute());
               },
             ),
           ],

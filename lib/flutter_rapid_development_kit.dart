@@ -20,6 +20,7 @@ export 'package:flutter_rapid_development_kit/src/widget/conditional_widget.dart
 export 'package:flutter_rapid_development_kit/src/widget/convenient_container.dart';
 export 'package:flutter_rapid_development_kit/src/widget/convenient_rich_text.dart';
 export 'package:flutter_rapid_development_kit/src/widget/image_banner.dart';
+export 'package:flutter_rapid_development_kit/src/widget/ink_well_container.dart';
 export 'package:flutter_rapid_development_kit/src/widget/list_grid_view.dart';
 export 'package:flutter_rapid_development_kit/src/widget/rounded_image.dart';
 export 'package:flutter_rapid_development_kit/src/widget/separated_column.dart';
