@@ -138,3 +138,10 @@ src
          separated_wrap.dart
          visibility_builder.dart
 ```
+
+### Step 7 常用快捷键
+
+#### Step 7.1 导入[live_templates](docs/flutter_rapid_development_kit_live_templates.zip)
+
+#### Step 7.2 常用的快捷键
+<img src="docs/flutter_rapid_development_kit_live_templates.png" alt="常用的快捷键">
