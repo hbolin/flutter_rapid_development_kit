@@ -9,6 +9,7 @@ import 'package:example/widget/test_convenient_rich_text_page/test_convenient_ri
 import 'package:example/widget/test_image_banner_page/test_image_banner_page_view.dart';
 import 'package:example/widget/test_ink_well_container_page/test_ink_well_container_page_view.dart';
 import 'package:example/widget/test_list_grid_view_page/test_list_grid_view_page_view.dart';
+import 'package:example/widget/test_loading_body_page/test_loading_body_page_view.dart';
 import 'package:example/widget/test_rounded_image_page/test_rounded_image_page_view.dart';
 import 'package:example/widget/test_separated_column_page/test_separated_column_page_view.dart';
 import 'package:example/widget/test_separated_row_page/test_separated_row_page_view.dart';
@@ -94,6 +95,10 @@ class RouteUtil {
     GetPage(
       name: const TestInkWellContainerPage().getRouteName(),
       page: () => TestInkWellContainerPage.fromRouteParas(Get.parameters),
+    ),
+    GetPage(
+      name: const TestLoadingBodyPage().getRouteName(),
+      page: () => TestLoadingBodyPage.fromRouteParas(Get.parameters),
     ),
   ];
 }

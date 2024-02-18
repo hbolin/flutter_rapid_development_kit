@@ -22,6 +22,7 @@ export 'package:flutter_rapid_development_kit/src/widget/convenient_rich_text.da
 export 'package:flutter_rapid_development_kit/src/widget/image_banner.dart';
 export 'package:flutter_rapid_development_kit/src/widget/ink_well_container.dart';
 export 'package:flutter_rapid_development_kit/src/widget/list_grid_view.dart';
+export 'package:flutter_rapid_development_kit/src/widget/loading_body.dart';
 export 'package:flutter_rapid_development_kit/src/widget/rounded_image.dart';
 export 'package:flutter_rapid_development_kit/src/widget/separated_column.dart';
 export 'package:flutter_rapid_development_kit/src/widget/separated_row.dart';
