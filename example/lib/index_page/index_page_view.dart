@@ -14,6 +14,7 @@ import 'package:example/widget/test_cached_loading_body_page/test_cached_loading
 import 'package:example/widget/test_circle_image_page/test_circle_image_page_view.dart';
 import 'package:example/widget/test_column_row_grid_view_page/test_column_row_grid_view_page_view.dart';
 import 'package:example/widget/test_conditional_widget_page/test_conditional_widget_page_view.dart';
+import 'package:example/widget/test_convenient_container_page/test_convenient_container_page_view.dart';
 import 'package:example/widget/test_convenient_rich_text_page/test_convenient_rich_text_page_view.dart';
 import 'package:example/widget/test_rounded_image_page/test_rounded_image_page_view.dart';
 import 'package:example/widget/test_separated_column_page/test_separated_column_page_view.dart';
@@ -179,6 +180,12 @@ class _IndexPageState extends BasePageState<IndexPageLogic, IndexPageState, Inde
               title: "TestConvenientRichTextPage",
               onTap: () {
                 Get.toNamed(const TestConvenientRichTextPage().getRoute());
+              },
+            ),
+            TestTapItem(
+              title: "TestConvenientContainerPage",
+              onTap: () {
+                Get.toNamed(const TestConvenientContainerPage().getRoute());
               },
             ),
           ],
