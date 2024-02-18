@@ -99,3 +99,42 @@ void main() {
   );
 }
 ```
+
+### Step 6 目录结构
+
+```
+src
+│
+└───extension
+│        date_time_converter.dart
+│        list_extensions.dart
+│        money_format.dart
+│        string_number_converter.dart
+│   
+└───page
+│        base_page.dart
+│   
+└───util
+│        action_util.dart
+│        loading_util.dart
+│        log_util.dart
+│        model_util.dart
+│        toast_util.dart
+│   
+└───widget
+         cached_loading_body.dart
+         circle_image.dart
+         column_row_grid_view.dart
+         conditional_widget.dart
+         convenient_container.dart
+         convenient_rich_text.dart
+         image_banner.dart
+         ink_well_container.dart
+         list_grid_view.dart
+         loading_body.dart
+         rounded_image.dart
+         separated_column.dart
+         separated_row.dart
+         separated_wrap.dart
+         visibility_builder.dart
+```

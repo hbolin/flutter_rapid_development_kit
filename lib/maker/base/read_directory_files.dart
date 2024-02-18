@@ -57,6 +57,11 @@ extension FileExtension on File {
   String get fileNameWithoutExtension {
     return path.basenameWithoutExtension(this.path);
   }
+
+  /// 文件名
+  String get fileName {
+    return path.basename(this.path);
+  }
 }
 
 extension StringExtension on String {
