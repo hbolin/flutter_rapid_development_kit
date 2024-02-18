@@ -36,6 +36,9 @@ dependencies:
   # https://pub-web.flutter-io.cn/packages/cached_network_image
   cached_network_image: 3.3.1
 
+  # https://pub.flutter-io.cn/packages/carousel_slider
+  carousel_slider: 4.2.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

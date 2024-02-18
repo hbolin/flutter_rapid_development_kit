@@ -6,6 +6,7 @@ import 'package:example/widget/test_circle_image_page/test_circle_image_page_vie
 import 'package:example/widget/test_column_row_grid_view_page/test_column_row_grid_view_page_view.dart';
 import 'package:example/widget/test_convenient_container_page/test_convenient_container_page_view.dart';
 import 'package:example/widget/test_convenient_rich_text_page/test_convenient_rich_text_page_view.dart';
+import 'package:example/widget/test_image_banner_page/test_image_banner_page_view.dart';
 import 'package:example/widget/test_rounded_image_page/test_rounded_image_page_view.dart';
 import 'package:example/widget/test_separated_column_page/test_separated_column_page_view.dart';
 import 'package:example/widget/test_separated_row_page/test_separated_row_page_view.dart';
@@ -79,6 +80,10 @@ class RouteUtil {
     GetPage(
       name: const TestConvenientContainerPage().getRouteName(),
       page: () => TestConvenientContainerPage.fromRouteParas(Get.parameters),
+    ),
+    GetPage(
+      name: const TestImageBannerPage().getRouteName(),
+      page: () => TestImageBannerPage.fromRouteParas(Get.parameters),
     ),
   ];
 }
