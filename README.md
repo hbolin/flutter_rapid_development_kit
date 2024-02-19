@@ -2,11 +2,11 @@
 
 ### Step 1 导入flutter_rapid_development_kit
 
-```dart
+```yaml
   flutter_rapid_development_kit:
     git:
       url: "https://github.com/hbolin/flutter_rapid_development_kit"
-      ref: "3.0.0"
+      ref: "3.0.1"
 ```
 ### Step 2 安装GetX插件
 
