@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 /// 显示toast工具
 class ToastUtil {
@@ -25,7 +26,7 @@ class ToastUtil {
   }) {
     Fluttertoast.showToast(
       msg: msg,
-      toastLength: Toast.LENGTH_SHORT,
+      toastLength: UniversalPlatform.isWeb ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT,
       gravity: ToastGravity.CENTER,
       timeInSecForIosWeb: 1,
       backgroundColor: backgroundColor,
