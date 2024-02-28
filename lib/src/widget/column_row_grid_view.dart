@@ -59,10 +59,12 @@ class ColumnRowGridView extends StatelessWidget {
             }
           }
         }
-        return Row(
-          mainAxisAlignment: mainAxisAlignment,
-          crossAxisAlignment: crossAxisAlignment,
-          children: children,
+        return IntrinsicHeight(
+          child: Row(
+            mainAxisAlignment: mainAxisAlignment,
+            crossAxisAlignment: crossAxisAlignment,
+            children: children,
+          ),
         );
       },
       separatorBuilder: verticalSeparatorBuilder,
