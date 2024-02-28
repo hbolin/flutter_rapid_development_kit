@@ -137,6 +137,7 @@ class ConvenientContainer extends Container {
     super.child,
     super.clipBehavior = Clip.none,
     this.onTap,
+    BorderRadiusGeometry? customBorderRadius,
   }) : super(
           decoration: BoxDecoration(
             color: color,
@@ -146,11 +147,12 @@ class ConvenientContainer extends Container {
                     width: borderWidth,
                   )
                 : null,
-            borderRadius: radius != null
-                ? BorderRadius.circular(
-                    radius,
-                  )
-                : null,
+            borderRadius: customBorderRadius ??
+                (radius != null
+                    ? BorderRadius.circular(
+                        radius,
+                      )
+                    : null),
             gradient: gradientColors != null
                 ? LinearGradient(
                     begin: gradientAxis == Axis.horizontal ? Alignment.centerLeft : Alignment.topCenter,
