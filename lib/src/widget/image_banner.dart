@@ -172,8 +172,8 @@ class DefaultCirclePagination extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 10.0,
-      height: 10.0,
+      width: 6.0,
+      height: 6.0,
       margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
       decoration: BoxDecoration(
         shape: BoxShape.circle,

@@ -213,7 +213,9 @@ abstract class BasePageGetxController<S extends BasePageBaseState> extends GetxC
 
   // 加载实际数据
   Future<void> _loadData(bool isLoadCachedData) async {
+    state.isLoadDataSuccess = false;
     await loadData(isLoadCachedData);
+    state.isLoadDataSuccess = true;
   }
 
   /// 加载实际数据，加载缓存数据和加载实际数据应该是要一样的。
@@ -252,4 +254,6 @@ abstract class BasePageGetxController<S extends BasePageBaseState> extends GetxC
 /// 基于Getx的基础页面编写对应的基础状态。
 class BasePageBaseState<T extends BasePageStatefulWidget> {
   late T page;
+
+  bool isLoadDataSuccess = false;
 }
