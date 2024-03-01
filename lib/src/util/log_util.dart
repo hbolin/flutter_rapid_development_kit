@@ -17,7 +17,7 @@ class LogUtil {
       return;
     }
     if (UniversalPlatform.isAndroid) {
-      _flutterAndroidLogPrinterPlugin.logD(tag, message);
+      _flutterAndroidLogPrinterPlugin.logD(tag, message, maxLogSize: 1024 * 2);
     } else if (UniversalPlatform.isIOS) {
       log(message, name: tag);
     } else {
@@ -31,7 +31,7 @@ class LogUtil {
       return;
     }
     if (UniversalPlatform.isAndroid) {
-      _flutterAndroidLogPrinterPlugin.logE(tag, message);
+      _flutterAndroidLogPrinterPlugin.logE(tag, message, maxLogSize: 1024 * 2);
     } else if (UniversalPlatform.isIOS) {
       log(message, name: tag);
     } else {
