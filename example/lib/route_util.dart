@@ -15,6 +15,7 @@ import 'package:example/widget/test_rounded_image_page/test_rounded_image_page_v
 import 'package:example/widget/test_separated_column_page/test_separated_column_page_view.dart';
 import 'package:example/widget/test_separated_row_page/test_separated_row_page_view.dart';
 import 'package:example/widget/test_separated_wrap_page/test_separated_wrap_page_view.dart';
+import 'package:example/widget/text_is_load_real_data_success_page/text_is_load_real_data_success_page_view.dart';
 import 'package:example/widget/text_visibility_builder_page/text_visibility_builder_page_view.dart';
 import 'package:get/get.dart';
 
@@ -104,6 +105,10 @@ class RouteUtil {
     GetPage(
       name: const TestFontPage().getRouteName(),
       page: () => TestFontPage.fromRouteParas(Get.parameters),
+    ),
+    GetPage(
+      name: const TextIsLoadRealDataSuccessPage().getRouteName(),
+      page: () => TextIsLoadRealDataSuccessPage.fromRouteParas(Get.parameters),
     ),
   ];
 }

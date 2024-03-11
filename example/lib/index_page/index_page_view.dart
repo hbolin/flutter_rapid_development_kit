@@ -25,6 +25,7 @@ import 'package:example/widget/test_rounded_image_page/test_rounded_image_page_v
 import 'package:example/widget/test_separated_column_page/test_separated_column_page_view.dart';
 import 'package:example/widget/test_separated_row_page/test_separated_row_page_view.dart';
 import 'package:example/widget/test_separated_wrap_page/test_separated_wrap_page_view.dart';
+import 'package:example/widget/text_is_load_real_data_success_page/text_is_load_real_data_success_page_view.dart';
 import 'package:example/widget/text_visibility_builder_page/text_visibility_builder_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
@@ -221,6 +222,12 @@ class _IndexPageState extends BasePageState<IndexPageLogic, IndexPageState, Inde
               title: "TestFontPage",
               onTap: () {
                 Get.toNamed(const TestFontPage().getRoute());
+              },
+            ),
+            TestTapItem(
+              title: "TextIsLoadRealDataSuccessPage",
+              onTap: () {
+                Get.toNamed(const TextIsLoadRealDataSuccessPage().getRoute());
               },
             ),
           ],
