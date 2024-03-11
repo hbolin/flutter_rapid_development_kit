@@ -1,4 +1,5 @@
 import 'package:example/index_page/index_page_view.dart';
+import 'package:example/util/test_font_page/test_font_page_view.dart';
 import 'package:example/util/test_loading_util_page/test_loading_util_page_view.dart';
 import 'package:example/util/test_makers_page/test_makers_page_view.dart';
 import 'package:example/util/test_toast_util2_page/test_toast_util2_page_view.dart';
@@ -99,6 +100,10 @@ class RouteUtil {
     GetPage(
       name: const TestLoadingBodyPage().getRouteName(),
       page: () => TestLoadingBodyPage.fromRouteParas(Get.parameters),
+    ),
+    GetPage(
+      name: const TestFontPage().getRouteName(),
+      page: () => TestFontPage.fromRouteParas(Get.parameters),
     ),
   ];
 }

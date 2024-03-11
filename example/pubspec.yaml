@@ -83,6 +83,9 @@ flutter:
     - family: Vivaldi
       fonts:
       - asset: assets/fonts/Vivaldi.ttf
+    - family: PingFang
+      fonts:
+      - asset: assets/fonts/PingFang.ttc
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
