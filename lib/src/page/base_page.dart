@@ -213,12 +213,17 @@ abstract class BasePageGetxController<S extends BasePageBaseState> extends GetxC
 
   // 加载实际数据
   Future<void> _loadData(bool isLoadCachedData) async {
-    state.isLoadDataSuccess = false;
+    if (isLoadCachedData == false) {
+      state.isLoadRealDataSuccess = false;
+    }
     await loadData(isLoadCachedData);
-    state.isLoadDataSuccess = true;
+    if (isLoadCachedData == false) {
+      state.isLoadRealDataSuccess = true;
+    }
   }
 
   /// 加载实际数据，加载缓存数据和加载实际数据应该是要一样的。
+  /// [isLoadCachedData] 是否是加载缓存数据 true：加载缓存数据；false：加载真实数据
   Future<void> loadData(bool isLoadCachedData);
 
   /// 用来重新加载数据的时候使用
@@ -255,5 +260,5 @@ abstract class BasePageGetxController<S extends BasePageBaseState> extends GetxC
 class BasePageBaseState<T extends BasePageStatefulWidget> {
   late T page;
 
-  bool isLoadDataSuccess = false;
+  bool isLoadRealDataSuccess = false;
 }
