@@ -41,12 +41,23 @@ class _TestColumnRowGridViewPageState extends BasePageState<TestColumnRowGridVie
           itemCount: 100,
           crossAxisCount: 3,
           itemBuilder: (BuildContext context, int index) {
+            return ConvenientContainer.convenient(
+              borderColor: Colors.red,
+              child: Column(
+                children: [
+                  SizedBox(height: index == 0 ? 1 : 100),
+                  Text("itemBuilder:$index"),
+                ],
+              ),
+            );
             return Text("itemBuilder:$index");
           },
           horizontalSeparatorBuilder: (BuildContext context, int index) {
+            return const SizedBox(width: 10);
             return Text("horizontalSeparatorBuilder:$index");
           },
           verticalSeparatorBuilder: (BuildContext context, int index) {
+            return const SizedBox(height: 12);
             return Text("verticalSeparatorBuilder:$index");
           },
         ),
