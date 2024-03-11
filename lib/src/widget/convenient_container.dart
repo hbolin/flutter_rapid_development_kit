@@ -137,6 +137,8 @@ class ConvenientContainer extends Container {
     super.child,
     super.clipBehavior = Clip.none,
     this.onTap,
+
+    /// 自定义borderRadius，如果有配置该值，则[radius]属性会被覆盖
     BorderRadiusGeometry? customBorderRadius,
   }) : super(
           decoration: BoxDecoration(

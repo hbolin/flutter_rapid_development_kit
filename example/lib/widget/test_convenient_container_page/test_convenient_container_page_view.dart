@@ -96,6 +96,10 @@ class _TestConvenientContainerPageState extends BasePageState<TestConvenientCont
               onTap: () {
                 LogUtil.debug("点击了");
               },
+              // customBorderRadius: BorderRadius.only(
+              //   topLeft: Radius.circular(50),
+              //   topRight: Radius.circular(50),
+              // ),
             ),
             const SizedBox(width: double.infinity),
           ],
