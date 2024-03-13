@@ -145,3 +145,6 @@ src
 
 #### Step 7.2 常用的快捷键
 <img src="docs/flutter_rapid_development_kit_live_templates.png" alt="常用的快捷键">
+
+#### Step 7.3 IDEA配置
+[settings_0.1.0](docs/settings_0.1.0.zip)
