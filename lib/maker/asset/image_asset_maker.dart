@@ -72,7 +72,7 @@ class $className {
       }).join('\n')}";
     }()}${() {
       if (childFiles.isEmpty) return "";
-      return "\n${childFiles.map((element) {
+      return "\n\n${childFiles.map((element) {
         if (isRoot) {
           return '  static const ${File(element.path).fileNameWithoutExtension.toLowerCase().replaceAll("-", "_").replaceAll(" ", "_")} = \'${element.path.replaceAll('\\', '/')}\';';
         }
