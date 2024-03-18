@@ -3,6 +3,7 @@ import 'package:example/util/test_font_page/test_font_page_view.dart';
 import 'package:example/util/test_loading_util_page/test_loading_util_page_view.dart';
 import 'package:example/util/test_makers_page/test_makers_page_view.dart';
 import 'package:example/util/test_toast_util2_page/test_toast_util2_page_view.dart';
+import 'package:example/util/test_try_catch_page/test_try_catch_page_view.dart';
 import 'package:example/widget/test_circle_image_page/test_circle_image_page_view.dart';
 import 'package:example/widget/test_column_row_grid_view_page/test_column_row_grid_view_page_view.dart';
 import 'package:example/widget/test_convenient_container_page/test_convenient_container_page_view.dart';
@@ -109,6 +110,10 @@ class RouteUtil {
     GetPage(
       name: const TextIsLoadRealDataSuccessPage().getRouteName(),
       page: () => TextIsLoadRealDataSuccessPage.fromRouteParas(Get.parameters),
+    ),
+    GetPage(
+      name: const TestTryCatchPage().getRouteName(),
+      page: () => TestTryCatchPage.fromRouteParas(Get.parameters),
     ),
   ];
 }

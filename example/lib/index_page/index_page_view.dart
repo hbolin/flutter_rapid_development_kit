@@ -11,6 +11,7 @@ import 'package:example/util/test_loading_util_page/test_loading_util_page_view.
 import 'package:example/util/test_makers_page/test_makers_page_view.dart';
 import 'package:example/util/test_toast_util2_page/test_toast_util2_page_view.dart';
 import 'package:example/util/test_toast_util_page/test_toast_util_page_view.dart';
+import 'package:example/util/test_try_catch_page/test_try_catch_page_view.dart';
 import 'package:example/widget/test_cached_loading_body_page/test_cached_loading_body_page_view.dart';
 import 'package:example/widget/test_circle_image_page/test_circle_image_page_view.dart';
 import 'package:example/widget/test_column_row_grid_view_page/test_column_row_grid_view_page_view.dart';
@@ -228,6 +229,12 @@ class _IndexPageState extends BasePageState<IndexPageLogic, IndexPageState, Inde
               title: "TextIsLoadRealDataSuccessPage",
               onTap: () {
                 Get.toNamed(const TextIsLoadRealDataSuccessPage().getRoute());
+              },
+            ),
+            TestTapItem(
+              title: "TestTryCatchPage",
+              onTap: () {
+                Get.toNamed(const TestTryCatchPage().getRoute());
               },
             ),
           ],
