@@ -15,12 +15,12 @@
 ### Step 3 配置页面跳转监听
 
 监听页面跳转的回调，例如`didPopNext`；`didPushNext`；`didPush`；`didPop`等。  
-需要把`routeObserver`配置到`MaterialApp`上，否则监听路由跳转的方法无法生效。
+需要把`frdkRouteObserver`配置到`MaterialApp`上，否则监听路由跳转的方法无法生效。
 
 ```dart
 MaterialApp(
   navigatorObservers: <RouteObserver<ModalRoute<void>>>[
-    routeObserver,
+    frdkRouteObserver,
   ],
 );
 ```
@@ -105,6 +105,9 @@ void main() {
 ```
 src
 │
+└───enums
+│        font_weight_type.dart
+│   
 └───extension
 │        date_time_converter.dart
 │        list_extensions.dart
@@ -120,6 +123,7 @@ src
 │        log_util.dart
 │        model_util.dart
 │        toast_util.dart
+│        try_catch_util.dart
 │   
 └───widget
          cached_loading_body.dart

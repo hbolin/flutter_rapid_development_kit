@@ -48,7 +48,7 @@ class _TestTryCatchPageState extends BasePageState<TestTryCatchPageLogic, TestTr
           ),
           TextButton(
             onPressed: () {
-              tryCatch((){
+              tryCatchIgnoreError((){
                 print("do");
                 throw "error";
               });
@@ -58,7 +58,7 @@ class _TestTryCatchPageState extends BasePageState<TestTryCatchPageLogic, TestTr
           ),
           TextButton(
             onPressed: () {
-              tryCatch((){
+              tryCatchIgnoreError((){
                 print("do");
                 throw "error";
               },interruptOnDebugModel: false);

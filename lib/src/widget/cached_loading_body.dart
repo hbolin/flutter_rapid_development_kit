@@ -2,6 +2,15 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rapid_development_kit/src/util/toast_util.dart';
+
+/// 默认的加载数据失败的处理方式。
+/// 如果加载缓存数据成功，但是加载正常数据失败，需要使用Toast提示下。
+void defaultDataLoadedFailedListener(bool isCachedDataLoadedSuccess, dynamic error) {
+  if (isCachedDataLoadedSuccess) {
+    ToastUtil.show("$error");
+  }
+}
 
 /// 加载流程：加载中 -> 缓存数据（加载失败，忽略错误） -> 实际数据
 /// 注意1：如果缓存数据需要很长时间，则不适用，一般从本地数据库或者shared_preferences中读取数据。
@@ -60,7 +69,7 @@ class CachedLoadingBody extends StatefulWidget {
     this.cachedDataLoadedFailedListener,
     this.dataLoadingListener,
     this.dataLoadedSuccessListener,
-    this.dataLoadedFailedListener,
+    this.dataLoadedFailedListener = defaultDataLoadedFailedListener,
     this.dataReloadListener,
     this.onCachedLoadingBodyCreated,
   }) : super(key: key);

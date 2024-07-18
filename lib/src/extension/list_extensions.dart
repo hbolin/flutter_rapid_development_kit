@@ -45,6 +45,6 @@ extension ListExtensions<E> on List<E> {
 
   /// 获取index的数据，如果list本身为null，则返回null；超出list的长度，也返回null
   E? indexOrNull(int index) {
-    return elementAtOrNull(index);
+    return index < 0 ? null : elementAtOrNull(index);
   }
 }

@@ -1,10 +1,10 @@
 name: flutter_rapid_development_kit
-description: "基于flutter_3.16.8-stable版本创建"
+description: "基于flutter_3.22.2-stable版本创建"
 version: 0.0.1
 homepage:
 
 environment:
-  sdk: '>=3.2.5 <4.0.0'
+  sdk: '>=3.4.3 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
@@ -15,13 +15,13 @@ dependencies:
   get: 4.6.6
 
   # https://pub-web.flutter-io.cn/packages/intl
-  intl: any
+  intl: 0.19.0
 
   # https://pub-web.flutter-io.cn/packages/collection
   collection: 1.18.0
 
   # https://pub-web.flutter-io.cn/packages/fluttertoast
-  fluttertoast: 8.2.4
+  fluttertoast: 8.2.6
 
   # 将flutter的日志打印到android端，比较好查看
   # https://github.com/hbolin/flutter_android_log_printer
@@ -31,7 +31,7 @@ dependencies:
       ref: "0.0.1"
 
   # https://pub-web.flutter-io.cn/packages/universal_platform
-  universal_platform: 1.0.0+1
+  universal_platform: 1.1.0
 
   # https://pub-web.flutter-io.cn/packages/cached_network_image
   cached_network_image: 3.3.1
@@ -42,7 +42,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.0
 
   # https://pub-web.flutter-io.cn/packages/yaml
   yaml: 3.1.2

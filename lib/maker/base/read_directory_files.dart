@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:collection/collection.dart';
 import 'package:path/path.dart' as path;
 
@@ -45,6 +46,8 @@ class DirectoryUnderFiles {
   }
 }
 
+// ---------------------------------------------------- extension ----------------------------------------------------
+
 extension DirectoryExtension on Directory {
   /// 目录名
   String get directoryName {
@@ -66,20 +69,33 @@ extension FileExtension on File {
 
 extension StringExtension on String {
   /// 首字母大写
-  String capitalize() {
-    return "${this[0].toUpperCase()}${substring(1)}";
+  String toUpperCaseFirstLetter() {
+    return isEmpty ? this : "${this[0].toUpperCase()}${substring(1)}";
   }
 
   /// 首字母小写
-  String lowercaseFirstLetter() {
-    return "${this[0].toLowerCase()}${substring(1)}";
+  String toLowerCaseFirstLetter() {
+    return isEmpty ? this : "${this[0].toLowerCase()}${substring(1)}";
   }
 }
 
 void main() {
-  var path = Directory.current.path;
-  print("查找的目录：$path");
-  print("---------------------------------------------------");
-  var resultList = readDirectoryFiles(Directory.current.path);
-  print(resultList.map((e) => "$e").join("\n------------------------------------------------------------------------------------------------------\n"));
+  // var path = Directory.current.path;
+  // print("查找的目录：$path");
+  // print("---------------------------------------------------");
+  // var resultList = readDirectoryFiles(Directory.current.path);
+  // print(resultList.map((e) => "$e").join("\n------------------------------------------------------------------------------------------------------\n"));
+
+  // var path = "/Users/zhangwu/development/my_flutter_foundation/flutter_rapid_development_kit_frdk-v3.0.0/lib/src/widget/visibility_builder.dart";
+  // var file = File(path);
+  // print(file.fileNameWithoutExtension);
+  // print(file.fileName);
+
+  // var dirPath = "/Users/zhangwu/development/my_flutter_foundation/flutter_rapid_development_kit_frdk-v3.0.0/lib/src/widget";
+  // var dir = Directory(dirPath);
+  // print(dir.directoryName);
+  // print(dir.directoryName.toUpperCaseFirstLetter());
+  // print(dir.directoryName.toUpperCase());
+  // print(dir.directoryName.toUpperCase().toLowerCaseFirstLetter());
+  // print(dir.directoryName.toUpperCase().toLowerCaseFirstLetter().toUpperCaseFirstLetter());
 }

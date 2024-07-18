@@ -1,9 +1,16 @@
+import 'package:example/extension/test_date_time_converter_page/test_date_time_converter_page_view.dart';
+import 'package:example/extension/test_list_extensions_page/test_list_extensions_page_view.dart';
+import 'package:example/extension/test_money_format_page/test_money_format_page_view.dart';
+import 'package:example/extension/test_string_number_converter_page/test_string_number_converter_page_view.dart';
 import 'package:example/index_page/index_page_view.dart';
 import 'package:example/util/test_font_page/test_font_page_view.dart';
 import 'package:example/util/test_loading_util_page/test_loading_util_page_view.dart';
+import 'package:example/util/test_log_util_page/test_log_util_page_view.dart';
 import 'package:example/util/test_makers_page/test_makers_page_view.dart';
 import 'package:example/util/test_toast_util2_page/test_toast_util2_page_view.dart';
 import 'package:example/util/test_try_catch_page/test_try_catch_page_view.dart';
+import 'package:example/widget/test_base_page_route_paras_page/test_base_page_route_paras_page_view.dart';
+import 'package:example/widget/test_cached_loading_body_page/test_cached_loading_body_page_view.dart';
 import 'package:example/widget/test_circle_image_page/test_circle_image_page_view.dart';
 import 'package:example/widget/test_column_row_grid_view_page/test_column_row_grid_view_page_view.dart';
 import 'package:example/widget/test_convenient_container_page/test_convenient_container_page_view.dart';
@@ -114,6 +121,34 @@ class RouteUtil {
     GetPage(
       name: const TestTryCatchPage().getRouteName(),
       page: () => TestTryCatchPage.fromRouteParas(Get.parameters),
+    ),
+    GetPage(
+      name: const TestDateTimeConverterPage().getRouteName(),
+      page: () => TestDateTimeConverterPage.fromRouteParas(Get.parameters),
+    ),
+    GetPage(
+      name: const TestListExtensionsPage().getRouteName(),
+      page: () => TestListExtensionsPage.fromRouteParas(Get.parameters),
+    ),
+    GetPage(
+      name: const TestMoneyFormatPage().getRouteName(),
+      page: () => TestMoneyFormatPage.fromRouteParas(Get.parameters),
+    ),
+    GetPage(
+      name: const TestStringNumberConverterPage().getRouteName(),
+      page: () => TestStringNumberConverterPage.fromRouteParas(Get.parameters),
+    ),
+    GetPage(
+      name: const TestBasePageRouteParasPage().getRouteName(),
+      page: () => TestBasePageRouteParasPage.fromRouteParas(Get.parameters),
+    ),
+    GetPage(
+      name: const TestLogUtilPage().getRouteName(),
+      page: () => TestLogUtilPage.fromRouteParas(Get.parameters),
+    ),
+    GetPage(
+      name: const TestCachedLoadingBodyPage().getRouteName(),
+      page: () => TestCachedLoadingBodyPage.fromRouteParas(Get.parameters),
     ),
   ];
 }

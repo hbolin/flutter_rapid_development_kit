@@ -46,7 +46,7 @@ $outData''';
     file.writeAsString(outData);
     print('生成成功，生成路径：${file.path}');
 
-    PubspecParser.addFlutterAssetsNode(directoryPath);
+    PubspecParser.addCommonAssetsNode(directoryPath);
 
     print('处理完成！！！');
   }
@@ -56,7 +56,7 @@ $outData''';
     var childDirectories = temps.where((element) => FileSystemEntity.isDirectorySync(element.path));
     var childFiles = temps.where((element) => FileSystemEntity.isFileSync(element.path));
     childFiles = childFiles.where((element) => !element.path.endsWith(".DS_Store"));
-    var className = '_${directory.directoryName.capitalize()}';
+    var className = '_${directory.directoryName.toUpperCaseFirstLetter()}';
     if (isRoot) {
       className = rootClassName;
     }
@@ -66,9 +66,9 @@ class $className {
       if (childDirectories.isEmpty) return "";
       return "\n${childDirectories.map((element) {
         if (isRoot) {
-          return '  static const ${Directory(element.path).directoryName.lowercaseFirstLetter()} = _${Directory(element.path).directoryName.capitalize()}();';
+          return '  static const ${Directory(element.path).directoryName.toLowerCaseFirstLetter()} = _${Directory(element.path).directoryName.toUpperCaseFirstLetter()}();';
         }
-        return '  final ${Directory(element.path).directoryName.lowercaseFirstLetter()} = const _${Directory(element.path).directoryName.capitalize()}();';
+        return '  final ${Directory(element.path).directoryName.toLowerCaseFirstLetter()} = const _${Directory(element.path).directoryName.toUpperCaseFirstLetter()}();';
       }).join('\n')}";
     }()}${() {
       if (childFiles.isEmpty) return "";

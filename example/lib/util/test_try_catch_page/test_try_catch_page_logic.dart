@@ -9,5 +9,13 @@ class TestTryCatchPageLogic extends BasePageGetxController<TestTryCatchPageState
 
   @override
   Future<void> loadData(bool isLoadCachedData) async {
+    await tryCatchIgnoreError(() async {
+      await Future.delayed(const Duration(seconds: 3));
+      throw "等待3秒后抛出异常";
+    }, interruptOnDebugModel: false);
+    await tryCatchIgnoreError(() async {
+      await Future.delayed(const Duration(seconds: 3));
+      throw "等待3秒后抛出异常";
+    }, interruptOnDebugModel: false);
   }
 }

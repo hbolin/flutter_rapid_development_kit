@@ -13,6 +13,7 @@ Future<void> main() async {
 
   outData += libs
       .map((e) => e.files
+          .where((e3) => !e3.fileName.endsWith(".DS_Store"))
           .map((e2) => '''export 'package:flutter_rapid_development_kit/maker/${e2.path.replaceAll("\\", "/").replaceFirst("lib/maker/", "")}';''')
           .join("\n"))
       .join("\n\n");

@@ -4,7 +4,6 @@ import 'package:example/extension/test_date_time_converter_page/test_date_time_c
 import 'package:example/extension/test_list_extensions_page/test_list_extensions_page_view.dart';
 import 'package:example/extension/test_money_format_page/test_money_format_page_view.dart';
 import 'package:example/extension/test_string_number_converter_page/test_string_number_converter_page_view.dart';
-import 'package:example/extension/text_map_page/text_map_page_view.dart';
 import 'package:example/util/test_action_util_page/test_action_util_page_view.dart';
 import 'package:example/util/test_font_page/test_font_page_view.dart';
 import 'package:example/util/test_loading_util_page/test_loading_util_page_view.dart';
@@ -12,6 +11,7 @@ import 'package:example/util/test_makers_page/test_makers_page_view.dart';
 import 'package:example/util/test_toast_util2_page/test_toast_util2_page_view.dart';
 import 'package:example/util/test_toast_util_page/test_toast_util_page_view.dart';
 import 'package:example/util/test_try_catch_page/test_try_catch_page_view.dart';
+import 'package:example/widget/test_base_page_route_paras_page/test_base_page_route_paras_page_view.dart';
 import 'package:example/widget/test_cached_loading_body_page/test_cached_loading_body_page_view.dart';
 import 'package:example/widget/test_circle_image_page/test_circle_image_page_view.dart';
 import 'package:example/widget/test_column_row_grid_view_page/test_column_row_grid_view_page_view.dart';
@@ -70,39 +70,46 @@ class _IndexPageState extends BasePageState<IndexPageLogic, IndexPageState, Inde
         child: Column(
           children: [
             TestTapItem(
+              title: "TestFontPage",
+              onTap: () {
+                Get.toNamed(const TestFontPage().getRoute());
+              },
+            ),
+            TestTapItem(
               title: "TestDateTimeConverterPage",
               onTap: () {
-                Get.to(() => TestDateTimeConverterPage());
+                Get.toNamed(const TestDateTimeConverterPage().getRoute());
               },
             ),
             TestTapItem(
               title: "TestListExtensionsPage",
               onTap: () {
-                Get.to(() => const TestListExtensionsPage());
-              },
-            ),
-            TestTapItem(
-              title: "TextMapPage",
-              onTap: () {
-                Get.to(() => TextMapPage());
+                Get.toNamed(const TestListExtensionsPage().getRoute());
               },
             ),
             TestTapItem(
               title: "TestMoneyFormatPage",
               onTap: () {
-                Get.to(() => TestMoneyFormatPage());
+                Get.toNamed(const TestMoneyFormatPage().getRoute());
               },
             ),
             TestTapItem(
               title: "TestStringNumberConverterPage",
               onTap: () {
-                Get.to(() => TestStringNumberConverterPage());
+                Get.toNamed(const TestStringNumberConverterPage().getRoute());
+              },
+            ),
+            TestTapItem(
+              title: "TestBasePageRouteParasPage",
+              onTap: () {
+                var route = const TestBasePageRouteParasPage(bookId: "1001", getTag: "single").getRoute();
+                Get.toNamed(route);
               },
             ),
             TestTapItem(
               title: "TestCachedLoadingBodyPage",
               onTap: () {
-                Get.to(() => TestCachedLoadingBodyPage());
+                Get.toNamed(const TestCachedLoadingBodyPage().getRoute());
               },
             ),
             TestTapItem(
@@ -217,12 +224,6 @@ class _IndexPageState extends BasePageState<IndexPageLogic, IndexPageState, Inde
               title: "TestLoadingBodyPage",
               onTap: () {
                 Get.toNamed(const TestLoadingBodyPage().getRoute());
-              },
-            ),
-            TestTapItem(
-              title: "TestFontPage",
-              onTap: () {
-                Get.toNamed(const TestFontPage().getRoute());
               },
             ),
             TestTapItem(

@@ -26,7 +26,8 @@ class LogUtil {
   }
 
   /// 打印error日志
-  static void error(String message, {String tag = _tag}) {
+  /// - [interruptOnDebugModel] 是否在debug模式下中断，默认true
+  static void error(String message, {String tag = _tag, bool interruptOnDebugModel = true}) {
     if (kReleaseMode) {
       return;
     }
@@ -36,6 +37,9 @@ class LogUtil {
       log(message, name: tag);
     } else {
       debugPrint(message);
+    }
+    if (kDebugMode && interruptOnDebugModel) {
+      assert(false, message);
     }
   }
 }

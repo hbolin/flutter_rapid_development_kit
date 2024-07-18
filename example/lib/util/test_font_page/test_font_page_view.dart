@@ -143,6 +143,16 @@ class _TestFontPageState extends BasePageState<TestFontPageLogic, TestFontPageSt
           Text(
             "中文 PingFang semibold",
             style: TextStyle(
+              fontWeight: FontWeightType.semibold.fontWeight,
+              fontSize: 18,
+            ),
+          ),
+          Text(
+            '''${FontWeightType.light.fontWeight} ${FontWeightType.light.devDescription} 
+${FontWeightType.regular.fontWeight} ${FontWeightType.regular.devDescription}
+${FontWeightType.medium.fontWeight} ${FontWeightType.medium.devDescription} 
+${FontWeightType.semibold.fontWeight} ${FontWeightType.semibold.devDescription}''',
+            style: TextStyle(
               fontSize: 18,
             ),
           ),

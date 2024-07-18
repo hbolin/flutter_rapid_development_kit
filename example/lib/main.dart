@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       navigatorObservers: <RouteObserver<ModalRoute<void>>>[
-        routeObserver,
+        frdkRouteObserver,
       ],
       initialRoute: RouteUtil.initialRoute,
       getPages: RouteUtil.initialPages,

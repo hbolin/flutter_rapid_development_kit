@@ -1,6 +1,6 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:collection/collection.dart';
 
 /// 便捷处理富文本
 class ConvenientRichText extends StatelessWidget {

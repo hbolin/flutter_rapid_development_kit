@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter_rapid_development_kit/maker/base/read_directory_files.dart';
+
 /// [iconfont](https://www.iconfont.cn/)的资源生成静态类：
 ///
 /// ```dart
@@ -65,5 +67,7 @@ ${outDataList.join("\n\n").toString()}
     print('生成成功，生成路径：${file.path}');
 
     print('处理完成！！！');
+
+    print("需要将 ${directory.listSync().firstWhere((e) => File(e.path).fileName.endsWith(".ttf")).path} 拷贝至 assets 下，如果已拷贝，则忽略");
   }
 }

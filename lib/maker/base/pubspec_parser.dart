@@ -5,7 +5,8 @@ import 'package:flutter_rapid_development_kit/maker/base/read_directory_files.da
 import 'package:yaml/yaml.dart';
 
 class PubspecParser {
-  static void addFlutterAssetsNode(String assetDirectoryPath) {
+  /// 添加通用资源到yaml配置文件中，一般都是图片资源
+  static void addCommonAssetsNode(String assetDirectoryPath) {
     var directory = Directory(assetDirectoryPath);
     var resultList = readDirectoryFiles(directory.path);
     var assetDirectories = resultList.map((e) {
@@ -60,6 +61,7 @@ class PubspecParser {
     print("已经往pubspec.yaml加入了对应的节点！！！");
   }
 
+  /// 添加字体资源到yaml配置文件中
   static void addFontAssetsNode(String assetDirectoryPath) {
     var directory = Directory(assetDirectoryPath);
     var fontFiles = directory.listSync().where((element) => FileSystemEntity.isFileSync(element.path)).toList();
@@ -85,7 +87,7 @@ class PubspecParser {
       assetsTemp = assets.nodes.map((e) => e.value.toString()).toList();
     }
 
-    if (yamlMap["flutter"]["fonts"] == null) {
+    if (yamlMap["flutter"].keys.contains("fonts") != true) {
       print("未配置fonts节点");
 
       var assetsNodeIndex = pubspecContentLines.indexWhere((element) => element.startsWith("  assets:"));
@@ -116,20 +118,21 @@ class PubspecParser {
       }
     } else {
       print("已配置fonts节点");
-      var assets = yamlMap["flutter"]["fonts"] as YamlList;
 
-      NodeLines nodeLines = NodeLines();
-      calculateNodeLines(assets, nodeLines);
-      print(nodeLines.count);
+      int nodeLinesCount = 0;
+      if (yamlMap["flutter"]["fonts"] != null) {
+        var assets = yamlMap["flutter"]["fonts"] as YamlList;
+        var assetsTemp = assets.map((element) => element["family"]);
+        fontFiles.removeWhere((element1) => assetsTemp.firstWhereOrNull((element2) => element2 == File(element1.path).fileNameWithoutExtension) != null);
+        nodeLinesCount = _calculateNodeLines(pubspecContentLines, assets);
+      }
 
-      var assetsTemp = assets.map((element) => element["family"]);
-
-      fontFiles.removeWhere((element1) => assetsTemp.firstWhereOrNull((element2) => element2 == File(element1.path).fileNameWithoutExtension) != null);
-      print("需要配置加入节点数据:$fontFiles");
+      fontFiles.sorted((a, b) => File(a.path).fileNameWithoutExtension.compareTo(File(b.path).fileNameWithoutExtension));
+      print("需要配置加入节点数据:${fontFiles.join("；")}");
 
       var assetsNodeIndex = pubspecContentLines.indexWhere((element) => element.startsWith("  fonts:"));
 
-      var nextLine = assetsNodeIndex + nodeLines.count;
+      var nextLine = assetsNodeIndex + nodeLinesCount;
       fontFiles.forEachIndexed((index, element) {
         nextLine = nextLine + 1 + index * 0;
         pubspecContentLines.insert(nextLine, "    - family: ${File(element.path).fileNameWithoutExtension}");
@@ -151,24 +154,16 @@ class PubspecParser {
     print("已经往pubspec.yaml加入了对应的节点！！！");
   }
 
-  static void calculateNodeLines(YamlNode node, NodeLines nodeLines) {
-    // print("${node.runtimeType} $node");
-    if (node is YamlMap) {
-      node.forEach((key, value) {
-        nodeLines.count += 1;
-        // print("${value.runtimeType} $value");
-        if (value is YamlMap || value is YamlList) {
-          calculateNodeLines(value, nodeLines);
-        }
-      });
-    } else if (node is YamlList) {
-      for (var element in node) {
-        calculateNodeLines(element, nodeLines);
+  static int _calculateNodeLines(List<String> pubspecContentLines, YamlNode node) {
+    int nodeStartIndex = node.span.start.line - 1;
+    int nodeEndIndex = node.span.end.line - 1;
+    for (int i = nodeEndIndex; i > -1; i--) {
+      var temp = pubspecContentLines[i].trim();
+      if (temp.isNotEmpty && !temp.startsWith("#")) {
+        nodeEndIndex = i;
+        break;
       }
     }
+    return nodeEndIndex - nodeStartIndex;
   }
-}
-
-class NodeLines {
-  int count = 0;
 }

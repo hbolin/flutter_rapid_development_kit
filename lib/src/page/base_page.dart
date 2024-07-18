@@ -12,11 +12,11 @@ import 'package:get/get.dart';
 /// ```dart
 ///     MaterialApp(
 ///       navigatorObservers: <RouteObserver<ModalRoute<void>>>[
-///         routeObserver,
+///         frdkRouteObserver,
 ///       ],
 ///     );
 /// ```
-final RouteObserver<ModalRoute<void>> routeObserver = RouteObserver<ModalRoute<void>>();
+final RouteObserver<ModalRoute<void>> frdkRouteObserver = RouteObserver<ModalRoute<void>>();
 
 /// 基于Getx的动态路由编写对应的基础页面。
 abstract class BasePageStatefulWidget extends StatefulWidget {
@@ -45,7 +45,7 @@ abstract class BasePageStatefulWidget extends StatefulWidget {
     assert(routeParas?.keys.firstWhereOrNull((element) => element == getTagKey) == null, "路由参数key不能设置为$getTagKey，与get使用的tag冲突。");
     return {
       getTagKey: getTag,
-      ...?getRouteParas(),
+      ...?routeParas,
     };
   }
 
@@ -103,12 +103,12 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    routeObserver.subscribe(this, ModalRoute.of(context)!);
+    frdkRouteObserver.subscribe(this, ModalRoute.of(context)!);
   }
 
   @override
   void dispose() {
-    routeObserver.unsubscribe(this);
+    frdkRouteObserver.unsubscribe(this);
     super.dispose();
     LogUtil.debug("【销毁页面】:$runtimeType");
   }
@@ -223,7 +223,7 @@ abstract class BasePageGetxController<S extends BasePageBaseState> extends GetxC
   }
 
   /// 加载实际数据，加载缓存数据和加载实际数据应该是要一样的。
-  /// [isLoadCachedData] 是否是加载缓存数据 true：加载缓存数据；false：加载真实数据
+  /// - [isLoadCachedData] 是否是加载缓存数据 true：加载缓存数据；false：加载真实数据
   Future<void> loadData(bool isLoadCachedData);
 
   /// 用来重新加载数据的时候使用

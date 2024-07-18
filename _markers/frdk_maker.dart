@@ -12,11 +12,14 @@ Future<void> main() async {
 
   outData += libs
       .map((e) => e.files
+          .where((e3) => !e3.fileName.endsWith(".DS_Store"))
           .map((e2) => '''export 'package:flutter_rapid_development_kit/src/${e2.path.replaceAll("\\", "/").replaceFirst("lib/src/", "")}';''')
           .join("\n"))
       .join("\n\n");
 
   outData += "\n";
+
+  print(outData);
 
   // 判断目标文件是否存在
   File file = File(targetFile);

@@ -3,16 +3,39 @@ import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart
 import 'package:get/get.dart';
 
 import 'test_money_format_page_logic.dart';
+import 'test_money_format_page_state.dart';
 
-class TestMoneyFormatPage extends StatelessWidget {
-  TestMoneyFormatPage({Key? key}) : super(key: key);
+class TestMoneyFormatPage extends BasePageStatefulWidget {
+  const TestMoneyFormatPage({
+    super.key,
+    super.getTag,
+  });
 
-  final logic = Get.put(TestMoneyFormatPageLogic());
-  final state = Get.find<TestMoneyFormatPageLogic>().state;
+  factory TestMoneyFormatPage.fromRouteParas(Map<String, dynamic> json) => TestMoneyFormatPage(
+        getTag: convertT<String?>(json[BasePageStatefulWidget.getTagKey]),
+        // TODO:配置路由参数
+      );
 
   @override
-  Widget build(BuildContext context) {
+  Map<String, dynamic>? getRouteParas() => {
+        // TODO:配置路由参数
+      };
+
+  @override
+  String getRouteName() => "/test_money_format";
+
+  @override
+  State<TestMoneyFormatPage> createState() => _TestMoneyFormatPageState();
+}
+
+class _TestMoneyFormatPageState extends BasePageState<TestMoneyFormatPageLogic, TestMoneyFormatPageState, TestMoneyFormatPage> {
+  @override
+  TestMoneyFormatPageLogic initGetxController() => TestMoneyFormatPageLogic();
+
+  @override
+  Widget buildScaffold(BuildContext context, TestMoneyFormatPageLogic logic, bool isCachedData) {
     return Scaffold(
+      appBar: AppBar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -3,6 +3,7 @@ import 'dart:developer';
 
 class _FFConvert {
   _FFConvert._();
+
   static T? Function<T extends Object?>(dynamic value) convert = <T>(dynamic value) {
     if (value == null) {
       return null;
