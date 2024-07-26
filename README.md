@@ -6,7 +6,7 @@
   flutter_rapid_development_kit:
     git:
       url: "https://github.com/hbolin/flutter_rapid_development_kit"
-      ref: "3.0.1"
+      ref: "3.0.2"
 ```
 ### Step 2 安装GetX插件
 
