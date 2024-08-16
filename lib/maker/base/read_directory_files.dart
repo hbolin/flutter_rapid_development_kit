@@ -18,7 +18,8 @@ void _readDirectoryFiles(String directoryPath, List<DirectoryUnderFiles> result)
   var temps = directory.listSync();
 
   var directoryListTemp = temps.where((element) => FileSystemEntity.isDirectorySync(element.path));
-  var fileListTemp = temps.where((element) => FileSystemEntity.isFileSync(element.path));
+  // var fileListTemp = temps.where((element) => FileSystemEntity.isFileSync(element.path));
+  var fileListTemp = temps.where((element) => FileSystemEntity.isFileSync(element.path) && !element.path.endsWith(".DS_Store"));
 
   var directories = directoryListTemp.map((e) => Directory(e.path)).sorted((a, b) => a.directoryName.compareTo(b.directoryName));
   var files = fileListTemp.map((e) => File(e.path)).sorted((a, b) => a.fileNameWithoutExtension.compareTo(b.fileNameWithoutExtension));
@@ -79,23 +80,29 @@ extension StringExtension on String {
   }
 }
 
-void main() {
-  // var path = Directory.current.path;
-  // print("查找的目录：$path");
-  // print("---------------------------------------------------");
-  // var resultList = readDirectoryFiles(Directory.current.path);
-  // print(resultList.map((e) => "$e").join("\n------------------------------------------------------------------------------------------------------\n"));
-
-  // var path = "/Users/zhangwu/development/my_flutter_foundation/flutter_rapid_development_kit_frdk-v3.0.0/lib/src/widget/visibility_builder.dart";
-  // var file = File(path);
-  // print(file.fileNameWithoutExtension);
-  // print(file.fileName);
-
-  // var dirPath = "/Users/zhangwu/development/my_flutter_foundation/flutter_rapid_development_kit_frdk-v3.0.0/lib/src/widget";
-  // var dir = Directory(dirPath);
-  // print(dir.directoryName);
-  // print(dir.directoryName.toUpperCaseFirstLetter());
-  // print(dir.directoryName.toUpperCase());
-  // print(dir.directoryName.toUpperCase().toLowerCaseFirstLetter());
-  // print(dir.directoryName.toUpperCase().toLowerCaseFirstLetter().toUpperCaseFirstLetter());
-}
+// void main() {
+//   // var path = Directory.current.path;
+//   // print("查找的目录：$path");
+//   // print("---------------------------------------------------");
+//   // var resultList = readDirectoryFiles(Directory.current.path);
+//   // print(resultList.map((e) => "$e").join("\n------------------------------------------------------------------------------------------------------\n"));
+//
+//   // var path = "/Users/zhangwu/development/my_flutter_foundation/flutter_rapid_development_kit_frdk-v3.0.0/lib/src/widget/visibility_builder.dart";
+//   // var file = File(path);
+//   // print(file.fileNameWithoutExtension);
+//   // print(file.fileName);
+//
+//   // var dirPath = "/Users/zhangwu/development/my_flutter_foundation/flutter_rapid_development_kit_frdk-v3.0.0/lib/src/widget";
+//   // var dir = Directory(dirPath);
+//   // print(dir.directoryName);
+//   // print(dir.directoryName.toUpperCaseFirstLetter());
+//   // print(dir.directoryName.toUpperCase());
+//   // print(dir.directoryName.toUpperCase().toLowerCaseFirstLetter());
+//   // print(dir.directoryName.toUpperCase().toLowerCaseFirstLetter().toUpperCaseFirstLetter());
+//
+//   // var path = "/Users/zhangwu/development/my_flutter_foundation/flutter_rapid_development_kit_frdk-v3.0.0";
+//   // print("查找的目录：$path");
+//   // print("---------------------------------------------------");
+//   // var resultList = readDirectoryFiles(path);
+//   // print(resultList.map((e) => "$e").join("\n------------------------------------------------------------------------------------------------------\n"));
+// }

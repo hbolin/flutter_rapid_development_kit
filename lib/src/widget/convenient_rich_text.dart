@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 /// 便捷处理富文本
 class ConvenientRichText extends StatelessWidget {
   final List<ConvenientRichTextData> dataList;
+  final TextAlign textAlign;
 
   const ConvenientRichText({
     Key? key,
     required this.dataList,
+    this.textAlign = TextAlign.start,
   }) : super(key: key);
 
   @override
@@ -29,6 +31,7 @@ class ConvenientRichText extends StatelessWidget {
         .toList();
 
     return RichText(
+      textAlign: textAlign,
       text: TextSpan(
         text: dataList.firstOrNull?.text ?? "",
         style: dataList.firstOrNull?.textStyle,

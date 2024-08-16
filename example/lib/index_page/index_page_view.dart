@@ -1,36 +1,30 @@
-import 'dart:math';
-
-import 'package:example/extension/test_date_time_converter_page/test_date_time_converter_page_view.dart';
-import 'package:example/extension/test_list_extensions_page/test_list_extensions_page_view.dart';
-import 'package:example/extension/test_money_format_page/test_money_format_page_view.dart';
-import 'package:example/extension/test_string_number_converter_page/test_string_number_converter_page_view.dart';
-import 'package:example/util/test_action_util_page/test_action_util_page_view.dart';
-import 'package:example/util/test_font_page/test_font_page_view.dart';
-import 'package:example/util/test_loading_util_page/test_loading_util_page_view.dart';
-import 'package:example/util/test_makers_page/test_makers_page_view.dart';
-import 'package:example/util/test_toast_util2_page/test_toast_util2_page_view.dart';
-import 'package:example/util/test_toast_util_page/test_toast_util_page_view.dart';
-import 'package:example/util/test_try_catch_page/test_try_catch_page_view.dart';
-import 'package:example/widget/test_base_page_route_paras_page/test_base_page_route_paras_page_view.dart';
-import 'package:example/widget/test_cached_loading_body_page/test_cached_loading_body_page_view.dart';
-import 'package:example/widget/test_circle_image_page/test_circle_image_page_view.dart';
-import 'package:example/widget/test_column_row_grid_view_page/test_column_row_grid_view_page_view.dart';
-import 'package:example/widget/test_conditional_widget_page/test_conditional_widget_page_view.dart';
-import 'package:example/widget/test_convenient_container_page/test_convenient_container_page_view.dart';
-import 'package:example/widget/test_convenient_rich_text_page/test_convenient_rich_text_page_view.dart';
-import 'package:example/widget/test_image_banner_page/test_image_banner_page_view.dart';
-import 'package:example/widget/test_ink_well_container_page/test_ink_well_container_page_view.dart';
-import 'package:example/widget/test_list_grid_view_page/test_list_grid_view_page_view.dart';
-import 'package:example/widget/test_loading_body_page/test_loading_body_page_view.dart';
-import 'package:example/widget/test_rounded_image_page/test_rounded_image_page_view.dart';
-import 'package:example/widget/test_separated_column_page/test_separated_column_page_view.dart';
-import 'package:example/widget/test_separated_row_page/test_separated_row_page_view.dart';
-import 'package:example/widget/test_separated_wrap_page/test_separated_wrap_page_view.dart';
-import 'package:example/widget/text_is_load_real_data_success_page/text_is_load_real_data_success_page_view.dart';
-import 'package:example/widget/text_visibility_builder_page/text_visibility_builder_page_view.dart';
+import 'package:example/enum/font_weight_type_page/font_weight_type_page_view.dart';
+import 'package:example/extension/date_time_format_page/date_time_format_page_view.dart';
+import 'package:example/extension/list_extensions_page/list_extensions_page_view.dart';
+import 'package:example/extension/money_format_page/money_format_page_view.dart';
+import 'package:example/extension/string_number_converter_page/string_number_converter_page_view.dart';
+import 'package:example/route_util.dart';
+import 'package:example/util/action_util_page/action_util_page_view.dart';
+import 'package:example/util/loading_util_page/loading_util_page_view.dart';
+import 'package:example/util/log_util_page/log_util_page_view.dart';
+import 'package:example/util/toast_util_page/toast_util_page_view.dart';
+import 'package:example/util/try_catch_util_page/try_catch_util_page_view.dart';
+import 'package:example/widget/cached_loading_body_page/cached_loading_body_page_view.dart';
+import 'package:example/widget/circle_image_page/circle_image_page_view.dart';
+import 'package:example/widget/column_row_grid_view_page/column_row_grid_view_page_view.dart';
+import 'package:example/widget/conditional_widget_page/conditional_widget_page_view.dart';
+import 'package:example/widget/convenient_container_page/convenient_container_page_view.dart';
+import 'package:example/widget/convenient_rich_text_page/convenient_rich_text_page_view.dart';
+import 'package:example/widget/image_banner_page/image_banner_page_view.dart';
+import 'package:example/widget/list_grid_view_page/list_grid_view_page_view.dart';
+import 'package:example/widget/loading_body_page/loading_body_page_view.dart';
+import 'package:example/widget/rounded_image_page/rounded_image_page_view.dart';
+import 'package:example/widget/separated_column_page/separated_column_page_view.dart';
+import 'package:example/widget/separated_row_page/separated_row_page_view.dart';
+import 'package:example/widget/separated_wrap_page/separated_wrap_page_view.dart';
+import 'package:example/widget/visibility_builder_page/visibility_builder_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
-import 'package:get/get.dart';
 
 import 'index_page_logic.dart';
 import 'index_page_state.dart';
@@ -52,7 +46,7 @@ class IndexPage extends BasePageStatefulWidget {
       };
 
   @override
-  String getRouteName() => "/";
+  String getRouteName() => RouteUtil.initialRoute;
 
   @override
   State<IndexPage> createState() => _IndexPageState();
@@ -65,177 +59,154 @@ class _IndexPageState extends BasePageState<IndexPageLogic, IndexPageState, Inde
   @override
   Widget buildScaffold(BuildContext context, IndexPageLogic logic, bool isCachedData) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text("Test"),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            TestTapItem(
-              title: "TestFontPage",
+            ListTile(
+              title: const Text("LogUtilPage"),
               onTap: () {
-                Get.toNamed(const TestFontPage().getRoute());
+                Get.toNamed(const LogUtilPage().getRoute());
               },
             ),
-            TestTapItem(
-              title: "TestDateTimeConverterPage",
+            ListTile(
+              title: const Text("ToastUtilPage"),
               onTap: () {
-                Get.toNamed(const TestDateTimeConverterPage().getRoute());
+                Get.toNamed(const ToastUtilPage().getRoute());
               },
             ),
-            TestTapItem(
-              title: "TestListExtensionsPage",
+            ListTile(
+              title: const Text("ActionUtilPage"),
               onTap: () {
-                Get.toNamed(const TestListExtensionsPage().getRoute());
+                Get.toNamed(const ActionUtilPage().getRoute());
               },
             ),
-            TestTapItem(
-              title: "TestMoneyFormatPage",
+            ListTile(
+              title: const Text("LoadingUtilPage"),
               onTap: () {
-                Get.toNamed(const TestMoneyFormatPage().getRoute());
+                Get.toNamed(const LoadingUtilPage().getRoute());
               },
             ),
-            TestTapItem(
-              title: "TestStringNumberConverterPage",
+            ListTile(
+              title: const Text("TryCatchUtilPage"),
               onTap: () {
-                Get.toNamed(const TestStringNumberConverterPage().getRoute());
+                Get.toNamed(const TryCatchUtilPage().getRoute());
               },
             ),
-            TestTapItem(
-              title: "TestBasePageRouteParasPage",
+            ListTile(
+              title: const Text("FontWeightTypePage"),
               onTap: () {
-                var route = const TestBasePageRouteParasPage(bookId: "1001", getTag: "single").getRoute();
-                Get.toNamed(route);
+                Get.toNamed(const FontWeightTypePage().getRoute());
               },
             ),
-            TestTapItem(
-              title: "TestCachedLoadingBodyPage",
+            ListTile(
+              title: const Text("DateTimeFormatPage"),
               onTap: () {
-                Get.toNamed(const TestCachedLoadingBodyPage().getRoute());
+                Get.toNamed(const DateTimeFormatPage().getRoute());
               },
             ),
-            TestTapItem(
-              title: "TestToastUtilPage",
+            ListTile(
+              title: const Text("ListExtensionsPage"),
               onTap: () {
-                Get.to(() => TestToastUtilPage());
+                Get.toNamed(const ListExtensionsPage().getRoute());
               },
             ),
-            TestTapItem(
-              title: "TestToastUtil2Page",
+            ListTile(
+              title: const Text("MoneyFormatPage"),
               onTap: () {
-                Get.toNamed(const TestToastUtil2Page().getRoute());
+                Get.toNamed(const MoneyFormatPage().getRoute());
               },
             ),
-            TestTapItem(
-              title: "TestMakersPage",
+            ListTile(
+              title: const Text("StringNumberConverterPage"),
               onTap: () {
-                Get.toNamed(const TestMakersPage().getRoute());
+                Get.toNamed(const StringNumberConverterPage().getRoute());
               },
             ),
-            TestTapItem(
-              title: "TestLoadingUtilPage",
+            ListTile(
+              title: const Text("CircleImagePage"),
               onTap: () {
-                Get.toNamed(const TestLoadingUtilPage().getRoute());
+                Get.toNamed(const CircleImagePage().getRoute());
               },
             ),
-            TestTapItem(
-              title: "TestActionUtilPage",
+            ListTile(
+              title: const Text("ColumnRowGridViewPage"),
               onTap: () {
-                Get.toNamed(const TestActionUtilPage().getRoute());
+                Get.toNamed(const ColumnRowGridViewPage().getRoute());
               },
             ),
-            TestTapItem(
-              title: "TestCircleImagePage",
+            ListTile(
+              title: const Text("ConditionalWidgetPage"),
               onTap: () {
-                Get.toNamed(const TestCircleImagePage().getRoute());
+                Get.toNamed(const ConditionalWidgetPage().getRoute());
               },
             ),
-            TestTapItem(
-              title: "TestSeparatedColumnPage",
+            ListTile(
+              title: const Text("ConvenientContainerPage"),
               onTap: () {
-                Get.toNamed(const TestSeparatedColumnPage().getRoute());
+                Get.toNamed(const ConvenientContainerPage().getRoute());
               },
             ),
-            TestTapItem(
-              title: "TestSeparatedRowPage",
+            ListTile(
+              title: const Text("ConvenientRichTextPage"),
               onTap: () {
-                Get.toNamed(const TestSeparatedRowPage().getRoute());
+                Get.toNamed(const ConvenientRichTextPage().getRoute());
               },
             ),
-            TestTapItem(
-              title: "TestSeparatedWrapPage",
+            ListTile(
+              title: const Text("ImageBannerPage"),
               onTap: () {
-                Get.toNamed(const TestSeparatedWrapPage().getRoute());
+                Get.toNamed(const ImageBannerPage().getRoute());
               },
             ),
-            TestTapItem(
-              title: "TextVisibilityBuilderPage",
+            ListTile(
+              title: const Text("ListGridViewPage"),
               onTap: () {
-                Get.toNamed(const TextVisibilityBuilderPage().getRoute());
+                Get.toNamed(const ListGridViewPage().getRoute());
               },
             ),
-            TestTapItem(
-              title: "TestRoundedImagePage",
+            ListTile(
+              title: const Text("RoundedImagePage"),
               onTap: () {
-                Get.toNamed(const TestRoundedImagePage().getRoute());
+                Get.toNamed(const RoundedImagePage().getRoute());
               },
             ),
-            TestTapItem(
-              title: "TestColumnRowGridViewPage",
+            ListTile(
+              title: const Text("SeparatedColumnPage"),
               onTap: () {
-                Get.toNamed(const TestColumnRowGridViewPage().getRoute());
+                Get.toNamed(const SeparatedColumnPage().getRoute());
               },
             ),
-            TestTapItem(
-              title: "TestConditionalWidgetPage",
+            ListTile(
+              title: const Text("SeparatedRowPage"),
               onTap: () {
-                Get.toNamed(const TestConditionalWidgetPage().getRoute());
+                Get.toNamed(const SeparatedRowPage().getRoute());
               },
             ),
-            TestTapItem(
-              title: "TestConvenientRichTextPage",
+            ListTile(
+              title: const Text("SeparatedWrapPage"),
               onTap: () {
-                Get.toNamed(const TestConvenientRichTextPage().getRoute());
+                Get.toNamed(const SeparatedWrapPage().getRoute());
               },
             ),
-            TestTapItem(
-              title: "TestConvenientContainerPage",
+            ListTile(
+              title: const Text("VisibilityBuilderPage"),
               onTap: () {
-                Get.toNamed(const TestConvenientContainerPage().getRoute());
+                Get.toNamed(const VisibilityBuilderPage().getRoute());
               },
             ),
-            TestTapItem(
-              title: "TestImageBannerPage",
+            ListTile(
+              title: const Text("CachedLoadingBodyPage"),
               onTap: () {
-                Get.toNamed(const TestImageBannerPage().getRoute());
+                Get.toNamed(const CachedLoadingBodyPage().getRoute());
               },
             ),
-            TestTapItem(
-              title: "TestListGridViewPage",
+            ListTile(
+              title: const Text("LoadingBodyPage"),
               onTap: () {
-                Get.toNamed(const TestListGridViewPage().getRoute());
-              },
-            ),
-            TestTapItem(
-              title: "TestInkWellContainerPage",
-              onTap: () {
-                Get.toNamed(const TestInkWellContainerPage().getRoute());
-              },
-            ),
-            TestTapItem(
-              title: "TestLoadingBodyPage",
-              onTap: () {
-                Get.toNamed(const TestLoadingBodyPage().getRoute());
-              },
-            ),
-            TestTapItem(
-              title: "TextIsLoadRealDataSuccessPage",
-              onTap: () {
-                Get.toNamed(const TextIsLoadRealDataSuccessPage().getRoute());
-              },
-            ),
-            TestTapItem(
-              title: "TestTryCatchPage",
-              onTap: () {
-                Get.toNamed(const TestTryCatchPage().getRoute());
+                Get.toNamed(const LoadingBodyPage().getRoute());
               },
             ),
           ],
@@ -243,42 +214,28 @@ class _IndexPageState extends BasePageState<IndexPageLogic, IndexPageState, Inde
       ),
     );
   }
-}
 
-/// 点击触发点击事件
-class TestTapItem extends StatelessWidget {
-  final String title;
-  final GestureTapCallback onTap;
-
-  const TestTapItem({
-    Key? key,
-    required this.title,
-    required this.onTap,
-  }) : super(key: key);
-
+  /// Called when the top route has been popped off, and the current route shows up.
   @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: _randomColor(a: 100),
-      child: ListTile(
-        title: Text(title),
-        onTap: () {
-          debugPrint('点击触发事件 -- $title');
-          onTap();
-        },
-      ),
-    );
+  void didPopNext() {
+    LogUtil.debug("${state.runtimeType}:didPopNext");
   }
-}
 
-// 随机颜色
-Color _randomColor({int r = 255, int g = 255, int b = 255, a = 255}) {
-  if (r == 0 || g == 0 || b == 0) return Colors.black;
-  if (a == 0) return Colors.white;
-  return Color.fromARGB(
-    a,
-    r != 255 ? r : Random.secure().nextInt(r),
-    g != 255 ? g : Random.secure().nextInt(g),
-    b != 255 ? b : Random.secure().nextInt(b),
-  );
+  /// Called when the current route has been pushed.
+  @override
+  void didPush() {
+    LogUtil.debug("${state.runtimeType}:didPush");
+  }
+
+  /// Called when the current route has been popped off.
+  @override
+  void didPop() {
+    LogUtil.debug("${state.runtimeType}:didPop");
+  }
+
+  /// Called when a new route has been pushed, and the current route is no longer visible.
+  @override
+  void didPushNext() {
+    LogUtil.debug("${state.runtimeType}:didPushNext");
+  }
 }

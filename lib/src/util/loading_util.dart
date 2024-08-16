@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 class LoadingUtil {
   const LoadingUtil._();
 
-  static bool _isShow = false;
+  static bool _isShowing = false;
 
   /// 模态展示，不允许用户关闭，只能有程序控制关闭
   static void showDialog(BuildContext context, {bool? isDark}) {
     isDark ??= Theme.of(context).brightness == Brightness.dark;
-    if (!_isShow) {
-      _isShow = true;
+    if (!_isShowing) {
+      _isShowing = true;
       showGeneralDialog(
         context: context,
         barrierDismissible: false, // 是否能通过点击空白处关闭
@@ -31,15 +31,15 @@ class LoadingUtil {
           );
         },
       ).then((_) {
-        _isShow = false;
+        _isShowing = false;
       }).catchError((e, s) {
-        _isShow = false;
+        _isShowing = false;
       });
     }
   }
 
   static void dismissDialog(BuildContext context) {
-    if (_isShow) {
+    if (_isShowing) {
       Navigator.of(context).pop();
     }
   }

@@ -1,16 +1,20 @@
 ## 使用
 
-### Step 1 导入flutter_rapid_development_kit
+### Step 1 导入package: flutter_rapid_development_kit
 
 ```yaml
   flutter_rapid_development_kit:
     git:
       url: "https://github.com/hbolin/flutter_rapid_development_kit"
-      ref: "3.0.2"
+      ref: "3.0.4"
 ```
+
 ### Step 2 安装GetX插件
 
-安装[my_getx_template](./docs/my_getx_template-3.0.3.jar)插件
+#### 2.1 安装[my_getx_template](./docs/my_getx_template-3.0.3.jar)插件
+
+    2.1.1 新建页面Page
+        使用在目录上右键 -> New -> MyGetX -> 输入Page Name
 
 ### Step 3 配置页面跳转监听
 
@@ -31,7 +35,7 @@ MaterialApp(
 
 ```dart
 class RouteUtil {
-  static String initialRoute = const IndexPage().getRouteName();
+  static String initialRoute = '/';
 
   static final List<GetPage> initialPages = [
     GetPage(
@@ -54,6 +58,7 @@ MaterialApp(
   getPages: RouteUtil.initialPages,
 );
 ```
+
 ### Step 5 使用生成器
 
 #### Step 5.1 [字体资源生成器](example/makers/font_assets_runner.dart)
@@ -105,7 +110,7 @@ void main() {
 ```
 src
 │
-└───enums
+└───enum
 │        font_weight_type.dart
 │   
 └───extension
@@ -145,10 +150,8 @@ src
 
 ### Step 7 常用快捷键
 
-#### Step 7.1 导入[live_templates](docs/flutter_rapid_development_kit_live_templates.zip)
+#### Step 7.1 导入[IDEA Settings](./docs/settings_0.0.1.zip)设置
 
 #### Step 7.2 常用的快捷键
-<img src="docs/flutter_rapid_development_kit_live_templates.png" alt="常用的快捷键">
 
-#### Step 7.3 IDEA配置
-[settings_0.1.3](docs/settings_0.1.3.zip)
+<img src="docs/live_templates.png" alt="常用的快捷键">

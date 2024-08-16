@@ -35,12 +35,12 @@ class ImageBanner extends StatefulWidget {
   final Widget errorWidget;
 
   /// 控制器
-  final CarouselController? controller;
+  final CarouselSliderController? controller;
 
   /// 页码指示器
   /// 默认实现：[DefaultCirclePagination]
   /// 可选配置：[DefaultCirclePagination]/[DefaultRoundedPagination]
-  final Widget Function(CarouselController controller, int index, bool isSelected)? paginationBuilder;
+  final Widget Function(CarouselSliderController controller, int index, bool isSelected)? paginationBuilder;
 
   /// 点击轮播页
   final void Function(int index)? onTap;
@@ -68,9 +68,9 @@ class ImageBanner extends StatefulWidget {
 class _ImageBannerState extends State<ImageBanner> {
   int _current = 0;
 
-  CarouselController? _controller;
+  CarouselSliderController? _controller;
 
-  CarouselController get _effectiveController {
+  CarouselSliderController get _effectiveController {
     return widget.controller ?? _controller!;
   }
 
@@ -78,7 +78,7 @@ class _ImageBannerState extends State<ImageBanner> {
   void initState() {
     super.initState();
     if (widget.controller == null) {
-      _controller = CarouselController();
+      _controller = CarouselSliderController();
     }
   }
 

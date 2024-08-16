@@ -46,7 +46,7 @@ $outData''';
     file.writeAsString(outData);
     print('生成成功，生成路径：${file.path}');
 
-    PubspecParser.addCommonAssetsNode(directoryPath);
+    PubspecParser.addImageAssetsNode(directoryPath);
 
     print('处理完成！！！');
   }
@@ -55,7 +55,6 @@ $outData''';
     var temps = directory.listSync();
     var childDirectories = temps.where((element) => FileSystemEntity.isDirectorySync(element.path));
     var childFiles = temps.where((element) => FileSystemEntity.isFileSync(element.path));
-    childFiles = childFiles.where((element) => !element.path.endsWith(".DS_Store"));
     var className = '_${directory.directoryName.toUpperCaseFirstLetter()}';
     if (isRoot) {
       className = rootClassName;

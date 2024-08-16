@@ -10,6 +10,7 @@ class ToastUtil {
   static void show(String msg, {bool? isDark}) {
     if (Get.context != null && isDark == null) {
       isDark = Theme.of(Get.context!).brightness == Brightness.dark;
+      // print("当前是否是Dark Model:$isDark");
     }
     isDark ??= false;
     customShow(

@@ -1,37 +1,32 @@
-import 'package:example/extension/test_date_time_converter_page/test_date_time_converter_page_view.dart';
-import 'package:example/extension/test_list_extensions_page/test_list_extensions_page_view.dart';
-import 'package:example/extension/test_money_format_page/test_money_format_page_view.dart';
-import 'package:example/extension/test_string_number_converter_page/test_string_number_converter_page_view.dart';
+import 'package:example/enum/font_weight_type_page/font_weight_type_page_view.dart';
+import 'package:example/extension/date_time_format_page/date_time_format_page_view.dart';
+import 'package:example/extension/list_extensions_page/list_extensions_page_view.dart';
+import 'package:example/extension/money_format_page/money_format_page_view.dart';
+import 'package:example/extension/string_number_converter_page/string_number_converter_page_view.dart';
 import 'package:example/index_page/index_page_view.dart';
-import 'package:example/util/test_font_page/test_font_page_view.dart';
-import 'package:example/util/test_loading_util_page/test_loading_util_page_view.dart';
-import 'package:example/util/test_log_util_page/test_log_util_page_view.dart';
-import 'package:example/util/test_makers_page/test_makers_page_view.dart';
-import 'package:example/util/test_toast_util2_page/test_toast_util2_page_view.dart';
-import 'package:example/util/test_try_catch_page/test_try_catch_page_view.dart';
-import 'package:example/widget/test_base_page_route_paras_page/test_base_page_route_paras_page_view.dart';
-import 'package:example/widget/test_cached_loading_body_page/test_cached_loading_body_page_view.dart';
-import 'package:example/widget/test_circle_image_page/test_circle_image_page_view.dart';
-import 'package:example/widget/test_column_row_grid_view_page/test_column_row_grid_view_page_view.dart';
-import 'package:example/widget/test_convenient_container_page/test_convenient_container_page_view.dart';
-import 'package:example/widget/test_convenient_rich_text_page/test_convenient_rich_text_page_view.dart';
-import 'package:example/widget/test_image_banner_page/test_image_banner_page_view.dart';
-import 'package:example/widget/test_ink_well_container_page/test_ink_well_container_page_view.dart';
-import 'package:example/widget/test_list_grid_view_page/test_list_grid_view_page_view.dart';
-import 'package:example/widget/test_loading_body_page/test_loading_body_page_view.dart';
-import 'package:example/widget/test_rounded_image_page/test_rounded_image_page_view.dart';
-import 'package:example/widget/test_separated_column_page/test_separated_column_page_view.dart';
-import 'package:example/widget/test_separated_row_page/test_separated_row_page_view.dart';
-import 'package:example/widget/test_separated_wrap_page/test_separated_wrap_page_view.dart';
-import 'package:example/widget/text_is_load_real_data_success_page/text_is_load_real_data_success_page_view.dart';
-import 'package:example/widget/text_visibility_builder_page/text_visibility_builder_page_view.dart';
+import 'package:example/util/action_util_page/action_util_page_view.dart';
+import 'package:example/util/loading_util_page/loading_util_page_view.dart';
+import 'package:example/util/log_util_page/log_util_page_view.dart';
+import 'package:example/util/toast_util_page/toast_util_page_view.dart';
+import 'package:example/util/try_catch_util_page/try_catch_util_page_view.dart';
+import 'package:example/widget/cached_loading_body_page/cached_loading_body_page_view.dart';
+import 'package:example/widget/circle_image_page/circle_image_page_view.dart';
+import 'package:example/widget/column_row_grid_view_page/column_row_grid_view_page_view.dart';
+import 'package:example/widget/conditional_widget_page/conditional_widget_page_view.dart';
+import 'package:example/widget/convenient_container_page/convenient_container_page_view.dart';
+import 'package:example/widget/convenient_rich_text_page/convenient_rich_text_page_view.dart';
+import 'package:example/widget/image_banner_page/image_banner_page_view.dart';
+import 'package:example/widget/list_grid_view_page/list_grid_view_page_view.dart';
+import 'package:example/widget/loading_body_page/loading_body_page_view.dart';
+import 'package:example/widget/rounded_image_page/rounded_image_page_view.dart';
+import 'package:example/widget/separated_column_page/separated_column_page_view.dart';
+import 'package:example/widget/separated_row_page/separated_row_page_view.dart';
+import 'package:example/widget/separated_wrap_page/separated_wrap_page_view.dart';
+import 'package:example/widget/visibility_builder_page/visibility_builder_page_view.dart';
 import 'package:get/get.dart';
 
-import 'util/test_action_util_page/test_action_util_page_view.dart';
-import 'widget/test_conditional_widget_page/test_conditional_widget_page_view.dart';
-
 class RouteUtil {
-  static String initialRoute = const IndexPage().getRouteName();
+  static String initialRoute = "/";
 
   static final List<GetPage> initialPages = [
     GetPage(
@@ -39,116 +34,100 @@ class RouteUtil {
       page: () => IndexPage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TestToastUtil2Page().getRouteName(),
-      page: () => TestToastUtil2Page.fromRouteParas(Get.parameters),
+      name: const LogUtilPage().getRouteName(),
+      page: () => LogUtilPage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TestMakersPage().getRouteName(),
-      page: () => TestMakersPage.fromRouteParas(Get.parameters),
+      name: const ToastUtilPage().getRouteName(),
+      page: () => ToastUtilPage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TestLoadingUtilPage().getRouteName(),
-      page: () => TestLoadingUtilPage.fromRouteParas(Get.parameters),
+      name: const ActionUtilPage().getRouteName(),
+      page: () => ActionUtilPage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TestActionUtilPage().getRouteName(),
-      page: () => TestActionUtilPage.fromRouteParas(Get.parameters),
+      name: const LoadingUtilPage().getRouteName(),
+      page: () => LoadingUtilPage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TestCircleImagePage().getRouteName(),
-      page: () => TestCircleImagePage.fromRouteParas(Get.parameters),
+      name: const TryCatchUtilPage().getRouteName(),
+      page: () => TryCatchUtilPage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TestSeparatedColumnPage().getRouteName(),
-      page: () => TestSeparatedColumnPage.fromRouteParas(Get.parameters),
+      name: const FontWeightTypePage().getRouteName(),
+      page: () => FontWeightTypePage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TestSeparatedRowPage().getRouteName(),
-      page: () => TestSeparatedRowPage.fromRouteParas(Get.parameters),
+      name: const DateTimeFormatPage().getRouteName(),
+      page: () => DateTimeFormatPage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TestSeparatedWrapPage().getRouteName(),
-      page: () => TestSeparatedWrapPage.fromRouteParas(Get.parameters),
+      name: const ListExtensionsPage().getRouteName(),
+      page: () => ListExtensionsPage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TextVisibilityBuilderPage().getRouteName(),
-      page: () => TextVisibilityBuilderPage.fromRouteParas(Get.parameters),
+      name: const MoneyFormatPage().getRouteName(),
+      page: () => MoneyFormatPage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TestRoundedImagePage().getRouteName(),
-      page: () => TestRoundedImagePage.fromRouteParas(Get.parameters),
+      name: const StringNumberConverterPage().getRouteName(),
+      page: () => StringNumberConverterPage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TestColumnRowGridViewPage().getRouteName(),
-      page: () => TestColumnRowGridViewPage.fromRouteParas(Get.parameters),
+      name: const CircleImagePage().getRouteName(),
+      page: () => CircleImagePage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TestConditionalWidgetPage().getRouteName(),
-      page: () => TestConditionalWidgetPage.fromRouteParas(Get.parameters),
+      name: const ColumnRowGridViewPage().getRouteName(),
+      page: () => ColumnRowGridViewPage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TestConvenientRichTextPage().getRouteName(),
-      page: () => TestConvenientRichTextPage.fromRouteParas(Get.parameters),
+      name: const ConditionalWidgetPage().getRouteName(),
+      page: () => ConditionalWidgetPage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TestConvenientContainerPage().getRouteName(),
-      page: () => TestConvenientContainerPage.fromRouteParas(Get.parameters),
+      name: const ConvenientContainerPage().getRouteName(),
+      page: () => ConvenientContainerPage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TestImageBannerPage().getRouteName(),
-      page: () => TestImageBannerPage.fromRouteParas(Get.parameters),
+      name: const ConvenientRichTextPage().getRouteName(),
+      page: () => ConvenientRichTextPage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TestListGridViewPage().getRouteName(),
-      page: () => TestListGridViewPage.fromRouteParas(Get.parameters),
+      name: const ImageBannerPage().getRouteName(),
+      page: () => ImageBannerPage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TestInkWellContainerPage().getRouteName(),
-      page: () => TestInkWellContainerPage.fromRouteParas(Get.parameters),
+      name: const ListGridViewPage().getRouteName(),
+      page: () => ListGridViewPage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TestLoadingBodyPage().getRouteName(),
-      page: () => TestLoadingBodyPage.fromRouteParas(Get.parameters),
+      name: const RoundedImagePage().getRouteName(),
+      page: () => RoundedImagePage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TestFontPage().getRouteName(),
-      page: () => TestFontPage.fromRouteParas(Get.parameters),
+      name: const SeparatedColumnPage().getRouteName(),
+      page: () => SeparatedColumnPage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TextIsLoadRealDataSuccessPage().getRouteName(),
-      page: () => TextIsLoadRealDataSuccessPage.fromRouteParas(Get.parameters),
+      name: const SeparatedRowPage().getRouteName(),
+      page: () => SeparatedRowPage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TestTryCatchPage().getRouteName(),
-      page: () => TestTryCatchPage.fromRouteParas(Get.parameters),
+      name: const SeparatedWrapPage().getRouteName(),
+      page: () => SeparatedWrapPage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TestDateTimeConverterPage().getRouteName(),
-      page: () => TestDateTimeConverterPage.fromRouteParas(Get.parameters),
+      name: const VisibilityBuilderPage().getRouteName(),
+      page: () => VisibilityBuilderPage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TestListExtensionsPage().getRouteName(),
-      page: () => TestListExtensionsPage.fromRouteParas(Get.parameters),
+      name: const CachedLoadingBodyPage().getRouteName(),
+      page: () => CachedLoadingBodyPage.fromRouteParas(Get.parameters),
     ),
     GetPage(
-      name: const TestMoneyFormatPage().getRouteName(),
-      page: () => TestMoneyFormatPage.fromRouteParas(Get.parameters),
-    ),
-    GetPage(
-      name: const TestStringNumberConverterPage().getRouteName(),
-      page: () => TestStringNumberConverterPage.fromRouteParas(Get.parameters),
-    ),
-    GetPage(
-      name: const TestBasePageRouteParasPage().getRouteName(),
-      page: () => TestBasePageRouteParasPage.fromRouteParas(Get.parameters),
-    ),
-    GetPage(
-      name: const TestLogUtilPage().getRouteName(),
-      page: () => TestLogUtilPage.fromRouteParas(Get.parameters),
-    ),
-    GetPage(
-      name: const TestCachedLoadingBodyPage().getRouteName(),
-      page: () => TestCachedLoadingBodyPage.fromRouteParas(Get.parameters),
+      name: const LoadingBodyPage().getRouteName(),
+      page: () => LoadingBodyPage.fromRouteParas(Get.parameters),
     ),
   ];
 }

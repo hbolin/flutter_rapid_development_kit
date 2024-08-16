@@ -5,15 +5,7 @@ import 'package:flutter_rapid_development_kit/src/util/log_util.dart';
 Future<void> tryCatchIgnoreError(Function f, {bool interruptOnDebugModel = true}) async {
   try {
     await f.call();
-  } catch (e, stack) {
-    LogUtil.error(
-      '''
---------------------------------------------------------------------------------------------------------------------------------------------------
-执行方式：${f.runtimeType}发生异常：
-e：$e 
-stack：$stack
---------------------------------------------------------------------------------------------------------------------------------------------------''',
-      interruptOnDebugModel: interruptOnDebugModel,
-    );
+  } catch (e) {
+    LogUtil.error("$e", interruptOnDebugModel: interruptOnDebugModel);
   }
 }

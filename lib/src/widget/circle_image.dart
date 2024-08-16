@@ -10,6 +10,8 @@ class CircleImage extends StatelessWidget {
   final double borderWidth;
   final Widget? placeholder;
   final Widget errorWidget;
+  final Color? color;
+  final BlendMode? colorBlendMode;
   final Color? backgroundColor;
 
   const CircleImage({
@@ -21,6 +23,8 @@ class CircleImage extends StatelessWidget {
     this.borderWidth = 1.0,
     this.placeholder,
     this.errorWidget = const SizedBox.shrink(),
+    this.color,
+    this.colorBlendMode,
     this.backgroundColor,
   }) : super(key: key);
 
@@ -31,6 +35,8 @@ class CircleImage extends StatelessWidget {
       fit: boxFit,
       placeholder: placeholder == null ? null : ((context, url) => placeholder!),
       errorWidget: (context, url, error) => errorWidget,
+      color: color,
+      colorBlendMode: colorBlendMode,
       // 这里有imageBuilder属性可以配置圆形，但是不符合设计要求
     );
 

@@ -1,13 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter_android_log_printer/flutter_android_log_printer.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 class LogUtil {
   const LogUtil._();
-
-  static final _flutterAndroidLogPrinterPlugin = FlutterAndroidLogPrinter();
 
   static const _tag = "rapid";
 
@@ -16,9 +13,7 @@ class LogUtil {
     if (kReleaseMode) {
       return;
     }
-    if (UniversalPlatform.isAndroid) {
-      _flutterAndroidLogPrinterPlugin.logD(tag, message, maxLogSize: 1024 * 2);
-    } else if (UniversalPlatform.isIOS) {
+    if (UniversalPlatform.isAndroid || UniversalPlatform.isIOS) {
       log(message, name: tag);
     } else {
       debugPrint(message);
@@ -31,9 +26,7 @@ class LogUtil {
     if (kReleaseMode) {
       return;
     }
-    if (UniversalPlatform.isAndroid) {
-      _flutterAndroidLogPrinterPlugin.logE(tag, message, maxLogSize: 1024 * 2);
-    } else if (UniversalPlatform.isIOS) {
+    if (UniversalPlatform.isAndroid || UniversalPlatform.isIOS) {
       log(message, name: tag);
     } else {
       debugPrint(message);
