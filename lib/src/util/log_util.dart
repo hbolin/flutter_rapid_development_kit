@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
+import 'package:logger/logger.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 class LogUtil {
@@ -8,13 +9,16 @@ class LogUtil {
 
   static const _tag = "rapid";
 
+  static final Logger _logger = Logger();
+
   /// 打印debug日志
   static void debug(String message, {String tag = _tag}) {
     if (kReleaseMode) {
       return;
     }
     if (UniversalPlatform.isAndroid || UniversalPlatform.isIOS) {
-      log(message, name: tag);
+      // log(message, name: tag);
+      _logger.i(message);
     } else {
       debugPrint(message);
     }
@@ -27,7 +31,8 @@ class LogUtil {
       return;
     }
     if (UniversalPlatform.isAndroid || UniversalPlatform.isIOS) {
-      log(message, name: tag);
+      // log(message, name: tag);
+      _logger.e(message);
     } else {
       debugPrint(message);
     }
