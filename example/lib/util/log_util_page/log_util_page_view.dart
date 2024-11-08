@@ -63,7 +63,7 @@ class _LogUtilPageState extends BasePageState<LogUtilPageLogic, LogUtilPageState
           ),
           ElevatedButton(
             onPressed: () {
-              LogUtil.error("error info", tag: "error", interruptOnDebugModel: false);
+              LogUtil.error("error info", tag: "error");
             },
             child: const Text("LogUtil.error"),
           ),

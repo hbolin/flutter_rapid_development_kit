@@ -68,8 +68,7 @@ class _TryCatchUtilPageState extends BasePageState<TryCatchUtilPageLogic, TryCat
                 () async {
                   await Future.delayed(const Duration(seconds: 3));
                   throw "xxx";
-                },
-                interruptOnDebugModel: false,
+                }
               );
             },
             child: const Text("tryCatchIgnoreError"),
