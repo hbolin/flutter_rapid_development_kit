@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 
-extension ListExtensions<E> on List<E> {
+extension FrdkListExtensions<E> on List<E> {
   /// 并集，[removeSameElement]：表示的是移除的条件，例如element1.id == element2.id，id相同则保留一个即可
   /// 示例： [1, 2, 3, 3] 并集 [2, 3, 3, 4] = [1, 2, 3, 3, 4]
   /// 注意：只会添加[other]在本集合没有的元素，如果元素在本集合已重复，则还是会重复。

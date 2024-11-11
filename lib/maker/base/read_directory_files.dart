@@ -49,14 +49,14 @@ class DirectoryUnderFiles {
 
 // ---------------------------------------------------- extension ----------------------------------------------------
 
-extension DirectoryExtension on Directory {
+extension FrdkDirectoryExtension on Directory {
   /// 目录名
   String get directoryName {
     return path.basenameWithoutExtension(this.path);
   }
 }
 
-extension FileExtension on File {
+extension FrdkFileExtension on File {
   /// 文件名，不包括后缀
   String get fileNameWithoutExtension {
     return path.basenameWithoutExtension(this.path);
@@ -68,7 +68,7 @@ extension FileExtension on File {
   }
 }
 
-extension StringExtension on String {
+extension FrdkStringExtension on String {
   /// 首字母大写
   String toUpperCaseFirstLetter() {
     return isEmpty ? this : "${this[0].toUpperCase()}${substring(1)}";

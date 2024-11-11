@@ -1,4 +1,4 @@
-extension StringNumberConverter on String {
+extension FrdkStringNumberConverter on String {
   /// [String]转换成[int]
   int? toIntOrNull() {
     return int.tryParse(this, radix: 10);
