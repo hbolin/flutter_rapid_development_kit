@@ -1,9 +1,5 @@
 library flutter_rapid_development_kit;
 
-export 'package:get/get.dart';
-
-export 'package:intl/intl.dart';
-
 export 'package:flutter_rapid_development_kit/src/enum/font_weight_type.dart';
 
 export 'package:flutter_rapid_development_kit/src/extension/date_time_converter.dart';
@@ -14,9 +10,11 @@ export 'package:flutter_rapid_development_kit/src/extension/string_number_conver
 export 'package:flutter_rapid_development_kit/src/page/base_page.dart';
 
 export 'package:flutter_rapid_development_kit/src/util/action_util.dart';
+export 'package:flutter_rapid_development_kit/src/util/custom_crypto_util.dart';
 export 'package:flutter_rapid_development_kit/src/util/loading_util.dart';
 export 'package:flutter_rapid_development_kit/src/util/log_util.dart';
 export 'package:flutter_rapid_development_kit/src/util/model_util.dart';
+export 'package:flutter_rapid_development_kit/src/util/sp_util.dart';
 export 'package:flutter_rapid_development_kit/src/util/toast_util.dart';
 export 'package:flutter_rapid_development_kit/src/util/try_catch_util.dart';
 

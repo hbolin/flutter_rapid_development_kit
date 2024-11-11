@@ -25,6 +25,7 @@ import 'package:example/widget/separated_wrap_page/separated_wrap_page_view.dart
 import 'package:example/widget/visibility_builder_page/visibility_builder_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
+import 'package:get/get.dart';
 
 import 'index_page_logic.dart';
 import 'index_page_state.dart';

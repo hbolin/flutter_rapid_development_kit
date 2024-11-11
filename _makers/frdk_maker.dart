@@ -10,11 +10,7 @@ Future<void> main() async {
 
   libs = libs.where((element) => element.files.isNotEmpty).toList();
 
-  String outData = "library flutter_rapid_development_kit;";
-
-  outData += "\n\nexport 'package:get/get.dart';\n\n";
-
-  outData += "export 'package:intl/intl.dart';\n\n";
+  String outData = "library flutter_rapid_development_kit;\n\n";
 
   outData += libs
       .map((e) => e.files

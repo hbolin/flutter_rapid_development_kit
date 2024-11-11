@@ -14,8 +14,6 @@ Future<void> main() async {
 
   outData += "\n\n// --------------------------------------- 开发阶段的生成器 ---------------------------------------\n\n";
 
-  outData += "export 'package:yaml/yaml.dart';\n\n";
-
   outData += libs
       .map((e) => e.files
           .map((e2) => '''export 'package:flutter_rapid_development_kit/maker/${e2.path.replaceAll("\\", "/").replaceFirst("lib/maker/", "")}';''')

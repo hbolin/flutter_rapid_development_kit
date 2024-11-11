@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
+import 'package:get/get.dart';
 
 import 'toast_util_page_logic.dart';
 import 'toast_util_page_state.dart';
