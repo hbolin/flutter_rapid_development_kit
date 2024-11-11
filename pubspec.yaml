@@ -35,6 +35,9 @@ dependencies:
   # https://pub-web.flutter-io.cn/packages/logger
   logger: 2.4.0
 
+  # https://pub-web.flutter-io.cn/packages/shared_preferences
+  shared_preferences: 2.3.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
