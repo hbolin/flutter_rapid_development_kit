@@ -152,9 +152,10 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
 
   /// 默认"加载中"样式
   Widget buildDefaultLoadingWidget(BuildContext context) {
+    final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
     return Scaffold(
       appBar: AppBar(
-        leading: const AppBackButton(),
+        leading: (parentRoute?.impliesAppBarDismissal ?? false) ? const AppBackButton() : null,
       ),
       body: const Center(
         child: CupertinoActivityIndicator(
@@ -166,9 +167,10 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
 
   /// 加载"加载失败"样式
   Widget buildDefaultErrorWidget(BuildContext context, CachedLoadingBodyController controller, dynamic error) {
+    final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
     return Scaffold(
       appBar: AppBar(
-        leading: const AppBackButton(),
+        leading: (parentRoute?.impliesAppBarDismissal ?? false) ? const AppBackButton() : null,
       ),
       body: GestureDetector(
         behavior: HitTestBehavior.opaque,
