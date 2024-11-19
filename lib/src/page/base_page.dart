@@ -153,7 +153,9 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
   /// 默认"加载中"样式
   Widget buildDefaultLoadingWidget(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: const AppBackButton(),
+      ),
       body: const Center(
         child: CupertinoActivityIndicator(
           radius: 12,
