@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rapid_development_kit/src/util/log_util.dart';
 import 'package:flutter_rapid_development_kit/src/util/toast_util.dart';
+import 'package:flutter_rapid_development_kit/src/widget/app_back_button.dart';
 import 'package:flutter_rapid_development_kit/src/widget/cached_loading_body.dart';
 import 'package:get/get.dart';
 
@@ -164,7 +165,9 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
   /// 加载"加载失败"样式
   Widget buildDefaultErrorWidget(BuildContext context, CachedLoadingBodyController controller, dynamic error) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: const AppBackButton(),
+      ),
       body: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () {
