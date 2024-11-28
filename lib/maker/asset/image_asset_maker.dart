@@ -61,7 +61,7 @@ $outData''';
     }
     String out = '''
 class $className {
-  const $className();${() {
+  const $className${isRoot?"._()":"()"};${() {
       if (childDirectories.isEmpty) return "";
       return "\n${childDirectories.map((element) {
         if (isRoot) {
