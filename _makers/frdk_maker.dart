@@ -12,6 +12,11 @@ Future<void> main() async {
 
   String outData = "library flutter_rapid_development_kit;\n\n";
 
+  outData += "export 'package:get/get.dart' hide Response;\n";
+  outData += "export 'package:universal_platform/universal_platform.dart';\n";
+  outData += "export 'package:collection/collection.dart';\n";
+  outData += "\n";
+
   outData += libs
       .map((e) => e.files
           .map((e2) => '''export 'package:flutter_rapid_development_kit/src/${e2.path.replaceAll("\\", "/").replaceFirst("lib/src/", "")}';''')

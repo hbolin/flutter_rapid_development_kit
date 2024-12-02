@@ -1,5 +1,9 @@
 library flutter_rapid_development_kit;
 
+export 'package:get/get.dart' hide Response;
+export 'package:universal_platform/universal_platform.dart';
+export 'package:collection/collection.dart';
+
 export 'package:flutter_rapid_development_kit/src/enum/font_weight_type.dart';
 
 export 'package:flutter_rapid_development_kit/src/extension/date_time_converter.dart';

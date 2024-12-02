@@ -11,6 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # https://pub-web.flutter-io.cn/packages/collection
+#  collection: 1.18.0
+
   # https://pub-web.flutter-io.cn/packages/get
   get: 4.6.6
 

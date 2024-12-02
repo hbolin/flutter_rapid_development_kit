@@ -68,6 +68,7 @@ abstract class BasePageState<K extends BasePageGetxController<S>, S extends Base
     state = Get.find<K>(tag: _getTag).state;
     state.page = widget;
     super.initState();
+    logic.onInitState();
   }
 
   @override
@@ -209,6 +210,8 @@ abstract class BasePageGetxController<S extends BasePageBaseState> extends GetxC
   S? _state;
 
   S get state => _state ??= initBasePageBaseState();
+
+  void onInitState() {}
 
   S initBasePageBaseState();
 
