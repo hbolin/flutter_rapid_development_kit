@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 import 'package:universal_platform/universal_platform.dart';
@@ -14,9 +16,10 @@ class LogUtil {
     if (kReleaseMode) {
       return;
     }
-    if (UniversalPlatform.isAndroid || UniversalPlatform.isIOS) {
-      // log(message, name: tag);
+    if (UniversalPlatform.isAndroid) {
       _logger.i(message);
+    } else if (UniversalPlatform.isIOS) {
+      log(message, name: tag);
     } else {
       debugPrint(message);
     }
@@ -28,9 +31,10 @@ class LogUtil {
     if (kReleaseMode) {
       return;
     }
-    if (UniversalPlatform.isAndroid || UniversalPlatform.isIOS) {
-      // log(message, name: tag);
+    if (UniversalPlatform.isAndroid) {
       _logger.w(message);
+    } else if (UniversalPlatform.isIOS) {
+      log(message, name: tag);
     } else {
       debugPrint(message);
     }
