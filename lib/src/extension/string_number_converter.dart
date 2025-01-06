@@ -10,10 +10,11 @@ extension FrdkStringNumberConverter on String {
   }
 
   /// [String]转换成[bool]
-  bool toBoolOrNull({String? extraCondition}) {
-    if (extraCondition != null) {
-      return toLowerCase() == "true" || toLowerCase() == extraCondition;
+  bool toBool({String? trueCondition}) {
+    final lowerCaseValue = toLowerCase();
+    if (trueCondition != null) {
+      return lowerCaseValue == "true" || lowerCaseValue == trueCondition.toLowerCase();
     }
-    return toLowerCase() == "true";
+    return lowerCaseValue == "true";
   }
 }

@@ -8,11 +8,11 @@ class VisibilityBuilder extends StatelessWidget {
   final Widget replacement;
 
   const VisibilityBuilder({
-    Key? key,
+    super.key,
     required this.visible,
     required this.builder,
     this.replacement = const SizedBox.shrink(),
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

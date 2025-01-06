@@ -13,7 +13,7 @@ class ColumnRowGridView extends StatelessWidget {
   final CrossAxisAlignment crossAxisAlignment;
 
   const ColumnRowGridView({
-    Key? key,
+    super.key,
     required this.itemCount,
     required this.crossAxisCount,
     required this.itemBuilder,
@@ -21,10 +21,14 @@ class ColumnRowGridView extends StatelessWidget {
     required this.verticalSeparatorBuilder,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
+    if (itemCount <= 0) {
+      return const SizedBox.shrink(); // 返回一个占位符
+    }
+
     var lines = itemCount ~/ crossAxisCount;
     var leftCount = itemCount % crossAxisCount;
 
@@ -59,12 +63,10 @@ class ColumnRowGridView extends StatelessWidget {
             }
           }
         }
-        return IntrinsicHeight(
-          child: Row(
-            mainAxisAlignment: mainAxisAlignment,
-            crossAxisAlignment: crossAxisAlignment,
-            children: children,
-          ),
+        return Row(
+          mainAxisAlignment: mainAxisAlignment,
+          crossAxisAlignment: crossAxisAlignment,
+          children: children,
         );
       },
       separatorBuilder: verticalSeparatorBuilder,

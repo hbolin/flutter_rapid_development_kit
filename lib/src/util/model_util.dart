@@ -19,17 +19,18 @@ T? convertT<T extends Object?>(dynamic value, [T? defaultValue]) {
   try {
     if (value != null) {
       final String valueS = value.toString();
-      if ('' is T) {
+      if (T == String) {
         return valueS as T;
-      } else if (0 is T) {
+      } else if (T == int) {
         return int.parse(valueS) as T;
-      } else if (0.0 is T) {
+      } else if (T == double) {
         return double.parse(valueS) as T;
-      } else if (false is T) {
-        if (valueS == '0' || valueS == '1') {
-          return (valueS == '1') as T;
+      } else if (T == bool) {
+        final lowerValueS = valueS.toLowerCase();
+        if (lowerValueS == '0' || lowerValueS == '1') {
+          return (lowerValueS == '1') as T;
         }
-        return (valueS == 'true') as T;
+        return (lowerValueS == 'true') as T;
       } else {
         return _FFConvert.convert<T>(value);
       }

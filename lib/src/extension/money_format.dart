@@ -19,8 +19,13 @@ extension FrdkMoneyStringFormat on String {
   /// 3.345 -> 3.35 (四舍五入)
   /// 3.40 -> 3.4
   /// 3.0 -> 3
-  String moneyFormat({String format = "0.##"}) {
+  String? moneyFormat({String format = "0.##"}) {
     NumberFormat numberFormat = NumberFormat(format);
-    return numberFormat.format(double.parse(this));
+    try {
+      return numberFormat.format(double.parse(this));
+    } catch (e) {
+      // assert(false, "无法解析金钱格式: $this, 格式: $format, e: $e");
+    }
+    return null;
   }
 }

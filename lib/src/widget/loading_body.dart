@@ -242,7 +242,6 @@ class _LoadingContentState extends State<_LoadingContent> with SingleTickerProvi
           case ConnectionState.none:
           case ConnectionState.waiting:
           case ConnectionState.active:
-          default:
             return _buildLoadingWidget(context);
         }
       },

@@ -133,20 +133,6 @@ class BackButtonIcon extends StatelessWidget {
       },
       getIcon: (BuildContext context) {
         return Icons.arrow_back_ios_new_rounded;
-        if (kIsWeb) {
-          // Always use 'Icons.arrow_back' as a back_button icon in web.
-          return Icons.arrow_back;
-        }
-        switch (Theme.of(context).platform) {
-          case TargetPlatform.android:
-          case TargetPlatform.fuchsia:
-          case TargetPlatform.linux:
-          case TargetPlatform.windows:
-            return Icons.arrow_back;
-          case TargetPlatform.iOS:
-          case TargetPlatform.macOS:
-            return Icons.arrow_back_ios_new_rounded;
-        }
       },
       getAndroidSemanticsLabel: (MaterialLocalizations materialLocalization) {
         return materialLocalization.backButtonTooltip;

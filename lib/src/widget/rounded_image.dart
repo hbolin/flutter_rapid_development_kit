@@ -18,7 +18,7 @@ class RoundedImage extends StatelessWidget {
   final BorderRadiusGeometry? customBorderRadius;
 
   const RoundedImage({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.width,
     required this.height,
@@ -34,7 +34,7 @@ class RoundedImage extends StatelessWidget {
 
     /// 自定义borderRadius，如果有配置该值，则[radius]属性会被覆盖
     this.customBorderRadius,
-  }) : super(key: key);
+  });
 
   const RoundedImage.zero({
     Key? key,

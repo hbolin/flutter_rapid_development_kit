@@ -2,8 +2,7 @@
 /// 该类为自动生成，不需要修改该类
 
 class AppImageAsset {
-  const AppImageAsset();
-
+  const AppImageAsset._();
   static const jpgs = _Jpgs();
   static const pngs = _Pngs();
   static const nodata = _Nodata();
@@ -28,7 +27,6 @@ class _Pngs {
 
 class _Nodata {
   const _Nodata();
-
   final nodata2 = const _Nodata2();
 }
 

@@ -20,7 +20,7 @@ class ListGridView extends StatelessWidget {
   final ScrollController? controller;
 
   const ListGridView({
-    Key? key,
+    super.key,
     required this.itemCount,
     required this.crossAxisCount,
     required this.itemBuilder,
@@ -33,10 +33,14 @@ class ListGridView extends StatelessWidget {
     this.padding,
     this.scrollDirection = Axis.vertical,
     this.controller,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
+    if (itemCount <= 0) {
+      return const SizedBox.shrink(); // 返回一个占位符
+    }
+
     var lines = itemCount ~/ crossAxisCount;
     var leftCount = itemCount % crossAxisCount;
 

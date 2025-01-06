@@ -9,8 +9,7 @@ extension FrdkListExtensions<E> on List<E> {
     var targetList = this.shallowCopy();
     var otherTemp = other.shallowCopy();
     otherTemp.removeWhere((element2) {
-      var result = firstWhereOrNull((element1) => removeSameElement(element1, element2));
-      return result != null;
+      return targetList.any((element1) => removeSameElement(element1, element2));
     });
     targetList.addAll(otherTemp);
     return targetList;
@@ -22,8 +21,7 @@ extension FrdkListExtensions<E> on List<E> {
   List<E> subtract(List<E> other, bool Function(E element1, E element2) removeSameElement) {
     var targetList = this.shallowCopy();
     targetList.removeWhere((element2) {
-      var result = other.firstWhereOrNull((element1) => removeSameElement(element1, element2));
-      return result != null;
+      return other.any((element1) => removeSameElement(element1, element2));
     });
     return targetList;
   }
@@ -33,8 +31,7 @@ extension FrdkListExtensions<E> on List<E> {
   /// 注意：不会影响[本集合]和[other]集合
   List<E> intersect(List<E> other, bool Function(E element1, E element2) pickSameElement) {
     return where((element2) {
-      var result = other.firstWhereOrNull((element1) => pickSameElement(element1, element2));
-      return result != null;
+      return other.any((element1) => pickSameElement(element1, element2));
     }).toList();
   }
 

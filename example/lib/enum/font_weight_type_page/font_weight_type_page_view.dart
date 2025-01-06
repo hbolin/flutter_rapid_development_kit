@@ -38,17 +38,31 @@ class _FontWeightTypePageState extends BasePageState<FontWeightTypePageLogic, Fo
       body: Column(
         children: [
           Text(
-            "data",
+            "FontWeightType.light.fontWeight",
             style: TextStyle(
-              fontSize: 50,
-              fontWeight: FontWeightType.semibold.fontWeight,
+              fontSize: 20,
+              fontWeight: FontWeightType.light.fontWeight,
             ),
           ),
           Text(
-            "data",
+            "FontWeightType.regular.fontWeight",
             style: TextStyle(
-              fontSize: 50,
+              fontSize: 20,
               fontWeight: FontWeightType.regular.fontWeight,
+            ),
+          ),
+          Text(
+            "FontWeightType.medium.fontWeight",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeightType.medium.fontWeight,
+            ),
+          ),
+          Text(
+            "FontWeightType.semibold.fontWeight",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeightType.semibold.fontWeight,
             ),
           ),
         ],

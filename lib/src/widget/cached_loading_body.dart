@@ -58,7 +58,7 @@ class CachedLoadingBody extends StatefulWidget {
   final void Function(CachedLoadingBodyController controller)? onCachedLoadingBodyCreated;
 
   const CachedLoadingBody({
-    Key? key,
+    super.key,
     required this.cachedDataLoader,
     required this.dataLoader,
     required this.bodyBuilder,
@@ -72,7 +72,7 @@ class CachedLoadingBody extends StatefulWidget {
     this.dataLoadedFailedListener = defaultDataLoadedFailedListener,
     this.dataReloadListener,
     this.onCachedLoadingBodyCreated,
-  }) : super(key: key);
+  });
 
   @override
   State<CachedLoadingBody> createState() => _CachedLoadingBodyState();
@@ -251,15 +251,19 @@ class _CachedLoadingContentState extends State<_CachedLoadingContent> {
   Stream<int> _loadData() {
     controller = StreamController<int>(
       onListen: () async {
-        bool success = await _loadCachedData(controller);
-        if (success) {
-          controller.add(_loadCachedDataSuccessLabel);
+        try {
+          bool success = await _loadCachedData(controller);
+          if (success) {
+            controller.add(_loadCachedDataSuccessLabel);
+          }
+          success = await _loadRealData(controller);
+          if (success) {
+            controller.add(_loadDataSuccessLabel);
+          }
+          await controller.close();
+        } finally {
+          await controller.close();
         }
-        success = await _loadRealData(controller);
-        if (success) {
-          controller.add(_loadDataSuccessLabel);
-        }
-        await controller.close();
       },
     );
     return controller.stream;
@@ -337,11 +341,13 @@ class _CachedLoadingContentState extends State<_CachedLoadingContent> {
     }
   }
 
-  void reloadData() {
+  Future<void> reloadData() async {
     if (!mounted) return;
     if (widget.dataReloadListener != null) {
       widget.dataReloadListener!();
     }
+    // 关闭旧的 StreamController
+    await controller.close();
     setState(() {
       _bids = _loadData();
     });

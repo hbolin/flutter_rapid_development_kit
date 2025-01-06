@@ -42,7 +42,7 @@ class _ActionUtilPageState extends BasePageState<ActionUtilPageLogic, ActionUtil
               bool isDealSuccess = await ActionUtil.dealAction(action: () async {
                 await Future.delayed(const Duration(seconds: 5));
               });
-              print("isDealSuccess:$isDealSuccess");
+              LogUtil.debug("isDealSuccess:$isDealSuccess");
             },
             child: const Text("ActionUtil.dealAction"),
           ),
@@ -52,7 +52,7 @@ class _ActionUtilPageState extends BasePageState<ActionUtilPageLogic, ActionUtil
                 await Future.delayed(const Duration(seconds: 3));
                 throw "发生异常";
               });
-              print("isDealSuccess:$isDealSuccess");
+              LogUtil.debug("isDealSuccess:$isDealSuccess");
             },
             child: const Text("ActionUtil.dealAction 发生异常"),
           ),

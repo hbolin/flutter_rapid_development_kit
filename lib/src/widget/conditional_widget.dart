@@ -8,11 +8,11 @@ class ConditionalWidget extends StatelessWidget {
   final Widget failureWidget;
 
   const ConditionalWidget({
-    Key? key,
+    super.key,
     required this.isSuccess,
     required this.successWidget,
     required this.failureWidget,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +29,11 @@ class ConditionalBuilder extends StatelessWidget {
   final WidgetBuilder failureBuilder;
 
   const ConditionalBuilder({
-    Key? key,
+    super.key,
     required this.isSuccess,
     required this.successBuilder,
     required this.failureBuilder,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

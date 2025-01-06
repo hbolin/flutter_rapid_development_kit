@@ -8,33 +8,38 @@ class LogUtil {
   const LogUtil._();
 
   static const _tag = "rapid";
+  static bool _isLogEnabled = !kReleaseMode; // 全局日志开关
 
   static final Logger _logger = Logger();
 
+  /// 启用或禁用日志
+  static void enableLog(bool isEnabled) {
+    _isLogEnabled = isEnabled;
+  }
+
   /// 打印debug日志
   static void debug(String message, {String tag = _tag}) {
-    if (kReleaseMode) {
+    if (!_isLogEnabled) {
       return;
     }
     if (UniversalPlatform.isAndroid) {
-      _logger.i(message);
+      _logger.d(message); // 使用 debug 级别
     } else if (UniversalPlatform.isIOS) {
-      log(message, name: tag);
+      log(message, name: tag); // 使用自定义 tag
     } else {
       debugPrint(message);
     }
   }
 
   /// 打印error日志
-  /// - [interruptOnDebugModel] 是否在debug模式下中断，默认true
   static void error(String message, {String tag = _tag}) {
-    if (kReleaseMode) {
+    if (!_isLogEnabled) {
       return;
     }
     if (UniversalPlatform.isAndroid) {
-      _logger.w(message);
+      _logger.e(message); // 使用 error 级别
     } else if (UniversalPlatform.isIOS) {
-      log(message, name: tag);
+      log(message, name: tag); // 使用自定义 tag
     } else {
       debugPrint(message);
     }

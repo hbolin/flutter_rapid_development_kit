@@ -178,6 +178,7 @@ class ConvenientContainer extends Container {
     if (onTap != null) {
       current = GestureDetector(
         onTap: onTap,
+        behavior: HitTestBehavior.opaque, // 优化点击区域
         child: current,
       );
     }

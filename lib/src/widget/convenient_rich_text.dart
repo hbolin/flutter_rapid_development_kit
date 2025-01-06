@@ -8,10 +8,10 @@ class ConvenientRichText extends StatelessWidget {
   final TextAlign textAlign;
 
   const ConvenientRichText({
-    Key? key,
+    super.key,
     required this.dataList,
     this.textAlign = TextAlign.start,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

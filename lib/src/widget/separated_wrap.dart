@@ -12,7 +12,7 @@ class SeparatedWrap extends StatelessWidget {
   final double runSpacing;
 
   const SeparatedWrap({
-    Key? key,
+    super.key,
     required this.itemCount,
     required this.itemBuilder,
     required this.separatorBuilder,
@@ -21,10 +21,14 @@ class SeparatedWrap extends StatelessWidget {
     this.crossAxisAlignment = WrapCrossAlignment.start,
     this.spacing = 0.0,
     this.runSpacing = 0.0,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
+    if (itemCount <= 0) {
+      return const SizedBox.shrink(); // 返回一个占位符
+    }
+
     List<Widget> children = [];
     for (int i = 0; i < itemCount; i++) {
       if (i != (itemCount - 1)) {

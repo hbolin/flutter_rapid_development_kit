@@ -46,7 +46,7 @@ class ImageBanner extends StatefulWidget {
   final void Function(int index)? onTap;
 
   const ImageBanner({
-    Key? key,
+    super.key,
     required this.height,
     required this.imgUrlList,
     this.fit = BoxFit.cover,
@@ -59,7 +59,7 @@ class ImageBanner extends StatefulWidget {
     this.controller,
     this.paginationBuilder,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   State<ImageBanner> createState() => _ImageBannerState();
@@ -84,6 +84,10 @@ class _ImageBannerState extends State<ImageBanner> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.imgUrlList.isEmpty) {
+      return const SizedBox.shrink(); // 返回一个占位符
+    }
+
     return Stack(
       children: [
         CarouselSlider(

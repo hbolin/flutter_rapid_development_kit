@@ -15,7 +15,7 @@ class CircleImage extends StatelessWidget {
   final Color? backgroundColor;
 
   const CircleImage({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.size,
     this.boxFit = BoxFit.cover,
@@ -26,7 +26,7 @@ class CircleImage extends StatelessWidget {
     this.color,
     this.colorBlendMode,
     this.backgroundColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

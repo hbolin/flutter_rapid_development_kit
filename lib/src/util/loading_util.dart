@@ -49,9 +49,9 @@ class _LoadingDialog extends StatelessWidget {
   final bool isDark;
 
   const _LoadingDialog({
-    Key? key,
+    super.key,
     required this.isDark,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,8 +1,4 @@
 import 'package:example/enum/font_weight_type_page/font_weight_type_page_view.dart';
-import 'package:example/extension/date_time_format_page/date_time_format_page_view.dart';
-import 'package:example/extension/list_extensions_page/list_extensions_page_view.dart';
-import 'package:example/extension/money_format_page/money_format_page_view.dart';
-import 'package:example/extension/string_number_converter_page/string_number_converter_page_view.dart';
 import 'package:example/route_util.dart';
 import 'package:example/util/action_util_page/action_util_page_view.dart';
 import 'package:example/util/loading_util_page/loading_util_page_view.dart';
@@ -67,15 +63,9 @@ class _IndexPageState extends BasePageState<IndexPageLogic, IndexPageState, Inde
         child: Column(
           children: [
             ListTile(
-              title: const Text("LogUtilPage"),
+              title: const Text("FontWeightTypePage"),
               onTap: () {
-                Get.toNamed(const LogUtilPage().getRoute());
-              },
-            ),
-            ListTile(
-              title: const Text("ToastUtilPage"),
-              onTap: () {
-                Get.toNamed(const ToastUtilPage().getRoute());
+                Get.toNamed(const FontWeightTypePage().getRoute());
               },
             ),
             ListTile(
@@ -91,39 +81,21 @@ class _IndexPageState extends BasePageState<IndexPageLogic, IndexPageState, Inde
               },
             ),
             ListTile(
+              title: const Text("LogUtilPage"),
+              onTap: () {
+                Get.toNamed(const LogUtilPage().getRoute());
+              },
+            ),
+            ListTile(
+              title: const Text("ToastUtilPage"),
+              onTap: () {
+                Get.toNamed(const ToastUtilPage().getRoute());
+              },
+            ),
+            ListTile(
               title: const Text("TryCatchUtilPage"),
               onTap: () {
                 Get.toNamed(const TryCatchUtilPage().getRoute());
-              },
-            ),
-            ListTile(
-              title: const Text("FontWeightTypePage"),
-              onTap: () {
-                Get.toNamed(const FontWeightTypePage().getRoute());
-              },
-            ),
-            ListTile(
-              title: const Text("DateTimeFormatPage"),
-              onTap: () {
-                Get.toNamed(const DateTimeFormatPage().getRoute());
-              },
-            ),
-            ListTile(
-              title: const Text("ListExtensionsPage"),
-              onTap: () {
-                Get.toNamed(const ListExtensionsPage().getRoute());
-              },
-            ),
-            ListTile(
-              title: const Text("MoneyFormatPage"),
-              onTap: () {
-                Get.toNamed(const MoneyFormatPage().getRoute());
-              },
-            ),
-            ListTile(
-              title: const Text("StringNumberConverterPage"),
-              onTap: () {
-                Get.toNamed(const StringNumberConverterPage().getRoute());
               },
             ),
             ListTile(

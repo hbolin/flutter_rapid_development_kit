@@ -1,8 +1,4 @@
 import 'package:example/enum/font_weight_type_page/font_weight_type_page_view.dart';
-import 'package:example/extension/date_time_format_page/date_time_format_page_view.dart';
-import 'package:example/extension/list_extensions_page/list_extensions_page_view.dart';
-import 'package:example/extension/money_format_page/money_format_page_view.dart';
-import 'package:example/extension/string_number_converter_page/string_number_converter_page_view.dart';
 import 'package:example/index_page/index_page_view.dart';
 import 'package:example/util/action_util_page/action_util_page_view.dart';
 import 'package:example/util/loading_util_page/loading_util_page_view.dart';
@@ -56,22 +52,6 @@ class RouteUtil {
     GetPage(
       name: const FontWeightTypePage().getRouteName(),
       page: () => FontWeightTypePage.fromRouteParas(Get.parameters),
-    ),
-    GetPage(
-      name: const DateTimeFormatPage().getRouteName(),
-      page: () => DateTimeFormatPage.fromRouteParas(Get.parameters),
-    ),
-    GetPage(
-      name: const ListExtensionsPage().getRouteName(),
-      page: () => ListExtensionsPage.fromRouteParas(Get.parameters),
-    ),
-    GetPage(
-      name: const MoneyFormatPage().getRouteName(),
-      page: () => MoneyFormatPage.fromRouteParas(Get.parameters),
-    ),
-    GetPage(
-      name: const StringNumberConverterPage().getRouteName(),
-      page: () => StringNumberConverterPage.fromRouteParas(Get.parameters),
     ),
     GetPage(
       name: const CircleImagePage().getRouteName(),

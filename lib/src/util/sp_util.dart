@@ -44,9 +44,8 @@ abstract class SPSerializable {
       }
       var rawJsonString = CustomCryptoUtil.decryptBase64(jsonString);
       return readObjectFromJsonString(rawJsonString);
-    } catch (e, s) {
-      print(e);
-      assert(false, "decrypt json data error");
+    } catch (e) {
+      assert(false, "Failed to read object from JSON string: $e");
     }
     return null;
   }
