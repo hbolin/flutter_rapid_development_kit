@@ -6,7 +6,7 @@
   flutter_rapid_development_kit:
     git:
       url: "https://github.com/hbolin/flutter_rapid_development_kit"
-      ref: "3.0.4"
+      ref: "frdk-v3.0.5"
 ```
 
 ### Step 2 安装GetX插件
@@ -18,11 +18,13 @@
 
 ### Step 3 配置页面跳转监听
 
-监听页面跳转的回调，例如`didPopNext`；`didPushNext`；`didPush`；`didPop`等。  
-需要把`frdkRouteObserver`配置到`MaterialApp`上，否则监听路由跳转的方法无法生效。
+将`MaterialApp`修改成`GetMaterialApp`;
+
+监听页面跳转的回调，例如`didPopNext`；`didPushNext`；`didPush`；`didPop`等。
+需要把`frdkRouteObserver`配置到`GetMaterialApp`上，否则监听路由跳转的方法无法生效。
 
 ```dart
-MaterialApp(
+GetMaterialApp(
   navigatorObservers: <RouteObserver<ModalRoute<void>>>[
     frdkRouteObserver,
   ],
@@ -50,10 +52,11 @@ class RouteUtil {
 }
 ```
 
-#### Step 4.2 路由配置到MaterialApp
+#### Step 4.2 路由配置到GetMaterialApp
 
 ```dart
-MaterialApp(
+GetMaterialApp(
+  // home: const MyHomePage(title: 'Flutter Demo Home Page'),
   initialRoute: RouteUtil.initialRoute,
   getPages: RouteUtil.initialPages,
 );
@@ -124,13 +127,16 @@ src
 │   
 └───util
 │        action_util.dart
+│        custom_crypto_util.dart
 │        loading_util.dart
 │        log_util.dart
 │        model_util.dart
+│        sp_util.dart
 │        toast_util.dart
 │        try_catch_util.dart
 │   
 └───widget
+         app_back_button.dart
          cached_loading_body.dart
          circle_image.dart
          column_row_grid_view.dart
@@ -138,7 +144,6 @@ src
          convenient_container.dart
          convenient_rich_text.dart
          image_banner.dart
-         ink_well_container.dart
          list_grid_view.dart
          loading_body.dart
          rounded_image.dart
@@ -154,4 +159,4 @@ src
 
 #### Step 7.2 常用的快捷键
 
-<img src="docs/live_templates.png" alt="常用的快捷键">
+<img src="_docs/live_templates.png" alt="常用的快捷键">
