@@ -80,6 +80,10 @@ abstract class BasePageState<K extends BasePageGetxController<S>, S extends Base
 
   @override
   Widget build(BuildContext context) {
+    return buildGet(context);
+  }
+
+  Widget buildGet(BuildContext context) {
     return GetBuilder<K>(
       tag: _getTag,
       builder: (logic) {
@@ -93,6 +97,26 @@ abstract class BasePageState<K extends BasePageGetxController<S>, S extends Base
   K initGetxController();
 
   Widget buildScaffold(BuildContext context, K logic, bool isCachedData);
+
+  @override
+  void didPopNext() {
+    logic.didPopNext();
+  }
+
+  @override
+  void didPush() {
+    logic.didPush();
+  }
+
+  @override
+  void didPop() {
+    logic.didPop();
+  }
+
+  @override
+  void didPushNext() {
+    logic.didPushNext();
+  }
 }
 
 abstract class _BasePageState<T extends StatefulWidget> extends State<T> with RouteAware {
@@ -264,6 +288,26 @@ abstract class BasePageGetxController<S extends BasePageBaseState> extends GetxC
 
   /// 监听 - 数据重新加载
   void dataReloadListener() {}
+
+  /// Called when the top route has been popped off, and the current route shows up.
+  void didPopNext() {
+    LogUtil.debug("【页面didPopNext】:$runtimeType");
+  }
+
+  /// Called when the current route has been pushed.
+  void didPush() {
+    LogUtil.debug("【页面didPush】:$runtimeType");
+  }
+
+  /// Called when the current route has been popped off.
+  void didPop() {
+    LogUtil.debug("【页面didPop】:$runtimeType");
+  }
+
+  /// Called when a new route has been pushed, and the current route is no longer visible.
+  void didPushNext() {
+    LogUtil.debug("【页面didPushNext】:$runtimeType");
+  }
 }
 
 /// 基于Getx的基础页面编写对应的基础状态。
