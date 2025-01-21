@@ -291,22 +291,22 @@ abstract class BasePageGetxController<S extends BasePageBaseState> extends GetxC
 
   /// Called when the top route has been popped off, and the current route shows up.
   void didPopNext() {
-    LogUtil.debug("【页面didPopNext】:$runtimeType");
+    // LogUtil.debug("【页面didPopNext】:$runtimeType");
   }
 
   /// Called when the current route has been pushed.
   void didPush() {
-    LogUtil.debug("【页面didPush】:$runtimeType");
+    // LogUtil.debug("【页面didPush】:$runtimeType");
   }
 
   /// Called when the current route has been popped off.
   void didPop() {
-    LogUtil.debug("【页面didPop】:$runtimeType");
+    // LogUtil.debug("【页面didPop】:$runtimeType");
   }
 
   /// Called when a new route has been pushed, and the current route is no longer visible.
   void didPushNext() {
-    LogUtil.debug("【页面didPushNext】:$runtimeType");
+    // LogUtil.debug("【页面didPushNext】:$runtimeType");
   }
 }
 
