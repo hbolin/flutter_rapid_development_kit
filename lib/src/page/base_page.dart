@@ -132,6 +132,9 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
     frdkRouteObserver.subscribe(this, ModalRoute.of(context)!);
   }
 
+  /// 是否是页面级别
+  bool isPage() => true;
+
   @override
   void dispose() {
     frdkRouteObserver.unsubscribe(this);
@@ -177,38 +180,46 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
 
   /// 默认"加载中"样式
   Widget buildDefaultLoadingWidget(BuildContext context) {
+    Widget loadingWidget = const Center(
+      child: CupertinoActivityIndicator(
+        radius: 12,
+      ),
+    );
+    if (isPage() == false) {
+      return loadingWidget;
+    }
     final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
     return Scaffold(
       appBar: AppBar(
         leading: (parentRoute?.impliesAppBarDismissal ?? false) ? const AppBackButton() : null,
       ),
-      body: const Center(
-        child: CupertinoActivityIndicator(
-          radius: 12,
-        ),
-      ),
+      body: loadingWidget,
     );
   }
 
   /// 加载"加载失败"样式
   Widget buildDefaultErrorWidget(BuildContext context, CachedLoadingBodyController controller, dynamic error) {
+    Widget errorWidget = GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        controller.reloadData();
+      },
+      child: Center(
+        child: Text(
+          "$error", // 这里会涉及到多语言，所以不写死错误信息，直接由error显示出来
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
+      ),
+    );
+    if (isPage() == false) {
+      return errorWidget;
+    }
     final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
     return Scaffold(
       appBar: AppBar(
         leading: (parentRoute?.impliesAppBarDismissal ?? false) ? const AppBackButton() : null,
       ),
-      body: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onTap: () {
-          controller.reloadData();
-        },
-        child: Center(
-          child: Text(
-            "$error", // 这里会涉及到多语言，所以不写死错误信息，直接由error显示出来
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
-        ),
-      ),
+      body: errorWidget,
     );
   }
 
