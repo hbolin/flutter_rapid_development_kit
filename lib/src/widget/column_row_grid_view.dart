@@ -11,6 +11,7 @@ class ColumnRowGridView extends StatelessWidget {
   final IndexedWidgetBuilder verticalSeparatorBuilder;
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
+  final EdgeInsets padding;
 
   const ColumnRowGridView({
     super.key,
@@ -21,6 +22,7 @@ class ColumnRowGridView extends StatelessWidget {
     required this.verticalSeparatorBuilder,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
+    this.padding = EdgeInsets.zero,
   });
 
   @override
@@ -31,6 +33,9 @@ class ColumnRowGridView extends StatelessWidget {
 
     var lines = itemCount ~/ crossAxisCount;
     var leftCount = itemCount % crossAxisCount;
+
+    var leftPadding = padding.left;
+    var rightPadding = padding.right;
 
     return SeparatedColumn(
       itemBuilder: (build, index) {
@@ -63,6 +68,14 @@ class ColumnRowGridView extends StatelessWidget {
             }
           }
         }
+
+        if (leftPadding != 0) {
+          children.insert(0, SizedBox(width: leftPadding));
+        }
+        if (rightPadding != 0) {
+          children.add(SizedBox(width: rightPadding));
+        }
+
         return Row(
           mainAxisAlignment: mainAxisAlignment,
           crossAxisAlignment: crossAxisAlignment,
@@ -71,6 +84,7 @@ class ColumnRowGridView extends StatelessWidget {
       },
       separatorBuilder: verticalSeparatorBuilder,
       itemCount: lines + (leftCount == 0 ? 0 : 1),
+      padding: padding,
     );
   }
 }

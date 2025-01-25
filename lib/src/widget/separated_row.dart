@@ -8,6 +8,7 @@ class SeparatedRow extends StatelessWidget {
   final MainAxisAlignment mainAxisAlignment;
   final MainAxisSize mainAxisSize;
   final CrossAxisAlignment crossAxisAlignment;
+  final EdgeInsets padding;
 
   const SeparatedRow({
     super.key,
@@ -17,6 +18,7 @@ class SeparatedRow extends StatelessWidget {
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.mainAxisSize = MainAxisSize.max,
     this.crossAxisAlignment = CrossAxisAlignment.center,
+    this.padding = EdgeInsets.zero,
   });
 
   @override
@@ -24,6 +26,9 @@ class SeparatedRow extends StatelessWidget {
     if (itemCount <= 0) {
       return const SizedBox.shrink(); // 返回一个占位符
     }
+
+    var leftPadding = padding.left;
+    var rightPadding = padding.right;
 
     List<Widget> children = [];
     for (int i = 0; i < itemCount; i++) {
@@ -33,6 +38,13 @@ class SeparatedRow extends StatelessWidget {
       } else {
         children.add(itemBuilder(context, i));
       }
+    }
+
+    if (leftPadding != 0) {
+      children.insert(0, SizedBox(width: leftPadding));
+    }
+    if (rightPadding != 0) {
+      children.add(SizedBox(width: rightPadding));
     }
 
     return Row(
