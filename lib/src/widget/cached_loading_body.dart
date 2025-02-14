@@ -355,6 +355,8 @@ class _CachedLoadingContentState extends State<_CachedLoadingContent> {
     if (widget.dataReloadListener != null) {
       widget.dataReloadListener!();
     }
+    // 等待上一个控制加载完，才能重新reload，不然会出现问题
+    await controller.done;
     // 关闭旧的 StreamController
     await controller.close();
     setState(() {
