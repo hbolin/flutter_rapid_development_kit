@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:synchronized/synchronized.dart';
 
 /// 加载流程：加载中 -> 加载成功/失败
 class LoadingBody extends StatefulWidget {
@@ -189,6 +190,8 @@ class _LoadingContentState extends State<_LoadingContent> with SingleTickerProvi
   late AnimationController _opacityController;
   late Animation<double> _opacityAnimation;
 
+  Lock realDataLock = Lock();
+
   @override
   void initState() {
     super.initState();
@@ -267,7 +270,9 @@ class _LoadingContentState extends State<_LoadingContent> with SingleTickerProvi
       if (isFirstLoadData && _isDelayedDisplay) {
         isFirstLoadData = false;
         var startDateTime = DateTime.now();
-        await widget.dataLoader!();
+        await realDataLock.synchronized(() async {
+          await widget.dataLoader!();
+        });
         var loadingDataMilliseconds = DateTime.now().difference(startDateTime).inMilliseconds;
         // MaterialRouteTransitionMixin  Duration get transitionDuration => const Duration(milliseconds: 300);
         var delayDuration = const Duration(milliseconds: 300);
@@ -276,7 +281,9 @@ class _LoadingContentState extends State<_LoadingContent> with SingleTickerProvi
           await Future.delayed(Duration(milliseconds: diffMilliseconds));
         }
       } else {
-        await widget.dataLoader!();
+        await realDataLock.synchronized(() async {
+          await widget.dataLoader!();
+        });
       }
       _loadDataSuccess();
     } catch (e, s) {

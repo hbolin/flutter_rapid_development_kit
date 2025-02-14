@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rapid_development_kit/src/util/toast_util.dart';
+import 'package:synchronized/synchronized.dart';
 
 /// 默认的加载数据失败的处理方式。
 /// 如果加载缓存数据成功，但是加载正常数据失败，需要使用Toast提示下。
@@ -236,6 +237,10 @@ class _CachedLoadingContentState extends State<_CachedLoadingContent> {
   static const int _loadCachedDataSuccessLabel = 1;
   static const int _loadDataSuccessLabel = 2;
 
+  Lock cachedDataLock = Lock();
+
+  Lock realDataLock = Lock();
+
   Stream<int>? _bids;
   late StreamController<int> controller;
 
@@ -274,7 +279,9 @@ class _CachedLoadingContentState extends State<_CachedLoadingContent> {
     try {
       if (widget.cachedDataLoader != null) {
         _loadingCachedData();
-        await widget.cachedDataLoader!();
+        await cachedDataLock.synchronized(() async {
+          await widget.cachedDataLoader!();
+        });
         _loadCachedDataSuccess();
         return true;
       }
@@ -290,7 +297,9 @@ class _CachedLoadingContentState extends State<_CachedLoadingContent> {
     try {
       if (widget.dataLoader != null) {
         _loadingData();
-        await widget.dataLoader!();
+        await realDataLock.synchronized(() async {
+          await widget.dataLoader!();
+        });
         _loadDataSuccess();
         return true;
       }
