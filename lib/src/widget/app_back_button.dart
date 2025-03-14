@@ -4,6 +4,8 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 abstract class _ActionButton extends StatelessWidget {
   /// Creates a Material Design icon button.
@@ -186,7 +188,17 @@ class AppBackButton extends _ActionButton {
   }) : super(icon: const BackButtonIcon());
 
   @override
-  void _onPressedCallback(BuildContext context) => Navigator.maybePop(context);
+  void _onPressedCallback(BuildContext context) {
+    if (UniversalPlatform.isWeb) {
+      if (Navigator.canPop(context)) {
+        Navigator.maybePop(context);
+      } else {
+        Get.offNamed("/");
+      }
+    } else {
+      Navigator.maybePop(context);
+    }
+  }
 
   @override
   String _getTooltip(BuildContext context) {
