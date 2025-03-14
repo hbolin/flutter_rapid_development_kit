@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 export 'package:carousel_slider/carousel_slider.dart';
 
@@ -106,17 +107,28 @@ class _ImageBannerState extends State<ImageBanner> {
             },
           ),
           items: widget.imgUrlList.mapIndexed((index, item) {
-            Widget current = Container(
-              color: Colors.grey[200],
-              child: CachedNetworkImage(
-                imageUrl: item,
-                height: widget.height,
-                width: double.infinity,
-                fit: widget.fit,
-                placeholder: widget.placeholder == null ? null : ((context, url) => widget.placeholder!),
-                errorWidget: (context, url, error) => widget.errorWidget,
-              ),
-            );
+            Widget current = UniversalPlatform.isWeb
+                ? Container(
+                    color: Colors.grey[200],
+                    child: Image.network(
+                      item,
+                      height: widget.height,
+                      width: double.infinity,
+                      fit: widget.fit,
+                      webHtmlElementStrategy: WebHtmlElementStrategy.prefer,
+                    ),
+                  )
+                : Container(
+                    color: Colors.grey[200],
+                    child: CachedNetworkImage(
+                      imageUrl: item,
+                      height: widget.height,
+                      width: double.infinity,
+                      fit: widget.fit,
+                      placeholder: widget.placeholder == null ? null : ((context, url) => widget.placeholder!),
+                      errorWidget: (context, url, error) => widget.errorWidget,
+                    ),
+                  );
 
             if (widget.radius != null) {
               current = ClipRRect(
