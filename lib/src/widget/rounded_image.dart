@@ -59,14 +59,22 @@ class RoundedImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget child = UniversalPlatform.isWeb
-        ? Image.network(
-            imageUrl,
-            width: width,
-            height: height,
-            fit: boxFit,
-            color: color,
-            colorBlendMode: colorBlendMode,
-            webHtmlElementStrategy: WebHtmlElementStrategy.prefer,
+        ? Stack(
+            // web平台图片点击有bug，添加个透明的容器来触发点击事件
+            children: [
+              Image.network(
+                imageUrl,
+                width: width,
+                height: height,
+                fit: boxFit,
+                color: color,
+                colorBlendMode: colorBlendMode,
+                webHtmlElementStrategy: WebHtmlElementStrategy.prefer,
+              ),
+              Container(
+                color: Colors.transparent,
+              ),
+            ],
           )
         : CachedNetworkImage(
             imageUrl: imageUrl,

@@ -110,12 +110,20 @@ class _ImageBannerState extends State<ImageBanner> {
             Widget current = UniversalPlatform.isWeb
                 ? Container(
                     color: Colors.grey[200],
-                    child: Image.network(
-                      item,
-                      height: widget.height,
-                      width: double.infinity,
-                      fit: widget.fit,
-                      webHtmlElementStrategy: WebHtmlElementStrategy.prefer,
+                    child: Stack(
+                      // web平台图片点击有bug，添加个透明的容器来触发点击事件
+                      children: [
+                        Image.network(
+                          item,
+                          height: widget.height,
+                          width: double.infinity,
+                          fit: widget.fit,
+                          webHtmlElementStrategy: WebHtmlElementStrategy.prefer,
+                        ),
+                        Container(
+                          color: Colors.transparent,
+                        ),
+                      ],
                     ),
                   )
                 : Container(
