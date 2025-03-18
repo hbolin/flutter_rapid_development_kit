@@ -64,6 +64,7 @@ class RoundedImage extends StatelessWidget {
             children: [
               Image.network(
                 imageUrl,
+                key: Key(imageUrl),
                 width: width,
                 height: height,
                 fit: boxFit,
