@@ -17,6 +17,8 @@ class RoundedImage extends StatelessWidget {
   final BlendMode? colorBlendMode;
   final Color? backgroundColor;
   final BorderRadiusGeometry? customBorderRadius;
+  final int? cacheWidth;
+  final int? cacheHeight;
 
   const RoundedImage({
     super.key,
@@ -35,6 +37,8 @@ class RoundedImage extends StatelessWidget {
 
     /// 自定义borderRadius，如果有配置该值，则[radius]属性会被覆盖
     this.customBorderRadius,
+    this.cacheWidth,
+    this.cacheHeight,
   });
 
   const RoundedImage.zero({
@@ -53,6 +57,8 @@ class RoundedImage extends StatelessWidget {
 
     /// 自定义borderRadius，如果有配置该值，则[radius]属性会被覆盖
     this.customBorderRadius,
+    this.cacheWidth,
+    this.cacheHeight,
   })  : radius = 0,
         super(key: key);
 
@@ -71,6 +77,8 @@ class RoundedImage extends StatelessWidget {
                 color: color,
                 colorBlendMode: colorBlendMode,
                 webHtmlElementStrategy: WebHtmlElementStrategy.prefer,
+                cacheWidth: cacheWidth,
+                cacheHeight: cacheHeight,
               ),
               Container(
                 color: Colors.transparent,
@@ -85,6 +93,8 @@ class RoundedImage extends StatelessWidget {
             color: color,
             colorBlendMode: colorBlendMode,
             // 这里有imageBuilder属性可以配置圆形，但是不符合设计要求
+            memCacheWidth: cacheWidth,
+            memCacheHeight: cacheHeight,
           );
 
     return Container(

@@ -46,6 +46,9 @@ class ImageBanner extends StatefulWidget {
   /// 点击轮播页
   final void Function(int index)? onTap;
 
+  final int? cacheWidth;
+  final int? cacheHeight;
+
   const ImageBanner({
     super.key,
     required this.height,
@@ -60,6 +63,8 @@ class ImageBanner extends StatefulWidget {
     this.controller,
     this.paginationBuilder,
     this.onTap,
+    this.cacheWidth,
+    this.cacheHeight,
   });
 
   @override
@@ -119,6 +124,8 @@ class _ImageBannerState extends State<ImageBanner> {
                           width: double.infinity,
                           fit: widget.fit,
                           webHtmlElementStrategy: WebHtmlElementStrategy.prefer,
+                          cacheWidth: widget.cacheWidth,
+                          cacheHeight: widget.cacheHeight,
                         ),
                         Container(
                           color: Colors.transparent,
@@ -135,6 +142,8 @@ class _ImageBannerState extends State<ImageBanner> {
                       fit: widget.fit,
                       placeholder: widget.placeholder == null ? null : ((context, url) => widget.placeholder!),
                       errorWidget: (context, url, error) => widget.errorWidget,
+                      memCacheWidth: widget.cacheWidth,
+                      memCacheHeight: widget.cacheHeight,
                     ),
                   );
 

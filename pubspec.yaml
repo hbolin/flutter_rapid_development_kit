@@ -15,7 +15,7 @@ dependencies:
   intl: any
 
   # https://pub-web.flutter-io.cn/packages/get
-  get: 4.6.6
+  get: 4.7.2
 
   # https://pub-web.flutter-io.cn/packages/universal_platform
   universal_platform: 1.1.0
