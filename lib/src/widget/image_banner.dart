@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:universal_platform/universal_platform.dart';
 
 export 'package:carousel_slider/carousel_slider.dart';
 
@@ -112,40 +111,19 @@ class _ImageBannerState extends State<ImageBanner> {
             },
           ),
           items: widget.imgUrlList.mapIndexed((index, item) {
-            Widget current = UniversalPlatform.isWeb
-                ? Container(
-                    color: Colors.grey[200],
-                    child: Stack(
-                      // web平台图片点击有bug，添加个透明的容器来触发点击事件
-                      children: [
-                        Image.network(
-                          item,
-                          height: widget.height,
-                          width: double.infinity,
-                          fit: widget.fit,
-                          webHtmlElementStrategy: WebHtmlElementStrategy.prefer,
-                          cacheWidth: widget.cacheWidth,
-                          cacheHeight: widget.cacheHeight,
-                        ),
-                        Container(
-                          color: Colors.transparent,
-                        ),
-                      ],
-                    ),
-                  )
-                : Container(
-                    color: Colors.grey[200],
-                    child: CachedNetworkImage(
-                      imageUrl: item,
-                      height: widget.height,
-                      width: double.infinity,
-                      fit: widget.fit,
-                      placeholder: widget.placeholder == null ? null : ((context, url) => widget.placeholder!),
-                      errorWidget: (context, url, error) => widget.errorWidget,
-                      memCacheWidth: widget.cacheWidth,
-                      memCacheHeight: widget.cacheHeight,
-                    ),
-                  );
+            Widget current = Container(
+              color: Colors.grey[200],
+              child: CachedNetworkImage(
+                imageUrl: item,
+                height: widget.height,
+                width: double.infinity,
+                fit: widget.fit,
+                placeholder: widget.placeholder == null ? null : ((context, url) => widget.placeholder!),
+                errorWidget: (context, url, error) => widget.errorWidget,
+                memCacheWidth: widget.cacheWidth,
+                memCacheHeight: widget.cacheHeight,
+              ),
+            );
 
             if (widget.radius != null) {
               current = ClipRRect(
