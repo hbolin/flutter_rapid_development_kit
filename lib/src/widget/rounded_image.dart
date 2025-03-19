@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:cached_network_image_platform_interface/cached_network_image_platform_interface.dart';
+import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
 
 /// 圆角图片
 class RoundedImage extends StatelessWidget {
@@ -73,6 +75,7 @@ class RoundedImage extends StatelessWidget {
       // 这里有imageBuilder属性可以配置圆形，但是不符合设计要求
       memCacheWidth: cacheWidth,
       memCacheHeight: cacheHeight,
+      imageRenderMethodForWeb: UniversalPlatform.isWeb ? ImageRenderMethodForWeb.HttpGet : ImageRenderMethodForWeb.HtmlImage,
     );
 
     return Container(

@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:cached_network_image_platform_interface/cached_network_image_platform_interface.dart';
+import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
 
 /// 圆形图片
 class CircleImage extends StatelessWidget {
@@ -38,6 +40,7 @@ class CircleImage extends StatelessWidget {
       color: color,
       colorBlendMode: colorBlendMode,
       // 这里有imageBuilder属性可以配置圆形，但是不符合设计要求
+      imageRenderMethodForWeb: UniversalPlatform.isWeb ? ImageRenderMethodForWeb.HttpGet : ImageRenderMethodForWeb.HtmlImage,
     );
 
     return Container(

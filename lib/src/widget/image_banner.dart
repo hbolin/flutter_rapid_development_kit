@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:cached_network_image_platform_interface/cached_network_image_platform_interface.dart';
+import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
 
 export 'package:carousel_slider/carousel_slider.dart';
 
@@ -122,6 +124,7 @@ class _ImageBannerState extends State<ImageBanner> {
                 errorWidget: (context, url, error) => widget.errorWidget,
                 memCacheWidth: widget.cacheWidth,
                 memCacheHeight: widget.cacheHeight,
+                imageRenderMethodForWeb: UniversalPlatform.isWeb ? ImageRenderMethodForWeb.HttpGet : ImageRenderMethodForWeb.HtmlImage,
               ),
             );
 
