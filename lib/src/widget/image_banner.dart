@@ -50,6 +50,9 @@ class ImageBanner extends StatefulWidget {
   final int? cacheWidth;
   final int? cacheHeight;
 
+  /// 监听页面切换
+  final Function(int index)? onPageChanged;
+
   const ImageBanner({
     super.key,
     required this.height,
@@ -66,6 +69,7 @@ class ImageBanner extends StatefulWidget {
     this.onTap,
     this.cacheWidth,
     this.cacheHeight,
+    this.onPageChanged,
   });
 
   @override
@@ -110,6 +114,9 @@ class _ImageBannerState extends State<ImageBanner> {
               setState(() {
                 _current = index;
               });
+              if (widget.onPageChanged != null) {
+                widget.onPageChanged!(index);
+              }
             },
           ),
           items: widget.imgUrlList.mapIndexed((index, item) {
