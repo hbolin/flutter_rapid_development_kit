@@ -448,6 +448,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.5.1"
+  process_run:
+    dependency: "direct dev"
+    description:
+      name: process_run
+      sha256: "5736140acb1c54a11bd4c1e8d4821bfd684de69a4bf88835316cb05e596d8091"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.2.2"
   pub_semver:
     dependency: transitive
     description:
