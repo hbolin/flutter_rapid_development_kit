@@ -27,6 +27,10 @@ class ProjectMaker {
     );
 
     ProjectMaker.createTemplateFiles(targetProjectDirectoryPath: targetProjectDirectoryPath);
+
+    ProjectMaker.makeImageAssets(targetProjectDirectoryPath: targetProjectDirectoryPath);
+
+    ProjectMaker.makeMakers(targetProjectDirectoryPath: targetProjectDirectoryPath);
   }
 
   /// 创建Flutter项目
@@ -339,6 +343,40 @@ class _SplashPageState extends BasePageState<SplashPageLogic, SplashPageState, S
     }
   }
 
+  static void makeImageAssets({
+    required String targetProjectDirectoryPath,
+  }) {
+    var imageAssetsDirectory = Directory("$targetProjectDirectoryPath/assets/images");
+    if (imageAssetsDirectory.existsSync() != true) {
+      imageAssetsDirectory.createSync(recursive: true);
+    }
+  }
+
+  static void makeMakers({
+    required String targetProjectDirectoryPath,
+  }) {
+    var makersDirectory = Directory("$targetProjectDirectoryPath/_makers");
+    if (makersDirectory.existsSync() != true) {
+      makersDirectory.createSync(recursive: true);
+    }
+
+    var imageAssetsMakerFile = File("$targetProjectDirectoryPath/_makers/image_assets_maker.dart");
+    if (imageAssetsMakerFile.existsSync() != true) {
+      imageAssetsMakerFile.createSync(recursive: true);
+      imageAssetsMakerFile.writeAsStringSync('''
+import 'package:flutter_rapid_development_kit/flutter_rapid_development_maker.dart';
+
+void main() {
+  ImageAssetMaker.makeImageAssetToAssetClass(
+    directoryPath: "assets/images",
+    targetFile: 'lib/config/app_image_asset.dart',
+    className: 'AppImageAsset',
+  );
+}
+      ''');
+    }
+  }
+
   static YamlMap _parseYamlFile(String yamFilePath) {
     var yamFile = File(yamFilePath);
     var fileContent = yamFile.readAsStringSync();
@@ -355,7 +393,7 @@ class _SplashPageState extends BasePageState<SplashPageLogic, SplashPageState, S
 Future<void> main() async {
   await ProjectMaker.makeProject(
     flutterPath: "/Volumes/exmac/env/FlutterSDK/flutter_macos_arm64_3.29.2-stable/bin/flutter",
-    targetProjectDirectoryPath: "/Users/zhangwu/Downloads/app",
-    packageName: "com.example.app",
+    targetProjectDirectoryPath: "/Users/zhangwu/Downloads/app2",
+    packageName: "com.example.app2",
   );
 }
