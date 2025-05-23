@@ -25,7 +25,7 @@ class LogUtil {
     if (UniversalPlatform.isAndroid) {
       _logger.d(message); // 使用 debug 级别
     } else if (UniversalPlatform.isIOS) {
-      log(message, name: tag); // 使用自定义 tag
+      debugPrint(message);
     } else {
       debugPrint(message);
     }
