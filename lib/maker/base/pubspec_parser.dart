@@ -82,6 +82,36 @@ class PubspecParser {
     throw "未判断到的条件，抛出异常";
   }
 
+  /// 向项目中添加image assets节点数据
+  static void addImageAssetsNodeOnProject(String projectDirectoryPath, String assetsPath) {
+    List<DirectoryUnderFiles> assetsList = readDirectoryFiles("$projectDirectoryPath/$assetsPath");
+    assetsList = assetsList.where((element) => element.files.isNotEmpty).toList();
+
+    String yamlFilePath = "$projectDirectoryPath/pubspec.yaml";
+    var yamlMap = _parseYamlFile(yamlFilePath);
+    var yamLines = _readYamlFile(yamlFilePath);
+
+    // 存在[flutter]->[assets]节点
+    if (yamlMap["flutter"] != null && yamlMap["flutter"]["assets"] != null) {
+      print("存在[flutter]->[assets]节点");
+      var newAssets = assetsList.map((element) {
+        String temp = "${element.directory.path.replaceAll("\\", "/")}/";
+        temp = temp.substring(projectDirectoryPath.length + 1, temp.length);
+        return temp;
+      }).toList();
+      var subAssets = newAssets.where((element) => (yamlMap["flutter"]["assets"] as YamlList).contains(element) == false).toList();
+      int insertIndex = _calculateNodeLines(yamLines, 1, yamlMap["flutter"], "assets");
+      for (int i = 0; i < subAssets.length; i++) {
+        var item = subAssets[i];
+        yamLines.insert(insertIndex + i + 1, "    - $item");
+      }
+      File(yamlFilePath).writeAsStringSync(yamLines.join("\n"));
+      return;
+    }
+
+    throw "未判断到的条件，抛出异常";
+  }
+
   /// 添加font assets节点数据
   static void addFontAssetsNode(String assetsPath) {
     List<FileSystemEntity> assetsList = Directory(assetsPath).listSync();
