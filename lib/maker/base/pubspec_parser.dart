@@ -105,7 +105,30 @@ class PubspecParser {
         var item = subAssets[i];
         yamLines.insert(insertIndex + i + 1, "    - $item");
       }
-      File(yamlFilePath).writeAsStringSync(yamLines.join("\n"));
+
+      var assetsYamlList = yamlMap["flutter"]["assets"] as YamlList;
+      List<int> removeLines = [];
+      for (var value in assetsYamlList.nodes) {
+        var temp = "$projectDirectoryPath/${value.value}";
+        if (temp.endsWith("/")) {
+          temp = temp.substring(0, temp.length - 1);
+        }
+        if (Directory(temp).existsSync() != true || Directory(temp).listSync().isEmpty) {
+          removeLines.add(value.span.start.line);
+        }
+      }
+      if (removeLines.isNotEmpty) {
+        print("节点有不存在的资源，需要移除：$removeLines");
+      }
+      List<String> outYamLines = [];
+      for (int i = 0; i < yamLines.length; i++) {
+        var itemData = yamLines[i];
+        if (removeLines.contains(i) != true) {
+          outYamLines.add(itemData);
+        }
+      }
+
+      File(yamlFilePath).writeAsStringSync(outYamLines.join("\n"));
       return;
     }
 
