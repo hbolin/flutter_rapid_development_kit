@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 
+/// https://api.flutter-io.cn/flutter/material/TabController-class.html
 class DefaultTabControllerListener extends StatefulWidget {
-  const DefaultTabControllerListener({required this.onTabChanged, required this.child, super.key});
+  const DefaultTabControllerListener({
+    required this.onTabChanged,
+    this.onTabIndexIsChanging,
+    required this.child,
+    super.key,
+  });
 
   final ValueChanged<int> onTabChanged;
+
+  final ValueChanged<int>? onTabIndexIsChanging;
 
   final Widget child;
 
@@ -42,6 +50,9 @@ class _DefaultTabControllerListenerState extends State<DefaultTabControllerListe
     final TabController? controller = _controller;
 
     if (controller == null || controller.indexIsChanging) {
+      if (controller?.indexIsChanging == true && widget.onTabIndexIsChanging != null) {
+        widget.onTabIndexIsChanging!(controller!.index);
+      }
       return;
     }
 
