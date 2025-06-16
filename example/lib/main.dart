@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BasePageGlobalTheme(
+    return BasePageGlobalConfig(
       // defaultAppBackButton: Text("点击返回"),
       // defaultAppBackButton: Text("点击返回"),
       defaultLoadingWidgetBuilder: (BuildContext context, bool isPage, Widget appBackButton) {
