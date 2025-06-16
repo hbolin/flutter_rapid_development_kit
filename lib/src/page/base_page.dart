@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rapid_development_kit/src/page/widgets/base_page_default_error_widget.dart';
 import 'package:flutter_rapid_development_kit/src/page/widgets/base_page_default_loading_widget.dart';
-import 'package:flutter_rapid_development_kit/src/page/widgets/base_page_global_theme.dart';
+import 'package:flutter_rapid_development_kit/src/page/widgets/base_page_global_config.dart';
 import 'package:flutter_rapid_development_kit/src/util/log_util.dart';
 import 'package:flutter_rapid_development_kit/src/util/toast_util.dart';
 import 'package:flutter_rapid_development_kit/src/widget/app_back_button.dart';
@@ -184,8 +184,8 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
   /// loading widget 生效优先级：buildLoadingWidget > BasePageGlobalTheme.defaultLoadingWidget > buildDefaultLoadingWidget
   Widget _buildLoadingWidget(BuildContext context) {
     Widget? loadingWidget = buildCustomLoadingWidget(context, isPage(), buildAppBackButton(context));
-    if (loadingWidget == null && (BasePageGlobalTheme.maybeOf(context)?.defaultLoadingWidgetBuilder != null)) {
-      loadingWidget = BasePageGlobalTheme.of(context).defaultLoadingWidgetBuilder!(context, isPage(), buildAppBackButton(context));
+    if (loadingWidget == null && (BasePageGlobalConfig.maybeOf(context)?.defaultLoadingWidgetBuilder != null)) {
+      loadingWidget = BasePageGlobalConfig.of(context).defaultLoadingWidgetBuilder!(context, isPage(), buildAppBackButton(context));
     }
     loadingWidget ??= buildDefaultLoadingWidget(context);
     return loadingWidget;
@@ -207,8 +207,8 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
   /// error widget 生效优先级：buildErrorWidget > BasePageGlobalTheme.defaultErrorWidgetBuilder > buildDefaultErrorWidget
   Widget _buildErrorWidget(BuildContext context, CachedLoadingBodyController controller, dynamic error) {
     Widget? errorWidget = buildCustomErrorWidget(context, isPage(), buildAppBackButton(context), controller, error);
-    if (errorWidget == null && BasePageGlobalTheme.maybeOf(context)?.defaultErrorWidgetBuilder != null) {
-      errorWidget = BasePageGlobalTheme.of(context).defaultErrorWidgetBuilder!(context, isPage(), buildAppBackButton(context), controller, error);
+    if (errorWidget == null && BasePageGlobalConfig.maybeOf(context)?.defaultErrorWidgetBuilder != null) {
+      errorWidget = BasePageGlobalConfig.of(context).defaultErrorWidgetBuilder!(context, isPage(), buildAppBackButton(context), controller, error);
     }
     errorWidget ??= buildDefaultErrorWidget(context, controller, error);
     return errorWidget;
@@ -232,7 +232,7 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
   /// 返回按钮，正常是要在buildScaffold中返回AppBackButton，为了兼容处理，子类使用buildAppBackButton来使用AppBackButton
   Widget buildAppBackButton(BuildContext context) {
     Widget? appBackButton = buildCustomAppBackButton(context);
-    appBackButton ??= BasePageGlobalTheme.maybeOf(context)?.defaultAppBackButton;
+    appBackButton ??= BasePageGlobalConfig.maybeOf(context)?.defaultAppBackButton;
     appBackButton ??= buildDefaultAppBackButton(context);
     return appBackButton;
   }

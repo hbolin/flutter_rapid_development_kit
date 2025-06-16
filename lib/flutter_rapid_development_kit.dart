@@ -15,7 +15,7 @@ export 'package:flutter_rapid_development_kit/src/page/base_page.dart';
 
 export 'package:flutter_rapid_development_kit/src/page/widgets/base_page_default_error_widget.dart';
 export 'package:flutter_rapid_development_kit/src/page/widgets/base_page_default_loading_widget.dart';
-export 'package:flutter_rapid_development_kit/src/page/widgets/base_page_global_theme.dart';
+export 'package:flutter_rapid_development_kit/src/page/widgets/base_page_global_config.dart';
 
 export 'package:flutter_rapid_development_kit/src/util/action_util.dart';
 export 'package:flutter_rapid_development_kit/src/util/custom_crypto_util.dart';

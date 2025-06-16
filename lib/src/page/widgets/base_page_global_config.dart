@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rapid_development_kit/src/widget/cached_loading_body.dart';
 
 /// 基础页面的全局配置
-class BasePageGlobalTheme extends InheritedWidget {
+class BasePageGlobalConfig extends InheritedWidget {
   /// 全局默认的“返回按钮”的组件
   final Widget? defaultAppBackButton;
 
@@ -13,7 +13,7 @@ class BasePageGlobalTheme extends InheritedWidget {
   final Widget? Function(BuildContext context, bool isPage, Widget appBackButton, CachedLoadingBodyController controller, dynamic error)?
       defaultErrorWidgetBuilder;
 
-  const BasePageGlobalTheme({
+  const BasePageGlobalConfig({
     super.key,
     this.defaultAppBackButton,
     this.defaultLoadingWidgetBuilder,
@@ -21,18 +21,18 @@ class BasePageGlobalTheme extends InheritedWidget {
     required super.child,
   });
 
-  static BasePageGlobalTheme? maybeOf(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<BasePageGlobalTheme>();
+  static BasePageGlobalConfig? maybeOf(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<BasePageGlobalConfig>();
   }
 
-  static BasePageGlobalTheme of(BuildContext context) {
-    final BasePageGlobalTheme? result = maybeOf(context);
+  static BasePageGlobalConfig of(BuildContext context) {
+    final BasePageGlobalConfig? result = maybeOf(context);
     assert(result != null, 'No BasePageGlobalTheme found in context');
     return result!;
   }
 
   @override
-  bool updateShouldNotify(BasePageGlobalTheme oldWidget) {
+  bool updateShouldNotify(BasePageGlobalConfig oldWidget) {
     return defaultLoadingWidgetBuilder != oldWidget.defaultLoadingWidgetBuilder || defaultErrorWidgetBuilder != oldWidget.defaultErrorWidgetBuilder;
   }
 }
