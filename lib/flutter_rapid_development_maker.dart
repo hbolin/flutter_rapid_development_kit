@@ -7,3 +7,5 @@ export 'package:flutter_rapid_development_kit/maker/asset/image_asset_maker.dart
 
 export 'package:flutter_rapid_development_kit/maker/base/pubspec_parser.dart';
 export 'package:flutter_rapid_development_kit/maker/base/read_directory_files.dart';
+
+export 'package:flutter_rapid_development_kit/maker/project/project_maker.dart';

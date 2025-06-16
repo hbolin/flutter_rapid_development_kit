@@ -26,3 +26,25 @@ linter:
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
+
+analyzer:
+  exclude:
+    - .dart_tool/**
+    - .idea/**
+    - _makers/**
+    - android/**
+    - assets/**
+    - build/**
+    - ios/**
+    - linux/**
+    - macos/**
+    - test/**
+    - web/**
+    - windows/**
+    - .flutter-plugins
+    - .flutter-plugins-dependencies
+    - .gitignore
+    - .metadata
+    - pubspec.lock
+    - pubspec.yaml
+    - README.md

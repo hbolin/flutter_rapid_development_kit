@@ -1,4 +1,5 @@
 import 'package:example/enum/font_weight_type_page/font_weight_type_page_view.dart';
+import 'package:example/pages/test_base_page/test_base_page_view.dart';
 import 'package:example/route_util.dart';
 import 'package:example/util/action_util_page/action_util_page_view.dart';
 import 'package:example/util/loading_util_page/loading_util_page_view.dart';
@@ -180,6 +181,12 @@ class _IndexPageState extends BasePageState<IndexPageLogic, IndexPageState, Inde
               title: const Text("LoadingBodyPage"),
               onTap: () {
                 Get.toNamed(const LoadingBodyPage().getRoute());
+              },
+            ),
+            ListTile(
+              title: const Text("TestBasePage"),
+              onTap: () {
+                Get.toNamed(const TestBasePage().getRoute());
               },
             ),
           ],

@@ -1,0 +1,38 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_rapid_development_kit/src/widget/cached_loading_body.dart';
+
+/// 基础页面的全局配置
+class BasePageGlobalTheme extends InheritedWidget {
+  /// 全局默认的“返回按钮”的组件
+  final Widget? defaultAppBackButton;
+
+  /// 全局默认的“加载中”的组件
+  final Widget? Function(BuildContext context, bool isPage, Widget appBackButton)? defaultLoadingWidgetBuilder;
+
+  /// 全局默认的“加载错误”的组件
+  final Widget? Function(BuildContext context, bool isPage, Widget appBackButton, CachedLoadingBodyController controller, dynamic error)?
+      defaultErrorWidgetBuilder;
+
+  const BasePageGlobalTheme({
+    super.key,
+    this.defaultAppBackButton,
+    this.defaultLoadingWidgetBuilder,
+    this.defaultErrorWidgetBuilder,
+    required super.child,
+  });
+
+  static BasePageGlobalTheme? maybeOf(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<BasePageGlobalTheme>();
+  }
+
+  static BasePageGlobalTheme of(BuildContext context) {
+    final BasePageGlobalTheme? result = maybeOf(context);
+    assert(result != null, 'No BasePageGlobalTheme found in context');
+    return result!;
+  }
+
+  @override
+  bool updateShouldNotify(BasePageGlobalTheme oldWidget) {
+    return defaultLoadingWidgetBuilder != oldWidget.defaultLoadingWidgetBuilder || defaultErrorWidgetBuilder != oldWidget.defaultErrorWidgetBuilder;
+  }
+}
