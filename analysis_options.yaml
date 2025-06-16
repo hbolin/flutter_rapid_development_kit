@@ -2,3 +2,22 @@ include: package:flutter_lints/flutter.yaml
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
+
+analyzer:
+  exclude:
+    - .dart_tool/**
+    - .idea/**
+    - _docs/**
+    - _makers/**
+    - build/**
+    - example/**
+    - test/**
+    - .flutter-plugins
+    - .flutter-plugins-dependencies
+    - .gitignore
+    - .metadata
+    - CHANGELOG.md
+    - LICENSE
+    - pubspec.lock
+    - pubspec.yaml
+    - README.md
