@@ -19,6 +19,15 @@ class ProjectMaker {
       packageName: packageName,
     );
 
+    var shell = Shell(commandVerbose: false);
+    shell = shell.cd(targetProjectDirectoryPath);
+    String commandLine = 'git init';
+    await shell.run(commandLine);
+    commandLine = 'git add .';
+    await shell.run(commandLine);
+    commandLine = 'git commit -m "first commit"';
+    await shell.run(commandLine);
+
     ProjectMaker.importDependencies(targetProjectDirectoryPath: targetProjectDirectoryPath);
 
     ProjectMaker.modifyMainDartFile(
@@ -31,6 +40,13 @@ class ProjectMaker {
     ProjectMaker.makeImageAssets(targetProjectDirectoryPath: targetProjectDirectoryPath);
 
     ProjectMaker.makeMakers(targetProjectDirectoryPath: targetProjectDirectoryPath);
+
+    var shell2 = Shell(commandVerbose: false);
+    shell2 = shell2.cd(targetProjectDirectoryPath);
+    String commandLine2 = 'git add .';
+    await shell2.run(commandLine2);
+    commandLine2 = 'git commit -m "add template code"';
+    await shell2.run(commandLine2);
   }
 
   /// 创建Flutter项目
@@ -392,8 +408,8 @@ void main() {
 
 Future<void> main() async {
   await ProjectMaker.makeProject(
-    flutterPath: "/Volumes/exmac/env/FlutterSDK/flutter_macos_arm64_3.29.2-stable/bin/flutter",
-    targetProjectDirectoryPath: "/Users/zhangwu/Downloads/app2",
-    packageName: "com.example.app2",
+    flutterPath: "/Volumes/exmac/env/FlutterSDK/flutter_macos_arm64_3.29.3-stable/bin/flutter",
+    targetProjectDirectoryPath: "/Volumes/exmac/development2/workspace2/flutter2/flutter_streamer",
+    packageName: "com.dy.flutter_streamer",
   );
 }
