@@ -141,18 +141,70 @@ class ProjectMaker {
       throw "main.dart文件不包含MaterialApp";
     }
     mainDartFileContent = '''
-import 'package:flutter_streamer/route_util.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
+import 'package:$targetProjectName/application.dart';
+import 'package:$targetProjectName/services/global_service.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  Widget application = await startApplication();
+
+  runApp(application);
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+Future<Widget> startApplication() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-  // This widget is the root of your application.
+  // android 平台，沉浸式状态栏实现
+  if (UniversalPlatform.isAndroid) {
+    SystemUiOverlayStyle systemUiOverlayStyle = const SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+  }
+
+  await GlobalService.init();
+
+  return Application();
+}
+''';
+    mainDartFile.writeAsStringSync(mainDartFileContent);
+
+    File globalServiceFile = File("$targetProjectDirectoryPath/lib/services/global_service.dart");
+    if (globalServiceFile.existsSync() != true) {
+      globalServiceFile.createSync(recursive: true);
+      globalServiceFile.writeAsStringSync('''
+import 'package:get/get.dart';
+
+class GlobalService extends GetxService {
+  // -------------------------- GlobalService 初始化 start --------------------------
+  GlobalService._();
+
+  static GlobalService get instance => Get.find<GlobalService>();
+
+  static Future<GlobalService> init() async {
+    var globalService = Get.put<GlobalService>(GlobalService._());
+    return globalService;
+  }
+}
+''');
+    }
+
+    File applicationFile = File("$targetProjectDirectoryPath/lib/application.dart");
+    if (applicationFile.existsSync() != true) {
+      applicationFile.createSync(recursive: true);
+      applicationFile.writeAsStringSync('''
+import 'package:flutter/material.dart';
+import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
+import 'package:$targetProjectName/route_util.dart';
+
+class Application extends StatefulWidget {
+  const Application({super.key});
+
+  @override
+  State<Application> createState() => _ApplicationState();
+}
+
+class _ApplicationState extends State<Application> {
   @override
   Widget build(BuildContext context) {
     return BasePageGlobalConfig(
@@ -185,8 +237,8 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-''';
-    mainDartFile.writeAsStringSync(mainDartFileContent);
+''');
+    }
 
     File routeUtilDartFile = File("$targetProjectDirectoryPath/lib/route_util.dart");
     if (routeUtilDartFile.existsSync() != true) {
@@ -209,7 +261,8 @@ class RouteUtil {
       page: () => RootPage.fromRouteParas(Get.parameters),
     ),
   ];
-}''');
+}
+''');
     }
   }
 
@@ -434,7 +487,7 @@ void main() {
     className: 'AppImageAsset',
   );
 }
-      ''');
+''');
     }
   }
 
