@@ -33,6 +33,8 @@ class BasePageGlobalConfig extends InheritedWidget {
 
   @override
   bool updateShouldNotify(BasePageGlobalConfig oldWidget) {
-    return defaultLoadingWidgetBuilder != oldWidget.defaultLoadingWidgetBuilder || defaultErrorWidgetBuilder != oldWidget.defaultErrorWidgetBuilder;
+    return defaultAppBackButton != oldWidget.defaultAppBackButton ||
+        defaultLoadingWidgetBuilder != oldWidget.defaultLoadingWidgetBuilder ||
+        defaultErrorWidgetBuilder != oldWidget.defaultErrorWidgetBuilder;
   }
 }
