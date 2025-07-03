@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 import 'package:universal_platform/universal_platform.dart';
@@ -39,7 +37,7 @@ class LogUtil {
     if (UniversalPlatform.isAndroid) {
       _logger.e(message); // 使用 error 级别
     } else if (UniversalPlatform.isIOS) {
-      log(message, name: tag); // 使用自定义 tag
+      debugPrint(message);
     } else {
       debugPrint(message);
     }
