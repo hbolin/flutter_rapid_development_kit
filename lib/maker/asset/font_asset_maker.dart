@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter_rapid_development_kit/maker/base/pubspec_editor.dart';
 import 'package:flutter_rapid_development_kit/maker/base/pubspec_parser.dart';
 import 'package:flutter_rapid_development_kit/maker/base/read_directory_files.dart';
 
@@ -55,7 +56,7 @@ class $className {
     file.writeAsString(outData);
     print('生成成功，生成路径：${file.path}');
 
-    PubspecParser.addFontAssetsNode(directoryPath);
+    PubspecEditor.addFontAssetsNode(directoryPath, "${Directory.current.path}/pubspec.yaml");
 
     print('处理完成！！！');
   }

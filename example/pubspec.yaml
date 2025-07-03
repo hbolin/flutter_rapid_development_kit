@@ -98,18 +98,18 @@ flutter:
     - assets/images/jpgs/
     - assets/images/pngs/
   fonts:
+    - family: DIN-BOLDITALIC
+      fonts:
+        - asset: assets/fonts/DIN-BOLDITALIC.OTF
     - family: PingFang
-      fonts: 
+      fonts:
         - asset: assets/fonts/PingFang.ttc
     - family: PingFang SC
-      fonts: 
+      fonts:
         - asset: assets/fonts/PingFang SC.ttf
-    - family: iconfont
-      fonts: 
-        - asset: assets/fonts/iconfont.ttf
     - family: Vivaldi
-      fonts: 
+      fonts:
         - asset: assets/fonts/Vivaldi.ttf
-    - family: DIN-BOLDITALIC
-      fonts: 
-        - asset: assets/fonts/DIN-BOLDITALIC.OTF
+    - family: iconfont
+      fonts:
+        - asset: assets/fonts/iconfont.ttf

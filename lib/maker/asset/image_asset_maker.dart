@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter_rapid_development_kit/maker/base/pubspec_editor.dart';
 import 'package:flutter_rapid_development_kit/maker/base/pubspec_parser.dart';
 import 'package:flutter_rapid_development_kit/maker/base/read_directory_files.dart';
 
@@ -46,7 +47,7 @@ $outData''';
     file.writeAsString(outData);
     print('生成成功，生成路径：${file.path}');
 
-    PubspecParser.addImageAssetsNode(directoryPath);
+    PubspecEditor.addImageAssetsNode(directoryPath, "${Directory.current.path}/pubspec.yaml");
 
     print('处理完成！！！');
   }
@@ -61,7 +62,7 @@ $outData''';
     }
     String out = '''
 class $className {
-  const $className${isRoot?"._()":"()"};${() {
+  const $className${isRoot ? "._()" : "()"};${() {
       if (childDirectories.isEmpty) return "";
       return "\n${childDirectories.map((element) {
         if (isRoot) {

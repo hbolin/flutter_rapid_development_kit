@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:flutter_rapid_development_kit/maker/base/read_directory_files.dart';
 import 'package:yaml/yaml.dart';
 
+@Deprecated("使用PubspecEditor在pubspec.yaml文件中添加节点")
 class PubspecParser {
   /// 添加image assets节点数据
+  @Deprecated("使用PubspecEditor.addImageAssetsNode方法添加图片节点")
   static void addImageAssetsNode(String assetsPath) {
     List<DirectoryUnderFiles> assetsList = readDirectoryFiles(assetsPath);
     assetsList = assetsList.where((element) => element.files.isNotEmpty).toList();
@@ -136,6 +138,7 @@ class PubspecParser {
   }
 
   /// 添加font assets节点数据
+  @Deprecated("使用PubspecEditor.addFontAssetsNode方法添加图片节点")
   static void addFontAssetsNode(String assetsPath) {
     List<FileSystemEntity> assetsList = Directory(assetsPath).listSync();
 
