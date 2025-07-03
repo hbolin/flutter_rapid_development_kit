@@ -12,6 +12,7 @@ class ProjectMaker {
     required String flutterPath,
     required String targetProjectDirectoryPath,
     required String packageName,
+    bool needGit = true,
   }) async {
     await ProjectMaker.createFlutterProject(
       flutterPath: flutterPath,
@@ -19,14 +20,16 @@ class ProjectMaker {
       packageName: packageName,
     );
 
-    var shell = Shell(commandVerbose: false);
-    shell = shell.cd(targetProjectDirectoryPath);
-    String commandLine = 'git init';
-    await shell.run(commandLine);
-    commandLine = 'git add .';
-    await shell.run(commandLine);
-    commandLine = 'git commit -m "first commit"';
-    await shell.run(commandLine);
+    if (needGit) {
+      var shell = Shell(commandVerbose: false);
+      shell = shell.cd(targetProjectDirectoryPath);
+      String commandLine = 'git init';
+      await shell.run(commandLine);
+      commandLine = 'git add .';
+      await shell.run(commandLine);
+      commandLine = 'git commit -m "first commit"';
+      await shell.run(commandLine);
+    }
 
     ProjectMaker.importDependencies(targetProjectDirectoryPath: targetProjectDirectoryPath);
 
@@ -41,12 +44,14 @@ class ProjectMaker {
 
     ProjectMaker.makeMakers(targetProjectDirectoryPath: targetProjectDirectoryPath);
 
-    var shell2 = Shell(commandVerbose: false);
-    shell2 = shell2.cd(targetProjectDirectoryPath);
-    String commandLine2 = 'git add .';
-    await shell2.run(commandLine2);
-    commandLine2 = 'git commit -m "add template code"';
-    await shell2.run(commandLine2);
+    if (needGit) {
+      var shell2 = Shell(commandVerbose: false);
+      shell2 = shell2.cd(targetProjectDirectoryPath);
+      String commandLine2 = 'git add .';
+      await shell2.run(commandLine2);
+      commandLine2 = 'git commit -m "add template code"';
+      await shell2.run(commandLine2);
+    }
   }
 
   /// 创建Flutter项目
