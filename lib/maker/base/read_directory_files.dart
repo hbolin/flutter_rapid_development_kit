@@ -71,12 +71,25 @@ extension FrdkFileExtension on File {
 extension FrdkStringExtension on String {
   /// 首字母大写
   String toUpperCaseFirstLetter() {
-    return isEmpty ? this : "${this[0].toUpperCase()}${substring(1)}";
+    if (isEmpty) {
+      return this;
+    }
+    var charList = toCharList();
+    return "${charList.first.toUpperCase()}${charList.sublist(1, charList.length).join()}";
   }
 
   /// 首字母小写
   String toLowerCaseFirstLetter() {
-    return isEmpty ? this : "${this[0].toLowerCase()}${substring(1)}";
+    if (isEmpty) {
+      return this;
+    }
+    var charList = toCharList();
+    return "${charList.first.toLowerCase()}${charList.sublist(1, charList.length).join()}";
+  }
+
+  /// 将字符串拆分为单个字符组成的列表
+  List<String> toCharList() {
+    return runes.map((e) => String.fromCharCode(e)).toList();
   }
 }
 
