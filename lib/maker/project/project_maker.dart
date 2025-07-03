@@ -103,6 +103,7 @@ class ProjectMaker {
     yamLines.insert((yamlMap["dependencies"] as YamlMap).span.end.line + 1, "    git:");
     yamLines.insert((yamlMap["dependencies"] as YamlMap).span.end.line + 2, "      url: \"https://github.com/hbolin/flutter_rapid_development_kit\"");
     yamLines.insert((yamlMap["dependencies"] as YamlMap).span.end.line + 3, "      ref: \"frdk-v3\"");
+    yamLines.insert((yamlMap["dependencies"] as YamlMap).span.end.line + 4, "");
 
     // print(yamLines.join("\n"));
     File(yamlFilePath).writeAsStringSync(yamLines.join("\n"));
