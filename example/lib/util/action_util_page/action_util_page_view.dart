@@ -40,7 +40,7 @@ class _ActionUtilPageState extends BasePageState<ActionUtilPageLogic, ActionUtil
           ElevatedButton(
             onPressed: () async {
               bool isDealSuccess = await ActionUtil.dealAction(action: () async {
-                await Future.delayed(const Duration(seconds: 5));
+                await Future.delayed(const Duration(seconds: 1));
               });
               LogUtil.debug("isDealSuccess:$isDealSuccess");
             },
@@ -49,7 +49,7 @@ class _ActionUtilPageState extends BasePageState<ActionUtilPageLogic, ActionUtil
           ElevatedButton(
             onPressed: () async {
               bool isDealSuccess = await ActionUtil.dealAction(action: () async {
-                await Future.delayed(const Duration(seconds: 3));
+                await Future.delayed(const Duration(seconds: 1));
                 throw "发生异常";
               });
               LogUtil.debug("isDealSuccess:$isDealSuccess");
@@ -59,14 +59,14 @@ class _ActionUtilPageState extends BasePageState<ActionUtilPageLogic, ActionUtil
           ElevatedButton(
             onPressed: () async {
               bool isDealSuccess = await ActionUtil.dealAction(action: () async {
-                await Future.delayed(const Duration(seconds: 3));
+                await Future.delayed(const Duration(seconds: 1));
                 throw "发生异常";
               }, onFailed: (error) {
-                print("!!!!!!发生异常:$error");
+                ToastUtil.show("发生异常，自行处理异常");
               });
               print("isDealSuccess:$isDealSuccess");
             },
-            child: const Text("ActionUtil.dealAction 发生异常"),
+            child: const Text("ActionUtil.dealAction 发生异常，自行处理异常"),
           ),
         ],
       ),

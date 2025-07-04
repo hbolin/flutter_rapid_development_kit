@@ -59,18 +59,14 @@ class _LoadingDialog extends StatelessWidget {
       width: 80,
       height: 80,
       decoration: BoxDecoration(
-        color: isDark ? Colors.white12 : Colors.black54,
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        color: isDark ? const Color(0xff2c292f) : Colors.black54,
+        borderRadius: const BorderRadius.all(
+          Radius.circular(10),
+        ),
       ),
-      child: Theme(
-        data: ThemeData(
-          cupertinoOverrideTheme: const CupertinoThemeData(
-            brightness: Brightness.dark,
-          ),
-        ),
-        child: const CupertinoActivityIndicator(
-          radius: 12,
-        ),
+      child: CupertinoActivityIndicator(
+        radius: 12,
+        color: isDark ? Color(0xFFEBEBF5) : Color(0xFFEBEBF5),
       ),
     );
   }
