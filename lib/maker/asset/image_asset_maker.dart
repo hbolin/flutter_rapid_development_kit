@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter_rapid_development_kit/maker/asset/delete_ds_store_file.dart';
 import 'package:flutter_rapid_development_kit/maker/base/pubspec_editor.dart';
 import 'package:flutter_rapid_development_kit/maker/base/pubspec_parser.dart';
 import 'package:flutter_rapid_development_kit/maker/base/read_directory_files.dart';
@@ -28,6 +29,8 @@ class ImageAssetMaker {
     if (directory.existsSync() != true) {
       throw "目录不存在：$directoryPath";
     }
+
+    deleteDsStoreFile(directory);
 
     String outData = _make(directory, true, className);
 
