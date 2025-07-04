@@ -510,10 +510,10 @@ void main() {
   }
 }
 
-Future<void> main() async {
-  await ProjectMaker.makeProject(
-    flutterPath: "/Volumes/exmac/env/FlutterSDK/flutter_macos_arm64_3.29.3-stable/bin/flutter",
-    targetProjectDirectoryPath: "/Volumes/exmac/development2/workspace2/flutter2/flutter_streamer",
-    packageName: "com.dy.flutter_streamer",
-  );
-}
+// Future<void> main() async {
+//   await ProjectMaker.makeProject(
+//     flutterPath: "/Volumes/exmac/env/FlutterSDK/flutter_macos_arm64_3.29.3-stable/bin/flutter",
+//     targetProjectDirectoryPath: "/Volumes/exmac/development2/workspace2/flutter2/flutter_streamer",
+//     packageName: "com.dy.flutter_streamer",
+//   );
+// }
