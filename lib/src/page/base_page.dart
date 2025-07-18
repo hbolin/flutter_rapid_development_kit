@@ -135,15 +135,15 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
     frdkRouteObserver.subscribe(this, ModalRoute.of(context)!);
   }
 
-  /// 是否是页面级别
-  bool isPage() => true;
-
   @override
   void dispose() {
     frdkRouteObserver.unsubscribe(this);
     super.dispose();
     LogUtil.debug("【销毁页面】:$runtimeType");
   }
+
+  /// 是否是页面级别
+  bool isPage() => true;
 
   /// Scaffold Body集成CachedLoadingBody用来管理页面加载状态的处理：加载中 -> 加载成功/加载失败
   Widget _buildCachedLoadingBody(
@@ -181,7 +181,7 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
     );
   }
 
-  /// loading widget 生效优先级：buildLoadingWidget > BasePageGlobalTheme.defaultLoadingWidget > buildDefaultLoadingWidget
+  /// loading widget 生效优先级：buildCustomLoadingWidget > BasePageGlobalConfig.defaultLoadingWidgetBuilder > buildDefaultLoadingWidget
   Widget _buildLoadingWidget(BuildContext context) {
     Widget? loadingWidget = buildCustomLoadingWidget(context, isPage(), buildAppBackButton(context));
     if (loadingWidget == null && (BasePageGlobalConfig.maybeOf(context)?.defaultLoadingWidgetBuilder != null)) {
@@ -196,7 +196,7 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
   }
 
   /// 默认"加载中"样式
-  @Deprecated("兼容处理，使用buildLoadingWidget来替代")
+  @Deprecated("兼容处理，使用buildCustomLoadingWidget来替代")
   Widget buildDefaultLoadingWidget(BuildContext context) {
     return BasePageDefaultLoadingWidget(
       isPage: isPage(),
@@ -204,7 +204,7 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
     );
   }
 
-  /// error widget 生效优先级：buildErrorWidget > BasePageGlobalTheme.defaultErrorWidgetBuilder > buildDefaultErrorWidget
+  /// error widget 生效优先级：buildCustomErrorWidget > BasePageGlobalConfig.defaultErrorWidgetBuilder > buildDefaultErrorWidget
   Widget _buildErrorWidget(BuildContext context, CachedLoadingBodyController controller, dynamic error) {
     Widget? errorWidget = buildCustomErrorWidget(context, isPage(), buildAppBackButton(context), controller, error);
     if (errorWidget == null && BasePageGlobalConfig.maybeOf(context)?.defaultErrorWidgetBuilder != null) {
@@ -219,7 +219,7 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
   }
 
   /// 加载"加载失败"样式
-  @Deprecated("兼容处理，使用buildErrorWidget来替代")
+  @Deprecated("兼容处理，使用buildCustomErrorWidget来替代")
   Widget buildDefaultErrorWidget(BuildContext context, CachedLoadingBodyController controller, dynamic error) {
     return BasePageDefaultErrorWidget(
       isPage: isPage(),
@@ -230,6 +230,7 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
   }
 
   /// 返回按钮，正常是要在buildScaffold中返回AppBackButton，为了兼容处理，子类使用buildAppBackButton来使用AppBackButton
+  /// 生效优先级：buildCustomAppBackButton > BasePageGlobalConfig.defaultAppBackButton > buildDefaultAppBackButton
   Widget buildAppBackButton(BuildContext context) {
     Widget? appBackButton = buildCustomAppBackButton(context);
     appBackButton ??= BasePageGlobalConfig.maybeOf(context)?.defaultAppBackButton;
@@ -241,7 +242,7 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
     return null;
   }
 
-  @Deprecated("兼容处理，使用customBuildAppBackButton来替代")
+  @Deprecated("兼容处理，使用buildCustomAppBackButton来替代")
   Widget buildDefaultAppBackButton(BuildContext context) {
     return const AppBackButton();
   }
