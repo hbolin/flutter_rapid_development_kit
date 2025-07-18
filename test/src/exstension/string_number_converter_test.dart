@@ -52,10 +52,10 @@ void main() {
       });
 
       test('should handle custom true condition', () {
-        expect('yes'.toBool(trueCondition: 'yes'), true);
-        expect('YES'.toBool(trueCondition: 'yes'), true);
-        expect('true'.toBool(trueCondition: 'yes'), true);
-        expect('no'.toBool(trueCondition: 'yes'), false);
+        expect('yes'.toBool(extraTrueCondition: 'yes'), true);
+        expect('YES'.toBool(extraTrueCondition: 'yes'), true);
+        expect('true'.toBool(extraTrueCondition: 'yes'), true);
+        expect('no'.toBool(extraTrueCondition: 'yes'), false);
       });
 
       test('should handle edge cases for boolean conversion', () {
@@ -64,12 +64,12 @@ void main() {
         expect('True'.toBool(), true); // 大小写混合
       });
 
-      test('should handle null trueCondition', () {
-        expect('true'.toBool(trueCondition: null), true);
-        expect('1'.toBool(trueCondition: '1'), true);
-        expect('false'.toBool(trueCondition: null), false);
-        expect('0'.toBool(trueCondition: null), false);
-        expect('no'.toBool(trueCondition: null), false);
+      test('should handle null extraTrueCondition', () {
+        expect('true'.toBool(extraTrueCondition: null), true);
+        expect('1'.toBool(extraTrueCondition: '1'), true);
+        expect('false'.toBool(extraTrueCondition: null), false);
+        expect('0'.toBool(extraTrueCondition: null), false);
+        expect('no'.toBool(extraTrueCondition: null), false);
       });
     });
   });
