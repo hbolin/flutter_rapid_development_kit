@@ -1,6 +1,5 @@
 import 'package:flutter_rapid_development_kit/src/util/loading_util.dart';
 import 'package:flutter_rapid_development_kit/src/util/toast_util.dart';
-import 'package:get/get.dart';
 
 class ActionUtil {
   const ActionUtil._();
@@ -18,14 +17,14 @@ class ActionUtil {
   }) async {
     bool isSuccess = false;
     try {
-      LoadingUtil.showDialog(Get.context!);
+      LoadingUtil.showDialog();
       await action();
       isSuccess = true;
     } catch (e) {
       isSuccess = false;
       onFailed(e);
     } finally {
-      LoadingUtil.dismissDialog(Get.context!);
+      LoadingUtil.dismissDialog();
     }
     return isSuccess;
   }

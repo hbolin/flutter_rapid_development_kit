@@ -39,27 +39,27 @@ class _LoadingUtilPageState extends BasePageState<LoadingUtilPageLogic, LoadingU
         children: [
           ElevatedButton(
             onPressed: () {
-              LoadingUtil.showDialog(context);
+              LoadingUtil.showDialog();
               Future.delayed(const Duration(seconds: 3)).then((value) {
-                LoadingUtil.dismissDialog(context);
+                LoadingUtil.dismissDialog();
               });
             },
             child: const Text("LoadingUtil.showDialog"),
           ),
           ElevatedButton(
             onPressed: () {
-              LoadingUtil.showDialog(context, isDark: true);
+              LoadingUtil.showDialog(isDark: true);
               Future.delayed(const Duration(seconds: 3)).then((value) {
-                LoadingUtil.dismissDialog(context);
+                LoadingUtil.dismissDialog();
               });
             },
             child: const Text("LoadingUtil.showDialog"),
           ),
           ElevatedButton(
             onPressed: () {
-              LoadingUtil.showDialog(context, isDark: false);
+              LoadingUtil.showDialog(isDark: false);
               Future.delayed(const Duration(seconds: 3)).then((value) {
-                LoadingUtil.dismissDialog(context);
+                LoadingUtil.dismissDialog();
               });
             },
             child: const Text("LoadingUtil.showDialog"),

@@ -1,47 +1,50 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 /// 加载中的工具类，一般用来用户动作类型的处理
 class LoadingUtil {
   const LoadingUtil._();
 
-  static bool _isShowing = false;
+  static OverlayEntry? overlayEntry;
 
   /// 模态展示，不允许用户关闭，只能有程序控制关闭
-  static void showDialog(BuildContext context, {bool? isDark}) {
-    isDark ??= Theme.of(context).brightness == Brightness.dark;
-    if (!_isShowing) {
-      _isShowing = true;
-      showGeneralDialog(
-        context: context,
-        barrierDismissible: false, // 是否能通过点击空白处关闭
-        barrierColor: Colors.transparent, // 背景色
-        // transitionDuration: const Duration(milliseconds: 150), // 动画时长
-        pageBuilder: (BuildContext context, Animation animation, Animation secondaryAnimation) {
-          return WillPopScope(
-            onWillPop: () async {
-              return false;
-            },
-            child: Align(
-              alignment: Alignment.center,
-              child: _LoadingDialog(
-                isDark: isDark ?? false,
+  static void showDialog({bool? isDark}) {
+    // Remove the existing OverlayEntry.
+    dismissDialog();
+
+    overlayEntry = OverlayEntry(
+      // Create a new OverlayEntry.
+      builder: (BuildContext context) {
+        // Align is used to position the highlight overlay
+        // relative to the NavigationBar destination.
+        return Stack(
+          children: [
+            Container(color: Colors.transparent),
+            SafeArea(
+              child: Align(
+                alignment: Alignment.center,
+                child: _LoadingDialog(
+                  isDark: isDark ?? false,
+                ),
               ),
             ),
-          );
-        },
-      ).then((_) {
-        _isShowing = false;
-      }).catchError((e, s) {
-        _isShowing = false;
-      });
+          ],
+        );
+      },
+    );
+
+    // Add the OverlayEntry to the Overlay.
+    assert(Get.overlayContext != null);
+    if (Get.overlayContext != null) {
+      Overlay.of(Get.overlayContext!).insert(overlayEntry!);
     }
   }
 
-  static void dismissDialog(BuildContext context) {
-    if (_isShowing) {
-      Navigator.of(context).pop();
-    }
+  static void dismissDialog() {
+    overlayEntry?.remove();
+    overlayEntry?.dispose();
+    overlayEntry = null;
   }
 }
 
