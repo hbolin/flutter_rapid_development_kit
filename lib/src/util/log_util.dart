@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:logger/logger.dart';
+import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 class LogUtil {
@@ -7,8 +7,6 @@ class LogUtil {
 
   static const _tag = "rapid";
   static bool _isLogEnabled = !kReleaseMode; // 全局日志开关
-
-  static final Logger _logger = Logger();
 
   /// 启用或禁用日志
   static void enableLog(bool isEnabled) {
@@ -21,7 +19,7 @@ class LogUtil {
       return;
     }
     if (UniversalPlatform.isAndroid) {
-      _logger.d(message); // 使用 debug 级别
+      print('[38;5;39m[${DateTime.now()}] [$tag] $message [0m');
     } else if (UniversalPlatform.isIOS) {
       debugPrint(message);
     } else {
@@ -35,7 +33,7 @@ class LogUtil {
       return;
     }
     if (UniversalPlatform.isAndroid) {
-      _logger.e(message); // 使用 error 级别
+      print('[38;5;203m[${DateTime.now()}] [$tag] $message [0m');
     } else if (UniversalPlatform.isIOS) {
       debugPrint(message);
     } else {
