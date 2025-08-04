@@ -6,7 +6,7 @@
   flutter_rapid_development_kit:
     git:
       url: "https://github.com/hbolin/flutter_rapid_development_kit"
-      ref: "frdk-v3.0.5"
+      ref: "frdk-v3.0.6"
 ```
 
 ### Step 2 安装GetX插件
@@ -125,6 +125,11 @@ src
 └───page
 │        base_page.dart
 │   
+└───widgets
+│        base_page_default_error_widget.dart
+│        base_page_default_loading_widget.dart
+│        base_page_global_config.dart
+│   
 └───util
 │        action_util.dart
 │        custom_crypto_util.dart
@@ -143,6 +148,7 @@ src
          conditional_widget.dart
          convenient_container.dart
          convenient_rich_text.dart
+         default_tab_controller_listener.dart
          image_banner.dart
          list_grid_view.dart
          loading_body.dart
@@ -155,7 +161,7 @@ src
 
 ### Step 7 常用快捷键
 
-#### Step 7.1 导入[IDEA Settings](./docs/settings_0.0.1.zip)设置
+#### Step 7.1 导入[Live Templates Settings](./docs/live_templates_settings.zip)设置
 
 #### Step 7.2 常用的快捷键
 
