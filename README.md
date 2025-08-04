@@ -1,3 +1,14 @@
+## 快捷使用
+```Dart
+Future<void> main() async {
+  await ProjectMaker.makeProject(
+    flutterPath: "/Volumes/exmac/env/FlutterSDK/flutter_macos_arm64_3.29.3-stable/bin/flutter",
+    targetProjectDirectoryPath: "/Volumes/exmac/development2/workspace2/flutter2/flutter_streamer",
+    packageName: "com.dy.flutter_streamer",
+  );
+}
+```
+
 ## 使用
 
 ### Step 1 导入package: flutter_rapid_development_kit
