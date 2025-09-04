@@ -6,7 +6,7 @@ import 'package:flutter_rapid_development_kit/src/page/widgets/base_page_default
 import 'package:flutter_rapid_development_kit/src/page/widgets/base_page_global_config.dart';
 import 'package:flutter_rapid_development_kit/src/util/log_util.dart';
 import 'package:flutter_rapid_development_kit/src/util/toast_util.dart';
-import 'package:flutter_rapid_development_kit/src/widget/app_back_button.dart';
+import 'package:flutter_rapid_development_kit/src/widget/app_bar_back_button.dart';
 import 'package:flutter_rapid_development_kit/src/widget/cached_loading_body.dart';
 import 'package:get/get.dart';
 
@@ -91,7 +91,7 @@ abstract class BasePageState<K extends BasePageGetxController<S>, S extends Base
       tag: _getTag,
       builder: (logic) {
         return _buildCachedLoadingBody(context, logic, (context, isCachedData) {
-          return buildScaffold(context, logic, isCachedData);
+          return buildScaffold(context, buildAppBarBackButton(context), buildAppBarTitle(context), logic, isCachedData);
         });
       },
     );
@@ -99,7 +99,7 @@ abstract class BasePageState<K extends BasePageGetxController<S>, S extends Base
 
   K initGetxController();
 
-  Widget buildScaffold(BuildContext context, K logic, bool isCachedData);
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, K logic, bool isCachedData);
 
   @override
   void didPopNext() {
@@ -183,15 +183,16 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
 
   /// loading widget 生效优先级：buildCustomLoadingWidget > BasePageGlobalConfig.defaultLoadingWidgetBuilder > buildDefaultLoadingWidget
   Widget _buildLoadingWidget(BuildContext context) {
-    Widget? loadingWidget = buildCustomLoadingWidget(context, isPage(), buildAppBackButton(context));
+    Widget? loadingWidget = buildCustomLoadingWidget(context, isPage(), buildAppBarBackButton(context), buildAppBarTitle(context));
     if (loadingWidget == null && (BasePageGlobalConfig.maybeOf(context)?.defaultLoadingWidgetBuilder != null)) {
-      loadingWidget = BasePageGlobalConfig.of(context).defaultLoadingWidgetBuilder!(context, isPage(), buildAppBackButton(context));
+      loadingWidget =
+          BasePageGlobalConfig.of(context).defaultLoadingWidgetBuilder!(context, isPage(), buildAppBarBackButton(context), buildAppBarTitle(context));
     }
     loadingWidget ??= buildDefaultLoadingWidget(context);
     return loadingWidget;
   }
 
-  Widget? buildCustomLoadingWidget(BuildContext context, bool isPage, Widget appBackButton) {
+  Widget? buildCustomLoadingWidget(BuildContext context, bool isPage, Widget appBackButton, Widget? appBarTitle) {
     return null;
   }
 
@@ -200,21 +201,24 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
   Widget buildDefaultLoadingWidget(BuildContext context) {
     return BasePageDefaultLoadingWidget(
       isPage: isPage(),
-      appBackButton: buildAppBackButton(context),
+      appBarBackButton: buildAppBarBackButton(context),
+      appBarTitle: buildAppBarTitle(context),
     );
   }
 
   /// error widget 生效优先级：buildCustomErrorWidget > BasePageGlobalConfig.defaultErrorWidgetBuilder > buildDefaultErrorWidget
   Widget _buildErrorWidget(BuildContext context, CachedLoadingBodyController controller, dynamic error) {
-    Widget? errorWidget = buildCustomErrorWidget(context, isPage(), buildAppBackButton(context), controller, error);
+    Widget? errorWidget = buildCustomErrorWidget(context, isPage(), buildAppBarBackButton(context), buildAppBarTitle(context), controller, error);
     if (errorWidget == null && BasePageGlobalConfig.maybeOf(context)?.defaultErrorWidgetBuilder != null) {
-      errorWidget = BasePageGlobalConfig.of(context).defaultErrorWidgetBuilder!(context, isPage(), buildAppBackButton(context), controller, error);
+      errorWidget = BasePageGlobalConfig.of(context).defaultErrorWidgetBuilder!(
+          context, isPage(), buildAppBarBackButton(context), buildAppBarTitle(context), controller, error);
     }
     errorWidget ??= buildDefaultErrorWidget(context, controller, error);
     return errorWidget;
   }
 
-  Widget? buildCustomErrorWidget(BuildContext context, bool isPage, Widget appBackButton, CachedLoadingBodyController controller, dynamic error) {
+  Widget? buildCustomErrorWidget(
+      BuildContext context, bool isPage, Widget appBackButton, Widget? appBarTitle, CachedLoadingBodyController controller, dynamic error) {
     return null;
   }
 
@@ -223,17 +227,21 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
   Widget buildDefaultErrorWidget(BuildContext context, CachedLoadingBodyController controller, dynamic error) {
     return BasePageDefaultErrorWidget(
       isPage: isPage(),
-      appBackButton: buildAppBackButton(context),
+      appBarBackButton: buildAppBarBackButton(context),
+      appBarTitle: buildAppBarTitle(context),
       controller: controller,
       error: error,
     );
   }
 
+  /// 记载中和加载错误时的AppBarTitle
+  Widget? buildAppBarTitle(BuildContext context);
+
   /// 返回按钮，正常是要在buildScaffold中返回AppBackButton，为了兼容处理，子类使用buildAppBackButton来使用AppBackButton
   /// 生效优先级：buildCustomAppBackButton > BasePageGlobalConfig.defaultAppBackButton > buildDefaultAppBackButton
-  Widget buildAppBackButton(BuildContext context) {
+  Widget buildAppBarBackButton(BuildContext context) {
     Widget? appBackButton = buildCustomAppBackButton(context);
-    appBackButton ??= BasePageGlobalConfig.maybeOf(context)?.defaultAppBackButton;
+    appBackButton ??= BasePageGlobalConfig.maybeOf(context)?.defaultAppBarBackButtonBuilder(context);
     appBackButton ??= buildDefaultAppBackButton(context);
     return appBackButton;
   }
@@ -244,7 +252,7 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
 
   @Deprecated("兼容处理，使用buildCustomAppBackButton来替代")
   Widget buildDefaultAppBackButton(BuildContext context) {
-    return const AppBackButton();
+    return const AppBarBackButton();
   }
 
   /// Called when the top route has been popped off, and the current route shows up.

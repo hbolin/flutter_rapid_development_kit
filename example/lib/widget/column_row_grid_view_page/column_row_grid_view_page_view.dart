@@ -32,7 +32,12 @@ class _ColumnRowGridViewPageState extends BasePageState<ColumnRowGridViewPageLog
   ColumnRowGridViewPageLogic initGetxController() => ColumnRowGridViewPageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, ColumnRowGridViewPageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, ColumnRowGridViewPageLogic logic, bool isCachedData) {
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(

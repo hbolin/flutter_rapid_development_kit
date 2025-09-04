@@ -32,7 +32,12 @@ class _LoadingUtilPageState extends BasePageState<LoadingUtilPageLogic, LoadingU
   LoadingUtilPageLogic initGetxController() => LoadingUtilPageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, LoadingUtilPageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, LoadingUtilPageLogic logic, bool isCachedData) {
     return Scaffold(
       appBar: AppBar(),
       body: Column(

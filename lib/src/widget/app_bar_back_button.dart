@@ -116,7 +116,7 @@ class _ActionIcon extends StatelessWidget {
 ///
 /// See also:
 ///
-///  * [AppBackButton], an [IconButton] with a [BackButtonIcon] that calls
+///  * [AppBarBackButton], an [IconButton] with a [BackButtonIcon] that calls
 ///    [Navigator.maybePop] to return to the previous route.
 ///  * [IconButton], which is a more general widget for creating buttons
 ///    with icons.
@@ -145,7 +145,7 @@ class BackButtonIcon extends StatelessWidget {
 
 /// A Material Design back icon button.
 ///
-/// A [AppBackButton] is an [IconButton] with a "back" icon appropriate for the
+/// A [AppBarBackButton] is an [IconButton] with a "back" icon appropriate for the
 /// current [TargetPlatform]. When pressed, the back button calls
 /// [Navigator.maybePop] to return to the previous route unless a custom
 /// [onPressed] callback is provided.
@@ -155,20 +155,20 @@ class BackButtonIcon extends StatelessWidget {
 /// situations.
 ///
 /// In Material Design 3, both [style]'s [ButtonStyle.iconColor] and [color] are
-/// used to override the default icon color of [AppBackButton]. If both exist, the [ButtonStyle.iconColor]
+/// used to override the default icon color of [AppBarBackButton]. If both exist, the [ButtonStyle.iconColor]
 /// will override [color] for states where [ButtonStyle.foregroundColor] resolves to non-null.
 ///
-/// When deciding to display a [AppBackButton], consider using
+/// When deciding to display a [AppBarBackButton], consider using
 /// `ModalRoute.canPopOf(context)` to check whether the current route can be
 /// popped. If that value is false (e.g., because the current route is the
-/// initial route), the [AppBackButton] will not have any effect when pressed,
+/// initial route), the [AppBarBackButton] will not have any effect when pressed,
 /// which could frustrate the user.
 ///
 /// Requires one of its ancestors to be a [Material] widget.
 ///
 /// See also:
 ///
-///  * [AppBar], which automatically uses a [AppBackButton] in its
+///  * [AppBar], which automatically uses a [AppBarBackButton] in its
 ///    [AppBar.leading] slot when the [Scaffold] has no [Drawer] and the
 ///    current [Route] is not the [Navigator]'s first route.
 ///  * [BackButtonIcon], which is useful if you need to create a back button
@@ -177,10 +177,10 @@ class BackButtonIcon extends StatelessWidget {
 ///    icons.
 ///  * [CloseButton], an alternative which may be more appropriate for leaf
 ///    node pages in the navigation tree.
-class AppBackButton extends _ActionButton {
+class AppBarBackButton extends _ActionButton {
   /// Creates an [IconButton] with the appropriate "back" icon for the current
   /// target platform.
-  const AppBackButton({
+  const AppBarBackButton({
     super.key,
     super.color,
     super.style,
@@ -250,14 +250,14 @@ class CloseButtonIcon extends StatelessWidget {
 /// used to override the default icon color of [CloseButton]. If both exist, the [ButtonStyle.iconColor]
 /// will override [color] for states where [ButtonStyle.foregroundColor] resolves to non-null.
 ///
-/// Use a [CloseButton] instead of a [AppBackButton] on fullscreen dialogs or
+/// Use a [CloseButton] instead of a [AppBarBackButton] on fullscreen dialogs or
 /// pages that may solicit additional actions to close.
 ///
 /// See also:
 ///
 ///  * [AppBar], which automatically uses a [CloseButton] in its
 ///    [AppBar.leading] slot when appropriate.
-///  * [AppBackButton], which is more appropriate for middle nodes in the
+///  * [AppBarBackButton], which is more appropriate for middle nodes in the
 ///    navigation tree or where pages can be popped instantaneously with
 ///    no user data consequence.
 ///  * [IconButton], to create other Material Design icon buttons.

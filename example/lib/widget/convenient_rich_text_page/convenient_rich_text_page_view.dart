@@ -32,7 +32,12 @@ class _ConvenientRichTextPageState extends BasePageState<ConvenientRichTextPageL
   ConvenientRichTextPageLogic initGetxController() => ConvenientRichTextPageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, ConvenientRichTextPageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, ConvenientRichTextPageLogic logic, bool isCachedData) {
     return Scaffold(
       appBar: AppBar(),
       body: Column(

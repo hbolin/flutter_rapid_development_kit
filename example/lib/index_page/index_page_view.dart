@@ -55,7 +55,12 @@ class _IndexPageState extends BasePageState<IndexPageLogic, IndexPageState, Inde
   IndexPageLogic initGetxController() => IndexPageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, IndexPageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, IndexPageLogic logic, bool isCachedData) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Test"),

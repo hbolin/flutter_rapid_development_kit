@@ -33,7 +33,12 @@ class _ToastUtilPageState extends BasePageState<ToastUtilPageLogic, ToastUtilPag
   ToastUtilPageLogic initGetxController() => ToastUtilPageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, ToastUtilPageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, ToastUtilPageLogic logic, bool isCachedData) {
     return Scaffold(
       appBar: AppBar(),
       body: Column(

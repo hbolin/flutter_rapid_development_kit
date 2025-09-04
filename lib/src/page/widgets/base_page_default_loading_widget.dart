@@ -4,13 +4,15 @@ import 'package:flutter/material.dart';
 /// 全局默认的“加载中”的组件实现
 class BasePageDefaultLoadingWidget extends StatelessWidget {
   final bool isPage;
-  final Widget appBackButton;
+  final Widget appBarBackButton;
+  final Widget? appBarTitle;
   final Widget? defaultLoadingWidget;
 
   const BasePageDefaultLoadingWidget({
     super.key,
     required this.isPage,
-    required this.appBackButton,
+    required this.appBarBackButton,
+    required this.appBarTitle,
     this.defaultLoadingWidget,
   });
 
@@ -30,7 +32,8 @@ class BasePageDefaultLoadingWidget extends StatelessWidget {
     final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
     return Scaffold(
       appBar: AppBar(
-        leading: (parentRoute?.impliesAppBarDismissal ?? false) ? appBackButton : null,
+        leading: (parentRoute?.impliesAppBarDismissal ?? false) ? appBarBackButton : null,
+        title: appBarTitle,
       ),
       body: loadingWidget,
     );

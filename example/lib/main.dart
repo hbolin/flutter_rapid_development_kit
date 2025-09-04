@@ -14,19 +14,38 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BasePageGlobalConfig(
-      // defaultAppBackButton: Text("点击返回"),
-      // defaultAppBackButton: Text("点击返回"),
-      defaultLoadingWidgetBuilder: (BuildContext context, bool isPage, Widget appBackButton) {
+      // defaultAppBarBackButton: AppBarBackButton(),
+      // defaultAppBarBackButtonBuilder: GestureDetector(
+      //     behavior: HitTestBehavior.opaque,
+      //     onTap: () {
+      //       LogUtil.debug("点击返回按钮");
+      //       Navigator.of(context).pop();
+      //     },
+      //     child: Text("点击返回")),
+      defaultAppBarBackButtonBuilder: (BuildContext context) {
+        // return AppBarBackButton();
+        return GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () {
+              LogUtil.debug("点击返回按钮");
+              Navigator.of(context).pop();
+            },
+            child: Text("点击返回"));
+      },
+      defaultLoadingWidgetBuilder: (BuildContext context, bool isPage, Widget appBarBackButton, Widget? appBarTitle) {
         return BasePageDefaultLoadingWidget(
           isPage: isPage,
-          appBackButton: appBackButton,
+          appBarBackButton: appBarBackButton,
+          appBarTitle: appBarTitle,
           defaultLoadingWidget: Center(child: Text("加载中")),
         );
       },
-      defaultErrorWidgetBuilder: (BuildContext context, bool isPage, Widget appBackButton, CachedLoadingBodyController controller, dynamic error) {
+      defaultErrorWidgetBuilder:
+          (BuildContext context, bool isPage, Widget appBarBackButton, Widget? appBarTitle, CachedLoadingBodyController controller, error) {
         return BasePageDefaultErrorWidget(
           isPage: isPage,
-          appBackButton: appBackButton,
+          appBarBackButton: appBarBackButton,
+          appBarTitle: appBarTitle,
           controller: controller,
           error: error,
           defaultErrorWidget: GestureDetector(
@@ -43,18 +62,6 @@ class MyApp extends StatelessWidget {
           ),
         );
       },
-      // defaultErrorWidgetBuilder: (context, isPage, appBackButton, controller, error) {
-      //   // return Scaffold(
-      //   //   body: GestureDetector(
-      //   //     onTap: () {
-      //   //       controller.reloadData();
-      //   //     },
-      //   //     child: Center(
-      //   //       child: Text("isPage:$isPage 记载错误:$error"),
-      //   //     ),
-      //   //   ),
-      //   // );
-      // },
       child: GetMaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(

@@ -32,9 +32,17 @@ class _LoadingBodyPageState extends BasePageState<LoadingBodyPageLogic, LoadingB
   LoadingBodyPageLogic initGetxController() => LoadingBodyPageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, LoadingBodyPageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return Text("Loading");
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, LoadingBodyPageLogic logic, bool isCachedData) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: AppBarBackButton(),
+        title: Text("记载完成"),
+      ),
       body: Column(
         children: [
           LoadingBody(

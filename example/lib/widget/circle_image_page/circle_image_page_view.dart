@@ -32,7 +32,12 @@ class _CircleImagePageState extends BasePageState<CircleImagePageLogic, CircleIm
   CircleImagePageLogic initGetxController() => CircleImagePageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, CircleImagePageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, CircleImagePageLogic logic, bool isCachedData) {
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(

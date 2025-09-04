@@ -32,7 +32,12 @@ class _SeparatedWrapPageState extends BasePageState<SeparatedWrapPageLogic, Sepa
   SeparatedWrapPageLogic initGetxController() => SeparatedWrapPageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, SeparatedWrapPageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, SeparatedWrapPageLogic logic, bool isCachedData) {
     return Scaffold(
       appBar: AppBar(),
       body: Column(

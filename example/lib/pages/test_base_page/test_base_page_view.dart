@@ -33,34 +33,37 @@ class _TestBasePageState extends BasePageState<TestBasePageLogic, TestBasePageSt
   TestBasePageLogic initGetxController() => TestBasePageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, TestBasePageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, TestBasePageLogic logic, bool isCachedData) {
     return Scaffold(
       appBar: AppBar(
-        leading: buildAppBackButton(context),
+        leading: appBarBackButton,
+        title: appBarTitle,
       ),
       body: Placeholder(),
     );
   }
 
-  // @override
-  // Widget? buildCustomAppBackButton(BuildContext context) {
-  //   return Text("返");
-  // }
-
   @override
-  Widget? buildCustomLoadingWidget(BuildContext context, bool isPage, Widget appBackButton) {
+  Widget? buildCustomLoadingWidget(BuildContext context, bool isPage, Widget appBackButton, Widget? appBarTitle) {
     return BasePageDefaultLoadingWidget(
       isPage: isPage,
-      appBackButton: appBackButton,
+      appBarBackButton: appBackButton,
+      appBarTitle: appBarTitle,
       defaultLoadingWidget: Center(child: Text("加载中!!!!")),
     );
   }
 
   @override
-  Widget? buildCustomErrorWidget(BuildContext context, bool isPage, Widget appBackButton, CachedLoadingBodyController controller, error) {
+  Widget? buildCustomErrorWidget(BuildContext context, bool isPage, Widget appBackButton, Widget? appBarTitle, CachedLoadingBodyController controller, error) {
     return BasePageDefaultErrorWidget(
       isPage: isPage,
-      appBackButton: appBackButton,
+      appBarBackButton: appBackButton,
+      appBarTitle: appBarTitle,
       controller: controller,
       error: error,
       defaultErrorWidget: GestureDetector(

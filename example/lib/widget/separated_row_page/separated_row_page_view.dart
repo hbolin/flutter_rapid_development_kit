@@ -32,7 +32,12 @@ class _SeparatedRowPageState extends BasePageState<SeparatedRowPageLogic, Separa
   SeparatedRowPageLogic initGetxController() => SeparatedRowPageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, SeparatedRowPageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, SeparatedRowPageLogic logic, bool isCachedData) {
     return Scaffold(
       appBar: AppBar(),
       body: Column(

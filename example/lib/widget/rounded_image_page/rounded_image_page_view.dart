@@ -32,7 +32,12 @@ class _RoundedImagePageState extends BasePageState<RoundedImagePageLogic, Rounde
   RoundedImagePageLogic initGetxController() => RoundedImagePageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, RoundedImagePageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, RoundedImagePageLogic logic, bool isCachedData) {
     return Scaffold(
       appBar: AppBar(),
       body: Column(

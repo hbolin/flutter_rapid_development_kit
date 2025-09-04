@@ -4,7 +4,8 @@ import 'package:flutter_rapid_development_kit/src/widget/cached_loading_body.dar
 /// 全局默认的“返回按钮”的组件实现
 class BasePageDefaultErrorWidget extends StatelessWidget {
   final bool isPage;
-  final Widget appBackButton;
+  final Widget appBarBackButton;
+  final Widget? appBarTitle;
   final CachedLoadingBodyController controller;
   final dynamic error;
   final Widget? defaultErrorWidget;
@@ -12,7 +13,8 @@ class BasePageDefaultErrorWidget extends StatelessWidget {
   const BasePageDefaultErrorWidget({
     super.key,
     required this.isPage,
-    required this.appBackButton,
+    required this.appBarBackButton,
+    required this.appBarTitle,
     required this.controller,
     required this.error,
     this.defaultErrorWidget,
@@ -41,7 +43,8 @@ class BasePageDefaultErrorWidget extends StatelessWidget {
     final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
     return Scaffold(
       appBar: AppBar(
-        leading: (parentRoute?.impliesAppBarDismissal ?? false) ? appBackButton : null,
+        leading: (parentRoute?.impliesAppBarDismissal ?? false) ? appBarBackButton : null,
+        title: appBarTitle,
       ),
       body: errorWidget,
     );

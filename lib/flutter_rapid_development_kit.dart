@@ -26,7 +26,7 @@ export 'package:flutter_rapid_development_kit/src/util/sp_util.dart';
 export 'package:flutter_rapid_development_kit/src/util/toast_util.dart';
 export 'package:flutter_rapid_development_kit/src/util/try_catch_util.dart';
 
-export 'package:flutter_rapid_development_kit/src/widget/app_back_button.dart';
+export 'package:flutter_rapid_development_kit/src/widget/app_bar_back_button.dart';
 export 'package:flutter_rapid_development_kit/src/widget/cached_loading_body.dart';
 export 'package:flutter_rapid_development_kit/src/widget/circle_image.dart';
 export 'package:flutter_rapid_development_kit/src/widget/column_row_grid_view.dart';

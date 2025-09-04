@@ -32,7 +32,12 @@ class _LogUtilPageState extends BasePageState<LogUtilPageLogic, LogUtilPageState
   LogUtilPageLogic initGetxController() => LogUtilPageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, LogUtilPageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, LogUtilPageLogic logic, bool isCachedData) {
     return Scaffold(
       appBar: AppBar(),
       body: Column(

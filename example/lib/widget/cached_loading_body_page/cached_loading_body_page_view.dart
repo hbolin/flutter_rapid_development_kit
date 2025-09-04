@@ -34,7 +34,12 @@ class _CachedLoadingBodyPageState extends BasePageState<CachedLoadingBodyPageLog
   CachedLoadingBodyPageLogic initGetxController() => CachedLoadingBodyPageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, CachedLoadingBodyPageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, CachedLoadingBodyPageLogic logic, bool isCachedData) {
     return Scaffold(
       appBar: AppBar(),
       body: CachedLoadingBody(

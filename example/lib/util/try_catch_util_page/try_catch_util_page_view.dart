@@ -32,7 +32,12 @@ class _TryCatchUtilPageState extends BasePageState<TryCatchUtilPageLogic, TryCat
   TryCatchUtilPageLogic initGetxController() => TryCatchUtilPageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, TryCatchUtilPageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, TryCatchUtilPageLogic logic, bool isCachedData) {
     return Scaffold(
       appBar: AppBar(),
       body: Column(
@@ -64,12 +69,10 @@ class _TryCatchUtilPageState extends BasePageState<TryCatchUtilPageLogic, TryCat
           ),
           ElevatedButton(
             onPressed: () {
-              tryCatchIgnoreError(
-                () async {
-                  await Future.delayed(const Duration(seconds: 3));
-                  throw "xxx";
-                }
-              );
+              tryCatchIgnoreError(() async {
+                await Future.delayed(const Duration(seconds: 3));
+                throw "xxx";
+              });
             },
             child: const Text("tryCatchIgnoreError"),
           ),

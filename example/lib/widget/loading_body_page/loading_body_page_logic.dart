@@ -7,5 +7,8 @@ class LoadingBodyPageLogic extends BasePageGetxController<LoadingBodyPageState> 
   LoadingBodyPageState initBasePageBaseState() => LoadingBodyPageState();
 
   @override
-  Future<void> loadData(bool isLoadCachedData) async {}
+  Future<void> loadData(bool isLoadCachedData) async {
+    await Future.delayed(Duration(seconds: 3));
+    // throw "error";
+  }
 }

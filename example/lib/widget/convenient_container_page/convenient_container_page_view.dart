@@ -32,7 +32,12 @@ class _ConvenientContainerPageState extends BasePageState<ConvenientContainerPag
   ConvenientContainerPageLogic initGetxController() => ConvenientContainerPageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, ConvenientContainerPageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, ConvenientContainerPageLogic logic, bool isCachedData) {
     return Scaffold(
       appBar: AppBar(),
       body: Column(

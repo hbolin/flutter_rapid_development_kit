@@ -34,7 +34,12 @@ class _ConditionalWidgetPageState extends BasePageState<ConditionalWidgetPageLog
   bool isSuccess = false;
 
   @override
-  Widget buildScaffold(BuildContext context, ConditionalWidgetPageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, ConditionalWidgetPageLogic logic, bool isCachedData) {
     return Scaffold(
       appBar: AppBar(),
       body: Column(

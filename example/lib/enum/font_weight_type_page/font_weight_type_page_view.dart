@@ -32,7 +32,12 @@ class _FontWeightTypePageState extends BasePageState<FontWeightTypePageLogic, Fo
   FontWeightTypePageLogic initGetxController() => FontWeightTypePageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, FontWeightTypePageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, FontWeightTypePageLogic logic, bool isCachedData) {
     return Scaffold(
       appBar: AppBar(),
       body: Column(

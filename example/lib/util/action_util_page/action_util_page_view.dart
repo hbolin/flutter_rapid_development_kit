@@ -32,7 +32,12 @@ class _ActionUtilPageState extends BasePageState<ActionUtilPageLogic, ActionUtil
   ActionUtilPageLogic initGetxController() => ActionUtilPageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, ActionUtilPageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, ActionUtilPageLogic logic, bool isCachedData) {
     return Scaffold(
       appBar: AppBar(),
       body: Column(
