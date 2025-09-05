@@ -1,3 +1,6 @@
+import 'package:example/pages/tab2_page/tab2_page_view.dart';
+import 'package:example/pages/tab_page/tab_page_view.dart';
+import 'package:example/widget/loading_body_page/loading_body_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
 import 'package:get/get.dart';
@@ -34,7 +37,7 @@ class _TestBasePageState extends BasePageState<TestBasePageLogic, TestBasePageSt
 
   @override
   Widget? buildAppBarTitle(BuildContext context) {
-    return null;
+    return const Text("TextBasePage");
   }
 
   @override
@@ -44,22 +47,33 @@ class _TestBasePageState extends BasePageState<TestBasePageLogic, TestBasePageSt
         leading: appBarBackButton,
         title: appBarTitle,
       ),
-      body: const Placeholder(),
+      body: Column(
+        children: [
+          TextButton(
+            onPressed: () {
+              // Get.toNamed(LoadingBodyPage().getRoute());
+              // Get.toNamed(TabPage().getRoute());
+              Get.toNamed(Tab2Page().getRoute());
+            },
+            child: Text("查看跳转到下一个页面，标题是否会被替换"),
+          ),
+        ],
+      ),
     );
   }
 
   @override
   Widget? buildCustomLoadingWidget(BuildContext context, bool isPage, Widget appBackButton, Widget? appBarTitle) {
-    return Container(
-      color: Colors.green,
-      child: const DefaultLoadingWidget(),
-    );
-    return BasePageDefaultLoadingWidget(
-      isPage: isPage,
-      appBarBackButton: appBackButton,
-      appBarTitle: appBarTitle,
-      // defaultLoadingWidget: Center(child: Text("加载中!!!!")),
-    );
+    // return Container(
+    //   color: Colors.green,
+    //   child: const DefaultLoadingWidget(),
+    // );
+    // return BasePageDefaultLoadingWidget(
+    //   isPage: isPage,
+    //   appBarBackButton: appBackButton,
+    //   appBarTitle: appBarTitle,
+    //   // defaultLoadingWidget: Center(child: Text("加载中!!!!")),
+    // );
   }
 
   @override

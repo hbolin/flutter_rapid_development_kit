@@ -11,6 +11,6 @@ class TestBasePageLogic extends BasePageGetxController<TestBasePageState> {
   Future<void> loadData(bool isLoadCachedData) async {
     await Future.delayed(const Duration(seconds: 2));
     LogUtil.debug("抛出错误");
-    throw "error";
+    // throw "error";
   }
 }

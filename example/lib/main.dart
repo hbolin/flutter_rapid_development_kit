@@ -14,57 +14,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BasePageGlobalConfig(
-      // defaultAppBarBackButton: AppBarBackButton(),
-      // defaultAppBarBackButtonBuilder: GestureDetector(
-      //     behavior: HitTestBehavior.opaque,
-      //     onTap: () {
-      //       LogUtil.debug("点击返回按钮");
-      //       Navigator.of(context).pop();
-      //     },
-      //     child: Text("点击返回")),
-      defaultAppBarBackButtonBuilder: (BuildContext context) {
-        return AppBarBackButton();
-        // return GestureDetector(
-        //   behavior: HitTestBehavior.opaque,
-        //   onTap: () {
-        //     LogUtil.debug("点击返回按钮");
-        //     Navigator.of(context).pop();
-        //   },
-        //   child: Text("点击返回"),
-        // );
-      },
-      defaultLoadingWidgetBuilder: (BuildContext context, bool isPage, Widget appBarBackButton, Widget? appBarTitle) {
-        return null;
-        // return BasePageDefaultLoadingWidget(
-        //   isPage: isPage,
-        //   appBarBackButton: appBarBackButton,
-        //   appBarTitle: appBarTitle,
-        //   defaultLoadingWidget: Center(child: Text("加载中")),
-        // );
-      },
-      defaultErrorWidgetBuilder:
-          (BuildContext context, bool isPage, Widget appBarBackButton, Widget? appBarTitle, CachedLoadingBodyController controller, error) {
-            return null;
-        // return BasePageDefaultErrorWidget(
-        //   isPage: isPage,
-        //   appBarBackButton: appBarBackButton,
-        //   appBarTitle: appBarTitle,
-        //   controller: controller,
-        //   error: error,
-        //   defaultErrorWidget: GestureDetector(
-        //     behavior: HitTestBehavior.opaque,
-        //     onTap: () {
-        //       controller.reloadData();
-        //     },
-        //     child: Center(
-        //       child: Text(
-        //         "加载错误:$error", // 这里会涉及到多语言，所以不写死错误信息，直接由error显示出来
-        //         style: Theme.of(context).textTheme.bodySmall,
-        //       ),
-        //     ),
-        //   ),
-        // );
-      },
       child: GetMaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -83,6 +32,9 @@ class MyApp extends StatelessWidget {
           //
           // This works for code too, not just values: Most code changes can be
           // tested with just a hot reload.
+          appBarTheme: AppBarTheme(
+            centerTitle: true,
+          ),
           colorScheme: ColorScheme.fromSeed(
             seedColor: Colors.deepPurple,
             // brightness: Brightness.dark,

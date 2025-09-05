@@ -1,5 +1,7 @@
 import 'package:example/enum/font_weight_type_page/font_weight_type_page_view.dart';
 import 'package:example/index_page/index_page_view.dart';
+import 'package:example/pages/tab2_page/tab2_page_view.dart';
+import 'package:example/pages/tab_page/tab_page_view.dart';
 import 'package:example/pages/test_base_page/test_base_page_view.dart';
 import 'package:example/util/action_util_page/action_util_page_view.dart';
 import 'package:example/util/loading_util_page/loading_util_page_view.dart';
@@ -113,6 +115,14 @@ class RouteUtil {
     GetPage(
       name: const TestBasePage().getRouteName(),
       page: () => TestBasePage.fromRouteParas(Get.parameters),
+    ),
+    GetPage(
+      name: const TabPage().getRouteName(),
+      page: () => TabPage.fromRouteParas(Get.parameters),
+    ),
+    GetPage(
+      name: const Tab2Page().getRouteName(),
+      page: () => Tab2Page.fromRouteParas(Get.parameters),
     ),
   ];
 }

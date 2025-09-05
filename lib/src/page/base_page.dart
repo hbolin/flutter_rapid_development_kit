@@ -242,7 +242,7 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
     if (BasePageGlobalConfig.maybeOf(context)?.defaultAppBarBackButtonBuilder != null) {
       appBackButton ??= BasePageGlobalConfig.maybeOf(context)!.defaultAppBarBackButtonBuilder!(context);
     }
-    appBackButton ??= buildDefaultAppBackButton(context);
+    appBackButton ??= _buildDefaultAppBackButton(context);
     return appBackButton;
   }
 
@@ -250,8 +250,8 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
     return null;
   }
 
-  @Deprecated("兼容处理，使用buildCustomAppBackButton来替代")
-  Widget buildDefaultAppBackButton(BuildContext context) {
+  /// 默认"返回按钮"样式
+  Widget _buildDefaultAppBackButton(BuildContext context) {
     return const AppBarBackButton();
   }
 
@@ -358,4 +358,50 @@ class BasePageBaseState<T extends BasePageStatefulWidget> {
   late T page;
 
   bool isLoadRealDataSuccess = false;
+}
+
+// ------------------------------------------------------------------------------------------------------------------------------------------------
+
+abstract class BasePageContentStatefulWidget extends BasePageStatefulWidget {
+  const BasePageContentStatefulWidget({
+    super.key,
+    required super.getTag,
+  });
+
+  @override
+  String getRoute() {
+    assert(false, "禁止把BasePageContentStatefulWidget配置到路由，请使用BasePageStatefulWidget来配置到路由");
+    return super.getRoute();
+  }
+
+  @override
+  String getRouteName() => "";
+
+  @override
+  Map<String, dynamic>? getRouteParas() => {};
+}
+
+abstract class BasePageContentState<K extends BasePageGetxController<S>, S extends BasePageBaseState<T>, T extends BasePageContentStatefulWidget>
+    extends BasePageState<K, S, T> with AutomaticKeepAliveClientMixin {
+  @override
+  bool isPage() => false;
+
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return super.buildGet(context);
+  }
+
+  @override
+  Widget? buildAppBarTitle(BuildContext context) => null;
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, K logic, bool isCachedData) {
+    return buildContent(context, logic, isCachedData);
+  }
+
+  Widget buildContent(BuildContext context, K logic, bool isCachedData);
 }
