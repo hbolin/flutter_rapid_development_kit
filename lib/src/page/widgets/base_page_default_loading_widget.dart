@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rapid_development_kit/src/page/widgets/default_loading_widget.dart';
 
 /// 全局默认的“加载中”的组件实现
 class BasePageDefaultLoadingWidget extends StatelessWidget {
@@ -19,11 +19,7 @@ class BasePageDefaultLoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget? loadingWidget = defaultLoadingWidget;
-    loadingWidget ??= const Center(
-      child: CupertinoActivityIndicator(
-        radius: 12,
-      ),
-    );
+    loadingWidget ??= const DefaultLoadingWidget();
 
     if (isPage == false) {
       return loadingWidget;

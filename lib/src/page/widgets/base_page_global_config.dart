@@ -4,7 +4,7 @@ import 'package:flutter_rapid_development_kit/src/widget/cached_loading_body.dar
 /// 基础页面的全局配置
 class BasePageGlobalConfig extends InheritedWidget {
   /// 全局默认的“返回按钮”的组件
-  final Widget? Function(BuildContext context) defaultAppBarBackButtonBuilder;
+  final Widget? Function(BuildContext context)? defaultAppBarBackButtonBuilder;
 
   /// 全局默认的“加载中”的组件
   final Widget? Function(BuildContext context, bool isPage, Widget appBarBackButton, Widget? appBarTitle)? defaultLoadingWidgetBuilder;
@@ -16,9 +16,9 @@ class BasePageGlobalConfig extends InheritedWidget {
 
   const BasePageGlobalConfig({
     super.key,
-    required this.defaultAppBarBackButtonBuilder,
-    required this.defaultLoadingWidgetBuilder,
-    required this.defaultErrorWidgetBuilder,
+    this.defaultAppBarBackButtonBuilder,
+    this.defaultLoadingWidgetBuilder,
+    this.defaultErrorWidgetBuilder,
     required super.child,
   });
 

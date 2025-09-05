@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rapid_development_kit/src/page/widgets/default_error_widget.dart';
 import 'package:flutter_rapid_development_kit/src/widget/cached_loading_body.dart';
 
-/// 全局默认的“返回按钮”的组件实现
+/// 全局默认的“错误”的组件实现
 class BasePageDefaultErrorWidget extends StatelessWidget {
   final bool isPage;
   final Widget appBarBackButton;
@@ -23,17 +24,11 @@ class BasePageDefaultErrorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget? errorWidget = defaultErrorWidget;
-    errorWidget ??= GestureDetector(
-      behavior: HitTestBehavior.opaque,
+    errorWidget ??= DefaultErrorWidget(
+      error: "$error", // 这里会涉及到多语言，所以不写死错误信息，直接由error显示出来
       onTap: () {
         controller.reloadData();
       },
-      child: Center(
-        child: Text(
-          "$error", // 这里会涉及到多语言，所以不写死错误信息，直接由error显示出来
-          style: Theme.of(context).textTheme.bodySmall,
-        ),
-      ),
     );
 
     if (isPage == false) {

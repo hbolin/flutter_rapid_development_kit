@@ -188,7 +188,7 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
       loadingWidget =
           BasePageGlobalConfig.of(context).defaultLoadingWidgetBuilder!(context, isPage(), buildAppBarBackButton(context), buildAppBarTitle(context));
     }
-    loadingWidget ??= buildDefaultLoadingWidget(context);
+    loadingWidget ??= _buildDefaultLoadingWidget(context);
     return loadingWidget;
   }
 
@@ -197,8 +197,7 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
   }
 
   /// 默认"加载中"样式
-  @Deprecated("兼容处理，使用buildCustomLoadingWidget来替代")
-  Widget buildDefaultLoadingWidget(BuildContext context) {
+  Widget _buildDefaultLoadingWidget(BuildContext context) {
     return BasePageDefaultLoadingWidget(
       isPage: isPage(),
       appBarBackButton: buildAppBarBackButton(context),
@@ -213,7 +212,7 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
       errorWidget = BasePageGlobalConfig.of(context).defaultErrorWidgetBuilder!(
           context, isPage(), buildAppBarBackButton(context), buildAppBarTitle(context), controller, error);
     }
-    errorWidget ??= buildDefaultErrorWidget(context, controller, error);
+    errorWidget ??= _buildDefaultErrorWidget(context, controller, error);
     return errorWidget;
   }
 
@@ -223,8 +222,7 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
   }
 
   /// 加载"加载失败"样式
-  @Deprecated("兼容处理，使用buildCustomErrorWidget来替代")
-  Widget buildDefaultErrorWidget(BuildContext context, CachedLoadingBodyController controller, dynamic error) {
+  Widget _buildDefaultErrorWidget(BuildContext context, CachedLoadingBodyController controller, dynamic error) {
     return BasePageDefaultErrorWidget(
       isPage: isPage(),
       appBarBackButton: buildAppBarBackButton(context),
@@ -241,7 +239,9 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
   /// 生效优先级：buildCustomAppBackButton > BasePageGlobalConfig.defaultAppBackButton > buildDefaultAppBackButton
   Widget buildAppBarBackButton(BuildContext context) {
     Widget? appBackButton = buildCustomAppBackButton(context);
-    appBackButton ??= BasePageGlobalConfig.maybeOf(context)?.defaultAppBarBackButtonBuilder(context);
+    if (BasePageGlobalConfig.maybeOf(context)?.defaultAppBarBackButtonBuilder != null) {
+      appBackButton ??= BasePageGlobalConfig.maybeOf(context)!.defaultAppBarBackButtonBuilder!(context);
+    }
     appBackButton ??= buildDefaultAppBackButton(context);
     return appBackButton;
   }

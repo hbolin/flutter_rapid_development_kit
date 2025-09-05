@@ -44,22 +44,35 @@ class _TestBasePageState extends BasePageState<TestBasePageLogic, TestBasePageSt
         leading: appBarBackButton,
         title: appBarTitle,
       ),
-      body: Placeholder(),
+      body: const Placeholder(),
     );
   }
 
   @override
   Widget? buildCustomLoadingWidget(BuildContext context, bool isPage, Widget appBackButton, Widget? appBarTitle) {
+    return Container(
+      color: Colors.green,
+      child: const DefaultLoadingWidget(),
+    );
     return BasePageDefaultLoadingWidget(
       isPage: isPage,
       appBarBackButton: appBackButton,
       appBarTitle: appBarTitle,
-      defaultLoadingWidget: Center(child: Text("加载中!!!!")),
+      // defaultLoadingWidget: Center(child: Text("加载中!!!!")),
     );
   }
 
   @override
   Widget? buildCustomErrorWidget(BuildContext context, bool isPage, Widget appBackButton, Widget? appBarTitle, CachedLoadingBodyController controller, error) {
+    return Container(
+      color: Colors.amber,
+      child: DefaultErrorWidget(
+        error: "$error",
+        onTap: () {
+          controller.reloadData();
+        },
+      ),
+    );
     return BasePageDefaultErrorWidget(
       isPage: isPage,
       appBarBackButton: appBackButton,
