@@ -22,7 +22,7 @@ Future<void> main() async {
 
 ### Step 2 安装GetX插件
 
-#### 2.1 安装[my_getx_template](./docs/my_getx_template-3.0.3.jar)插件
+#### 2.1 安装[my_getx_template](./_docs/my_getx_template-3.0.6.jar)插件
 
     2.1.1 新建页面Page
         使用在目录上右键 -> New -> MyGetX -> 输入Page Name
@@ -174,7 +174,7 @@ src
 
 ### Step 7 常用快捷键
 
-#### Step 7.1 导入[Live Templates Settings](./docs/live_templates_settings.zip)设置
+#### Step 7.1 导入[Live Templates Settings](./_docs/live_templates_settings.zip)设置
 
 #### Step 7.2 常用的快捷键
 
