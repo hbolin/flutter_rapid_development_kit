@@ -20,7 +20,7 @@ class BasePageDefaultLoadingWidget extends StatelessWidget {
     loadingWidget ??= Center(
       child: CupertinoActivityIndicator(
         radius: 12,
-        color: Theme.of(context).brightness == Brightness.dark ? Color(0xFFEBEBF5) : Color(0xFF3C3C44),
+        color: Theme.of(context).brightness == Brightness.dark ? const Color(0xFFEBEBF5) : const Color(0xFF3C3C44),
       ),
     );
 
