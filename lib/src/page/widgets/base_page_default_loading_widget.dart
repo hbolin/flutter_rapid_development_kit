@@ -17,9 +17,10 @@ class BasePageDefaultLoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget? loadingWidget = defaultLoadingWidget;
-    loadingWidget ??= const Center(
+    loadingWidget ??= Center(
       child: CupertinoActivityIndicator(
         radius: 12,
+        color: Theme.of(context).brightness == Brightness.dark ? Color(0xFFEBEBF5) : Color(0xFF3C3C44),
       ),
     );
 
