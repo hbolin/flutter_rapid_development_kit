@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 /// “加载中”的组件实现
 class DefaultLoadingWidget extends StatelessWidget {
@@ -6,9 +7,10 @@ class DefaultLoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: CupertinoActivityIndicator(
         radius: 12,
+        color: Theme.of(context).brightness == Brightness.dark ? const Color(0xFFEBEBF5) : const Color(0xFF3C3C44),
       ),
     );
   }
