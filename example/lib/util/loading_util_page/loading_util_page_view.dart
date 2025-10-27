@@ -33,15 +33,19 @@ class _LoadingUtilPageState extends BasePageState<LoadingUtilPageLogic, LoadingU
 
   @override
   Widget? buildAppBarTitle(BuildContext context) {
-    return null;
+    return Text("LoadingUtil");
   }
 
   @override
   Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, LoadingUtilPageLogic logic, bool isCachedData) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: appBarBackButton,
+        title: appBarTitle,
+      ),
       body: Column(
         children: [
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
               LoadingUtil.showDialog();
@@ -49,8 +53,9 @@ class _LoadingUtilPageState extends BasePageState<LoadingUtilPageLogic, LoadingU
                 LoadingUtil.dismissDialog();
               });
             },
-            child: const Text("LoadingUtil.showDialog"),
+            child: const Text("LoadingUtil.showDialog auto"),
           ),
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
               LoadingUtil.showDialog(isDark: true);
@@ -58,8 +63,9 @@ class _LoadingUtilPageState extends BasePageState<LoadingUtilPageLogic, LoadingU
                 LoadingUtil.dismissDialog();
               });
             },
-            child: const Text("LoadingUtil.showDialog"),
+            child: const Text("LoadingUtil.showDialog isDark: true"),
           ),
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
               LoadingUtil.showDialog(isDark: false);
@@ -67,7 +73,37 @@ class _LoadingUtilPageState extends BasePageState<LoadingUtilPageLogic, LoadingU
                 LoadingUtil.dismissDialog();
               });
             },
-            child: const Text("LoadingUtil.showDialog"),
+            child: const Text("LoadingUtil.showDialog isDark: false"),
+          ),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () async {
+              var result = await Get.toNamed(LoadingUtilPage(getTag: "Next").getRoute());
+              LogUtil.debug("是否获取到了result：$result");
+            },
+            child: const Text("使用Get跳转至下一个LoadingUtilPage"),
+          ),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () {
+              Get.back(result: "Get Result");
+            },
+            child: const Text("使用Get返回"),
+          ),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () async {
+              var result = await Navigator.of(context).push(MaterialPageRoute(builder: (_) => LoadingUtilPage(getTag: "Next")));
+              LogUtil.debug("是否获取到了result：$result");
+            },
+            child: const Text("使用Navigator跳转至下一个LoadingUtilPage"),
+          ),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pop("Navigator Result");
+            },
+            child: const Text("使用Navigator返回"),
           ),
         ],
       ),

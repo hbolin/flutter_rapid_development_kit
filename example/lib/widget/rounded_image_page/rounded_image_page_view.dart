@@ -57,7 +57,7 @@ class _RoundedImagePageState extends BasePageState<RoundedImagePageLogic, Rounde
             borderColor: Colors.yellow,
             borderWidth: 2,
             customBorderRadius: BorderRadius.circular(80),
-            color: Colors.black.withOpacity(0.6),
+            color: Colors.black.withValues(alpha: 0.6),
             colorBlendMode: BlendMode.srcOver,
           ),
         ],

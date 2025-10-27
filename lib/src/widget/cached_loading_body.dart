@@ -212,7 +212,7 @@ class _CachedLoadingContent extends StatefulWidget {
   final void Function(_CachedLoadingContentState state)? onStateInitListener;
 
   const _CachedLoadingContent({
-    Key? key,
+    super.key,
     required this.cachedDataLoader,
     required this.dataLoader,
     required this.loadingWidgetBuilder,
@@ -227,7 +227,7 @@ class _CachedLoadingContent extends StatefulWidget {
     this.dataLoadedFailedListener,
     this.dataReloadListener,
     this.onStateInitListener,
-  }) : super(key: key);
+  });
 
   @override
   State<_CachedLoadingContent> createState() => _CachedLoadingContentState();

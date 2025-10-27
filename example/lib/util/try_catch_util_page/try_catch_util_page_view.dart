@@ -33,15 +33,19 @@ class _TryCatchUtilPageState extends BasePageState<TryCatchUtilPageLogic, TryCat
 
   @override
   Widget? buildAppBarTitle(BuildContext context) {
-    return null;
+    return const Text("tryCatchIgnoreError");
   }
 
   @override
   Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, TryCatchUtilPageLogic logic, bool isCachedData) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: appBarBackButton,
+        title: appBarTitle,
+      ),
       body: Column(
         children: [
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
               tryCatchIgnoreError(() {
@@ -50,6 +54,7 @@ class _TryCatchUtilPageState extends BasePageState<TryCatchUtilPageLogic, TryCat
             },
             child: const Text("tryCatchIgnoreError"),
           ),
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
               tryCatchIgnoreError(() {
@@ -58,6 +63,7 @@ class _TryCatchUtilPageState extends BasePageState<TryCatchUtilPageLogic, TryCat
             },
             child: const Text("tryCatchIgnoreError"),
           ),
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
               tryCatchIgnoreError(() async {
@@ -67,12 +73,13 @@ class _TryCatchUtilPageState extends BasePageState<TryCatchUtilPageLogic, TryCat
             },
             child: const Text("tryCatchIgnoreError"),
           ),
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
               tryCatchIgnoreError(() async {
                 await Future.delayed(const Duration(seconds: 3));
                 throw "xxx";
-              });
+              }, interruptOnDebugModel: false);
             },
             child: const Text("tryCatchIgnoreError"),
           ),

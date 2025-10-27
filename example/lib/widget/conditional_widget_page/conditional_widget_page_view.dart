@@ -35,13 +35,16 @@ class _ConditionalWidgetPageState extends BasePageState<ConditionalWidgetPageLog
 
   @override
   Widget? buildAppBarTitle(BuildContext context) {
-    return null;
+    return const Text("ConditionalWidget");
   }
 
   @override
   Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, ConditionalWidgetPageLogic logic, bool isCachedData) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: appBarBackButton,
+        title: appBarTitle,
+      ),
       body: Column(
         children: [
           Switch(
@@ -54,12 +57,13 @@ class _ConditionalWidgetPageState extends BasePageState<ConditionalWidgetPageLog
           // isSuccess ? SuccessWidget(text: null) : Text("failureWidget"),
           ConditionalWidget(
             isSuccess: isSuccess,
-            successWidget: SuccessWidget(text: null),
+            successWidget: SuccessWidget(text: "null"),
             failureWidget: Text("failureWidget"),
           ),
           ConditionalBuilder(
             isSuccess: isSuccess,
             successBuilder: (BuildContext context) {
+              // return SuccessWidget(text: null);
               return Text("successBuilder");
             },
             failureBuilder: (BuildContext context) {

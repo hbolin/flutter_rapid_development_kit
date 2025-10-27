@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:process_run/process_run.dart';
 import 'package:yaml/yaml.dart';
+import 'package:yaml_edit/yaml_edit.dart';
 
 class ProjectMaker {
   /// 生成项目
@@ -43,6 +44,8 @@ class ProjectMaker {
     ProjectMaker.makeImageAssets(targetProjectDirectoryPath: targetProjectDirectoryPath);
 
     ProjectMaker.makeMakers(targetProjectDirectoryPath: targetProjectDirectoryPath);
+
+    ProjectMaker.addLinterRules(targetProjectDirectoryPath: targetProjectDirectoryPath);
 
     if (needGit) {
       var shell2 = Shell(commandVerbose: false);
@@ -354,7 +357,12 @@ class _RootPageState extends BasePageState<RootPageLogic, RootPageState, RootPag
   RootPageLogic initGetxController() => RootPageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, RootPageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return Text("TODO");
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, RootPageLogic logic, bool isCachedData) {
     return Scaffold(
       appBar: AppBar(),
       body: Column(
@@ -446,9 +454,14 @@ class SplashPage extends BasePageStatefulWidget {
 class _SplashPageState extends BasePageState<SplashPageLogic, SplashPageState, SplashPage> {
   @override
   SplashPageLogic initGetxController() => SplashPageLogic();
+  
+  @override
+  Widget? buildAppBarTitle(BuildContext context) {
+    return Text("TODO");
+  }
 
   @override
-  Widget buildScaffold(BuildContext context, SplashPageLogic logic, bool isCachedData) {
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, SplashPageLogic logic, bool isCachedData) {
     return Scaffold(
       appBar: AppBar(),
       body: Column(
@@ -497,6 +510,45 @@ void main() {
     }
   }
 
+  /// 添加规则
+  static void addLinterRules({required String targetProjectDirectoryPath}) {
+    String yamlFilePath = "$targetProjectDirectoryPath/analysis_options.yaml";
+    var yamlEditor = _loadPubspecYamlFile(yamlFilePath);
+
+    /// 添加新的依赖项节点
+    try {
+      yamlEditor.update(["linter", "rules", "require_trailing_commas"], true);
+
+      /// 添加新的依赖项节点
+      yamlEditor.update(["linter", "rules", "prefer_const_constructors"], true);
+
+      /// 添加新的依赖项节点
+      yamlEditor.update(["linter", "rules", "unnecessary_this"], false);
+    } catch (e) {
+      yamlEditor.update([
+        "linter",
+        "rules",
+      ], {
+        "require_trailing_commas": true,
+        "prefer_const_constructors": true,
+        "unnecessary_this": false,
+      });
+    }
+
+    try {
+      yamlEditor.update(["formatter", "trailing_commas"], "preserve");
+    } catch (e) {
+      /// 添加新的依赖项节点
+      yamlEditor.update([
+        "formatter",
+      ], {
+        "trailing_commas": "preserve",
+      });
+    }
+
+    File(yamlFilePath).writeAsStringSync(yamlEditor.toString());
+  }
+
   static YamlMap _parseYamlFile(String yamFilePath) {
     var yamFile = File(yamFilePath);
     var fileContent = yamFile.readAsStringSync();
@@ -508,12 +560,20 @@ void main() {
     var yamFile = File(yamlFilePath);
     return yamFile.readAsLinesSync();
   }
+
+  /// 加载pubspec.yaml文件
+  static YamlEditor _loadPubspecYamlFile(String pubspecYamlPath) {
+    var jsonString = File(pubspecYamlPath).readAsStringSync();
+
+    final yamlEditor = YamlEditor(jsonString);
+    return yamlEditor;
+  }
 }
 
-// Future<void> main() async {
-//   await ProjectMaker.makeProject(
-//     flutterPath: "/Volumes/exmac/env/FlutterSDK/flutter_macos_arm64_3.29.3-stable/bin/flutter",
-//     targetProjectDirectoryPath: "/Volumes/exmac/development2/workspace2/flutter2/flutter_streamer",
-//     packageName: "com.dy.flutter_streamer",
-//   );
-// }
+Future<void> main() async {
+  await ProjectMaker.makeProject(
+    flutterPath: "/Volumes/exmac/env/FlutterSDK/flutter_macos_arm64_3.35.7-stable/bin/flutter",
+    targetProjectDirectoryPath: "/Volumes/exmac/111/flutter_streamer",
+    packageName: "com.dy.flutter_streamer",
+  );
+}

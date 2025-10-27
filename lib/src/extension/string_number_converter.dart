@@ -11,7 +11,7 @@ extension FrdkStringNumberConverter on String {
 
   /// [String]转换成[bool]
   bool toBool({String? extraTrueCondition}) {
-    final lowerCaseValue = toLowerCase();
+    final lowerCaseValue = this.toLowerCase();
     if (extraTrueCondition != null) {
       return lowerCaseValue == "true" || lowerCaseValue == extraTrueCondition.toLowerCase();
     }

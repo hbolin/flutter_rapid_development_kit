@@ -33,19 +33,23 @@ class _SeparatedRowPageState extends BasePageState<SeparatedRowPageLogic, Separa
 
   @override
   Widget? buildAppBarTitle(BuildContext context) {
-    return null;
+    return const Text("SeparatedRow");
   }
 
   @override
   Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, SeparatedRowPageLogic logic, bool isCachedData) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: appBarBackButton,
+        title: appBarTitle,
+      ),
       body: Column(
         children: [
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: SeparatedRow(
               itemCount: 101,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               itemBuilder: (BuildContext context, int index) {
                 return Text("$index");
               },

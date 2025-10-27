@@ -22,12 +22,26 @@ class SharedPreferencesUtil {
     }
     var result = serializable._readObjectFromJsonString(value!);
     if (result != null) {
+      assert(result is T, "Failed to read object from JSON string: $result");
       return result as T;
     }
     return null;
   }
 }
 
+/// 如果子类需要使用extends，不能使用implements，不然会报错
+/// 示例代码：
+/// ```dart
+///   @override
+///   SPSerializable readObjectFromJsonString(String jsonString) {
+///     return GlobalAppInfo.fromJson(json.decode(jsonString));
+///   }
+///
+///   @override
+///   String writeObjectToJsonString() {
+///     return json.encode(toJson());
+///   }
+/// ```
 abstract class SPSerializable {
   String _writeObjectToJsonString() {
     var jsonString = writeObjectToJsonString();

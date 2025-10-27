@@ -122,10 +122,10 @@ class _ActionIcon extends StatelessWidget {
 ///    with icons.
 ///  * [Icon], a Material Design icon.
 ///  * [ThemeData.platform], which specifies the current platform.
-class BackButtonIcon extends StatelessWidget {
+class _BackButtonIcon extends StatelessWidget {
   /// Creates an icon that shows the appropriate "back" image for
   /// the current platform (as obtained from the [Theme]).
-  const BackButtonIcon({super.key});
+  const _BackButtonIcon({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -185,7 +185,7 @@ class AppBarBackButton extends _ActionButton {
     super.color,
     super.style,
     super.onPressed,
-  }) : super(icon: const BackButtonIcon());
+  }) : super(icon: const _BackButtonIcon());
 
   @override
   void _onPressedCallback(BuildContext context) {
@@ -203,205 +203,5 @@ class AppBarBackButton extends _ActionButton {
   @override
   String _getTooltip(BuildContext context) {
     return MaterialLocalizations.of(context).backButtonTooltip;
-  }
-}
-
-/// A "close" icon that's appropriate for the current [TargetPlatform].
-///
-/// The current platform is determined by querying for the ambient [Theme].
-///
-/// See also:
-///
-///  * [CloseButton], an [IconButton] with a [CloseButtonIcon] that calls
-///    [Navigator.maybePop] to return to the previous route.
-///  * [IconButton], which is a more general widget for creating buttons
-///    with icons.
-///  * [Icon], a Material Design icon.
-///  * [ThemeData.platform], which specifies the current platform.
-class CloseButtonIcon extends StatelessWidget {
-  /// Creates an icon that shows the appropriate "close" image for
-  /// the current platform (as obtained from the [Theme]).
-  const CloseButtonIcon({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return _ActionIcon(
-      iconBuilderCallback: (ActionIconThemeData? actionIconTheme) {
-        return actionIconTheme?.closeButtonIconBuilder;
-      },
-      getIcon: (BuildContext context) => Icons.close,
-      getAndroidSemanticsLabel: (MaterialLocalizations materialLocalization) {
-        return materialLocalization.closeButtonTooltip;
-      },
-    );
-  }
-}
-
-/// A Material Design close icon button.
-///
-/// A [CloseButton] is an [IconButton] with a "close" icon. When pressed, the
-/// close button calls [Navigator.maybePop] to return to the previous route.
-///
-/// The [onPressed] callback can, for instance, be used to pop the platform's navigation stack
-/// via [SystemNavigator] instead of Flutter's [Navigator] in add-to-app
-/// situations.
-///
-/// In Material Design 3, both [style]'s [ButtonStyle.iconColor] and [color] are
-/// used to override the default icon color of [CloseButton]. If both exist, the [ButtonStyle.iconColor]
-/// will override [color] for states where [ButtonStyle.foregroundColor] resolves to non-null.
-///
-/// Use a [CloseButton] instead of a [AppBarBackButton] on fullscreen dialogs or
-/// pages that may solicit additional actions to close.
-///
-/// See also:
-///
-///  * [AppBar], which automatically uses a [CloseButton] in its
-///    [AppBar.leading] slot when appropriate.
-///  * [AppBarBackButton], which is more appropriate for middle nodes in the
-///    navigation tree or where pages can be popped instantaneously with
-///    no user data consequence.
-///  * [IconButton], to create other Material Design icon buttons.
-class CloseButton extends _ActionButton {
-  /// Creates a Material Design close icon button.
-  const CloseButton({super.key, super.color, super.onPressed, super.style}) : super(icon: const CloseButtonIcon());
-
-  @override
-  void _onPressedCallback(BuildContext context) => Navigator.maybePop(context);
-
-  @override
-  String _getTooltip(BuildContext context) {
-    return MaterialLocalizations.of(context).closeButtonTooltip;
-  }
-}
-
-/// A "drawer" icon that's appropriate for the current [TargetPlatform].
-///
-/// The current platform is determined by querying for the ambient [Theme].
-///
-/// See also:
-///
-///  * [DrawerButton], an [IconButton] with a [DrawerButtonIcon] that calls
-///    [ScaffoldState.openDrawer] to open the [Scaffold.drawer].
-///  * [EndDrawerButton], an [IconButton] with an [EndDrawerButtonIcon] that
-///    calls [ScaffoldState.openEndDrawer] to open the [Scaffold.endDrawer].
-///  * [IconButton], which is a more general widget for creating buttons
-///    with icons.
-///  * [Icon], a Material Design icon.
-///  * [ThemeData.platform], which specifies the current platform.
-class DrawerButtonIcon extends StatelessWidget {
-  /// Creates an icon that shows the appropriate "close" image for
-  /// the current platform (as obtained from the [Theme]).
-  const DrawerButtonIcon({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return _ActionIcon(
-      iconBuilderCallback: (ActionIconThemeData? actionIconTheme) {
-        return actionIconTheme?.drawerButtonIconBuilder;
-      },
-      getIcon: (BuildContext context) => Icons.menu,
-      getAndroidSemanticsLabel: (MaterialLocalizations materialLocalization) {
-        return materialLocalization.openAppDrawerTooltip;
-      },
-    );
-  }
-}
-
-/// A Material Design drawer icon button.
-///
-/// A [DrawerButton] is an [IconButton] with a "drawer" icon. When pressed, the
-/// close button calls [ScaffoldState.openDrawer] to the [Scaffold.drawer].
-///
-/// The default behaviour on press can be overridden with [onPressed].
-///
-/// See also:
-///
-///  * [EndDrawerButton], an [IconButton] with an [EndDrawerButtonIcon] that
-///    calls [ScaffoldState.openEndDrawer] to open the [Scaffold.endDrawer].
-///  * [IconButton], which is a more general widget for creating buttons
-///    with icons.
-///  * [Icon], a Material Design icon.
-///  * [ThemeData.platform], which specifies the current platform.
-class DrawerButton extends _ActionButton {
-  /// Creates a Material Design drawer icon button.
-  const DrawerButton({
-    super.key,
-    super.color,
-    super.style,
-    super.onPressed,
-  }) : super(icon: const DrawerButtonIcon());
-
-  @override
-  void _onPressedCallback(BuildContext context) => Scaffold.of(context).openDrawer();
-
-  @override
-  String _getTooltip(BuildContext context) {
-    return MaterialLocalizations.of(context).openAppDrawerTooltip;
-  }
-}
-
-/// A "end drawer" icon that's appropriate for the current [TargetPlatform].
-///
-/// The current platform is determined by querying for the ambient [Theme].
-///
-/// See also:
-///
-///  * [DrawerButton], an [IconButton] with a [DrawerButtonIcon] that calls
-///    [ScaffoldState.openDrawer] to open the [Scaffold.drawer].
-///  * [EndDrawerButton], an [IconButton] with an [EndDrawerButtonIcon] that
-///    calls [ScaffoldState.openEndDrawer] to open the [Scaffold.endDrawer]
-///  * [IconButton], which is a more general widget for creating buttons
-///    with icons.
-///  * [Icon], a Material Design icon.
-///  * [ThemeData.platform], which specifies the current platform.
-class EndDrawerButtonIcon extends StatelessWidget {
-  /// Creates an icon that shows the appropriate "end drawer" image for
-  /// the current platform (as obtained from the [Theme]).
-  const EndDrawerButtonIcon({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return _ActionIcon(
-      iconBuilderCallback: (ActionIconThemeData? actionIconTheme) {
-        return actionIconTheme?.endDrawerButtonIconBuilder;
-      },
-      getIcon: (BuildContext context) => Icons.menu,
-      getAndroidSemanticsLabel: (MaterialLocalizations materialLocalization) {
-        return materialLocalization.openAppDrawerTooltip;
-      },
-    );
-  }
-}
-
-/// A Material Design end drawer icon button.
-///
-/// A [EndDrawerButton] is an [IconButton] with a "drawer" icon. When pressed, the
-/// end drawer button calls [ScaffoldState.openEndDrawer] to open the [Scaffold.endDrawer].
-///
-/// The default behaviour on press can be overridden with [onPressed].
-///
-/// See also:
-///
-///  * [DrawerButton], an [IconButton] with a [DrawerButtonIcon] that calls
-///    [ScaffoldState.openDrawer] to open a drawer.
-///  * [IconButton], which is a more general widget for creating buttons
-///    with icons.
-///  * [Icon], a Material Design icon.
-///  * [ThemeData.platform], which specifies the current platform.
-class EndDrawerButton extends _ActionButton {
-  /// Creates a Material Design end drawer icon button.
-  const EndDrawerButton({
-    super.key,
-    super.color,
-    super.style,
-    super.onPressed,
-  }) : super(icon: const EndDrawerButtonIcon());
-
-  @override
-  void _onPressedCallback(BuildContext context) => Scaffold.of(context).openEndDrawer();
-
-  @override
-  String _getTooltip(BuildContext context) {
-    return MaterialLocalizations.of(context).openAppDrawerTooltip;
   }
 }

@@ -33,15 +33,19 @@ class _ActionUtilPageState extends BasePageState<ActionUtilPageLogic, ActionUtil
 
   @override
   Widget? buildAppBarTitle(BuildContext context) {
-    return null;
+    return Text("ActionUtil");
   }
 
   @override
   Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, ActionUtilPageLogic logic, bool isCachedData) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: appBarBackButton,
+        title: appBarTitle,
+      ),
       body: Column(
         children: [
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () async {
               bool isDealSuccess = await ActionUtil.dealAction(action: () async {
@@ -51,6 +55,7 @@ class _ActionUtilPageState extends BasePageState<ActionUtilPageLogic, ActionUtil
             },
             child: const Text("ActionUtil.dealAction"),
           ),
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () async {
               bool isDealSuccess = await ActionUtil.dealAction(action: () async {
@@ -61,13 +66,15 @@ class _ActionUtilPageState extends BasePageState<ActionUtilPageLogic, ActionUtil
             },
             child: const Text("ActionUtil.dealAction 发生异常"),
           ),
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () async {
               bool isDealSuccess = await ActionUtil.dealAction(action: () async {
                 await Future.delayed(const Duration(seconds: 1));
                 throw "发生异常";
               }, onFailed: (error) {
-                ToastUtil.show("发生异常，自行处理异常");
+                const snackBar = SnackBar(content: Text('发生异常，自行处理异常'));
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
               });
               print("isDealSuccess:$isDealSuccess");
             },

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 
 extension FrdkDateTimeFormat on DateTime {
@@ -9,11 +10,14 @@ extension FrdkDateTimeFormat on DateTime {
 
 extension FrdkStringDateFormat on String {
   /// 按[format]格式解析字符串，转换成[DateTime]
-  DateTime? toDateTime({String format = "yyyy-MM-dd HH:mm:ss"}) {
+  DateTime? toDateTime({String format = "yyyy-MM-dd HH:mm:ss", bool interruptOnDebugModel = true}) {
     try {
       return DateFormat(format).parse(this, format.contains("UTC"));
     } catch (e) {
-      // assert(false, "无法解析日期时间: $this, 格式: $format, e: $e");
+      // print("当前模式是否是kDebugMode：$kDebugMode");
+      if (kDebugMode && interruptOnDebugModel) {
+        assert(false, "无法解析日期时间: $this, 格式: $format, e: $e");
+      }
     }
     return null;
   }

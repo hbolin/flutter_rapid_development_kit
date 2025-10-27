@@ -6,7 +6,7 @@ class LogUtil {
   const LogUtil._();
 
   static const _tag = "rapid";
-  static bool _isLogEnabled = !kReleaseMode; // 全局日志开关
+  static bool _isLogEnabled = kReleaseMode != true; // 全局日志开关
 
   /// 启用或禁用日志
   static void enableLog(bool isEnabled) {
@@ -69,7 +69,9 @@ class LogUtil {
 extension _ on String {
   /// 将字符串按指定长度分块
   List<String> chunk([int size = 512]) {
-    if (isEmpty) return [];
+    if (isEmpty) {
+      return [];
+    }
 
     final chunks = <String>[];
     for (var i = 0; i < length; i += size) {

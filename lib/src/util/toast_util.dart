@@ -8,6 +8,7 @@ class ToastUtil {
   const ToastUtil._();
 
   static void show(String msg, {bool? isDark}) {
+    assert(Get.context != null, "无法获取到Get.context");
     if (Get.context != null && isDark == null) {
       isDark = Theme.of(Get.context!).brightness == Brightness.dark;
       // print("当前是否是Dark Model:$isDark");
@@ -24,6 +25,7 @@ class ToastUtil {
     String msg, {
     Color backgroundColor = Colors.black,
     Color textColor = Colors.white,
+    double fontSize = 16.0,
   }) {
     Fluttertoast.showToast(
       msg: msg,
@@ -32,7 +34,7 @@ class ToastUtil {
       timeInSecForIosWeb: 1,
       backgroundColor: backgroundColor,
       textColor: textColor,
-      fontSize: 16.0,
+      fontSize: fontSize,
     );
   }
 }

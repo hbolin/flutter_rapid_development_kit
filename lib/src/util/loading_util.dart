@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rapid_development_kit/src/util/log_util.dart';
 import 'package:get/get.dart';
 
 /// 加载中的工具类，一般用来用户动作类型的处理
@@ -20,12 +21,13 @@ class LoadingUtil {
         // relative to the NavigationBar destination.
         return Stack(
           children: [
+            // 为了防止背景会被点击
             Container(color: Colors.transparent),
             SafeArea(
               child: Align(
                 alignment: Alignment.center,
                 child: _LoadingDialog(
-                  isDark: isDark ?? false,
+                  isDark: isDark ?? Get.isDarkMode,
                 ),
               ),
             ),
@@ -45,6 +47,10 @@ class LoadingUtil {
     overlayEntry?.remove();
     overlayEntry?.dispose();
     overlayEntry = null;
+  }
+
+  static bool isShowing() {
+    return overlayEntry != null;
   }
 }
 
@@ -69,8 +75,35 @@ class _LoadingDialog extends StatelessWidget {
       ),
       child: CupertinoActivityIndicator(
         radius: 12,
-        color: isDark ? Color(0xFFEBEBF5) : Color(0xFFEBEBF5),
+        color: isDark ? const Color(0xFFEBEBF5) : const Color(0xFFEBEBF5),
       ),
+    );
+  }
+}
+
+/// 显示loading的时候，不允许按返回键返回
+class LoadingUtilListener extends StatelessWidget {
+  final Widget child;
+
+  const LoadingUtilListener({
+    super.key,
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        LogUtil.debug("LoadingUtilListener didPop:$didPop result:$result");
+        if (didPop) {
+          return;
+        }
+        if (LoadingUtil.isShowing() != true) {
+          Navigator.of(context).pop(result);
+        }
+      },
+      child: child,
     );
   }
 }

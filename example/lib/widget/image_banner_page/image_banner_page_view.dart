@@ -33,31 +33,46 @@ class _ImageBannerPageState extends BasePageState<ImageBannerPageLogic, ImageBan
 
   @override
   Widget? buildAppBarTitle(BuildContext context) {
-    return null;
+    return const Text("ImageBanner");
   }
 
   @override
   Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, ImageBannerPageLogic logic, bool isCachedData) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: [
-          ImageBanner(
-            height: 440,
-            imgUrlList: [
-              "http://gips1.baidu.com/it/u=3874647369,3220417986&fm=3028&app=3028&f=JPEG&fmt=auto?w=720&h=1280",
-              "http://gips1.baidu.com/it/u=1971954603,2916157720&fm=3028&app=3028&f=JPEG&fmt=auto?w=1920&h=2560",
-              "http://gips1.baidu.com/it/u=1746086795,2510875842&fm=3028&app=3028&f=JPEG&fmt=auto?w=1024&h=1024",
-            ],
-            paginationBuilder: (CarouselSliderController controller, int index, bool isSelected) {
-              return DefaultRoundedPagination(isSelected: isSelected);
-            },
-            radius: 10,
-            onTap: (index) {
-              print("tap index:$index");
-            },
-          ),
-        ],
+      appBar: AppBar(
+        leading: appBarBackButton,
+        title: appBarTitle,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          children: [
+            ImageBanner(
+              height: 440,
+              imgUrlList: [
+                "http://gips1.baidu.com/it/u=3874647369,3220417986&fm=3028&app=3028&f=JPEG&fmt=auto?w=720&h=1280",
+                "http://gips1.baidu.com/it/u=1971954603,2916157720&fm=3028&app=3028&f=JPEG&fmt=auto?w=1920&h=2560",
+                "http://gips1.baidu.com/it/u=1746086795,2510875842&fm=3028&app=3028&f=JPEG&fmt=auto?w=1024&h=1024",
+              ],
+              paginationBuilder: (CarouselSliderController controller, int index, bool isSelected) {
+                // return DefaultCirclePagination(
+                //   isSelected: isSelected,
+                //   selectedPaginationColor: Colors.red,
+                //   unSelectedPaginationColor: Colors.yellowAccent,
+                // );
+                return DefaultRoundedPagination(
+                  isSelected: isSelected,
+                  selectedPaginationColor: Colors.red,
+                  unSelectedPaginationColor: Colors.yellowAccent,
+                );
+              },
+              radius: 10,
+              onTap: (index) {
+                print("tap index:$index");
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

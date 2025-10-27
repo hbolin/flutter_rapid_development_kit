@@ -34,15 +34,19 @@ class _ToastUtilPageState extends BasePageState<ToastUtilPageLogic, ToastUtilPag
 
   @override
   Widget? buildAppBarTitle(BuildContext context) {
-    return null;
+    return const Text("ToastUtil");
   }
 
   @override
   Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, ToastUtilPageLogic logic, bool isCachedData) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: appBarBackButton,
+        title: appBarTitle,
+      ),
       body: Column(
         children: [
+          const SizedBox(height: 16),
           Switch(
               value: state.isDark,
               onChanged: (value) {
@@ -55,30 +59,35 @@ class _ToastUtilPageState extends BasePageState<ToastUtilPageLogic, ToastUtilPag
                   Get.changeTheme(ThemeData.light());
                 }
               }),
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
               ToastUtil.show("ToastUtil.show");
             },
-            child: const Text("ToastUtil.show"),
+            child: const Text("auto ThemeData.light/dark - ToastUtil.show"),
           ),
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
               ToastUtil.show("ToastUtil.show", isDark: false);
             },
-            child: const Text("ToastUtil.show"),
+            child: const Text("force ThemeData.light - ToastUtil.show"),
           ),
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
               ToastUtil.show("ToastUtil.show", isDark: true);
             },
-            child: const Text("ToastUtil.show"),
+            child: const Text("force ThemeData.dark - ToastUtil.show"),
           ),
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
               ToastUtil.customShow(
                 "ToastUtil.customShow",
                 backgroundColor: Colors.red,
-                textColor: Colors.green,
+                textColor: Colors.yellowAccent,
+                fontSize: 22,
               );
             },
             child: const Text("ToastUtil.customShow"),

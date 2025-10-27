@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rapid_development_kit/src/page/widgets/base_page_default_error_widget.dart';
 import 'package:flutter_rapid_development_kit/src/page/widgets/base_page_default_loading_widget.dart';
 import 'package:flutter_rapid_development_kit/src/page/widgets/base_page_global_config.dart';
+import 'package:flutter_rapid_development_kit/src/util/loading_util.dart';
 import 'package:flutter_rapid_development_kit/src/util/log_util.dart';
 import 'package:flutter_rapid_development_kit/src/util/toast_util.dart';
 import 'package:flutter_rapid_development_kit/src/widget/app_bar_back_button.dart';
@@ -87,13 +88,15 @@ abstract class BasePageState<K extends BasePageGetxController<S>, S extends Base
   }
 
   Widget buildGet(BuildContext context) {
-    return GetBuilder<K>(
-      tag: _getTag,
-      builder: (logic) {
-        return _buildCachedLoadingBody(context, logic, (context, isCachedData) {
-          return buildScaffold(context, _buildAppBarBackButton(context), buildAppBarTitle(context), logic, isCachedData);
-        });
-      },
+    return LoadingUtilListener(
+      child: GetBuilder<K>(
+        tag: _getTag,
+        builder: (logic) {
+          return _buildCachedLoadingBody(context, logic, (context, isCachedData) {
+            return buildScaffold(context, _buildAppBarBackButton(context), buildAppBarTitle(context), logic, isCachedData);
+          });
+        },
+      ),
     );
   }
 

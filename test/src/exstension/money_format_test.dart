@@ -55,9 +55,9 @@ void main() {
     });
 
     test('should return null for invalid money string', () {
-      expect('abc'.moneyFormat(), isNull);
-      expect(''.moneyFormat(), isNull);
-      expect('123.abc'.moneyFormat(), isNull);
+      expect('abc'.moneyFormat(interruptOnDebugModel: false), isNull);
+      expect(''.moneyFormat(interruptOnDebugModel: false), isNull);
+      expect('123.abc'.moneyFormat(interruptOnDebugModel: false), isNull);
     });
   });
 }

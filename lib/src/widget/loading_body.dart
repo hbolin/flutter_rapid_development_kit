@@ -39,7 +39,7 @@ class LoadingBody extends StatefulWidget {
   final bool initialDelayedDisplay;
 
   const LoadingBody({
-    Key? key,
+    super.key,
     required this.dataLoader,
     required this.bodyBuilder,
     this.loadingWidgetBuilder,
@@ -51,7 +51,7 @@ class LoadingBody extends StatefulWidget {
     this.onLoadingBodyCreated,
     this.initialAnimated = false,
     this.initialDelayedDisplay = false,
-  }) : super(key: key);
+  });
 
   @override
   State<LoadingBody> createState() => _LoadingBodyState();
@@ -164,7 +164,7 @@ class _LoadingContent extends StatefulWidget {
   final bool initialDelayedDisplay;
 
   const _LoadingContent({
-    Key? key,
+    super.key,
     this.dataLoader,
     required this.loadingWidgetBuilder,
     required this.loadSuccessWidgetBuilder,
@@ -176,7 +176,7 @@ class _LoadingContent extends StatefulWidget {
     this.onStateInitListener,
     this.initialAnimated = false,
     this.initialDelayedDisplay = false,
-  }) : super(key: key);
+  });
 
   @override
   State<_LoadingContent> createState() => _LoadingContentState();
