@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rapid_development_kit/src/util/log_util.dart';
 import 'package:get/get.dart';
 
 /// 加载中的工具类，一般用来用户动作类型的处理
@@ -77,33 +76,6 @@ class _LoadingDialog extends StatelessWidget {
         radius: 12,
         color: isDark ? const Color(0xFFEBEBF5) : const Color(0xFFEBEBF5),
       ),
-    );
-  }
-}
-
-/// 显示loading的时候，不允许按返回键返回
-class LoadingUtilListener extends StatelessWidget {
-  final Widget child;
-
-  const LoadingUtilListener({
-    super.key,
-    required this.child,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return PopScope(
-      canPop: false,
-      onPopInvokedWithResult: (didPop, result) {
-        LogUtil.debug("LoadingUtilListener didPop:$didPop result:$result");
-        if (didPop) {
-          return;
-        }
-        if (LoadingUtil.isShowing() != true) {
-          Navigator.of(context).pop(result);
-        }
-      },
-      child: child,
     );
   }
 }

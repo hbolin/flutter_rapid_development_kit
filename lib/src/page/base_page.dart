@@ -88,15 +88,13 @@ abstract class BasePageState<K extends BasePageGetxController<S>, S extends Base
   }
 
   Widget buildGet(BuildContext context) {
-    return LoadingUtilListener(
-      child: GetBuilder<K>(
-        tag: _getTag,
-        builder: (logic) {
-          return _buildCachedLoadingBody(context, logic, (context, isCachedData) {
-            return buildScaffold(context, _buildAppBarBackButton(context), buildAppBarTitle(context), logic, isCachedData);
-          });
-        },
-      ),
+    return GetBuilder<K>(
+      tag: _getTag,
+      builder: (logic) {
+        return _buildCachedLoadingBody(context, logic, (context, isCachedData) {
+          return buildScaffold(context, _buildAppBarBackButton(context), buildAppBarTitle(context), logic, isCachedData);
+        });
+      },
     );
   }
 
