@@ -46,6 +46,20 @@ class _LoadingUtilPageState extends BasePageState<LoadingUtilPageLogic, LoadingU
       body: Column(
         children: [
           const SizedBox(height: 16),
+          Switch(
+            value: state.isDark,
+            onChanged: (value) {
+              setState(() {
+                state.isDark = value;
+              });
+              if (state.isDark) {
+                Get.changeTheme(ThemeData.dark());
+              } else {
+                Get.changeTheme(ThemeData.light());
+              }
+            },
+          ),
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
               LoadingUtil.showDialog();
@@ -67,9 +81,13 @@ class _LoadingUtilPageState extends BasePageState<LoadingUtilPageLogic, LoadingU
           ),
           const SizedBox(height: 16),
           ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
               LoadingUtil.showDialog(isDark: false);
-              Future.delayed(const Duration(seconds: 3)).then((value) {
+              // var result = Navigator.of(context).push(MaterialPageRoute(builder: (_) => LoadingUtilPage(getTag: "Next")));
+              // var result = Get.toNamed(LoadingUtilPage(getTag: "Next").getRoute());
+              // LogUtil.debug("是否获取到了result：$result");
+              Future.delayed(const Duration(seconds: 5)).then((value) {
+                LogUtil.debug("关闭dismissDialog");
                 LoadingUtil.dismissDialog();
               });
             },
