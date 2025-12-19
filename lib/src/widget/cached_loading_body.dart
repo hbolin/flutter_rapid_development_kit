@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rapid_development_kit/src/util/log_util.dart';
 import 'package:flutter_rapid_development_kit/src/util/toast_util.dart';
 import 'package:synchronized/synchronized.dart';
 
@@ -297,9 +298,25 @@ class _CachedLoadingContentState extends State<_CachedLoadingContent> {
     try {
       if (widget.dataLoader != null) {
         _loadingData();
+
+        // 记录开始时间
+        var startDateTime = DateTime.now();
+
         await realDataLock.synchronized(() async {
           await widget.dataLoader!();
         });
+
+        var loadingDataMilliseconds = DateTime.now().difference(startDateTime).inMilliseconds;
+        if (loadingDataMilliseconds > 100) {
+          // MaterialRouteTransitionMixin  Duration get transitionDuration => const Duration(milliseconds: 300);
+          var delayDuration = const Duration(milliseconds: 350);
+          var diffMilliseconds = delayDuration.inMilliseconds - loadingDataMilliseconds;
+          if (diffMilliseconds > 0) {
+            LogUtil.debug("页面跳转太快，需要进行延迟下：$diffMilliseconds毫秒");
+            await Future.delayed(Duration(milliseconds: diffMilliseconds));
+          }
+        }
+
         _loadDataSuccess();
         return true;
       }

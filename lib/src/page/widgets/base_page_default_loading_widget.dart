@@ -31,7 +31,9 @@ class BasePageDefaultLoadingWidget extends StatelessWidget {
         leading: (parentRoute?.impliesAppBarDismissal ?? false) ? appBarBackButton : null,
         title: appBarTitle,
       ),
-      body: loadingWidget,
+      body: RepaintBoundary(
+        child: loadingWidget,
+      ),
     );
   }
 }

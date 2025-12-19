@@ -153,34 +153,36 @@ class _ImageBannerState extends State<ImageBanner> {
       );
     }
 
-    return Stack(
-      children: [
-        child,
-        Positioned(
-          left: 0,
-          right: 0,
-          bottom: 0,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: widget.imgUrlList.asMap().entries.map((entry) {
-              Widget? child;
-              if (widget.paginationBuilder != null) {
-                child = widget.paginationBuilder!(_effectiveController, entry.key, _current == entry.key);
-              }
+    return RepaintBoundary(
+      child: Stack(
+        children: [
+          child,
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: widget.imgUrlList.asMap().entries.map((entry) {
+                Widget? child;
+                if (widget.paginationBuilder != null) {
+                  child = widget.paginationBuilder!(_effectiveController, entry.key, _current == entry.key);
+                }
 
-              child ??= DefaultCirclePagination(
-                isSelected: _current == entry.key,
-              );
+                child ??= DefaultCirclePagination(
+                  isSelected: _current == entry.key,
+                );
 
-              return GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: () => _effectiveController.animateToPage(entry.key),
-                child: child,
-              );
-            }).toList(),
+                return GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () => _effectiveController.animateToPage(entry.key),
+                  child: child,
+                );
+              }).toList(),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
