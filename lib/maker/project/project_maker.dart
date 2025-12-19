@@ -110,7 +110,7 @@ class ProjectMaker {
     yamLines.insert((yamlMap["dependencies"] as YamlMap).span.end.line, "  flutter_rapid_development_kit: ");
     yamLines.insert((yamlMap["dependencies"] as YamlMap).span.end.line + 1, "    git:");
     yamLines.insert((yamlMap["dependencies"] as YamlMap).span.end.line + 2, "      url: \"https://github.com/hbolin/flutter_rapid_development_kit\"");
-    yamLines.insert((yamlMap["dependencies"] as YamlMap).span.end.line + 3, "      ref: \"v3.0.7\"");
+    yamLines.insert((yamlMap["dependencies"] as YamlMap).span.end.line + 3, "      ref: \"v3.0.8\"");
     yamLines.insert((yamlMap["dependencies"] as YamlMap).span.end.line + 4, "");
 
     // print(yamLines.join("\n"));
