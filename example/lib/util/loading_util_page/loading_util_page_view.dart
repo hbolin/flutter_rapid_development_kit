@@ -11,14 +11,14 @@ class LoadingUtilPage extends BasePageStatefulWidget {
   });
 
   factory LoadingUtilPage.fromRouteParas(Map<String, dynamic> json) => LoadingUtilPage(
-        getTag: convertT<String?>(json[BasePageStatefulWidget.getTagKey]),
-        // TODO:配置路由参数
-      );
+    getTag: convertT<String?>(json[BasePageStatefulWidget.getTagKey]),
+    // TODO:配置路由参数
+  );
 
   @override
   Map<String, dynamic>? getRouteParas() => {
-        // TODO:配置路由参数
-      };
+    // TODO:配置路由参数
+  };
 
   @override
   String getRouteName() => "/loading_util";
@@ -45,7 +45,7 @@ class _LoadingUtilPageState extends BasePageState<LoadingUtilPageLogic, LoadingU
       ),
       body: Column(
         children: [
-          const SizedBox(height: 16),
+          const SizedBox(height: 16, width: double.infinity),
           Switch(
             value: state.isDark,
             onChanged: (value) {
@@ -83,45 +83,11 @@ class _LoadingUtilPageState extends BasePageState<LoadingUtilPageLogic, LoadingU
           ElevatedButton(
             onPressed: () async {
               LoadingUtil.showDialog(isDark: false);
-              // var result = Navigator.of(context).push(MaterialPageRoute(builder: (_) => LoadingUtilPage(getTag: "Next")));
-              // var result = Get.toNamed(LoadingUtilPage(getTag: "Next").getRoute());
-              // LogUtil.debug("是否获取到了result：$result");
-              Future.delayed(const Duration(seconds: 5)).then((value) {
-                LogUtil.debug("关闭dismissDialog");
+              Future.delayed(const Duration(seconds: 3)).then((value) {
                 LoadingUtil.dismissDialog();
               });
             },
             child: const Text("LoadingUtil.showDialog isDark: false"),
-          ),
-          const SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () async {
-              var result = await Get.toNamed(LoadingUtilPage(getTag: "Next").getRoute());
-              LogUtil.debug("是否获取到了result：$result");
-            },
-            child: const Text("使用Get跳转至下一个LoadingUtilPage"),
-          ),
-          const SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () {
-              Get.back(result: "Get Result");
-            },
-            child: const Text("使用Get返回"),
-          ),
-          const SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () async {
-              var result = await Navigator.of(context).push(MaterialPageRoute(builder: (_) => LoadingUtilPage(getTag: "Next")));
-              LogUtil.debug("是否获取到了result：$result");
-            },
-            child: const Text("使用Navigator跳转至下一个LoadingUtilPage"),
-          ),
-          const SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pop("Navigator Result");
-            },
-            child: const Text("使用Navigator返回"),
           ),
         ],
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rapid_development_kit/src/util/log_util.dart';
 import 'package:get/get.dart';
 
 /// 加载中的工具类，一般用来用户动作类型的处理
@@ -12,31 +13,38 @@ class LoadingUtil {
   static void showDialog({bool? isDark}) {
     assert(Get.context != null, "无法获取到Get.context");
     isDark ??= Theme.of(Get.context!).brightness == Brightness.dark;
+    // LogUtil.debug("显示Loading Dialog isDark：$isDark");
     if (_loadingDialogRawDialogRoute == null) {
       _showGeneralDialog(
-        context: Get.context!,
-        barrierDismissible: false, // 是否能通过点击空白处关闭
-        barrierColor: Colors.transparent, // 背景色
-        // transitionDuration: const Duration(milliseconds: 150), // 动画时长
-        pageBuilder: (BuildContext context, Animation animation, Animation secondaryAnimation) {
-          return PopScope(
-            canPop: false,
-            child: Align(
-              alignment: Alignment.center,
-              child: _LoadingDialog(
-                isDark: isDark ?? false,
-              ),
-            ),
-          );
-        },
-        onRawDialogRouteCreated: (RawDialogRoute rawDialogRoute) {
-          _loadingDialogRawDialogRoute = rawDialogRoute;
-        },
-      ).then((_) {
-        _loadingDialogRawDialogRoute = null;
-      }).catchError((e, s) {
-        _loadingDialogRawDialogRoute = null;
-      });
+            context: Get.context!,
+            barrierDismissible: false, // 是否能通过点击空白处关闭
+            barrierColor: Colors.transparent, // 背景色
+            // transitionDuration: const Duration(milliseconds: 150), // 动画时长
+            pageBuilder: (BuildContext context, Animation animation, Animation secondaryAnimation) {
+              return PopScope(
+                canPop: false,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: _LoadingDialog(
+                    isDark: isDark ?? false,
+                  ),
+                ),
+              );
+            },
+            onRawDialogRouteCreated: (RawDialogRoute rawDialogRoute) {
+              _loadingDialogRawDialogRoute = rawDialogRoute;
+            },
+          )
+          .then((_) {
+            // LogUtil.debug("Loading Dialog 被关闭");
+            _loadingDialogRawDialogRoute = null;
+          })
+          .catchError((e, s) {
+            // LogUtil.debug("Loading Dialog 被关闭，发生异常：$e");
+            _loadingDialogRawDialogRoute = null;
+          });
+    } else {
+      LogUtil.error("当前已经在显示Loading Dialog");
     }
   }
 

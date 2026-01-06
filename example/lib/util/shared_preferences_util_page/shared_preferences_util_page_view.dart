@@ -12,14 +12,14 @@ class SharedPreferencesUtilPage extends BasePageStatefulWidget {
   });
 
   factory SharedPreferencesUtilPage.fromRouteParas(Map<String, dynamic> json) => SharedPreferencesUtilPage(
-        getTag: convertT<String?>(json[BasePageStatefulWidget.getTagKey]),
-        // TODO:配置路由参数
-      );
+    getTag: convertT<String?>(json[BasePageStatefulWidget.getTagKey]),
+    // TODO:配置路由参数
+  );
 
   @override
   Map<String, dynamic>? getRouteParas() => {
-        // TODO:配置路由参数
-      };
+    // TODO:配置路由参数
+  };
 
   @override
   String getRouteName() => "/shared_preferences_util";
@@ -46,7 +46,7 @@ class _SharedPreferencesUtilPageState extends BasePageState<SharedPreferencesUti
       ),
       body: Column(
         children: [
-          const SizedBox(height: 16),
+          const SizedBox(height: 16, width: double.infinity),
           Text("isFirstInstall：${state.globalAppInfo?.isFirstInstall}"),
           Switch(
             value: state.globalAppInfo?.isFirstInstall ?? false,
@@ -55,7 +55,7 @@ class _SharedPreferencesUtilPageState extends BasePageState<SharedPreferencesUti
                 state.globalAppInfo!.isFirstInstall = value;
               });
               await SharedPreferencesUtil.setSerializable("key", state.globalAppInfo!);
-              print(state.globalAppInfo!.writeObjectToJsonString());
+              LogUtil.debug(state.globalAppInfo!.writeObjectToJsonString());
             },
           ),
           const SizedBox(height: 16),

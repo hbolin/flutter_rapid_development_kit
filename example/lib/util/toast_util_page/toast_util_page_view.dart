@@ -12,14 +12,14 @@ class ToastUtilPage extends BasePageStatefulWidget {
   });
 
   factory ToastUtilPage.fromRouteParas(Map<String, dynamic> json) => ToastUtilPage(
-        getTag: convertT<String?>(json[BasePageStatefulWidget.getTagKey]),
-        // TODO:配置路由参数
-      );
+    getTag: convertT<String?>(json[BasePageStatefulWidget.getTagKey]),
+    // TODO:配置路由参数
+  );
 
   @override
   Map<String, dynamic>? getRouteParas() => {
-        // TODO:配置路由参数
-      };
+    // TODO:配置路由参数
+  };
 
   @override
   String getRouteName() => "/toast_util";
@@ -48,23 +48,24 @@ class _ToastUtilPageState extends BasePageState<ToastUtilPageLogic, ToastUtilPag
         children: [
           const SizedBox(height: 16),
           Switch(
-              value: state.isDark,
-              onChanged: (value) {
-                setState(() {
-                  state.isDark = value;
-                });
-                if (state.isDark) {
-                  Get.changeTheme(ThemeData.dark());
-                } else {
-                  Get.changeTheme(ThemeData.light());
-                }
-              }),
+            value: state.isDark,
+            onChanged: (value) {
+              setState(() {
+                state.isDark = value;
+              });
+              if (state.isDark) {
+                Get.changeTheme(ThemeData.dark());
+              } else {
+                Get.changeTheme(ThemeData.light());
+              }
+            },
+          ),
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
               ToastUtil.show("ToastUtil.show");
             },
-            child: const Text("auto ThemeData.light/dark - ToastUtil.show"),
+            child: const Text("auto ThemeData.light/dark - ToastUtil.show - auto"),
           ),
           const SizedBox(height: 16),
           ElevatedButton(

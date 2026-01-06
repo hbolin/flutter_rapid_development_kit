@@ -11,6 +11,8 @@ class ActionUtil {
   }
 
   /// 处理Action，显示loading -> 成功
+  /// 不允许在action中使用返回的方式，不然Loading Dialog会被关闭
+  /// Get.back(); 或者 Navigator.of(context).pop();
   static Future<bool> dealAction({
     required Future<void> Function() action,
     void Function(dynamic error) onFailed = _onFailed,

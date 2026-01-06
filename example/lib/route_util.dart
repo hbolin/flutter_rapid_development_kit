@@ -1,11 +1,12 @@
 import 'package:example/enum/font_weight_type_page/font_weight_type_page_view.dart';
-import 'package:example/index_page/index_page_view.dart';
+import 'package:example/pages/index_page/index_page_view.dart';
 import 'package:example/pages/tab2_page/tab2_page_view.dart';
 import 'package:example/pages/tab_page/tab_page_view.dart';
 import 'package:example/pages/test_base_page/test_base_page_view.dart';
 import 'package:example/util/action_util_page/action_util_page_view.dart';
 import 'package:example/util/loading_util_page/loading_util_page_view.dart';
 import 'package:example/util/log_util_page/log_util_page_view.dart';
+import 'package:example/util/model_util_page/model_util_page_view.dart';
 import 'package:example/util/shared_preferences_util_page/shared_preferences_util_page_view.dart';
 import 'package:example/util/toast_util_page/toast_util_page_view.dart';
 import 'package:example/util/try_catch_util_page/try_catch_util_page_view.dart';
@@ -128,6 +129,10 @@ class RouteUtil {
     GetPage(
       name: const SharedPreferencesUtilPage().getRouteName(),
       page: () => SharedPreferencesUtilPage.fromRouteParas(Get.parameters),
+    ),
+    GetPage(
+      name: const ModelUtilPage().getRouteName(),
+      page: () => ModelUtilPage.fromRouteParas(Get.parameters),
     ),
   ];
 }

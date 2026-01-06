@@ -1,5 +1,5 @@
 import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('FrdkDateTimeFormat Extension', () {

@@ -11,14 +11,14 @@ class LogUtilPage extends BasePageStatefulWidget {
   });
 
   factory LogUtilPage.fromRouteParas(Map<String, dynamic> json) => LogUtilPage(
-        getTag: convertT<String?>(json[BasePageStatefulWidget.getTagKey]),
-        // TODO:配置路由参数
-      );
+    getTag: convertT<String?>(json[BasePageStatefulWidget.getTagKey]),
+    // TODO:配置路由参数
+  );
 
   @override
   Map<String, dynamic>? getRouteParas() => {
-        // TODO:配置路由参数
-      };
+    // TODO:配置路由参数
+  };
 
   @override
   String getRouteName() => "/log_util";
@@ -45,7 +45,7 @@ class _LogUtilPageState extends BasePageState<LogUtilPageLogic, LogUtilPageState
       ),
       body: Column(
         children: [
-          const SizedBox(height: 16),
+          const SizedBox(height: 16, width: double.infinity),
           ElevatedButton(
             onPressed: () {
               LogUtil.debug("debug info");

@@ -11,14 +11,14 @@ class ActionUtilPage extends BasePageStatefulWidget {
   });
 
   factory ActionUtilPage.fromRouteParas(Map<String, dynamic> json) => ActionUtilPage(
-        getTag: convertT<String?>(json[BasePageStatefulWidget.getTagKey]),
-        // TODO:配置路由参数
-      );
+    getTag: convertT<String?>(json[BasePageStatefulWidget.getTagKey]),
+    // TODO:配置路由参数
+  );
 
   @override
   Map<String, dynamic>? getRouteParas() => {
-        // TODO:配置路由参数
-      };
+    // TODO:配置路由参数
+  };
 
   @override
   String getRouteName() => "/action_util";
@@ -45,12 +45,20 @@ class _ActionUtilPageState extends BasePageState<ActionUtilPageLogic, ActionUtil
       ),
       body: Column(
         children: [
-          const SizedBox(height: 16),
+          const SizedBox(height: 16, width: double.infinity),
           ElevatedButton(
             onPressed: () async {
-              bool isDealSuccess = await ActionUtil.dealAction(action: () async {
-                await Future.delayed(const Duration(seconds: 1));
-              });
+              bool isDealSuccess = await ActionUtil.dealAction(
+                action: () async {
+                  await Future.delayed(const Duration(seconds: 1));
+                  // LogUtil.debug("代码返回？start");
+                  // Get.back();
+                  // Navigator.of(context).pop();
+                  // LogUtil.debug("代码返回？end");
+                  // await Future.delayed(const Duration(seconds: 5));
+                  // LogUtil.debug("代码返回？end2");
+                },
+              );
               LogUtil.debug("isDealSuccess:$isDealSuccess");
             },
             child: const Text("ActionUtil.dealAction"),
@@ -58,10 +66,12 @@ class _ActionUtilPageState extends BasePageState<ActionUtilPageLogic, ActionUtil
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () async {
-              bool isDealSuccess = await ActionUtil.dealAction(action: () async {
-                await Future.delayed(const Duration(seconds: 1));
-                throw "发生异常";
-              });
+              bool isDealSuccess = await ActionUtil.dealAction(
+                action: () async {
+                  await Future.delayed(const Duration(seconds: 1));
+                  throw "发生异常";
+                },
+              );
               LogUtil.debug("isDealSuccess:$isDealSuccess");
             },
             child: const Text("ActionUtil.dealAction 发生异常"),
@@ -69,14 +79,17 @@ class _ActionUtilPageState extends BasePageState<ActionUtilPageLogic, ActionUtil
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () async {
-              bool isDealSuccess = await ActionUtil.dealAction(action: () async {
-                await Future.delayed(const Duration(seconds: 1));
-                throw "发生异常";
-              }, onFailed: (error) {
-                const snackBar = SnackBar(content: Text('发生异常，自行处理异常'));
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              });
-              print("isDealSuccess:$isDealSuccess");
+              bool isDealSuccess = await ActionUtil.dealAction(
+                action: () async {
+                  await Future.delayed(const Duration(seconds: 1));
+                  throw "发生异常";
+                },
+                onFailed: (error) {
+                  final snackBar = SnackBar(content: Text('发生异常，自行处理异常：$error'));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                },
+              );
+              LogUtil.debug("isDealSuccess:$isDealSuccess");
             },
             child: const Text("ActionUtil.dealAction 发生异常，自行处理异常"),
           ),

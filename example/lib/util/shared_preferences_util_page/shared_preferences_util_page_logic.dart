@@ -9,6 +9,7 @@ class SharedPreferencesUtilPageLogic extends BasePageGetxController<SharedPrefer
 
   @override
   Future<void> loadData(bool isLoadCachedData) async {
+    // SharedPreferencesUtil.simpleEncryption = false;
     state.globalAppInfo = await SharedPreferencesUtil.getSerializable("key", GlobalAppInfo());
     state.globalAppInfo = GlobalAppInfo(isFirstInstall: false);
   }

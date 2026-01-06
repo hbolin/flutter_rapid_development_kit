@@ -11,14 +11,14 @@ class TryCatchUtilPage extends BasePageStatefulWidget {
   });
 
   factory TryCatchUtilPage.fromRouteParas(Map<String, dynamic> json) => TryCatchUtilPage(
-        getTag: convertT<String?>(json[BasePageStatefulWidget.getTagKey]),
-        // TODO:配置路由参数
-      );
+    getTag: convertT<String?>(json[BasePageStatefulWidget.getTagKey]),
+    // TODO:配置路由参数
+  );
 
   @override
   Map<String, dynamic>? getRouteParas() => {
-        // TODO:配置路由参数
-      };
+    // TODO:配置路由参数
+  };
 
   @override
   String getRouteName() => "/try_catch_util";
@@ -49,7 +49,7 @@ class _TryCatchUtilPageState extends BasePageState<TryCatchUtilPageLogic, TryCat
           ElevatedButton(
             onPressed: () {
               tryCatchIgnoreError(() {
-                print("tryCatchIgnoreError");
+                LogUtil.debug("tryCatchIgnoreError");
               });
             },
             child: const Text("tryCatchIgnoreError"),
