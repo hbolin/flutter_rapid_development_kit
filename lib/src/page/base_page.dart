@@ -4,24 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rapid_development_kit/src/page/widgets/base_page_default_error_widget.dart';
 import 'package:flutter_rapid_development_kit/src/page/widgets/base_page_default_loading_widget.dart';
 import 'package:flutter_rapid_development_kit/src/page/widgets/base_page_global_config.dart';
-import 'package:flutter_rapid_development_kit/src/util/loading_util.dart';
 import 'package:flutter_rapid_development_kit/src/util/log_util.dart';
 import 'package:flutter_rapid_development_kit/src/util/toast_util.dart';
 import 'package:flutter_rapid_development_kit/src/widget/app_bar_back_button.dart';
 import 'package:flutter_rapid_development_kit/src/widget/cached_loading_body.dart';
 import 'package:get/get.dart';
-
-/// 监听页面跳转的回调，例如didPopNext；didPushNext；didPush；didPop等。
-/// routeObserver需要配置到MaterialApp上，否则监听路由跳转的方法无法生效。
-///
-/// ```dart
-///     MaterialApp(
-///       navigatorObservers: <RouteObserver<ModalRoute<void>>>[
-///         frdkRouteObserver,
-///       ],
-///     );
-/// ```
-final RouteObserver<ModalRoute<void>> frdkRouteObserver = RouteObserver<ModalRoute<void>>();
 
 /// 基于Getx的动态路由编写对应的基础页面。
 abstract class BasePageStatefulWidget extends StatefulWidget {
@@ -123,7 +110,7 @@ abstract class BasePageState<K extends BasePageGetxController<S>, S extends Base
   }
 }
 
-abstract class _BasePageState<T extends StatefulWidget> extends State<T> with RouteAware {
+abstract class _BasePageState<T extends StatefulWidget> extends State<T> {
   @override
   void initState() {
     super.initState();
@@ -131,14 +118,7 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    frdkRouteObserver.subscribe(this, ModalRoute.of(context)!);
-  }
-
-  @override
   void dispose() {
-    frdkRouteObserver.unsubscribe(this);
     super.dispose();
     LogUtil.debug("【销毁页面】:$runtimeType");
   }
@@ -255,22 +235,6 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
   Widget buildDefaultAppBackButton(BuildContext context) {
     return const AppBarBackButton();
   }
-
-  /// Called when the top route has been popped off, and the current route shows up.
-  @override
-  void didPopNext() {}
-
-  /// Called when the current route has been pushed.
-  @override
-  void didPush() {}
-
-  /// Called when the current route has been popped off.
-  @override
-  void didPop() {}
-
-  /// Called when a new route has been pushed, and the current route is no longer visible.
-  @override
-  void didPushNext() {}
 }
 
 /// 基于Getx的基础页面编写对应的基础Controller。
