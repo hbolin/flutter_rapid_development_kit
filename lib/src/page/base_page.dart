@@ -10,6 +10,18 @@ import 'package:flutter_rapid_development_kit/src/widget/app_bar_back_button.dar
 import 'package:flutter_rapid_development_kit/src/widget/cached_loading_body.dart';
 import 'package:get/get.dart';
 
+/// 监听页面跳转的回调，例如didPopNext；didPushNext；didPush；didPop等。
+/// routeObserver需要配置到MaterialApp上，否则监听路由跳转的方法无法生效。
+///
+/// ```dart
+///     MaterialApp(
+///       navigatorObservers: <RouteObserver<ModalRoute<void>>>[
+///         frdkRouteObserver,
+///       ],
+///     );
+/// ```
+final RouteObserver<ModalRoute<void>> frdkRouteObserver = RouteObserver<ModalRoute<void>>();
+
 /// 基于Getx的动态路由编写对应的基础页面。
 abstract class BasePageStatefulWidget extends StatefulWidget {
   static const getTagKey = "g_tag";
@@ -75,13 +87,27 @@ abstract class BasePageState<K extends BasePageGetxController<S>, S extends Base
   }
 
   Widget buildGet(BuildContext context) {
-    return GetBuilder<K>(
-      tag: _getTag,
-      builder: (logic) {
-        return _buildCachedLoadingBody(context, logic, (context, isCachedData) {
-          return buildScaffold(context, _buildAppBarBackButton(context), buildAppBarTitle(context), logic, isCachedData);
-        });
+    return _RouteWatcher(
+      didPush: () {
+        didPush();
       },
+      didPop: () {
+        didPop();
+      },
+      didPushNext: () {
+        didPushNext();
+      },
+      didPopNext: () {
+        didPopNext();
+      },
+      child: GetBuilder<K>(
+        tag: _getTag,
+        builder: (logic) {
+          return _buildCachedLoadingBody(context, logic, (context, isCachedData) {
+            return buildScaffold(context, _buildAppBarBackButton(context), buildAppBarTitle(context), logic, isCachedData);
+          });
+        },
+      ),
     );
   }
 
@@ -89,24 +115,24 @@ abstract class BasePageState<K extends BasePageGetxController<S>, S extends Base
 
   Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, K logic, bool isCachedData);
 
-  @override
-  void didPopNext() {
-    logic.didPopNext();
-  }
-
-  @override
+  @mustCallSuper
   void didPush() {
     logic.didPush();
   }
 
-  @override
+  @mustCallSuper
   void didPop() {
     logic.didPop();
   }
 
-  @override
+  @mustCallSuper
   void didPushNext() {
     logic.didPushNext();
+  }
+
+  @mustCallSuper
+  void didPopNext() {
+    logic.didPopNext();
   }
 }
 
@@ -297,11 +323,6 @@ abstract class BasePageGetxController<S extends BasePageBaseState> extends GetxC
   /// 监听 - 数据重新加载
   void dataReloadListener() {}
 
-  /// Called when the top route has been popped off, and the current route shows up.
-  void didPopNext() {
-    // LogUtil.debug("【页面didPopNext】:$runtimeType");
-  }
-
   /// Called when the current route has been pushed.
   void didPush() {
     // LogUtil.debug("【页面didPush】:$runtimeType");
@@ -315,6 +336,11 @@ abstract class BasePageGetxController<S extends BasePageBaseState> extends GetxC
   /// Called when a new route has been pushed, and the current route is no longer visible.
   void didPushNext() {
     // LogUtil.debug("【页面didPushNext】:$runtimeType");
+  }
+
+  /// Called when the top route has been popped off, and the current route shows up.
+  void didPopNext() {
+    // LogUtil.debug("【页面didPopNext】:$runtimeType");
   }
 }
 
@@ -369,4 +395,71 @@ abstract class BasePageContentState<K extends BasePageGetxController<S>, S exten
   }
 
   Widget buildContent(BuildContext context, K logic, bool isCachedData);
+}
+
+class _RouteWatcher extends StatefulWidget {
+  final VoidCallback didPush;
+  final VoidCallback didPop;
+  final VoidCallback didPushNext;
+  final VoidCallback didPopNext;
+  final Widget child;
+
+  const _RouteWatcher({
+    super.key,
+    required this.didPush,
+    required this.didPop,
+    required this.didPushNext,
+    required this.didPopNext,
+    required this.child,
+  });
+
+  @override
+  State<_RouteWatcher> createState() => _RouteWatcherState();
+}
+
+class _RouteWatcherState extends State<_RouteWatcher> with RouteAware {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // 关键点：此处的依赖只会触发 RouteWatcher 的 rebuild，不会触发父组件
+    frdkRouteObserver.subscribe(this, ModalRoute.of(context)!);
+  }
+
+  @override
+  void dispose() {
+    frdkRouteObserver.unsubscribe(this);
+    super.dispose();
+  }
+
+  /// Called when the top route has been popped off, and the current route shows up.
+  @override
+  void didPopNext() {
+    widget.didPopNext();
+  }
+
+  /// Called when the current route has been pushed.
+  @override
+  void didPush() {
+    widget.didPush();
+  }
+
+  /// Called when the current route has been popped off.
+  @override
+  void didPop() {
+    widget.didPop();
+  }
+
+  /// Called when a new route has been pushed, and the current route is no longer visible.
+  @override
+  void didPushNext() {
+    widget.didPushNext();
+  }
+
+  /// 如果你在 PageA 中直接订阅： PageA 的整个 build 方法（包含你复杂的所有 UI）都会重新跑一遍。
+  /// 如果你用 RouteWatcher 包裹： 只有 RouteWatcher 的 build 会重新跑。它仅仅是返回了 widget.child 的引用。由于 child 是在父组件预先创建好的，RouteWatcher 的重建不会触发 child 内部的 build。
+  @override
+  Widget build(BuildContext context) {
+    // 它只返回子组件，它自己的 build 极快
+    return widget.child;
+  }
 }
