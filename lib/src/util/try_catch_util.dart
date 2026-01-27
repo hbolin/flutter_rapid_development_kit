@@ -6,8 +6,9 @@ import 'package:flutter_rapid_development_kit/src/util/log_util.dart';
 Future<void> tryCatchIgnoreError(Function f, {bool interruptOnDebugModel = true}) async {
   try {
     await f.call();
-  } catch (e) {
+  } catch (e, s) {
     LogUtil.error("$e");
+    LogUtil.error("$s");
     if (kDebugMode && interruptOnDebugModel) {
       assert(false, "$e");
     }

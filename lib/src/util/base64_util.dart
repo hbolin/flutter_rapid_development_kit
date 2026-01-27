@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class CustomCryptoUtil {
+class Base64Util {
   /// 自定义Base64 - 加密
   static String encryptBase64(String src) {
     return base64Url.encode(utf8.encode(src));

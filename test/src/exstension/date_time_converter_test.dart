@@ -1,5 +1,5 @@
 import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('FrdkDateTimeFormat Extension', () {
@@ -33,11 +33,11 @@ void main() {
     });
 
     test('解析空字符串应返回 null', () {
-      expect("".toDateTime(), isNull);
+      expect("".toDateTime(interruptOnDebugModel: false), isNull);
     });
 
     test('解析格式不匹配的字符串应返回 null', () {
-      expect("2023-10-01".toDateTime(format: "yyyy/MM/dd"), isNull);
+      expect("2023-10-01".toDateTime(format: "yyyy/MM/dd", interruptOnDebugModel: false), isNull);
     });
 
     test('解析包含时区的字符串', () {
@@ -47,7 +47,7 @@ void main() {
     });
 
     test('解析无效日期字符串应返回 null', () {
-      expect("2023年02月30日 12时30分45秒".toDateTime(), isNull);
+      expect("2023年02月30日 12时30分45秒".toDateTime(interruptOnDebugModel: false), isNull);
     });
   });
 }

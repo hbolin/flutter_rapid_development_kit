@@ -1,28 +1,25 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rapid_development_kit/src/page/widgets/default_loading_widget.dart';
 
 /// 全局默认的“加载中”的组件实现
 class BasePageDefaultLoadingWidget extends StatelessWidget {
   final bool isPage;
-  final Widget appBackButton;
+  final Widget appBarBackButton;
+  final Widget? appBarTitle;
   final Widget? defaultLoadingWidget;
 
   const BasePageDefaultLoadingWidget({
     super.key,
     required this.isPage,
-    required this.appBackButton,
+    required this.appBarBackButton,
+    required this.appBarTitle,
     this.defaultLoadingWidget,
   });
 
   @override
   Widget build(BuildContext context) {
     Widget? loadingWidget = defaultLoadingWidget;
-    loadingWidget ??= Center(
-      child: CupertinoActivityIndicator(
-        radius: 12,
-        color: Theme.of(context).brightness == Brightness.dark ? const Color(0xFFEBEBF5) : const Color(0xFF3C3C44),
-      ),
-    );
+    loadingWidget ??= const DefaultLoadingWidget();
 
     if (isPage == false) {
       return loadingWidget;
@@ -31,9 +28,12 @@ class BasePageDefaultLoadingWidget extends StatelessWidget {
     final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
     return Scaffold(
       appBar: AppBar(
-        leading: (parentRoute?.impliesAppBarDismissal ?? false) ? appBackButton : null,
+        leading: (parentRoute?.impliesAppBarDismissal ?? false) ? appBarBackButton : null,
+        title: appBarTitle,
       ),
-      body: loadingWidget,
+      body: RepaintBoundary(
+        child: loadingWidget,
+      ),
     );
   }
 }

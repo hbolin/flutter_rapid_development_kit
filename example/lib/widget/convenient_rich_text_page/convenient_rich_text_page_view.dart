@@ -32,28 +32,47 @@ class _ConvenientRichTextPageState extends BasePageState<ConvenientRichTextPageL
   ConvenientRichTextPageLogic initGetxController() => ConvenientRichTextPageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, ConvenientRichTextPageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return const Text("ConvenientRichText");
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, ConvenientRichTextPageLogic logic, bool isCachedData) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: appBarBackButton,
+        title: appBarTitle,
+      ),
       body: Column(
         children: [
           Row(
             children: [
               Expanded(
-                child: ConvenientRichText(textAlign: TextAlign.center, dataList: [
-                  ConvenientRichTextData(
+                child: ConvenientRichText(
+                  textAlign: TextAlign.center,
+                  dataList: [
+                    ConvenientRichTextData(
                       text: "ConvenientRichTextDataConvenientRichTextData",
-                      textStyle: TextStyle(color: Colors.yellow, fontSize: 12),
+                      textStyle: const TextStyle(
+                        color: Colors.tealAccent,
+                        fontSize: 24,
+                      ),
                       onTap: () {
                         print("1111111111");
-                      }),
-                  ConvenientRichTextData(
+                      },
+                    ),
+                    ConvenientRichTextData(
                       text: "xxx",
-                      textStyle: TextStyle(color: Colors.red, fontSize: 14),
+                      textStyle: const TextStyle(
+                        color: Colors.red,
+                        fontSize: 14,
+                      ),
                       onTap: () {
                         print("222222222");
-                      }),
-                ]),
+                      },
+                    ),
+                  ],
+                ),
               ),
             ],
           )

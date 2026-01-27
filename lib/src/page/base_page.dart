@@ -6,7 +6,7 @@ import 'package:flutter_rapid_development_kit/src/page/widgets/base_page_default
 import 'package:flutter_rapid_development_kit/src/page/widgets/base_page_global_config.dart';
 import 'package:flutter_rapid_development_kit/src/util/log_util.dart';
 import 'package:flutter_rapid_development_kit/src/util/toast_util.dart';
-import 'package:flutter_rapid_development_kit/src/widget/app_back_button.dart';
+import 'package:flutter_rapid_development_kit/src/widget/app_bar_back_button.dart';
 import 'package:flutter_rapid_development_kit/src/widget/cached_loading_body.dart';
 import 'package:get/get.dart';
 
@@ -87,42 +87,56 @@ abstract class BasePageState<K extends BasePageGetxController<S>, S extends Base
   }
 
   Widget buildGet(BuildContext context) {
-    return GetBuilder<K>(
-      tag: _getTag,
-      builder: (logic) {
-        return _buildCachedLoadingBody(context, logic, (context, isCachedData) {
-          return buildScaffold(context, logic, isCachedData);
-        });
+    return _RouteWatcher(
+      didPush: () {
+        didPush();
       },
+      didPop: () {
+        didPop();
+      },
+      didPushNext: () {
+        didPushNext();
+      },
+      didPopNext: () {
+        didPopNext();
+      },
+      child: GetBuilder<K>(
+        tag: _getTag,
+        builder: (logic) {
+          return _buildCachedLoadingBody(context, logic, (context, isCachedData) {
+            return buildScaffold(context, _buildAppBarBackButton(context), buildAppBarTitle(context), logic, isCachedData);
+          });
+        },
+      ),
     );
   }
 
   K initGetxController();
 
-  Widget buildScaffold(BuildContext context, K logic, bool isCachedData);
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, K logic, bool isCachedData);
 
-  @override
-  void didPopNext() {
-    logic.didPopNext();
-  }
-
-  @override
+  @mustCallSuper
   void didPush() {
     logic.didPush();
   }
 
-  @override
+  @mustCallSuper
   void didPop() {
     logic.didPop();
   }
 
-  @override
+  @mustCallSuper
   void didPushNext() {
     logic.didPushNext();
   }
+
+  @mustCallSuper
+  void didPopNext() {
+    logic.didPopNext();
+  }
 }
 
-abstract class _BasePageState<T extends StatefulWidget> extends State<T> with RouteAware {
+abstract class _BasePageState<T extends StatefulWidget> extends State<T> {
   @override
   void initState() {
     super.initState();
@@ -130,14 +144,7 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    frdkRouteObserver.subscribe(this, ModalRoute.of(context)!);
-  }
-
-  @override
   void dispose() {
-    frdkRouteObserver.unsubscribe(this);
     super.dispose();
     LogUtil.debug("【销毁页面】:$runtimeType");
   }
@@ -183,57 +190,65 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
 
   /// loading widget 生效优先级：buildCustomLoadingWidget > BasePageGlobalConfig.defaultLoadingWidgetBuilder > buildDefaultLoadingWidget
   Widget _buildLoadingWidget(BuildContext context) {
-    Widget? loadingWidget = buildCustomLoadingWidget(context, isPage(), buildAppBackButton(context));
+    Widget? loadingWidget = buildCustomLoadingWidget(context, isPage(), _buildAppBarBackButton(context), buildAppBarTitle(context));
     if (loadingWidget == null && (BasePageGlobalConfig.maybeOf(context)?.defaultLoadingWidgetBuilder != null)) {
-      loadingWidget = BasePageGlobalConfig.of(context).defaultLoadingWidgetBuilder!(context, isPage(), buildAppBackButton(context));
+      loadingWidget =
+          BasePageGlobalConfig.of(context).defaultLoadingWidgetBuilder!(context, isPage(), _buildAppBarBackButton(context), buildAppBarTitle(context));
     }
     loadingWidget ??= buildDefaultLoadingWidget(context);
     return loadingWidget;
   }
 
-  Widget? buildCustomLoadingWidget(BuildContext context, bool isPage, Widget appBackButton) {
+  Widget? buildCustomLoadingWidget(BuildContext context, bool isPage, Widget appBackButton, Widget? appBarTitle) {
     return null;
   }
 
   /// 默认"加载中"样式
-  @Deprecated("兼容处理，使用buildCustomLoadingWidget来替代")
   Widget buildDefaultLoadingWidget(BuildContext context) {
     return BasePageDefaultLoadingWidget(
       isPage: isPage(),
-      appBackButton: buildAppBackButton(context),
+      appBarBackButton: _buildAppBarBackButton(context),
+      appBarTitle: buildAppBarTitle(context),
     );
   }
 
   /// error widget 生效优先级：buildCustomErrorWidget > BasePageGlobalConfig.defaultErrorWidgetBuilder > buildDefaultErrorWidget
   Widget _buildErrorWidget(BuildContext context, CachedLoadingBodyController controller, dynamic error) {
-    Widget? errorWidget = buildCustomErrorWidget(context, isPage(), buildAppBackButton(context), controller, error);
+    Widget? errorWidget = buildCustomErrorWidget(context, isPage(), _buildAppBarBackButton(context), buildAppBarTitle(context), controller, error);
     if (errorWidget == null && BasePageGlobalConfig.maybeOf(context)?.defaultErrorWidgetBuilder != null) {
-      errorWidget = BasePageGlobalConfig.of(context).defaultErrorWidgetBuilder!(context, isPage(), buildAppBackButton(context), controller, error);
+      errorWidget = BasePageGlobalConfig.of(context).defaultErrorWidgetBuilder!(
+          context, isPage(), _buildAppBarBackButton(context), buildAppBarTitle(context), controller, error);
     }
     errorWidget ??= buildDefaultErrorWidget(context, controller, error);
     return errorWidget;
   }
 
-  Widget? buildCustomErrorWidget(BuildContext context, bool isPage, Widget appBackButton, CachedLoadingBodyController controller, dynamic error) {
+  Widget? buildCustomErrorWidget(
+      BuildContext context, bool isPage, Widget appBackButton, Widget? appBarTitle, CachedLoadingBodyController controller, dynamic error) {
     return null;
   }
 
   /// 加载"加载失败"样式
-  @Deprecated("兼容处理，使用buildCustomErrorWidget来替代")
   Widget buildDefaultErrorWidget(BuildContext context, CachedLoadingBodyController controller, dynamic error) {
     return BasePageDefaultErrorWidget(
       isPage: isPage(),
-      appBackButton: buildAppBackButton(context),
+      appBarBackButton: _buildAppBarBackButton(context),
+      appBarTitle: buildAppBarTitle(context),
       controller: controller,
       error: error,
     );
   }
 
+  /// 记载中和加载错误时的AppBarTitle
+  Widget? buildAppBarTitle(BuildContext context);
+
   /// 返回按钮，正常是要在buildScaffold中返回AppBackButton，为了兼容处理，子类使用buildAppBackButton来使用AppBackButton
   /// 生效优先级：buildCustomAppBackButton > BasePageGlobalConfig.defaultAppBackButton > buildDefaultAppBackButton
-  Widget buildAppBackButton(BuildContext context) {
+  Widget _buildAppBarBackButton(BuildContext context) {
     Widget? appBackButton = buildCustomAppBackButton(context);
-    appBackButton ??= BasePageGlobalConfig.maybeOf(context)?.defaultAppBackButton;
+    if (BasePageGlobalConfig.maybeOf(context)?.defaultAppBarBackButtonBuilder != null) {
+      appBackButton ??= BasePageGlobalConfig.maybeOf(context)!.defaultAppBarBackButtonBuilder!(context);
+    }
     appBackButton ??= buildDefaultAppBackButton(context);
     return appBackButton;
   }
@@ -242,26 +257,10 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> with Ro
     return null;
   }
 
-  @Deprecated("兼容处理，使用buildCustomAppBackButton来替代")
+  /// 默认"返回按钮"样式
   Widget buildDefaultAppBackButton(BuildContext context) {
-    return const AppBackButton();
+    return const AppBarBackButton();
   }
-
-  /// Called when the top route has been popped off, and the current route shows up.
-  @override
-  void didPopNext() {}
-
-  /// Called when the current route has been pushed.
-  @override
-  void didPush() {}
-
-  /// Called when the current route has been popped off.
-  @override
-  void didPop() {}
-
-  /// Called when a new route has been pushed, and the current route is no longer visible.
-  @override
-  void didPushNext() {}
 }
 
 /// 基于Getx的基础页面编写对应的基础Controller。
@@ -324,11 +323,6 @@ abstract class BasePageGetxController<S extends BasePageBaseState> extends GetxC
   /// 监听 - 数据重新加载
   void dataReloadListener() {}
 
-  /// Called when the top route has been popped off, and the current route shows up.
-  void didPopNext() {
-    // LogUtil.debug("【页面didPopNext】:$runtimeType");
-  }
-
   /// Called when the current route has been pushed.
   void didPush() {
     // LogUtil.debug("【页面didPush】:$runtimeType");
@@ -343,6 +337,11 @@ abstract class BasePageGetxController<S extends BasePageBaseState> extends GetxC
   void didPushNext() {
     // LogUtil.debug("【页面didPushNext】:$runtimeType");
   }
+
+  /// Called when the top route has been popped off, and the current route shows up.
+  void didPopNext() {
+    // LogUtil.debug("【页面didPopNext】:$runtimeType");
+  }
 }
 
 /// 基于Getx的基础页面编写对应的基础状态。
@@ -350,4 +349,117 @@ class BasePageBaseState<T extends BasePageStatefulWidget> {
   late T page;
 
   bool isLoadRealDataSuccess = false;
+}
+
+// ------------------------------------------------------------------------------------------------------------------------------------------------
+
+abstract class BasePageContentStatefulWidget extends BasePageStatefulWidget {
+  const BasePageContentStatefulWidget({
+    super.key,
+    required super.getTag,
+  });
+
+  @override
+  String getRoute() {
+    assert(false, "禁止把BasePageContentStatefulWidget配置到路由，请使用BasePageStatefulWidget来配置到路由");
+    return super.getRoute();
+  }
+
+  @override
+  String getRouteName() => "";
+
+  @override
+  Map<String, dynamic>? getRouteParas() => {};
+}
+
+abstract class BasePageContentState<K extends BasePageGetxController<S>, S extends BasePageBaseState<T>, T extends BasePageContentStatefulWidget>
+    extends BasePageState<K, S, T> with AutomaticKeepAliveClientMixin {
+  @override
+  bool isPage() => false;
+
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return super.buildGet(context);
+  }
+
+  @override
+  Widget? buildAppBarTitle(BuildContext context) => null;
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, K logic, bool isCachedData) {
+    return buildContent(context, logic, isCachedData);
+  }
+
+  Widget buildContent(BuildContext context, K logic, bool isCachedData);
+}
+
+class _RouteWatcher extends StatefulWidget {
+  final VoidCallback didPush;
+  final VoidCallback didPop;
+  final VoidCallback didPushNext;
+  final VoidCallback didPopNext;
+  final Widget child;
+
+  const _RouteWatcher({
+    super.key,
+    required this.didPush,
+    required this.didPop,
+    required this.didPushNext,
+    required this.didPopNext,
+    required this.child,
+  });
+
+  @override
+  State<_RouteWatcher> createState() => _RouteWatcherState();
+}
+
+class _RouteWatcherState extends State<_RouteWatcher> with RouteAware {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // 关键点：此处的依赖只会触发 RouteWatcher 的 rebuild，不会触发父组件
+    frdkRouteObserver.subscribe(this, ModalRoute.of(context)!);
+  }
+
+  @override
+  void dispose() {
+    frdkRouteObserver.unsubscribe(this);
+    super.dispose();
+  }
+
+  /// Called when the top route has been popped off, and the current route shows up.
+  @override
+  void didPopNext() {
+    widget.didPopNext();
+  }
+
+  /// Called when the current route has been pushed.
+  @override
+  void didPush() {
+    widget.didPush();
+  }
+
+  /// Called when the current route has been popped off.
+  @override
+  void didPop() {
+    widget.didPop();
+  }
+
+  /// Called when a new route has been pushed, and the current route is no longer visible.
+  @override
+  void didPushNext() {
+    widget.didPushNext();
+  }
+
+  /// 如果你在 PageA 中直接订阅： PageA 的整个 build 方法（包含你复杂的所有 UI）都会重新跑一遍。
+  /// 如果你用 RouteWatcher 包裹： 只有 RouteWatcher 的 build 会重新跑。它仅仅是返回了 widget.child 的引用。由于 child 是在父组件预先创建好的，RouteWatcher 的重建不会触发 child 内部的 build。
+  @override
+  Widget build(BuildContext context) {
+    // 它只返回子组件，它自己的 build 极快
+    return widget.child;
+  }
 }

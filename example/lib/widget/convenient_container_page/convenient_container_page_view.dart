@@ -1,3 +1,4 @@
+import 'package:example/config/app_image_asset.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
 
@@ -32,30 +33,47 @@ class _ConvenientContainerPageState extends BasePageState<ConvenientContainerPag
   ConvenientContainerPageLogic initGetxController() => ConvenientContainerPageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, ConvenientContainerPageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return const Text("ConvenientContainer.convenient");
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, ConvenientContainerPageLogic logic, bool isCachedData) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: appBarBackButton,
+        title: appBarTitle,
+      ),
       body: Column(
         children: [
           ConvenientContainer.convenient(
-            minHeight: 200,
-            minWidth: 200,
-            color: Colors.red,
-            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 30),
+            // minHeight: 200,
+            // minWidth: 200,
+            // minWidth: 200,
+            // minHeight: 200,
+            maxHeight: 200,
+            maxWidth: 200,
+            width: 200,
+            height: 200,
+            // color: Colors.red,
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
             borderColor: Colors.grey,
-            borderWidth: 30,
+            // borderWidth: 30,
             radius: 8,
             gradientAxis: Axis.horizontal,
-            gradientColors: [
-              Colors.red,
-              Colors.yellow,
-            ],
+            // gradientColors: [
+            //   Colors.red,
+            //   Colors.yellow,
+            // ],
             // alignment: Alignment.center,
+            backgroundImageAssetPath: AppImageAsset.icon_demo,
+            backgroundImageBoxFit: BoxFit.fill,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text("///"),
+                // SizedBox(width: 700)
               ],
             ),
           ),

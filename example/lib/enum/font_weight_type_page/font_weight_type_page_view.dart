@@ -32,37 +32,73 @@ class _FontWeightTypePageState extends BasePageState<FontWeightTypePageLogic, Fo
   FontWeightTypePageLogic initGetxController() => FontWeightTypePageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, FontWeightTypePageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return Text("FontWeightType");
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, FontWeightTypePageLogic logic, bool isCachedData) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: appBarBackButton,
+        title: appBarTitle,
+      ),
       body: Column(
         children: [
-          Text(
-            "FontWeightType.light.fontWeight",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeightType.light.fontWeight,
+          ListTile(
+            title: Text(
+              "FontWeightType.light.fontWeight",
+              style: TextStyle(
+                fontWeight: FontWeightType.light.fontWeight,
+              ),
+            ),
+            subtitle: Text(
+              "${FontWeightType.light.fontWeight}",
+              style: TextStyle(
+                fontWeight: FontWeightType.light.fontWeight,
+              ),
             ),
           ),
-          Text(
-            "FontWeightType.regular.fontWeight",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeightType.regular.fontWeight,
+          ListTile(
+            title: Text(
+              "FontWeightType.regular.fontWeight",
+              style: TextStyle(
+                fontWeight: FontWeightType.regular.fontWeight,
+              ),
+            ),
+            subtitle: Text(
+              "${FontWeightType.regular.fontWeight}",
+              style: TextStyle(
+                fontWeight: FontWeightType.regular.fontWeight,
+              ),
             ),
           ),
-          Text(
-            "FontWeightType.medium.fontWeight",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeightType.medium.fontWeight,
+          ListTile(
+            title: Text(
+              "FontWeightType.medium.fontWeight",
+              style: TextStyle(
+                fontWeight: FontWeightType.medium.fontWeight,
+              ),
+            ),
+            subtitle: Text(
+              "${FontWeightType.medium.fontWeight}",
+              style: TextStyle(
+                fontWeight: FontWeightType.medium.fontWeight,
+              ),
             ),
           ),
-          Text(
-            "FontWeightType.semibold.fontWeight",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeightType.semibold.fontWeight,
+          ListTile(
+            title: Text(
+              "FontWeightType.semibold.fontWeight",
+              style: TextStyle(
+                fontWeight: FontWeightType.semibold.fontWeight,
+              ),
+            ),
+            subtitle: Text(
+              "${FontWeightType.semibold.fontWeight}",
+              style: TextStyle(
+                fontWeight: FontWeightType.semibold.fontWeight,
+              ),
             ),
           ),
         ],

@@ -32,16 +32,27 @@ class _CircleImagePageState extends BasePageState<CircleImagePageLogic, CircleIm
   CircleImagePageLogic initGetxController() => CircleImagePageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, CircleImagePageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return const Text("CircleImage");
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, CircleImagePageLogic logic, bool isCachedData) {
     return Scaffold(
-      appBar: AppBar(),
-      body: SingleChildScrollView(
+      appBar: AppBar(
+        leading: appBarBackButton,
+        title: appBarTitle,
+      ),
+      body: const SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(height: 16),
             CircleImage(
               imageUrl: 'http://gips3.baidu.com/it/u=3886271102,3123389489&fm=3028&app=3028&f=JPEG&fmt=auto?w=1280&h=960',
               size: 300,
+              // boxFit: BoxFit.fill,
             ),
+            SizedBox(height: 16),
             CircleImage(
               imageUrl: 'http://gips0.baidu.com/it2/u=3602773692,1512483864&fm=3028&app=3028&f=JPEG&fmt=auto?w=960&h=1280',
               size: 300,
@@ -67,6 +78,36 @@ class _CircleImagePageState extends BasePageState<CircleImagePageLogic, CircleIm
                 ),
               ),
               backgroundColor: Colors.amber,
+            ),
+            SizedBox(height: 16),
+            CircleImage(
+              imageUrl: 'http://gips3.baidu.com/it/u=3886271102,3123389489&fm=3028&app=3028&f=JPEG&fmt=auto?w=1280&h=960',
+              size: 300,
+              boxFit: BoxFit.fill,
+              borderWidth: 8,
+              borderColor: Colors.red,
+              // color: Colors.yellowAccent,
+              // colorBlendMode: BlendMode.difference,
+              backgroundColor: Colors.yellowAccent,
+              placeholder: Center(
+                child: Text(
+                  "Loading",
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 50,
+                  ),
+                ),
+              ),
+              errorWidget: Center(
+                child: Text(
+                  "ERROR",
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 50,
+                  ),
+                ),
+              ),
+              // backgroundColor: Colors.amber,
             ),
           ],
         ),

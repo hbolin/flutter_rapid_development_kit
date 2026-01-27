@@ -1,4 +1,5 @@
-import 'package:flutter_rapid_development_kit/src/util/custom_crypto_util.dart';
+import 'package:flutter_rapid_development_kit/src/util/base64_util.dart';
+import 'package:flutter_rapid_development_kit/src/util/log_util.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// 模型序列化成String，并简单加密存储
@@ -20,21 +21,36 @@ class SharedPreferencesUtil {
     if (value?.isNotEmpty != true) {
       return null;
     }
+    // LogUtil.debug("SharedPreferencesUtil.getSerializable获取到数据，key：$key value：$value");
     var result = serializable._readObjectFromJsonString(value!);
     if (result != null) {
+      assert(result is T, "Failed to read object from JSON string: $result");
       return result as T;
     }
     return null;
   }
 }
 
+/// 如果子类需要使用extends，不能使用implements，不然会报错
+/// 示例代码：
+/// ```dart
+///   @override
+///   SPSerializable readObjectFromJsonString(String jsonString) {
+///     return GlobalAppInfo.fromJson(json.decode(jsonString));
+///   }
+///
+///   @override
+///   String writeObjectToJsonString() {
+///     return json.encode(toJson());
+///   }
+/// ```
 abstract class SPSerializable {
   String _writeObjectToJsonString() {
     var jsonString = writeObjectToJsonString();
     if (SharedPreferencesUtil.simpleEncryption == false) {
       return jsonString;
     }
-    return CustomCryptoUtil.encryptBase64(jsonString);
+    return Base64Util.encryptBase64(jsonString);
   }
 
   SPSerializable? _readObjectFromJsonString(String jsonString) {
@@ -42,7 +58,7 @@ abstract class SPSerializable {
       if (SharedPreferencesUtil.simpleEncryption == false) {
         return readObjectFromJsonString(jsonString);
       }
-      var rawJsonString = CustomCryptoUtil.decryptBase64(jsonString);
+      var rawJsonString = Base64Util.decryptBase64(jsonString);
       return readObjectFromJsonString(rawJsonString);
     } catch (e) {
       assert(false, "Failed to read object from JSON string: $e");

@@ -6,4 +6,6 @@ class LoadingUtilPageState extends BasePageBaseState<LoadingUtilPage> {
   LoadingUtilPageState() {
     ///Initialize variables
   }
+
+  bool isDark = false;
 }

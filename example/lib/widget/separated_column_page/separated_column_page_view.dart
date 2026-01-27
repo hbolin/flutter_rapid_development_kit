@@ -32,21 +32,36 @@ class _SeparatedColumnPageState extends BasePageState<SeparatedColumnPageLogic, 
   SeparatedColumnPageLogic initGetxController() => SeparatedColumnPageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, SeparatedColumnPageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return const Text("SeparatedColumn");
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, SeparatedColumnPageLogic logic, bool isCachedData) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: [
-          SeparatedColumn(
-            itemCount: 10,
-            itemBuilder: (BuildContext context, int index) {
-              return Text("$index");
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return const SizedBox(height: 10);
-            },
-          ),
-        ],
+      appBar: AppBar(
+        leading: appBarBackButton,
+        title: appBarTitle,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SeparatedColumn(
+              itemCount: 10,
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              itemBuilder: (BuildContext context, int index) {
+                return SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: Text("$index"),
+                );
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return const SizedBox(height: 10);
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

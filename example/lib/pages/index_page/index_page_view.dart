@@ -4,6 +4,8 @@ import 'package:example/route_util.dart';
 import 'package:example/util/action_util_page/action_util_page_view.dart';
 import 'package:example/util/loading_util_page/loading_util_page_view.dart';
 import 'package:example/util/log_util_page/log_util_page_view.dart';
+import 'package:example/util/model_util_page/model_util_page_view.dart';
+import 'package:example/util/shared_preferences_util_page/shared_preferences_util_page_view.dart';
 import 'package:example/util/toast_util_page/toast_util_page_view.dart';
 import 'package:example/util/try_catch_util_page/try_catch_util_page_view.dart';
 import 'package:example/widget/cached_loading_body_page/cached_loading_body_page_view.dart';
@@ -55,7 +57,12 @@ class _IndexPageState extends BasePageState<IndexPageLogic, IndexPageState, Inde
   IndexPageLogic initGetxController() => IndexPageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, IndexPageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, IndexPageLogic logic, bool isCachedData) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Test"),
@@ -85,6 +92,18 @@ class _IndexPageState extends BasePageState<IndexPageLogic, IndexPageState, Inde
               title: const Text("LogUtilPage"),
               onTap: () {
                 Get.toNamed(const LogUtilPage().getRoute());
+              },
+            ),
+            ListTile(
+              title: const Text("ModelUtilPage"),
+              onTap: () {
+                Get.toNamed(const ModelUtilPage().getRoute());
+              },
+            ),
+            ListTile(
+              title: const Text("SharedPreferencesUtil"),
+              onTap: () {
+                Get.toNamed(const SharedPreferencesUtilPage().getRoute());
               },
             ),
             ListTile(

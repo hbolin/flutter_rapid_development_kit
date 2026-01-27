@@ -1,3 +1,14 @@
+## 快捷使用
+```Dart
+Future<void> main() async {
+  await ProjectMaker.makeProject(
+    flutterPath: "/Volumes/exmac/env/FlutterSDK/flutter_macos_arm64_3.29.3-stable/bin/flutter",
+    targetProjectDirectoryPath: "/Volumes/exmac/development2/workspace2/flutter2/flutter_streamer",
+    packageName: "com.dy.flutter_streamer",
+  );
+}
+```
+
 ## 使用
 
 ### Step 1 导入package: flutter_rapid_development_kit
@@ -6,12 +17,12 @@
   flutter_rapid_development_kit:
     git:
       url: "https://github.com/hbolin/flutter_rapid_development_kit"
-      ref: "frdk-v3.0.5"
+      ref: "frdk-v3.0.6"
 ```
 
 ### Step 2 安装GetX插件
 
-#### 2.1 安装[my_getx_template](./docs/my_getx_template-3.0.3.jar)插件
+#### 2.1 安装[my_getx_template](./_docs/my_getx_template-3.0.6.jar)插件
 
     2.1.1 新建页面Page
         使用在目录上右键 -> New -> MyGetX -> 输入Page Name
@@ -125,6 +136,13 @@ src
 └───page
 │        base_page.dart
 │   
+└───widgets
+│        base_page_default_error_widget.dart
+│        base_page_default_loading_widget.dart
+│        base_page_global_config.dart
+│        default_error_widget.dart
+│        default_loading_widget.dart
+│   
 └───util
 │        action_util.dart
 │        custom_crypto_util.dart
@@ -136,13 +154,14 @@ src
 │        try_catch_util.dart
 │   
 └───widget
-         app_back_button.dart
+         app_bar_back_button.dart
          cached_loading_body.dart
          circle_image.dart
          column_row_grid_view.dart
          conditional_widget.dart
          convenient_container.dart
          convenient_rich_text.dart
+         default_tab_controller_listener.dart
          image_banner.dart
          list_grid_view.dart
          loading_body.dart
@@ -155,7 +174,7 @@ src
 
 ### Step 7 常用快捷键
 
-#### Step 7.1 导入[IDEA Settings](./docs/settings_0.0.1.zip)设置
+#### Step 7.1 导入[Live Templates Settings](./_docs/live_templates_settings.zip)设置
 
 #### Step 7.2 常用的快捷键
 

@@ -131,6 +131,8 @@ class ConvenientContainer extends Container {
     super.height,
     double? minWidth,
     double? minHeight,
+    double? maxWidth,
+    double? maxHeight,
     super.margin,
     super.transform,
     super.transformAlignment,
@@ -140,6 +142,8 @@ class ConvenientContainer extends Container {
 
     /// 自定义borderRadius，如果有配置该值，则[radius]属性会被覆盖
     BorderRadiusGeometry? customBorderRadius,
+    String? backgroundImageAssetPath,
+    BoxFit backgroundImageBoxFit = BoxFit.fill,
   }) : super(
           decoration: BoxDecoration(
             color: color,
@@ -162,11 +166,19 @@ class ConvenientContainer extends Container {
                     colors: gradientColors,
                   )
                 : null,
+            image: backgroundImageAssetPath?.isNotEmpty == true
+                ? DecorationImage(
+                    image: AssetImage(backgroundImageAssetPath!),
+                    fit: backgroundImageBoxFit,
+                  )
+                : null,
           ),
-          constraints: minWidth != null && minHeight != null
+          constraints: minWidth != null || minHeight != null || maxWidth != null || maxHeight != null
               ? BoxConstraints(
-                  minWidth: minWidth,
-                  minHeight: minHeight,
+                  minWidth: minWidth ?? 0,
+                  minHeight: minHeight ?? 0,
+                  maxWidth: maxWidth ?? double.infinity,
+                  maxHeight: maxHeight ?? double.infinity,
                 )
               : null,
         );

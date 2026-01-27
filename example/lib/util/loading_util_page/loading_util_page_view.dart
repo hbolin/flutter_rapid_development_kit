@@ -11,14 +11,14 @@ class LoadingUtilPage extends BasePageStatefulWidget {
   });
 
   factory LoadingUtilPage.fromRouteParas(Map<String, dynamic> json) => LoadingUtilPage(
-        getTag: convertT<String?>(json[BasePageStatefulWidget.getTagKey]),
-        // TODO:配置路由参数
-      );
+    getTag: convertT<String?>(json[BasePageStatefulWidget.getTagKey]),
+    // TODO:配置路由参数
+  );
 
   @override
   Map<String, dynamic>? getRouteParas() => {
-        // TODO:配置路由参数
-      };
+    // TODO:配置路由参数
+  };
 
   @override
   String getRouteName() => "/loading_util";
@@ -32,37 +32,62 @@ class _LoadingUtilPageState extends BasePageState<LoadingUtilPageLogic, LoadingU
   LoadingUtilPageLogic initGetxController() => LoadingUtilPageLogic();
 
   @override
-  Widget buildScaffold(BuildContext context, LoadingUtilPageLogic logic, bool isCachedData) {
+  Widget? buildAppBarTitle(BuildContext context) {
+    return Text("LoadingUtil");
+  }
+
+  @override
+  Widget buildScaffold(BuildContext context, Widget appBarBackButton, Widget? appBarTitle, LoadingUtilPageLogic logic, bool isCachedData) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: appBarBackButton,
+        title: appBarTitle,
+      ),
       body: Column(
         children: [
-          ElevatedButton(
-            onPressed: () {
-              LoadingUtil.showDialog(context);
-              Future.delayed(const Duration(seconds: 3)).then((value) {
-                LoadingUtil.dismissDialog(context);
+          const SizedBox(height: 16, width: double.infinity),
+          Switch(
+            value: state.isDark,
+            onChanged: (value) {
+              setState(() {
+                state.isDark = value;
               });
+              if (state.isDark) {
+                Get.changeTheme(ThemeData.dark());
+              } else {
+                Get.changeTheme(ThemeData.light());
+              }
             },
-            child: const Text("LoadingUtil.showDialog"),
           ),
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
-              LoadingUtil.showDialog(context, isDark: true);
+              LoadingUtil.showDialog();
               Future.delayed(const Duration(seconds: 3)).then((value) {
-                LoadingUtil.dismissDialog(context);
+                LoadingUtil.dismissDialog();
               });
             },
-            child: const Text("LoadingUtil.showDialog"),
+            child: const Text("LoadingUtil.showDialog auto"),
           ),
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
-              LoadingUtil.showDialog(context, isDark: false);
+              LoadingUtil.showDialog(isDark: true);
               Future.delayed(const Duration(seconds: 3)).then((value) {
-                LoadingUtil.dismissDialog(context);
+                LoadingUtil.dismissDialog();
               });
             },
-            child: const Text("LoadingUtil.showDialog"),
+            child: const Text("LoadingUtil.showDialog isDark: true"),
+          ),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () async {
+              LoadingUtil.showDialog(isDark: false);
+              Future.delayed(const Duration(seconds: 3)).then((value) {
+                LoadingUtil.dismissDialog();
+              });
+            },
+            child: const Text("LoadingUtil.showDialog isDark: false"),
           ),
         ],
       ),

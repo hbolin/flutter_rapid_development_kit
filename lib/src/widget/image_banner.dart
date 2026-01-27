@@ -99,81 +99,90 @@ class _ImageBannerState extends State<ImageBanner> {
       return const SizedBox.shrink(); // 返回一个占位符
     }
 
-    return Stack(
-      children: [
-        CarouselSlider(
-          carouselController: _effectiveController,
-          options: CarouselOptions(
+    Widget child = CarouselSlider(
+      carouselController: _effectiveController,
+      options: CarouselOptions(
+        height: widget.height,
+        viewportFraction: 1.0,
+        enlargeCenterPage: false,
+        autoPlay: widget.autoPlay,
+        autoPlayInterval: widget.autoPlayInterval,
+        autoPlayAnimationDuration: widget.autoPlayAnimationDuration,
+        onPageChanged: (index, reason) {
+          setState(() {
+            _current = index;
+          });
+          if (widget.onPageChanged != null) {
+            widget.onPageChanged!(index);
+          }
+        },
+      ),
+      items: widget.imgUrlList.mapIndexed((index, item) {
+        Widget current = Container(
+          color: Colors.grey[200],
+          child: CachedNetworkImage(
+            imageUrl: item,
             height: widget.height,
-            viewportFraction: 1.0,
-            enlargeCenterPage: false,
-            autoPlay: widget.autoPlay,
-            autoPlayInterval: widget.autoPlayInterval,
-            autoPlayAnimationDuration: widget.autoPlayAnimationDuration,
-            onPageChanged: (index, reason) {
-              setState(() {
-                _current = index;
-              });
-              if (widget.onPageChanged != null) {
-                widget.onPageChanged!(index);
-              }
-            },
+            width: double.infinity,
+            fit: widget.fit,
+            placeholder: widget.placeholder == null ? null : ((context, url) => widget.placeholder!),
+            errorWidget: (context, url, error) => widget.errorWidget,
+            memCacheWidth: widget.cacheWidth,
+            memCacheHeight: widget.cacheHeight,
+            imageRenderMethodForWeb: UniversalPlatform.isWeb ? ImageRenderMethodForWeb.HttpGet : ImageRenderMethodForWeb.HtmlImage,
           ),
-          items: widget.imgUrlList.mapIndexed((index, item) {
-            Widget current = Container(
-              color: Colors.grey[200],
-              child: CachedNetworkImage(
-                imageUrl: item,
-                height: widget.height,
-                width: double.infinity,
-                fit: widget.fit,
-                placeholder: widget.placeholder == null ? null : ((context, url) => widget.placeholder!),
-                errorWidget: (context, url, error) => widget.errorWidget,
-                memCacheWidth: widget.cacheWidth,
-                memCacheHeight: widget.cacheHeight,
-                imageRenderMethodForWeb: UniversalPlatform.isWeb ? ImageRenderMethodForWeb.HttpGet : ImageRenderMethodForWeb.HtmlImage,
-              ),
-            );
+        );
 
-            if (widget.radius != null) {
-              current = ClipRRect(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(widget.radius!),
-                ),
-                child: current,
-              );
+        return GestureDetector(
+          onTap: () {
+            if (widget.onTap != null) {
+              widget.onTap!(index);
             }
+          },
+          child: current,
+        );
+      }).toList(),
+    );
 
-            return GestureDetector(
-              onTap: () {
-                if (widget.onTap != null) {
-                  widget.onTap!(index);
+    if (widget.radius != null) {
+      child = ClipRRect(
+        borderRadius: BorderRadius.all(
+          Radius.circular(widget.radius!),
+        ),
+        child: child,
+      );
+    }
+
+    return RepaintBoundary(
+      child: Stack(
+        children: [
+          child,
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: widget.imgUrlList.asMap().entries.map((entry) {
+                Widget? child;
+                if (widget.paginationBuilder != null) {
+                  child = widget.paginationBuilder!(_effectiveController, entry.key, _current == entry.key);
                 }
-              },
-              child: current,
-            );
-          }).toList(),
-        ),
-        Positioned(
-          left: 0,
-          right: 0,
-          bottom: 0,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: widget.imgUrlList.asMap().entries.map((entry) {
-              if (widget.paginationBuilder != null) {
-                return widget.paginationBuilder!(_effectiveController, entry.key, _current == entry.key);
-              }
-              return GestureDetector(
-                onTap: () => _effectiveController.animateToPage(entry.key),
-                child: DefaultCirclePagination(
+
+                child ??= DefaultCirclePagination(
                   isSelected: _current == entry.key,
-                ),
-              );
-            }).toList(),
+                );
+
+                return GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () => _effectiveController.animateToPage(entry.key),
+                  child: child,
+                );
+              }).toList(),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -200,8 +209,8 @@ class DefaultCirclePagination extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: isSelected
-            ? selectedPaginationColor ?? (Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black).withOpacity(0.9)
-            : unSelectedPaginationColor ?? (Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black).withOpacity(0.4),
+            ? selectedPaginationColor ?? (Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black).withValues(alpha: 0.9)
+            : unSelectedPaginationColor ?? (Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black).withValues(alpha: 0.4),
       ),
     );
   }
@@ -229,8 +238,8 @@ class DefaultRoundedPagination extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: isSelected
-            ? selectedPaginationColor ?? (Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black).withOpacity(0.9)
-            : unSelectedPaginationColor ?? (Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black).withOpacity(0.4),
+            ? selectedPaginationColor ?? (Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black).withValues(alpha: 0.9)
+            : unSelectedPaginationColor ?? (Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black).withValues(alpha: 0.4),
       ),
     );
   }

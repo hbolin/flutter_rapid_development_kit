@@ -11,10 +11,13 @@ class PubspecEditor {
 
     var yamlEditor = _loadPubspecYamlFile(projectPubspecYamlPath);
 
-    yamlEditor.update([
-      'flutter',
-      'assets',
-    ], imageAssetsList.map((element) => "${element.directory.path}/").toList());
+    yamlEditor.update(
+      [
+        'flutter',
+        'assets',
+      ],
+      imageAssetsList.map((element) => "${element.directory.path}/").toList(),
+    );
 
     File(projectPubspecYamlPath).writeAsStringSync(yamlEditor.toString());
   }
@@ -24,27 +27,29 @@ class PubspecEditor {
     List<DirectoryUnderFiles> fontAssetsList = readDirectoryFiles(fontAssetsPath);
     fontAssetsList = fontAssetsList.where((element) => element.files.isNotEmpty).toList();
 
-    var yamlEditor = _loadPubspecYamlFile(projectPubspecYamlPath);
-
     if (fontAssetsList.isEmpty) {
       throw "未配置字体";
     }
+
     if (fontAssetsList.length > 1) {
       throw "仅支持字体文件放到一个文件夹中，或者分开执行该方法";
     }
 
+    var yamlEditor = _loadPubspecYamlFile(projectPubspecYamlPath);
+
     yamlEditor.update(
-        ['flutter', 'fonts'],
-        fontAssetsList.first.files.map((element) {
-          return {
-            "family": element.fileNameWithoutExtension,
-            "fonts": [
-              {
-                "asset": element.path,
-              }
-            ]
-          };
-        }).toList());
+      ['flutter', 'fonts'],
+      fontAssetsList.first.files.map((element) {
+        return {
+          "family": element.fileNameWithoutExtension,
+          "fonts": [
+            {
+              "asset": element.path,
+            }
+          ],
+        };
+      }).toList(),
+    );
 
     File(projectPubspecYamlPath).writeAsStringSync(yamlEditor.toString());
   }

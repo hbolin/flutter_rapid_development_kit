@@ -23,13 +23,13 @@ class RoundedImage extends StatelessWidget {
 
   const RoundedImage({
     super.key,
-    required this.imageUrl,
+    required this.radius,
     required this.width,
     required this.height,
-    required this.radius,
+    required this.imageUrl,
     this.boxFit = BoxFit.cover,
-    this.borderColor,
     this.borderWidth = 1.0,
+    this.borderColor,
     this.placeholder,
     this.errorWidget = const SizedBox.shrink(),
     this.color,
@@ -43,7 +43,7 @@ class RoundedImage extends StatelessWidget {
   });
 
   const RoundedImage.zero({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.width,
     required this.height,
@@ -60,8 +60,7 @@ class RoundedImage extends StatelessWidget {
     this.customBorderRadius,
     this.cacheWidth,
     this.cacheHeight,
-  })  : radius = 0,
-        super(key: key);
+  }) : radius = 0;
 
   @override
   Widget build(BuildContext context) {

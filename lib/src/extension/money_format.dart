@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 
 /// #：表示该位没有数字时填空显示，有则直接显示；出现在小数位部分时，n个#只保留n位有效小数(比如1.00不保留，1.11则保留)
@@ -19,12 +20,15 @@ extension FrdkMoneyStringFormat on String {
   /// 3.345 -> 3.35 (四舍五入)
   /// 3.40 -> 3.4
   /// 3.0 -> 3
-  String? moneyFormat({String format = "0.##"}) {
+  String? moneyFormat({String format = "0.##", bool interruptOnDebugModel = true}) {
     NumberFormat numberFormat = NumberFormat(format);
     try {
       return numberFormat.format(double.parse(this));
     } catch (e) {
-      // assert(false, "无法解析金钱格式: $this, 格式: $format, e: $e");
+      // print("当前模式是否是kDebugMode：$kDebugMode");
+      if (kDebugMode && interruptOnDebugModel) {
+        assert(false, "无法解析金钱格式: $this, 格式: $format, e: $e");
+      }
     }
     return null;
   }
