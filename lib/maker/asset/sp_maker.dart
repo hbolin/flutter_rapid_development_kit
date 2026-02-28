@@ -44,6 +44,6 @@ class ${modelClassName}Util {
   }
 }
 
-main() {
-  SpMaker.makeAndSave(modelClassName: "UserInfoModel");
-}
+// main() {
+//   SpMaker.makeAndSave(modelClassName: "UserInfoModel");
+// }
