@@ -6,7 +6,7 @@ class ActionUtil {
 
   /// 默认的失败的实现
   /// 如果自定义了Error，需要重写toString()方法，写出提示的信息。
-  static _onFailed(dynamic error) {
+  static void _onFailed(dynamic error) {
     ToastUtil.show("$error");
   }
 

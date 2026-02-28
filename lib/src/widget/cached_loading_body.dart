@@ -152,7 +152,7 @@ class _CachedLoadingBodyState extends State<CachedLoadingBody> {
   }
 
   /// 默认"加载中"样式
-  Widget buildDefaultLoadingWidget(context) {
+  Widget buildDefaultLoadingWidget(BuildContext context) {
     return const Center(
       child: CupertinoActivityIndicator(
         radius: 12,

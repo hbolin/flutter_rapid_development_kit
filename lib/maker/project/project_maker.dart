@@ -110,7 +110,7 @@ class ProjectMaker {
     yamLines.insert((yamlMap["dependencies"] as YamlMap).span.end.line, "  flutter_rapid_development_kit: ");
     yamLines.insert((yamlMap["dependencies"] as YamlMap).span.end.line + 1, "    git:");
     yamLines.insert((yamlMap["dependencies"] as YamlMap).span.end.line + 2, "      url: \"https://github.com/hbolin/flutter_rapid_development_kit\"");
-    yamLines.insert((yamlMap["dependencies"] as YamlMap).span.end.line + 3, "      ref: \"v3.0.9\"");
+    yamLines.insert((yamlMap["dependencies"] as YamlMap).span.end.line + 3, "      ref: \"v3.1.0\"");
     yamLines.insert((yamlMap["dependencies"] as YamlMap).span.end.line + 4, "");
 
     // print(yamLines.join("\n"));
@@ -570,10 +570,11 @@ void main() {
   }
 }
 
-Future<void> main() async {
-  await ProjectMaker.makeProject(
-    flutterPath: "/Volumes/exmac/env/FlutterSDK/flutter_macos_arm64_3.35.7-stable/bin/flutter",
-    targetProjectDirectoryPath: "/Volumes/exmac/111/flutter_streamer",
-    packageName: "com.dy.flutter_streamer",
-  );
-}
+// Future<void> main() async {
+//   await ProjectMaker.makeProject(
+//     flutterPath: "/Volumes/exmac/env/FlutterSDK/flutter_macos_arm64_3.38.6-stable/bin/flutter",
+//     targetProjectDirectoryPath: "/Volumes/exmac/projects/geass_system/flutter_stock_analysis_chart",
+//     packageName: "org.geass.flutter_stock_analysis_chart",
+//     needGit: false,
+//   );
+// }

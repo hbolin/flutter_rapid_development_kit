@@ -3,7 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image_platform_interface/cached_network_image_platform_interface.dart';
-import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 export 'package:carousel_slider/carousel_slider.dart';
 

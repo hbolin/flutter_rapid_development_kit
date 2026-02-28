@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 class LogUtil {
@@ -66,7 +65,7 @@ class LogUtil {
   }
 }
 
-extension _ on String {
+extension _String on String {
   /// 将字符串按指定长度分块
   List<String> chunk([int size = 512]) {
     if (isEmpty) {

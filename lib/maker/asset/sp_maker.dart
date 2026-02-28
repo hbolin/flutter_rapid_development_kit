@@ -26,7 +26,7 @@ import 'package:flutter_rapid_development_kit/flutter_rapid_development_kit.dart
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ${modelClassName}Util {
-  static String get _key => CustomCryptoUtil.encryptBase64("${modelClassName}Util_Save_${modelClassName}_Key");
+  static String get _key => Base64Util.encryptBase64("${modelClassName}Util_Save_${modelClassName}_Key");
 
   static Future<void> save$modelClassName($modelClassName ${modelClassName.substring(0, 1).toLowerCase() + modelClassName.substring(1)}) async {
     await SharedPreferencesUtil.setSerializable<$modelClassName>(_key, ${modelClassName.substring(0, 1).toLowerCase() + modelClassName.substring(1)});
@@ -44,6 +44,6 @@ class ${modelClassName}Util {
   }
 }
 
-// main() {
-//   SpMaker.makeAndSave(modelClassName: "UserInfoModel");
-// }
+main() {
+  SpMaker.makeAndSave(modelClassName: "UserInfoModel");
+}
