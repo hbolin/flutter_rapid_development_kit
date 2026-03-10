@@ -170,8 +170,8 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> {
       onCachedLoadingBodyCreated: (CachedLoadingBodyController cachedLoadingBodyController) {
         controller._cachedLoadingBodyController = cachedLoadingBodyController;
       },
-      loadingWidgetBuilder: _buildLoadingWidget,
-      loadFailedWidgetBuilder: _buildErrorWidget,
+      loadingWidgetBuilder: buildLoadingWidget,
+      loadFailedWidgetBuilder: buildErrorWidget,
       cachedDataLoadingListener: controller.cachedDataLoadingListener,
       cachedDataLoadedSuccessListener: controller.cachedDataLoadedSuccessListener,
       cachedDataLoadedFailedListener: controller.cachedDataLoadedFailedListener,
@@ -189,17 +189,21 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> {
   }
 
   /// loading widget 生效优先级：buildCustomLoadingWidget > BasePageGlobalConfig.defaultLoadingWidgetBuilder > buildDefaultLoadingWidget
-  Widget _buildLoadingWidget(BuildContext context) {
+  Widget buildLoadingWidget(BuildContext context) {
     Widget? loadingWidget = buildCustomLoadingWidget(context, isPage(), _buildAppBarBackButton(context), buildAppBarTitle(context));
-    if (loadingWidget == null && (BasePageGlobalConfig.maybeOf(context)?.defaultLoadingWidgetBuilder != null)) {
-      loadingWidget =
-          BasePageGlobalConfig.of(context).defaultLoadingWidgetBuilder!(context, isPage(), _buildAppBarBackButton(context), buildAppBarTitle(context));
-    }
+    loadingWidget ??= buildGlobalLoadingWidget(context, isPage(), _buildAppBarBackButton(context), buildAppBarTitle(context));
     loadingWidget ??= buildDefaultLoadingWidget(context);
     return loadingWidget;
   }
 
   Widget? buildCustomLoadingWidget(BuildContext context, bool isPage, Widget appBackButton, Widget? appBarTitle) {
+    return null;
+  }
+
+  Widget? buildGlobalLoadingWidget(BuildContext context, bool isPage, Widget appBackButton, Widget? appBarTitle) {
+    if (BasePageGlobalConfig.maybeOf(context)?.defaultLoadingWidgetBuilder != null) {
+      return BasePageGlobalConfig.of(context).defaultLoadingWidgetBuilder!(context, isPage, appBackButton, appBarTitle);
+    }
     return null;
   }
 
@@ -213,18 +217,21 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> {
   }
 
   /// error widget 生效优先级：buildCustomErrorWidget > BasePageGlobalConfig.defaultErrorWidgetBuilder > buildDefaultErrorWidget
-  Widget _buildErrorWidget(BuildContext context, CachedLoadingBodyController controller, dynamic error) {
+  Widget buildErrorWidget(BuildContext context, CachedLoadingBodyController controller, dynamic error) {
     Widget? errorWidget = buildCustomErrorWidget(context, isPage(), _buildAppBarBackButton(context), buildAppBarTitle(context), controller, error);
-    if (errorWidget == null && BasePageGlobalConfig.maybeOf(context)?.defaultErrorWidgetBuilder != null) {
-      errorWidget = BasePageGlobalConfig.of(context).defaultErrorWidgetBuilder!(
-          context, isPage(), _buildAppBarBackButton(context), buildAppBarTitle(context), controller, error);
-    }
+    errorWidget ??= buildGlobalErrorWidget(context, isPage(), _buildAppBarBackButton(context), buildAppBarTitle(context), controller, error);
     errorWidget ??= buildDefaultErrorWidget(context, controller, error);
     return errorWidget;
   }
 
-  Widget? buildCustomErrorWidget(
-      BuildContext context, bool isPage, Widget appBackButton, Widget? appBarTitle, CachedLoadingBodyController controller, dynamic error) {
+  Widget? buildCustomErrorWidget(BuildContext context, bool isPage, Widget appBackButton, Widget? appBarTitle, CachedLoadingBodyController controller, dynamic error) {
+    return null;
+  }
+
+  Widget? buildGlobalErrorWidget(BuildContext context, bool isPage, Widget appBackButton, Widget? appBarTitle, CachedLoadingBodyController controller, dynamic error) {
+    if (BasePageGlobalConfig.maybeOf(context)?.defaultErrorWidgetBuilder != null) {
+      return BasePageGlobalConfig.of(context).defaultErrorWidgetBuilder!(context, isPage, appBackButton, appBarTitle, controller, error);
+    }
     return null;
   }
 
