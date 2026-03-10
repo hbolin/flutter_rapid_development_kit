@@ -14,6 +14,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BasePageGlobalConfig(
+      defaultLoadingWidgetBuilder: (BuildContext context, bool isPage, Widget appBarBackButton, Widget? appBarTitle) {
+        return Scaffold(
+          body: Text("全局的加载"),
+        );
+      },
+      defaultErrorWidgetBuilder: (BuildContext context, bool isPage, Widget appBarBackButton, Widget? appBarTitle, CachedLoadingBodyController controller, dynamic error) {
+        return Scaffold(
+          body: Text("全局的异常"),
+        );
+      },
       child: GetMaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(

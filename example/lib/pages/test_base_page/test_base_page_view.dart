@@ -76,35 +76,35 @@ class _TestBasePageState extends BasePageState<TestBasePageLogic, TestBasePageSt
     // );
   }
 
-  @override
-  Widget? buildCustomErrorWidget(BuildContext context, bool isPage, Widget appBackButton, Widget? appBarTitle, CachedLoadingBodyController controller, error) {
-    return Container(
-      color: Colors.amber,
-      child: DefaultErrorWidget(
-        error: "$error",
-        onTap: () {
-          controller.reloadData();
-        },
-      ),
-    );
-    return BasePageDefaultErrorWidget(
-      isPage: isPage,
-      appBarBackButton: appBackButton,
-      appBarTitle: appBarTitle,
-      controller: controller,
-      error: error,
-      defaultErrorWidget: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onTap: () {
-          controller.reloadData();
-        },
-        child: Center(
-          child: Text(
-            "加载错误!!!:$error", // 这里会涉及到多语言，所以不写死错误信息，直接由error显示出来
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
-        ),
-      ),
-    );
-  }
+  // @override
+  // Widget? buildCustomErrorWidget(BuildContext context, bool isPage, Widget appBackButton, Widget? appBarTitle, CachedLoadingBodyController controller, error) {
+  //   return Container(
+  //     color: Colors.amber,
+  //     child: DefaultErrorWidget(
+  //       error: "$error",
+  //       onTap: () {
+  //         controller.reloadData();
+  //       },
+  //     ),
+  //   );
+  //   return BasePageDefaultErrorWidget(
+  //     isPage: isPage,
+  //     appBarBackButton: appBackButton,
+  //     appBarTitle: appBarTitle,
+  //     controller: controller,
+  //     error: error,
+  //     defaultErrorWidget: GestureDetector(
+  //       behavior: HitTestBehavior.opaque,
+  //       onTap: () {
+  //         controller.reloadData();
+  //       },
+  //       child: Center(
+  //         child: Text(
+  //           "加载错误!!!:$error", // 这里会涉及到多语言，所以不写死错误信息，直接由error显示出来
+  //           style: Theme.of(context).textTheme.bodySmall,
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 }
