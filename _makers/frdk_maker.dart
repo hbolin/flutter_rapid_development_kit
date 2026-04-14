@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter_rapid_development_kit/maker/base/read_directory_files.dart';
+import 'package:flutter_rapid_development_maker/flutter_rapid_development_maker.dart';
 
 /// 将lib/src的都导出到[flutter_rapid_development_kit.dart]文件中
 Future<void> main() async {

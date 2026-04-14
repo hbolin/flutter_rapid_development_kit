@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rapid_development_kit/src/util/log_util.dart';
 import 'package:get/get.dart';
+
+import 'log_util.dart';
 
 /// 加载中的工具类，一般用来用户动作类型的处理
 class LoadingUtil {

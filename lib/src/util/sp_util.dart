@@ -1,6 +1,6 @@
-import 'package:flutter_rapid_development_kit/src/util/base64_util.dart';
-import 'package:flutter_rapid_development_kit/src/util/log_util.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'base64_util.dart';
 
 /// 模型序列化成String，并简单加密存储
 /// 模型需要继承[SPSerializable]
@@ -21,7 +21,6 @@ class SharedPreferencesUtil {
     if (value?.isNotEmpty != true) {
       return null;
     }
-    // LogUtil.debug("SharedPreferencesUtil.getSerializable获取到数据，key：$key value：$value");
     var result = serializable._readObjectFromJsonString(value!);
     if (result != null) {
       assert(result is T, "Failed to read object from JSON string: $result");

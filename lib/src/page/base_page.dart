@@ -1,14 +1,15 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rapid_development_kit/src/page/widgets/base_page_default_error_widget.dart';
-import 'package:flutter_rapid_development_kit/src/page/widgets/base_page_default_loading_widget.dart';
-import 'package:flutter_rapid_development_kit/src/page/widgets/base_page_global_config.dart';
-import 'package:flutter_rapid_development_kit/src/util/log_util.dart';
-import 'package:flutter_rapid_development_kit/src/util/toast_util.dart';
-import 'package:flutter_rapid_development_kit/src/widget/app_bar_back_button.dart';
-import 'package:flutter_rapid_development_kit/src/widget/cached_loading_body.dart';
 import 'package:get/get.dart';
+
+import '../util/log_util.dart';
+import '../util/toast_util.dart';
+import '../widget/app_bar_back_button.dart';
+import '../widget/cached_loading_body.dart';
+import 'widgets/base_page_default_error_widget.dart';
+import 'widgets/base_page_default_loading_widget.dart';
+import 'widgets/base_page_global_config.dart';
 
 /// 监听页面跳转的回调，例如didPopNext；didPushNext；didPush；didPop等。
 /// routeObserver需要配置到MaterialApp上，否则监听路由跳转的方法无法生效。
@@ -72,6 +73,12 @@ abstract class BasePageState<K extends BasePageGetxController<S>, S extends Base
     state.page = widget;
     super.initState();
     logic.onInitState();
+  }
+
+  @override
+  void dispose() {
+    Get.delete<K>(tag: _getTag);
+    super.dispose();
   }
 
   @override
@@ -153,8 +160,7 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> {
   bool isPage() => true;
 
   /// Scaffold Body集成CachedLoadingBody用来管理页面加载状态的处理：加载中 -> 加载成功/加载失败
-  Widget _buildCachedLoadingBody(
-      BuildContext context, BasePageGetxController controller, Widget Function(BuildContext context, bool isCachedData) scaffoldBuilder) {
+  Widget _buildCachedLoadingBody(BuildContext context, BasePageGetxController controller, Widget Function(BuildContext context, bool isCachedData) scaffoldBuilder) {
     return CachedLoadingBody(
       cachedDataLoader: controller.needLoadCachedData
           ? () async {
@@ -246,7 +252,7 @@ abstract class _BasePageState<T extends StatefulWidget> extends State<T> {
     );
   }
 
-  /// 记载中和加载错误时的AppBarTitle
+  /// 加载中和加载错误时的AppBarTitle
   Widget? buildAppBarTitle(BuildContext context);
 
   /// 返回按钮，正常是要在buildScaffold中返回AppBackButton，为了兼容处理，子类使用buildAppBackButton来使用AppBackButton
@@ -379,8 +385,7 @@ abstract class BasePageContentStatefulWidget extends BasePageStatefulWidget {
   Map<String, dynamic>? getRouteParas() => {};
 }
 
-abstract class BasePageContentState<K extends BasePageGetxController<S>, S extends BasePageBaseState<T>, T extends BasePageContentStatefulWidget>
-    extends BasePageState<K, S, T> with AutomaticKeepAliveClientMixin {
+abstract class BasePageContentState<K extends BasePageGetxController<S>, S extends BasePageBaseState<T>, T extends BasePageContentStatefulWidget> extends BasePageState<K, S, T> with AutomaticKeepAliveClientMixin {
   @override
   bool isPage() => false;
 

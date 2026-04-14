@@ -73,7 +73,7 @@ class _IndexPageState extends BasePageState<IndexPageLogic, IndexPageState, Inde
             ListTile(
               title: const Text("FontWeightTypePage"),
               onTap: () {
-                Get.toNamed(const FontWeightTypePage().getRoute());
+                Get.toNamed(const FontWeightTypePage(getTag: "_tag").getRoute());
               },
             ),
             ListTile(

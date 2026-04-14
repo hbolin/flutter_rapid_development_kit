@@ -1,4 +1,6 @@
-import 'package:flutter_rapid_development_kit/flutter_rapid_development_maker.dart';
+import 'dart:io';
+
+import 'package:flutter_rapid_development_maker/flutter_rapid_development_maker.dart';
 
 void main() {
   ImageAssetMaker.makeImageAssetToAssetClass(
@@ -6,4 +8,5 @@ void main() {
     targetFile: 'lib/config/app_image_asset.dart',
     className: 'AppImageAsset',
   );
+  // PubspecEditor.updateImageAssetsNode("assets/images", "${Directory.current.path}/pubspec.yaml");
 }

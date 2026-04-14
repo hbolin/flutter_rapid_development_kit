@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rapid_development_kit/src/widget/cached_loading_body.dart';
+
+import '../../widget/cached_loading_body.dart';
 
 /// 基础页面的全局配置
 class BasePageGlobalConfig extends InheritedWidget {
@@ -10,9 +11,7 @@ class BasePageGlobalConfig extends InheritedWidget {
   final Widget? Function(BuildContext context, bool isPage, Widget appBarBackButton, Widget? appBarTitle)? defaultLoadingWidgetBuilder;
 
   /// 全局默认的“加载错误”的组件
-  final Widget? Function(
-          BuildContext context, bool isPage, Widget appBarBackButton, Widget? appBarTitle, CachedLoadingBodyController controller, dynamic error)?
-      defaultErrorWidgetBuilder;
+  final Widget? Function(BuildContext context, bool isPage, Widget appBarBackButton, Widget? appBarTitle, CachedLoadingBodyController controller, dynamic error)? defaultErrorWidgetBuilder;
 
   const BasePageGlobalConfig({
     super.key,
@@ -34,8 +33,6 @@ class BasePageGlobalConfig extends InheritedWidget {
 
   @override
   bool updateShouldNotify(BasePageGlobalConfig oldWidget) {
-    return defaultAppBarBackButtonBuilder != oldWidget.defaultAppBarBackButtonBuilder ||
-        defaultLoadingWidgetBuilder != oldWidget.defaultLoadingWidgetBuilder ||
-        defaultErrorWidgetBuilder != oldWidget.defaultErrorWidgetBuilder;
+    return defaultAppBarBackButtonBuilder != oldWidget.defaultAppBarBackButtonBuilder || defaultLoadingWidgetBuilder != oldWidget.defaultLoadingWidgetBuilder || defaultErrorWidgetBuilder != oldWidget.defaultErrorWidgetBuilder;
   }
 }

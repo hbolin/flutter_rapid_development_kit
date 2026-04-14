@@ -1,5 +1,5 @@
-import 'package:flutter_rapid_development_kit/src/util/loading_util.dart';
-import 'package:flutter_rapid_development_kit/src/util/toast_util.dart';
+import 'loading_util.dart';
+import 'toast_util.dart';
 
 class ActionUtil {
   const ActionUtil._();

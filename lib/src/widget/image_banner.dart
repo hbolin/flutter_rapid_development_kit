@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cached_network_image_platform_interface/cached_network_image_platform_interface.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:cached_network_image_platform_interface/cached_network_image_platform_interface.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 export 'package:carousel_slider/carousel_slider.dart';

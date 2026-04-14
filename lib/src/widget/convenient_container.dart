@@ -22,13 +22,13 @@ class ConvenientContainer extends Container {
     super.clipBehavior = Clip.none,
     this.onTap,
   }) : super(
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(
-              radius,
-            ),
-          ),
-        );
+         decoration: BoxDecoration(
+           color: color,
+           borderRadius: BorderRadius.circular(
+             radius,
+           ),
+         ),
+       );
 
   /// 设置边框颜色
   ConvenientContainer.border({
@@ -50,17 +50,17 @@ class ConvenientContainer extends Container {
     super.clipBehavior = Clip.none,
     this.onTap,
   }) : super(
-          decoration: BoxDecoration(
-            color: color,
-            border: Border.all(
-              color: borderColor,
-              width: borderWidth,
-            ),
-            borderRadius: BorderRadius.circular(
-              radius,
-            ),
-          ),
-        );
+         decoration: BoxDecoration(
+           color: color,
+           border: Border.all(
+             color: borderColor,
+             width: borderWidth,
+           ),
+           borderRadius: BorderRadius.circular(
+             radius,
+           ),
+         ),
+       );
 
   /// 渐变色，仅支持 [Axis.horizontal] 和 [Axis.vertical] 方向
   /// 需要支持其他方向，还是使用[Container]来完成
@@ -81,14 +81,14 @@ class ConvenientContainer extends Container {
     super.clipBehavior = Clip.none,
     this.onTap,
   }) : super(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: gradientAxis == Axis.horizontal ? Alignment.centerLeft : Alignment.topCenter,
-              end: gradientAxis == Axis.horizontal ? Alignment.centerRight : Alignment.bottomCenter,
-              colors: gradientColors,
-            ),
-          ),
-        );
+         decoration: BoxDecoration(
+           gradient: LinearGradient(
+             begin: gradientAxis == Axis.horizontal ? Alignment.centerLeft : Alignment.topCenter,
+             end: gradientAxis == Axis.horizontal ? Alignment.centerRight : Alignment.bottomCenter,
+             colors: gradientColors,
+           ),
+         ),
+       );
 
   /// 设置最小的宽高
   ConvenientContainer.minWidthHeight({
@@ -109,11 +109,11 @@ class ConvenientContainer extends Container {
     super.clipBehavior = Clip.none,
     this.onTap,
   }) : super(
-          constraints: BoxConstraints(
-            minWidth: minWidth,
-            minHeight: minHeight,
-          ),
-        );
+         constraints: BoxConstraints(
+           minWidth: minWidth,
+           minHeight: minHeight,
+         ),
+       );
 
   /// 支持设置以上所有效果的快捷设置
   ConvenientContainer.convenient({
@@ -145,43 +145,44 @@ class ConvenientContainer extends Container {
     String? backgroundImageAssetPath,
     BoxFit backgroundImageBoxFit = BoxFit.fill,
   }) : super(
-          decoration: BoxDecoration(
-            color: color,
-            border: borderColor != null
-                ? Border.all(
-                    color: borderColor,
-                    width: borderWidth,
-                  )
-                : null,
-            borderRadius: customBorderRadius ??
-                (radius != null
-                    ? BorderRadius.circular(
-                        radius,
-                      )
-                    : null),
-            gradient: gradientColors != null
-                ? LinearGradient(
-                    begin: gradientAxis == Axis.horizontal ? Alignment.centerLeft : Alignment.topCenter,
-                    end: gradientAxis == Axis.horizontal ? Alignment.centerRight : Alignment.bottomCenter,
-                    colors: gradientColors,
-                  )
-                : null,
-            image: backgroundImageAssetPath?.isNotEmpty == true
-                ? DecorationImage(
-                    image: AssetImage(backgroundImageAssetPath!),
-                    fit: backgroundImageBoxFit,
-                  )
-                : null,
-          ),
-          constraints: minWidth != null || minHeight != null || maxWidth != null || maxHeight != null
-              ? BoxConstraints(
-                  minWidth: minWidth ?? 0,
-                  minHeight: minHeight ?? 0,
-                  maxWidth: maxWidth ?? double.infinity,
-                  maxHeight: maxHeight ?? double.infinity,
-                )
-              : null,
-        );
+         decoration: BoxDecoration(
+           color: color,
+           border: borderColor != null
+               ? Border.all(
+                   color: borderColor,
+                   width: borderWidth,
+                 )
+               : null,
+           borderRadius:
+               customBorderRadius ??
+               (radius != null
+                   ? BorderRadius.circular(
+                       radius,
+                     )
+                   : null),
+           gradient: gradientColors != null
+               ? LinearGradient(
+                   begin: gradientAxis == Axis.horizontal ? Alignment.centerLeft : Alignment.topCenter,
+                   end: gradientAxis == Axis.horizontal ? Alignment.centerRight : Alignment.bottomCenter,
+                   colors: gradientColors,
+                 )
+               : null,
+           image: backgroundImageAssetPath?.isNotEmpty == true
+               ? DecorationImage(
+                   image: AssetImage(backgroundImageAssetPath!),
+                   fit: backgroundImageBoxFit,
+                 )
+               : null,
+         ),
+         constraints: minWidth != null || minHeight != null || maxWidth != null || maxHeight != null
+             ? BoxConstraints(
+                 minWidth: minWidth ?? 0,
+                 minHeight: minHeight ?? 0,
+                 maxWidth: maxWidth ?? double.infinity,
+                 maxHeight: maxHeight ?? double.infinity,
+               )
+             : null,
+       );
 
   @override
   Widget build(BuildContext context) {

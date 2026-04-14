@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rapid_development_kit/src/widget/separated_column.dart';
+
+import 'separated_column.dart';
 
 /// 使用Column和Row来模拟GridView，这样子高度可以自适应高度
 /// 类似的组件[ListGridView]

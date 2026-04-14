@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rapid_development_kit/src/util/log_util.dart';
-import 'package:flutter_rapid_development_kit/src/util/toast_util.dart';
 import 'package:synchronized/synchronized.dart';
+
+import '../util/log_util.dart';
+import '../util/toast_util.dart';
 
 /// 默认的加载数据失败的处理方式。
 /// 如果加载缓存数据成功，但是加载正常数据失败，需要使用Toast提示下。
@@ -266,7 +267,6 @@ class _CachedLoadingContentState extends State<_CachedLoadingContent> {
           if (success) {
             controller.add(_loadDataSuccessLabel);
           }
-          await controller.close();
         } finally {
           await controller.close();
         }

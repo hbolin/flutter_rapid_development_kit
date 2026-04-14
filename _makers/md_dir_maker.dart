@@ -1,5 +1,5 @@
 import 'package:collection/collection.dart';
-import 'package:flutter_rapid_development_kit/maker/base/read_directory_files.dart';
+import 'package:flutter_rapid_development_maker/flutter_rapid_development_maker.dart';
 
 void main() {
   List<DirectoryUnderFiles> libs = readDirectoryFiles("lib/src");

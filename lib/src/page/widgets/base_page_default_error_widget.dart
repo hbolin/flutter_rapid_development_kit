@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rapid_development_kit/src/page/widgets/default_error_widget.dart';
-import 'package:flutter_rapid_development_kit/src/widget/cached_loading_body.dart';
+
+import '../../widget/cached_loading_body.dart';
+import 'default_error_widget.dart';
 
 /// 全局默认的“错误”的组件实现
 class BasePageDefaultErrorWidget extends StatelessWidget {

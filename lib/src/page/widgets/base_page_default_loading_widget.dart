@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rapid_development_kit/src/page/widgets/default_loading_widget.dart';
+
+import 'default_loading_widget.dart';
 
 /// 全局默认的“加载中”的组件实现
 class BasePageDefaultLoadingWidget extends StatelessWidget {
