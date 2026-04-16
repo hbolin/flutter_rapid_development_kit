@@ -143,6 +143,7 @@ class ConvenientContainer extends Container {
     /// 自定义borderRadius，如果有配置该值，则[radius]属性会被覆盖
     BorderRadiusGeometry? customBorderRadius,
     String? backgroundImageAssetPath,
+    AssetBundle? backgroundImageAssetBundle,
     BoxFit backgroundImageBoxFit = BoxFit.fill,
   }) : super(
          decoration: BoxDecoration(
@@ -169,7 +170,10 @@ class ConvenientContainer extends Container {
                : null,
            image: backgroundImageAssetPath?.isNotEmpty == true
                ? DecorationImage(
-                   image: AssetImage(backgroundImageAssetPath!),
+                   image: AssetImage(
+                     backgroundImageAssetPath!,
+                     bundle: backgroundImageAssetBundle,
+                   ),
                    fit: backgroundImageBoxFit,
                  )
                : null,
