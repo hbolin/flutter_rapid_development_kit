@@ -30,3 +30,7 @@ build/
 
 .flutter-plugins
 .flutter-plugins-dependencies
+
+.claude
+skills-lock.json
+_temp
