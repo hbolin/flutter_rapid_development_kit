@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.10.4
+  sdk: ^3.12.1
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -36,26 +36,18 @@ dependencies:
   cupertino_icons: ^1.0.8
 
   flutter_rapid_development_kit:
-    path: ../
-
-  # https://pub-web.flutter-io.cn/packages/google_fonts
-  google_fonts: ^6.2.1
+    path: ../../flutter_rapid_development_kit-frdk-v3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  flutter_rapid_development_maker:
-    git:
-      url: "https://github.com/hbolin/flutter_rapid_development_maker"
-      ref: "v1.0.1"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -98,23 +90,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
-  assets:
-    - assets/images/
-    - assets/images/jpgs/
-    - assets/images/pngs/
-  fonts:
-    - family: DIN-BOLDITALIC
-      fonts:
-        - asset: assets/fonts/DIN-BOLDITALIC.OTF
-    - family: PingFang
-      fonts:
-        - asset: assets/fonts/PingFang.ttc
-    - family: PingFang SC
-      fonts:
-        - asset: assets/fonts/PingFang SC.ttf
-    - family: Vivaldi
-      fonts:
-        - asset: assets/fonts/Vivaldi.ttf
-    - family: iconfont
-      fonts:
-        - asset: assets/fonts/iconfont.ttf

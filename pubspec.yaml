@@ -1,49 +1,32 @@
 name: flutter_rapid_development_kit
-description: "created based on flutter 3.38.5-stable version"
+description: "Created based on the flutter_macos_arm64_3.44.1-stable version"
 version: 0.0.1
 homepage:
 
 environment:
-  sdk: ^3.10.4
+  sdk: ^3.12.1
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  # https://pub-web.flutter-io.cn/packages/intl
-  intl: any
+  # https://pub.dev/packages/flutter_riverpod
+  flutter_riverpod: 3.3.1
 
-  # https://pub-web.flutter-io.cn/packages/get
-  get: 4.7.3
+  # https://pub.dev/packages/go_router
+  go_router: 17.3.0
 
-  # https://pub-web.flutter-io.cn/packages/universal_platform
-  universal_platform: 1.1.0
-
-  # https://pub-web.flutter-io.cn/packages/fluttertoast
-  fluttertoast: 9.0.0
-
-  # https://pub-web.flutter-io.cn/packages/cached_network_image
-  cached_network_image: 3.4.1
-
-  # https://pub.flutter-io.cn/packages/carousel_slider
-  carousel_slider: 5.1.1
-
-  # https://pub-web.flutter-io.cn/packages/shared_preferences
-  shared_preferences: 2.5.5
-
-  # https://pub-web.flutter-io.cn/packages/synchronized
-  synchronized: 3.4.0
+  # https://pub.dev/packages/synchronized
+  synchronized: 3.4.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
 
-  flutter_rapid_development_maker:
-    git:
-      url: "https://github.com/hbolin/flutter_rapid_development_maker"
-      ref: "v1.0.1"
+  # https://pub.dev/packages/checks
+  checks: ^0.3.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

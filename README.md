@@ -1,181 +1,39 @@
-## 快捷使用
-```Dart
-Future<void> main() async {
-  await ProjectMaker.makeProject(
-    flutterPath: "/Volumes/exmac/env/FlutterSDK/flutter_macos_arm64_3.29.3-stable/bin/flutter",
-    targetProjectDirectoryPath: "/Volumes/exmac/development2/workspace2/flutter2/flutter_streamer",
-    packageName: "com.dy.flutter_streamer",
-  );
-}
-```
+<!--
+This README describes the package. If you publish this package to pub.dev,
+this README's contents appear on the landing page for your package.
 
-## 使用
+For information about how to write a good package README, see the guide for
+[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
 
-### Step 1 导入package: flutter_rapid_development_kit
+For general information about developing packages, see the Dart guide for
+[creating packages](https://dart.dev/guides/libraries/create-packages)
+and the Flutter guide for
+[developing packages and plugins](https://flutter.dev/to/develop-packages).
+-->
 
-```yaml
-  flutter_rapid_development_kit:
-    git:
-      url: "https://github.com/hbolin/flutter_rapid_development_kit"
-      ref: "frdk-v3.0.6"
-```
+TODO: Put a short description of the package here that helps potential users
+know whether this package might be useful for them.
 
-### Step 2 安装GetX插件
+## Features
 
-#### 2.1 安装[my_getx_template](./_docs/my_getx_template-3.0.6.jar)插件
+TODO: List what your package can do. Maybe include images, gifs, or videos.
 
-    2.1.1 新建页面Page
-        使用在目录上右键 -> New -> MyGetX -> 输入Page Name
+## Getting started
 
-### Step 3 配置页面跳转监听
+TODO: List prerequisites and provide or point to information on how to
+start using the package.
 
-将`MaterialApp`修改成`GetMaterialApp`;
+## Usage
 
-监听页面跳转的回调，例如`didPopNext`；`didPushNext`；`didPush`；`didPop`等。
-需要把`frdkRouteObserver`配置到`GetMaterialApp`上，否则监听路由跳转的方法无法生效。
+TODO: Include short and useful examples for package users. Add longer examples
+to `/example` folder.
 
 ```dart
-GetMaterialApp(
-  navigatorObservers: <RouteObserver<ModalRoute<void>>>[
-    frdkRouteObserver,
-  ],
-);
+const like = 'sample';
 ```
 
-### Step 4 配置路由
+## Additional information
 
-#### Step 4.1 编写路由类`route_util`
-
-```dart
-class RouteUtil {
-  static String initialRoute = '/';
-
-  static final List<GetPage> initialPages = [
-    GetPage(
-      name: initialRoute,
-      page: () => IndexPage.fromRouteParas(Get.parameters),
-    ),
-    GetPage(
-      name: const TestToastUtil2Page().getRouteName(),
-      page: () => TestToastUtil2Page.fromRouteParas(Get.parameters),
-    ),
-  ];
-}
-```
-
-#### Step 4.2 路由配置到GetMaterialApp
-
-```dart
-GetMaterialApp(
-  // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-  initialRoute: RouteUtil.initialRoute,
-  getPages: RouteUtil.initialPages,
-);
-```
-
-### Step 5 使用生成器
-
-#### Step 5.1 [字体资源生成器](example/makers/font_assets_runner.dart)
-
-```dart
-import 'package:flutter_rapid_development_kit/flutter_rapid_development_maker.dart';
-
-void main() {
-  FontAssetMaker.makeFontAssetToFontClass(
-    directoryPath: "assets/fonts",
-    targetFile: 'lib/config/app_font_family_asset.dart',
-    className: 'AppFontFamilyAsset',
-  );
-}
-```
-
-#### Step 5.2 [图片资源生成器](example/makers/image_assets_runner.dart)
-
-```dart
-import 'package:flutter_rapid_development_kit/flutter_rapid_development_maker.dart';
-
-void main() {
-  ImageAssetMaker.makeImageAssetToAssetClass(
-    directoryPath: "assets/images",
-    targetFile: 'lib/config/app_image_asset.dart',
-    className: 'AppImageAsset',
-  );
-}
-```
-
-#### Step 5.3 [iconfont资源生成静态类](example/makers/iconfont_assets_runner.dart)
-
-从[iconfont网站](https://www.iconfont.cn/)下载的资源。
-
-```dart
-import 'package:flutter_rapid_development_kit/flutter_rapid_development_maker.dart';
-
-void main() {
-  IconFontAssetMaker.makeIconFontClass(
-    directoryPath: "makers/src/font_2084616_ucedulxxvik",
-    targetFile: 'lib/config/icon_font_asset.dart',
-    className: 'IconFontAsset',
-  );
-}
-```
-
-### Step 6 目录结构
-
-```
-src
-│
-└───enum
-│        font_weight_type.dart
-│   
-└───extension
-│        date_time_converter.dart
-│        list_extensions.dart
-│        money_format.dart
-│        string_number_converter.dart
-│   
-└───page
-│        base_page.dart
-│   
-└───widgets
-│        base_page_default_error_widget.dart
-│        base_page_default_loading_widget.dart
-│        base_page_global_config.dart
-│        default_error_widget.dart
-│        default_loading_widget.dart
-│   
-└───util
-│        action_util.dart
-│        base64_util.dart
-│        loading_util.dart
-│        log_util.dart
-│        model_util.dart
-│        sp_util.dart
-│        toast_util.dart
-│        try_catch_util.dart
-│   
-└───widget
-         app_bar_back_button.dart
-         cached_loading_body.dart
-         circle_image.dart
-         column_row_grid_view.dart
-         conditional_widget.dart
-         convenient_container.dart
-         convenient_rich_text.dart
-         default_tab_controller_listener.dart
-         image_banner.dart
-         list_grid_view.dart
-         loading_body.dart
-         rounded_image.dart
-         separated_column.dart
-         separated_row.dart
-         separated_wrap.dart
-         visibility_builder.dart
-```
-
-### Step 7 常用快捷键
-
-#### Step 7.1 导入[Live Templates Settings](./_docs/live_templates_settings.zip)设置
-
-#### Step 7.2 常用的快捷键
-
-<img src="_docs/live_templates.png" alt="常用的快捷键">
+TODO: Tell users more about the package: where to find more information, how to
+contribute to the package, how to file issues, what response they can expect
+from the package authors, and more.

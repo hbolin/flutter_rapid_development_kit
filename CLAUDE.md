@@ -1,106 +1,23 @@
 # CLAUDE.md
 
-本文件为 Claude Code (claude.ai/code) 在此仓库中工作时提供指导。
-
-## 项目概述
-
-基于 GetX 的 Flutter 工具/组件包（FRDK），用于快速应用开发。版本通过 git tag 追踪（当前：v3.1.5）。所有文档注释和行内注释均使用中文。
-
-## 常用命令
-
-```bash
-# 静态分析
-dart analyze lib/
-
-# 格式检查
-dart format lib/ --output=show --set-exit-if-changed
-
-# 运行所有测试
-flutter test
-
-# 运行单个测试
-flutter test test/src/util/base64_util_test.dart
-```
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## 架构原则
 
-- DRY（不要重复自己）– 通过提取共享工具和模块消除重复逻辑。
-- 关注点分离 – 每个模块只负责一项明确的职责。
-- 单一职责原则（SRP）– 每个类/模块/函数/文件应该只有一个变更的理由。
-- 清晰的抽象与契约 – 通过小而稳定的接口表达意图，隐藏实现细节。
-- 低耦合，高内聚 – 保持模块自包含，最小化跨模块依赖。
-- 可扩展与无状态 – 设计可水平扩展的组件，优先使用无状态服务。
-- 可观测与可测试 – 内建日志、指标、追踪，确保组件可进行单元/集成测试。
-- KISS（保持简单）– 解决方案尽可能简单。
-- YAGNI（你不会需要它）– 避免猜测性复杂度或过度设计。
-- **TDD（测试驱动开发）** - 先写测试；实现代码在测试通过之前不算完成。
+- DRY（不要重复自己）— 通过抽取共享工具和模块，消除重复逻辑。
+- 关注点分离 — 每个模块应只负责一个独立的职责。
+- 单一职责原则（SRP）— 每个类/模块/函数/文件应当只有一个变更的理由。
+- 清晰的抽象与契约 — 通过小而稳定的接口暴露意图，隐藏实现细节。
+- 低耦合、高内聚 — 让模块保持自包含，最小化跨模块依赖。
+- 可扩展性与无状态 — 将组件设计为可水平扩展，优先采用无状态服务。
+- 可观测性与可测试性 — 内建日志、指标、链路追踪，并确保组件可进行单元/集成测试。
+- KISS（保持简单）— 让解决方案尽可能简单。
+- YAGNI（你不会需要它）— 避免投机性的复杂度或过度设计。
+- **TDD（测试驱动开发）** — 先写测试；只有测试通过，实现代码才算完成。
 
-## 编码规范
-
-- 类名使用 `PascalCase`，成员/变量/函数/枚举使用 `camelCase`，文件名使用 `snake_case`。
-- 公有方法（Public）放在前面，私有方法（Private, 以 _ 开头）放在后面。
-- 空安全：避免使用 `!`，除非值保证非空。
-- 代码中逻辑的判断使用 `== true` 和 `!= true`。
-- 命名不使用缩写；使用有意义、具描述性的标识符。
-
-### 异常处理
-
-- 严禁在顶级方法（Top-level functions）中内部捕获并消化异常
-
-### Flutter 风格指南
-
-- 优先使用组合来构建复杂的 widget 和逻辑。
-- 优先使用不可变数据结构。Widget（尤其是 `StatelessWidget`）必须是不可变的。
-- 禁止在 `build()` 方法中执行耗时操作，如网络请求或复杂计算。
-
-### 代码注释
-
-- 文档注释用 `///`，以单句摘要开头，后加空行；解释"为什么"而非"做什么"。
-- 不添加行尾注释。
-- 注释使用中文。
-- 类和函数必须包含文档注释。
-- 公共 API 的注释必须附上代码示例。
-- 解释参数、返回值和异常：用文字描述函数的期望输入、返回值和可能抛出的错误。
-
-## 架构
-
-### GetX + BasePage 模式
-
-核心架构是 `BasePage`（`lib/src/page/base_page.dart`），基于 GetX 的页面框架：
-
-- **`BasePageStatefulWidget`** — 抽象 Widget，定义路由名称和参数
-- **`BasePageState<K, S, T>`** — 抽象 State，关联 GetX 控制器 + 状态 + 加载生命周期。泛型参数：K（Widget）、S（状态）、T（控制器）
-- **`BasePageGetxController<S>`** — 抽象 GetxController，提供 `loadData`/`needLoadCachedData`/`needLoadData` 钩子及路由生命周期（`didPush`/`didPop`/`didPushNext`/`didPopNext`）
-- **`BasePageBaseState<T>`** — 持有 Widget 引用和 `isLoadRealDataSuccess` 标志
-
-路由观察者 `frdkRouteObserver` 必须注册到 `GetMaterialApp(navigatorObservers: [frdkRouteObserver])`。
-
-### 三级加载体系
-
-1. **`LoadingBody`** — 简单流程：加载中 → 成功/失败。内部使用 `FutureBuilder`。控制器：`LoadingBodyController.reloadData()`
-2. **`CachedLoadingBody`** — 两阶段流程：加载中 → 缓存数据 → 真实数据。内部使用 `StreamBuilder`。缓存成功但真实数据失败时，显示缓存数据并弹出 toast 提示。控制器：`CachedLoadingBodyController.reloadData()`
-3. **`LoadingUtil`** — 模态加载对话框（用户不可关闭）。使用 `RawDialogRoute`，依赖 `Get.context`
-
-LoadingBody 和 CachedLoadingBody 均使用 `synchronized` Lock 防止并发加载。
-
-### Widget 定制优先级
-
-`buildCustom*`（页面级覆盖）> `BasePageGlobalConfig`（应用级 InheritedWidget）> `buildDefault*`（内置默认）
-
-## 编码规范
-
-- **状态管理：** 统一使用 GetX（`Get.put`、`Get.find`、`GetBuilder`）。控制器继承 `GetxController`
-- **扩展命名：** 使用 `Frdk` 前缀（如 `FrdkListExtensions`）
-- **工具类：** 私有构造函数（`const UtilClass._()`）+ 静态方法
-- **Widget-Controller 配对模式：** 复杂组件搭配 Controller 类，持有 State 引用并暴露 `reloadData()`
-- **Builder 回调：** 组件广泛使用 builder 模式（`bodyBuilder`、`loadingWidgetBuilder` 等）
-- **分隔组件：** `SeparatedColumn`/`Row`/`Wrap` 共用相同 API：`itemCount` + `itemBuilder` + `separatorBuilder`
-
-## Lint 与代码风格
-
-- 引用 `package:flutter_lints/flutter.yaml`
-- `require_trailing_commas: true` — 必须使用尾逗号
-- `prefer_const_constructors: true` — 优先使用 const 构造
-- `unnecessary_this: false` — 允许且常用 `this.field`
-- `prefer_relative_imports: true` — 优先使用相对导入
-- 格式化：`trailing_commas: preserve`
+## 测试
+- 运行测试：如果 `run_tests` 工具可用则使用它，否则使用 `flutter test`。
+- 单元测试：使用 `package:test` 进行单元测试。
+- Widget 测试：使用 `package:flutter_test` 进行 Widget 测试。
+- 集成测试：使用 `package:integration_test` 进行集成测试。
+- 断言：优先使用 `package:checks` 进行更具表达力和可读性的断言，而非默认的 `matchers`。
